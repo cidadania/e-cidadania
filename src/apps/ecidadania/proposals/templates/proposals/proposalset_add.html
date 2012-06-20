@@ -36,36 +36,46 @@
                     {% endfor %}
                 {% endif %}
                 
-                <div class="clearfix {% if form.name.errors %}error{% endif%}">
-                    <label for="prependedInput">{{ form.name.label }}</label>
-                    <div class="input"> 
-                        {{ form.name }}
-                        <span class="help-inline">
-                            {% if form.name.errors %}
+
+                <div class="control-group {% if form.name.errors %}error{% endif %}">
+                    <label>{{ form.name.label }}</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            {{ form.name }}
+                            {% if form.name.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.name.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.name.errors %}
+                            <p class="help-block">
                                 {% for error in form.name.errors %}
                                     {{ error|escape }}
-                                {% endfor %}
-                            {% else %}
-                                {{ form.name.help_text }}
-                            {% endif %}
-                        </span>
-                    </div> 
-                </div>
-                <div class="clearfix {% if form.debate.errors %}error{% endif %}">
-                    <label for="prependedInput">{{ form.debate.label }}</label>
-                    <div class="input">
-                        {{ form.debate }}
-                        <span class="help-inline">
-                            {% if form.debate.errors %}
-                                {% for error in form.debate.errors %}
-                                    {{ error|escape }}
-                                {% endfor %}
-                            {% else %}
-                                {{ form.debate.help_text }}
-                            {% endif %}
-                        </span>
+                                {% endfor%}
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
+                
+                <div class="control-group {% if form.debate.errors %}error{% endif %}">
+                    <label>{{ form.debate.label }}</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            {{ form.debate }}
+                            {% if form.debate.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ forms.debate.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.debate.errors %}
+                            <p class="help-block">
+                                {% for error in form.debate.errors %}
+                                    {{ error|escape }}
+                                {% endfor %}                                
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                
                 <hr />
                 <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">&laquo; {% trans "Go back" %}</a>
                 <input class="btn btn-small btn-primary" type="submit" value="{% trans 'Create' %}" />

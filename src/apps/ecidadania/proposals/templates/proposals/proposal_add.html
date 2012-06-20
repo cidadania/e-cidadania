@@ -35,106 +35,110 @@
                         <span class="help-inline">{{ error|escape }}</span>
                     {% endfor %}
                 {% endif %}
-                
-                <div class="clearfix {% if form.title.errors %}error{% endif %}"> 
-                    <label for="prependedInput">{{ form.title.label }}</label> 
-                    <div class="input"> 
-                        {{ form.title }}
-                        <span class="help-inline">
-                            {% if form.title.errors %}
-                                {% for error in form.title.errors %}
-                                    {{ error|escape }}
-                                {% endfor %}
-                            {% else %}
-                                {{ form.title.help_text }}
-                            {% endif %}
-                        </span>
-                    </div> 
-                </div>
-                <div class="clearfix {% if form.proposalset.errors%}error{% endif %}">
-                    <label for="prependedInput">Proposal Set</label>
-                    <div class="input">
-                        {{ form.proposalset }}
-                        <span class="input">
-                            {% if form.proposalset.errors %}
-                                {% for error in form.proposalset.errors %}
-                                    {{ error|escape }}
-                                {% endfor %}
-                            {% else %}
-                                {{ form.proposalset.help_text }}
-                            {% endif %}
-                        </span>
-                    </div>
-                 </div>                
-                 <div class="clearfix {% if form.description.errors %}error{% endif%}">
-                    <label for="prependedInput">{{ form.description.label }}</label> 
-                    <div class="input"> 
-                        {{ form.description }}
-                        {% wysiwyg_editor "id_description" %}
-                        <span class="help-inline">
-                            {% if form.description.errors %}
-                                {% for error in form.description.errors %}
-                                    {{ error|escape }}
-                                {% endfor %}
-                            {% else %}
-                                {{ form.description.help_text }}
-                            {% endif %}
-                        </span>
-                    </div> 
-                </div>
-                
-                <div class="clearfix {% if form.latitude.errors %}error{% endif%}"> 
-                    {{ form.latitude.errors }}
-                    <label for="prependedInput">{{ form.latitude.label }}</label> 
-                    <div class="input"> 
-                        {{ form.latitude }}
-                        <span class="help-inline">
-                            {% if form.latitude.errors %}
-                                {% for error in form.latitude.errors %}
-                                    {{ error|escape }}
-                                {% endfor %}
-                            {% else %}
-                                {{ form.latitude.help_text }}
-                            {% endif %}
-                        </span>
-                    </div> 
-                </div>
-                
-                <div class="clearfix {% if form.longitude.errors %}error{% endif%}"> 
-                    {{ form.longitude.errors }}
-                    <label for="prependedInput">{{ form.longitude.label }}</label> 
-                    <div class="input"> 
-                        {{ form.longitude }}
-                        <span class="help-inline">
-                            {% if form.longitude.errors %}
-                                {% for error in form.longitude.errors %}
-                                    {{ error|escape }}
-                                {% endfor %}
-                            {% else %}
-                                {{ form.longitude.help_text }}
-                            {% endif %}
-                        </span>
-                    </div> 
-                </div>
-                
-                <div class="clearfix {% if form.tags.errors %}error{% endif%}"> 
-                    {{ form.tags.errors }}
-                    <label for="prependedInput">{{ form.tags.label }}</label> 
-                    <div class="input"> 
-                        {{ form.tags }}
-                        <span class="help-inline">
-                            {% if form.tags.errors %}
-                                {% for error in form.tags.errors %}
-                                    {{ error|escape }}
-                                {% endfor %}
-                            {% else %}
-                                {{ form.tags.help_text }}
-                            {% endif %}
-                        </span>
-                    </div> 
-                </div>
 
-                <hr />
+                <div class="control-group {% if form.title.errors %}error{% endif %}">
+                    <label>{{ form.title.label }}</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            {{ form.title }}
+                            {% if form.title.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.title.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.title.errors %}
+                            {% for error in form.title.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div> 
+                
+                
+                <div class="control-group {% if form.proposalset.errors %}error{% endif %}">
+                    <label>Proposal Set</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            {{ form.proposalset }}
+                            {% if form.proposalset.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.proposalset.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.proposalset.errors %}
+                            {% for error in form.proposalset.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div> 
+                 
+                <div class="control-group {% if form.description.errors %}error{% endif %}">
+                    <label>{{ form.description.label }}</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            {{ form.description }}
+                            {% wysiwyg_editor "id_description" %}
+                            {% if form.description.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.description.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.description.errors %}
+                            {% for error in form.description.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div> 
+                 
+                <div class="control-group {% if form.latitude.errors %}error{% endif %}">
+                    <label>{{ form.latitude.label }}</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            {{ form.latitude }}
+                            {% if form.latitude.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.latitude.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.latitude.errors %}
+                            {% for error in form.latitude.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="control-group {% if form.longitude.errors %}error{% endif %}">
+                    <label>{{ form.longitude.label }}</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            {{ form.longitude }}
+                            {% if form.longitude.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.longitude.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.longitude.errors %}
+                            {% for error in form.longitude.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="control-group {% if form.tags.errors %}error{% endif %}">
+                    <label>{{ form.tags.label }}</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            {{ form.tags }}
+                            {% if form.tags.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.tags.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.tags.errors %}
+                            {% for error in form.tags.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                
+               <hr />
                 <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">&laquo; {% trans "Go back" %}</a>
                 <input class="btn btn-small btn-primary" type="submit" value="{% trans 'Publish' %}" />
             </form>

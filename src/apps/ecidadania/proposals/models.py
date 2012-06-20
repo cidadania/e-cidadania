@@ -81,11 +81,13 @@ class ProposalSet(models.Model):
 
     """
 
-    name = models.CharField(_('Name'), max_length=100, unique=True)
+    name = models.CharField(_('Name'), max_length=100, unique=True,
+            help_text = _('Max: 200 character'))
     space = models.ForeignKey(Space, blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, blank=True, null=True)
-    debate = models.ForeignKey(Debate, blank=True, null=True)
+    debate = models.ForeignKey(Debate, blank=True, null=True,
+            help_text = _('Select the debate associated with this proposalset'))
 
     def __unicode__(self):
         return self.name
@@ -122,19 +124,24 @@ class Proposal(BaseProposalAbstractModel):
     """
     code = models.CharField(_('Code'), max_length=50, blank=True,
                             null=True)
-    title = models.CharField(_('Title'), max_length=100, unique=True)
+    title = models.CharField(_('Title'), max_length=100, unique=True,
+                             help_text = _('Max: 200 characters'))
     proposalset = models.ForeignKey(ProposalSet, related_name='proposal_in',
-                                    blank=True, null=True)
+                                    blank=True, null=True, help_text=_('Proposal set \
+                                            in which the proposal resides'))
     description = models.TextField(_('Description'), max_length=300)
     space = models.ForeignKey(Space, blank=True, null=True)
     author = models.ForeignKey(User, related_name='proposal_authors',
-                               blank=True, null=True)
+                               blank=True, null=True, 
+                               help_text = _('Change the user that will figure as the author'))
     #debatelink = models.ForeignKey()
-    tags = TagField()
+    tags = TagField(help_text = _('Insert here relevent words related with the proposal'))
     latitude = models.DecimalField(_('Latitude'), blank=True, null=True,
-                                   max_digits=8, decimal_places=6)
+                                   max_digits=8, decimal_places=6, 
+                                   help_text =_('Specify it in decimal'))
     longitude = models.DecimalField(_('Longitude'), blank=True, null=True,
-                                    max_digits=8, decimal_places=6)
+                                    max_digits=8, decimal_places=6, 
+                                    help_text =_('Specify it in decimal'))
     closed = models.NullBooleanField(default=False, blank=True)
     closed_by = models.ForeignKey(User, blank=True, null=True,
                                   related_name='proposal_closed_by')

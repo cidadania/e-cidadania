@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-18 09:27+0200\n"
+"POT-Creation-Date: 2012-06-28 11:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,31 +27,51 @@ msgid "Title"
 msgstr ""
 
 #: models.py:34
-msgid "Text"
+msgid "Max: 200 characters"
 msgstr ""
 
 #: models.py:35
-msgid "Date"
+msgid "Text"
 msgstr ""
 
 #: models.py:36
-msgid "Last update"
+msgid "Date"
 msgstr ""
 
 #: models.py:37
+msgid "Last update"
+msgstr ""
+
+#: models.py:38
 msgid "Author"
 msgstr ""
 
 #: models.py:39
-msgid "Publish in index page"
+msgid ""
+"Change the user that will figure as the                                   "
+"author"
 msgstr ""
 
-#: models.py:40
-msgid "Publish in"
+#: models.py:41
+msgid "Publish in index"
 msgstr ""
 
 #: models.py:42
+msgid "This will publish the post in the main site page"
+msgstr ""
+
+#: models.py:43
+msgid "Publish in"
+msgstr ""
+
+#: models.py:45
 msgid "If you want to post to the index leave this blank"
+msgstr ""
+
+#: models.py:46
+msgid ""
+"Insert here relevant words related with                                      "
+"the post"
 msgstr ""
 
 #: urls.py:28
@@ -90,56 +110,9 @@ msgstr ""
 msgid "next"
 msgstr ""
 
-#: templates/news/news_list.html:64 templates/news/post_add.html:112
-#: templates/news/post_confirm_delete.html:37
-#: templates/news/post_edit.html:139
+#: templates/news/news_list.html:64 templates/news/post_confirm_delete.html:37
+#: templates/news/post_form.html:180
 msgid "Go back"
-msgstr ""
-
-#: templates/news/post_add.html:5 templates/news/post_add.html.py:29
-msgid "Add new post"
-msgstr ""
-
-#: templates/news/post_add.html:113 templates/news/post_edit.html:140
-msgid "Publish"
-msgstr ""
-
-#: templates/news/post_add.html:118
-msgid "How to add new posts"
-msgstr ""
-
-#: templates/news/post_add.html:120
-msgid "Title:"
-msgstr ""
-
-#: templates/news/post_add.html:120
-msgid "An spectacular title! (100 characters)"
-msgstr ""
-
-#: templates/news/post_add.html:121
-msgid "Text:"
-msgstr ""
-
-#: templates/news/post_add.html:121
-msgid "Your story."
-msgstr ""
-
-#: templates/news/post_add.html:122
-msgid "Tags:"
-msgstr ""
-
-#: templates/news/post_add.html:122
-msgid "Please use them carefully, you are limited to 4 tags."
-msgstr ""
-
-#: templates/news/post_add.html:123
-msgid "Publish in index:"
-msgstr ""
-
-#: templates/news/post_add.html:123
-msgid ""
-"If you mark this, the post will appear in the spaces index page AND in the "
-"main index."
 msgstr ""
 
 #: templates/news/post_confirm_delete.html:4
@@ -188,10 +161,18 @@ msgstr ""
 msgid "Share this post"
 msgstr ""
 
-#: templates/news/post_edit.html:5
-msgid "Edit news"
+#: templates/news/post_form.html:14 templates/news/post_form.html.py:44
+msgid "Edit post"
 msgstr ""
 
-#: templates/news/post_edit.html:28
-msgid "Edit post"
+#: templates/news/post_form.html:16 templates/news/post_form.html.py:46
+msgid "Create new post"
+msgstr ""
+
+#: templates/news/post_form.html:118
+msgid "Staff members options"
+msgstr ""
+
+#: templates/news/post_form.html:181
+msgid "Publish"
 msgstr ""

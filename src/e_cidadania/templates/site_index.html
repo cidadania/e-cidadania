@@ -3,14 +3,69 @@
 
 {% block title %}{% trans "e-cidadania" %}{% endblock %}
 
+{% block logo %}{% endblock %}
+{% block banner %}{% endblock %}
 {% block space %}
-    <a class="brand" href="/">e-cidadania {% if debug_mode %}<span style="font-size:0.5em;color:#F00;">debug mode v{{ version }} {{ status }}</span>{% endif %}</a>
+    <a class="brand" href="{% url 'site-index' %}">e-cidadania {% if debug_mode %}<span style="font-size:0.5em;color:#F00;">debug mode v{{ version }} {{ status }}</span>{% endif %}</a>
 {% endblock %}
 
 {% block content %}
 
-    <div class="row">
-        <div class="span6">
+<div class="row" style="margin-top: -80px;">
+    <div class="span6">
+        <p style="font-size: 2em;line-height:30px;font-weight:bold;color:#333;">The best way to carry your participative democracy in any field: politics,
+            associations, citizen groups...</p>
+        <h3 class="lead">e-cidadania provides a free service for making participative democracy
+            through debates, proposals, voting systems... with automated reports of
+            the process, file repositositories, RSS feeds...</h3>
+        {% if user.is_anonymous %}
+        <div style="margin-left:60px;">
+            <a href="{% url 'signup' %}" class="btn btn-success btn-large">{% trans "Sign up <i>-it's free!-</i>" %}</a> {% trans "or" %} <a href="{% url 'login' %}" class="btn btn-primary btn-large">{% trans "Log in" %}</a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="span4" style="float:right;">
+        <img src="{{ STATIC_URL }}/assets/logos/index_big.png" />
+    </div>
+</div>
+
+{% endblock %}
+
+{% block freewidth %}
+
+<div class="indexblock one">
+    <div class="row indexrow">
+        <p style="font-size: 2em;line-height:30px;font-weight: bold;color:#FEFEFE;">{% trans "Features" %}</p>
+
+        <div class="span4" style="color:#FEFEFE; text-align: justify;">
+            <h3 style="color:#FEFEFE;">{% trans "Advanced Debate System" %}</h3>
+            <p>{% blocktrans %}A new kind of debating system, based on a two-dimensional grid.
+            This feature will help the people to organize thier ideas and also to get conclusions for the debate.
+            The usual threaded debate systems are very unconclusive and ineffective. Let's start
+            getting conclusions!{% endblocktrans %}</p>
+        </div>
+
+        <div class="span4" style="color:#FEFEFE; text-align: justify;">
+            <h3 style="color:#FEFEFE;">{% trans "Automated Reports" %}</h3>
+            <p>{% blocktrans %}After every participative process, e-cidadania will generate an automatic
+            report based on all the data gathered during the process. After it's generated it will
+            be available for all participants of the process.{% endblocktrans %}</p>
+        </div>
+
+        <div class="span4" style="color:#FEFEFE; text-align: justify;">
+            <h3 style="color:#FEFEFE;">{% trans "Proposals and Voting" %}</h3>
+            <p>{% blocktrans %}e-cidadania provides a way to do a complete participative process, from
+            the debates, passing by proposals system, a secure voting system, and you can start your
+            process at any point. e-cidadania will manage to follow it.{% endblocktrans %}</p>
+        </div>
+
+    </div>
+</div>
+
+<div class="indexblock two">
+    <div class="row indexrow">
+
+        <div class="span4">
             <h3>{% trans "Recent processes"%}</h3><br />
             <ul class="unstyled">
                 {% for space in spaces %}
@@ -28,37 +83,16 @@
                 {% endfor %}
                 <script>
                     $(function () {
-                        $("a[rel=popover]")
-                            .popover({
-                                offset: 10
-                            })
+                        $("a[rel=popover]").popover({
+                            offset: 10
                         })
+                    })
                 </script>
                 <br />
                 <li>&raquo;<a href="{% url 'list-spaces' %}">{% trans "View all the spaces" %}</a></li>
             </ul>
         </div>
-        <div class="span6">
-            <p class="introtitle">e-<strong>cidadania</strong> <span style="font-size:.5em;color:#aaa;">/e.θi.da.'da.nia/</span></p>
-            <p class="intro">e-cidadania es un plataforma desarrollada para la participación ciudadana. Está hecha en software libre
-                con lo que podrás mirar el código si lo deseas y mejorarlo. Bajo ningún concepto vamos a tenerte vigilado ni vamos a
-                hacer nada malo con tus datos. Si deseas hacer tu propia instalación de e-cidadania basta con que sigas la
-                documentación. Pero por el momento... por qué no participas?</p>
-        </div>
-    </div>
-    
-    {% if user.is_anonymous %}
-       <hr />
-       <div class="row">
-           <div class="span4 offset4">
-               <a href="{% url 'signup' %}" class="btn btn-success btn-large">{% trans "Register" %}</a> {% trans "or" %} <a href="{% url 'login' %}" class="btn btn-primary btn-large">{% trans "Login" %}</a>
-           </div>
-       </div>
-    {% endif %}
-    
-    <hr />
- 
-    <div class="row">
+
         <div class="span4">
             <h3>{% trans "Recent news" %} <a href="/rss/"><img src="{{ STATIC_URL }}/assets/icons/rss16.png" alt="Feed RSS"/></a></h3>
             <ul class="unstyled">
@@ -69,27 +103,16 @@
                 {% endfor %}
             </ul>
         </div>
+
         <div class="span4">
-            <h3>{% trans "True democracy" %}</h3>
-            <p>El objetivo principal de e-cidadania es el de provver una plataforma real de democracia electrónica sin tapujos en la cual poder debatir los temas que nos interesan a todos.</p>
-        </div>
-        <div class="span4">
-            <h3>{% trans "The most complete tool ever" %}</h3>
-            <p>e-cidadania es la única herramienta que cubre los procesos participativos completos. ¿De qué sirve que hagas propuestas en una web si no se van a trasladar al modelo presencial o no se tendrán en cuenta?</p>
+            <h3>{% trans "Most active" %}</h3>
+            <p>List of most active spaces within e-cidadania. Not implemented yet.</p>
         </div>
     </div>
+</div>
 
-    <hr />
-    
-    <div class="row">
-        <div class="span12">
-            <strong>7.645</strong> procesos participativos
-        </div>
-    </div>
-
-    <hr />
-    
-    <div class="row">
+<div class="indexblock three">
+    <div class="row indexrow">
         <div class="span12">
             <h4>{% trans "Share" %}</h4>
             <!-- Facebook -->
@@ -138,6 +161,7 @@
             <!-- End Tuenti -->
         </div>
     </div>
+</div>
     
 {% endblock %}
 

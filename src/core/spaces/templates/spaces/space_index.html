@@ -31,6 +31,7 @@
                 {% if get_place.mod_cal %}
                 <li><a href="#events" data-toggle="tab">{% trans "Events" %}</a></li>
                 {% endif %}
+                {% if request.user in get_place.admins.all or request.user in get_place.mods.all or request.user.is_staff or request.user.is_superuser %}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Administration" %} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -39,9 +40,12 @@
                                 <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new post' %}" title="{% trans 'Add new post' %}"/>{% trans 'Add new post' %}
                             </a></li>
                         {% endif %}
-                        {% if perms.spaces.edit_space %}
+                        {% if perms.spaces.change_space %}
                             <li><a href="{% url 'edit-space' get_place.url %}">
                                 <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit space' %}" title="{% trans 'Edit space' %}"/>{% trans 'Edit space' %}
+                            </a></li>
+                            <li><a href="{% url 'edit-roles' get_place.url %}">
+                                <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit user roles' %}" title="{% trans 'Edit user roles' %}"/>{% trans 'Edit user roles' %}
                             </a></li>
                         {% endif %}
                         {% if perms.spaces.delete_space %}
@@ -51,6 +55,7 @@
                         {% endif %}
                     </ul>
                 </li>
+                {% endif %}
             </ul>
             <div id="my-tab-content" class="tab-content">
                 <div class="tab-pane active" id="overview">
@@ -128,15 +133,17 @@
                         <div class="span8">
                             {% for news in publication %}
                                 <h2 class="posttitle"><a href="{{ news.get_absolute_url }}">{{ news.post_title }}</a>
-                                    {% if perms.news.edit_post %}
-                                        <a href="{% url 'edit-post' get_place.url news.id %}">
-                                            <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/>
-                                        </a>
-                                    {% endif %}
-                                    {% if perms.news.delete_post %}
-                                        <a href="{% url 'delete-post' get_place.url news.id %}">
-                                            <img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/>     
-                                        </a>
+                                    {% if request.user in get_place.admins.all or request.user in get_place.mods.all or request.user.is_staff or request.user.is_superuser %}
+                                        {% if perms.news.change_post %}
+                                            <a href="{% url 'edit-post' get_place.url news.id %}">
+                                                <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/>
+                                            </a>
+                                        {% endif %}
+                                        {% if perms.news.delete_post %}
+                                            <a href="{% url 'delete-post' get_place.url news.id %}">
+                                                <img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/>
+                                            </a>
+                                        {% endif %}
                                     {% endif %}
                                 </h2>
                                 {% get_comment_count for news as comment_count %}
@@ -150,13 +157,15 @@
                             {% endfor %}
                         </div>
                         <div class="span4 space-sidebar">
-                            {% if perms.news.add_post %}
-                                <h4>{% trans "Administration" %}</h4>
-                                <ul class="unstyled">
-                                    <li><a href="{% url 'add-post' get_place.url %}">
-                                        <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new post' %}" title="{% trans 'Add new post' %}"/>{% trans 'Add new post' %}
-                                    </a></li>
-                                </ul>
+                            {% if request.user in get_place.admins.all or request.user in get_place.mods.all or request.user.is_staff or request.user.is_superuser %}
+                                {% if perms.news.add_post %}
+                                    <h4>{% trans "Administration" %}</h4>
+                                    <ul class="unstyled">
+                                        <li><a href="{% url 'add-post' get_place.url %}">
+                                            <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new post' %}" title="{% trans 'Add new post' %}"/>{% trans 'Add new post' %}
+                                        </a></li>
+                                    </ul>
+                                {% endif %}
                             {% endif %}
                             <h4>{% trans "Highlighted news" %}</h4>
                             <h4>{% trans "Most commented" %}</h4>
@@ -195,27 +204,29 @@
                             </ul>
                         </div>
                         <div class="span4">
-                            <h4>{% trans "Administration" %}</h4>
-                            <ul class="unstyled">
-                                {% if perms.debate.add_debate %}
-                                    <li><a href="{% url 'add-debate' get_place.url %}">
-                                        <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add' %}" title="{% trans 'Add' %}"/>{% trans "Add debate" %}
-                                    </a></li>
-                                {% endif %}
-                            </ul>
-                                {% comment %}
-                                {% if perms.debate.edit_debate %}
-                                    <li><a href="{% url 'edit-debate' get_place.url debate.id %}">
-                                        <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/>
-                                    </a></li>
-                                {% endif %}
-                                {% if perms.debate.delete_debate %}
-                                    <li><a href="{% url 'delete-debate' get_place.url %}">
-                                        <img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/>
-                                    </a></li>
-                                {% endif %}
-                            {% endcomment %}
-                            <h4>Otras opciones (traducir)</h4>
+                            {% if request.user in get_place.admins.all or request.user in get_place.mods.all or request.user.is_staff or request.user.is_superuser %}
+                                <h4>{% trans "Administration" %}</h4>
+                                <ul class="unstyled">
+                                    {% if perms.debate.add_debate %}
+                                        <li><a href="{% url 'add-debate' get_place.url %}">
+                                            <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add' %}" title="{% trans 'Add' %}"/>{% trans "Add debate" %}
+                                        </a></li>
+                                    {% endif %}
+                                    {% comment %}
+                                    {% if perms.debate.change_debate %}
+                                        <li><a href="{% url 'edit-debate' get_place.url debate.id %}">
+                                            <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/>
+                                        </a></li>
+                                    {% endif %}
+                                    {% if perms.debate.delete_debate %}
+                                        <li><a href="{% url 'delete-debate' get_place.url %}">
+                                            <img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/>
+                                        </a></li>
+                                    {% endif %}
+                                    {% endcomment %}
+                                </ul>
+                            {% endif %}
+                            <h4>{% trans "Actions" %}</h4>
                             <ul class="unstyled">
                                 <li><a href="{% url 'list-debates' get_place.url %}">{% trans "View all debates" %}</a></li>
                             </ul>
@@ -240,9 +251,9 @@
                             <h4>{% trans "New proposal sets" %}</h4>
                             <ul class="unstyled">
                                 {% for proposalset in proposalsets %}
-                                <li><a href="{{ proposalset.get_absolute_url }}">{{ proposalset.name }}</a> {% trans "by" %} {{ proposalset.author }} {% trans "at" %} {{ proposalset.pub_date|date:"d F Y"}}</li>
+                                    <li><a href="{{ proposalset.get_absolute_url }}">{{ proposalset.name }}</a> {% trans "by" %} {{ proposalset.author }} {% trans "at" %} {{ proposalset.pub_date|date:"d F Y"}}</li>
                                 {% empty %}
-                                <li>{% trans "No proposal sets available."%}</li>
+                                    <li>{% trans "No proposal sets available."%}</li>
                                 {% endfor %}
                             </ul>
                             <h4>{% trans "Merged proposals" %}</h4>
@@ -250,25 +261,27 @@
                             <h4>{% trans "Highlighted proposals" %}</h4>
                         </div>
                         <div class="span4">
-                            <h4>{% trans "Administration" %}</h4>
-                            <ul class="unstyled">
-                                {% if perms.proposalsets.add_proposalset %}
-                                    <li>
-                                        <a href="{% url 'add-proposalset' get_place.url %}">
-                                            <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new proposal' %}" title="{% trans 'Add new proposal' %}"/>{% trans "Add proposal set" %}
-                                        </a>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                            <ul class="unstyled">
-                                {% if perms.proposals.add_proposal %}
-                                    <li><a href="{% url 'add-proposal' get_place.url %}">
-                                            <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new post' %}" title="{% trans 'Add new post' %}"/>{% trans "Add proposal" %}
-                                        </a>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                            <h4>{% trans "Other options" %}</h4>
+                            {% if request.user in get_place.admins.all or request.user in get_place.mods.all or request.user.is_staff or request.user.is_superuser %}
+                                <h4>{% trans "Administration" %}</h4>
+                                <ul class="unstyled">
+                                    {% if perms.proposalsets.add_proposalset %}
+                                        <li>
+                                            <a href="{% url 'add-proposalset' get_place.url %}">
+                                                <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new proposal' %}" title="{% trans 'Add new proposal' %}"/>{% trans "Add proposal set" %}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                                <ul class="unstyled">
+                                    {% if perms.proposals.add_proposal %}
+                                        <li><a href="{% url 'add-proposal' get_place.url %}">
+                                                <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new post' %}" title="{% trans 'Add new post' %}"/>{% trans "Add proposal" %}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
+                            <h4>{% trans "Actions" %}</h4>
                             <ul class="unstyled">
                                 <li><a href="{% url 'list-proposals' get_place.url %}">{% trans "View all proposals" %}</a></li>
                                 <li><a href="{% url 'list-proposalset' get_place.url %}">{% trans "View all proposal sets" %}</a></li>
@@ -285,7 +298,7 @@
                             <ul class="unstyled">
                                 {% for doc in documents %}
                                     <li><a href="{{ doc.docfile.url }}">{{ doc.title }} ({{ doc.get_file_ext }}, {{ doc.get_file_size }})</a>
-                                    {% if perms.spaces.edit_document %}
+                                    {% if perms.spaces.change_document %}
                                         <a href="{% url 'edit-document' get_place.url doc.id %}">
                                             <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/>
                                         </a>
@@ -302,16 +315,18 @@
                             </ul>
                         </div>
                         <div class="span4">
-                            <h4>{% trans "Administration" %}</h4>
-                            <ul class="unstyled">
-                                {% if perms.spaces.add_document %}
-                                    <li><a href="{% url 'add-document' get_place.url %}">
-                                            <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new post' %}" title="{% trans 'Add new post' %}"/>{% trans "Add documents"%}
-                                        </a>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                            <h4>Otras opciones (traducir)</h4>
+                            {% if request.user in get_place.admins.all or request.user in get_place.mods.all or request.user.is_staff or request.user.is_superuser %}
+                                <h4>{% trans "Administration" %}</h4>
+                                <ul class="unstyled">
+                                    {% if perms.spaces.add_document %}
+                                        <li><a href="{% url 'add-document' get_place.url %}">
+                                                <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new post' %}" title="{% trans 'Add new post' %}"/>{% trans "Add documents"%}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
+                            <h4>{% trans "Actions" %}</h4>
                             <ul class="unstyled">
                                 <li><a href="{% url 'list-documents' get_place.url %}">{% trans "View all documents" %}</a></li>
                             </ul>
@@ -364,15 +379,17 @@
                             <div id="datepicker"></div>
                         </div>
                         <div class="span4">
-                            <h4>{% trans "Administration" %}</h4>
-                            <ul class="unstyled">
-                                {% if perms.spaces.add_event %}
-                                    <li><a href="{% url 'add-event' get_place.url %}">
-                                        <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new event' %}" title="{% trans 'Add new event' %}"/>{% trans "Add event"%}
-                                    </a></li>
-                                {% endif %}
-                            </ul>
-                            <h4>Otras opciones (traducir)</h4>
+                            {% if request.user in get_place.admins.all or request.user in get_place.mods.all or request.user.is_staff or request.user.is_superuser %}
+                                <h4>{% trans "Administration" %}</h4>
+                                <ul class="unstyled">
+                                    {% if perms.spaces.add_event %}
+                                        <li><a href="{% url 'add-event' get_place.url %}">
+                                            <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new event' %}" title="{% trans 'Add new event' %}"/>{% trans "Add event"%}
+                                        </a></li>
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
+                            <h4>{% trans "Actions" %}</h4>
                             <ul class="unstyled">
                                 <li><a href="{% url 'list-events' get_place.url %}">{% trans "View all events" %}</a></li>
                             </ul>

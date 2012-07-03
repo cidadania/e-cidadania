@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-18 09:27+0200\n"
+"POT-Creation-Date: 2012-06-28 11:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,6 +126,10 @@ msgstr ""
 msgid "^comments/"
 msgstr ""
 
+#: urls.py:97
+msgid "role/"
+msgstr ""
+
 #: templates/404.html:9
 msgid "Nooo...!"
 msgstr ""
@@ -230,7 +234,7 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: templates/menu.html:5 templates/site_index.html:54
+#: templates/menu.html:5
 msgid "Login"
 msgstr ""
 
@@ -258,11 +262,15 @@ msgstr ""
 msgid "Add news"
 msgstr ""
 
-#: templates/menu.html:50
+#: templates/menu.html:48
+msgid "Manage User Roles"
+msgstr ""
+
+#: templates/menu.html:51
 msgid "Edit profile"
 msgstr ""
 
-#: templates/menu.html:52
+#: templates/menu.html:53
 msgid "Logout"
 msgstr ""
 
@@ -288,55 +296,97 @@ msgstr ""
 msgid "e-cidadania"
 msgstr ""
 
-#: templates/site_index.html:14
-msgid "Recent processes"
-msgstr ""
-
-#: templates/site_index.html:21
-msgid "Public"
+#: templates/site_index.html:23
+msgid "Sign up <i>-it's free!-</i>"
 msgstr ""
 
 #: templates/site_index.html:23
-msgid "Private"
-msgstr ""
-
-#: templates/site_index.html:27
-msgid "There are no spaces."
-msgstr ""
-
-#: templates/site_index.html:38
-msgid "View all the spaces"
-msgstr ""
-
-#: templates/site_index.html:54
-msgid "Register"
-msgstr ""
-
-#: templates/site_index.html:54
 msgid "or"
 msgstr ""
 
-#: templates/site_index.html:63
+#: templates/site_index.html:23
+msgid "Log in"
+msgstr ""
+
+#: templates/site_index.html:38
+msgid "Features"
+msgstr ""
+
+#: templates/site_index.html:41
+msgid "Advanced debate system"
+msgstr ""
+
+#: templates/site_index.html:42
+msgid ""
+"A new kind of debating system, based on a two-dimensional grid.\n"
+"            This will allow people to organize the ideas and also get "
+"conclusions for the debate.\n"
+"            The usual threaded debate systems are very unconclusive and "
+"innefective. Let's start\n"
+"            getting conclusions!"
+msgstr ""
+
+#: templates/site_index.html:49
+msgid "Automated reports"
+msgstr ""
+
+#: templates/site_index.html:50
+msgid ""
+"After every participative process, e-cidadania will generate an automatic\n"
+"            report based on all the data gathered during the process. After "
+"it's generated it will\n"
+"            be available for all participants of the process."
+msgstr ""
+
+#: templates/site_index.html:56
+msgid "Proposals and voting"
+msgstr ""
+
+#: templates/site_index.html:57
+msgid ""
+"e-cidadania provides a way to do a complete participative process, from\n"
+"            the debates, passing by proposals system, a secure voting "
+"system, and you can start your\n"
+"            process at any point. e-cidadania will manage to follow it."
+msgstr ""
+
+#: templates/site_index.html:69
+msgid "Recent processes"
+msgstr ""
+
+#: templates/site_index.html:76
+msgid "Public"
+msgstr ""
+
+#: templates/site_index.html:78
+msgid "Private"
+msgstr ""
+
+#: templates/site_index.html:82
+msgid "There are no spaces."
+msgstr ""
+
+#: templates/site_index.html:92
+msgid "View all the spaces"
+msgstr ""
+
+#: templates/site_index.html:97
 msgid "Recent news"
 msgstr ""
 
-#: templates/site_index.html:68
+#: templates/site_index.html:102
 msgid "No public news."
 msgstr ""
 
-#: templates/site_index.html:73
-msgid "True democracy"
+#: templates/site_index.html:108
+msgid "Most active"
 msgstr ""
 
-#: templates/site_index.html:77
-msgid "The most complete tool ever"
-msgstr ""
-
-#: templates/site_index.html:94
+#: templates/site_index.html:117
 msgid "Share"
 msgstr ""
 
-#: templates/site_index.html:131
+#: templates/site_index.html:154
 msgid "Tweet"
 msgstr ""
 

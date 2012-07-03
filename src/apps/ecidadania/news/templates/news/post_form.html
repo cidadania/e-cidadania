@@ -21,20 +21,26 @@ automatically if found in the data models.
 {% block logo %}
     {% if get_place %}
         <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
+    {% else %}
+        <a href="{% url 'site-index' %}"><img src="{{ STATIC_URL }}/assets/logos/index.png" /></a>
     {% endif %}
 {% endblock %}
 
 {% block banner %}
     {% if get_place %}
         <img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />
+    {% else %}
+        <img src="{{ STATIC_URL }}/assets/banners/index.png" />
     {% endif %}
 {% endblock %}
 
-{% if get_place %}
-    {% block space %}
+{% block space %}
+    {% if get_place %}
         <a class="brand" href="{{ get_place.get_absolute_url }}">{{ get_place.name }}</a>
-    {% endblock %}
-{% endif %}
+    {% else %}
+        <a class="brand" href="{% url 'site-index' %}">e-cidadania</a>
+    {% endif %}
+{% endblock %}
 
 {% block content %}
 

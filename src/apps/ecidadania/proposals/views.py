@@ -71,7 +71,6 @@ class AddProposal(FormView):
         context['get_place'] = self.space
         return context
         
-    @method_decorator(permission_required('proposals.add_proposal'))
     def dispatch(self, *args, **kwargs):
         return super(AddProposal, self).dispatch(*args, **kwargs)
 

@@ -50,6 +50,10 @@ class Debate(models.Model):
     start_date = models.DateField(_('Start date'), blank=True, null=True)
     end_date = models.DateField(_('End date'), blank=True, null=True)
 
+    class Meta:
+        permissions = (
+            ('view', 'Can view the debate.'),
+        )
 
     def __unicode__(self):
         return self.title
@@ -114,3 +118,8 @@ class Note(models.Model):
 
     def __unicode__(self):
         return self.message
+
+    class Meta:
+        permissions = (
+            ('move_note', 'Can move note across the debate.'),
+        )

@@ -46,6 +46,8 @@ class Space(models.Model):
     Spaces model. This model stores a "space" or "place" also known as a
     participative process in reality. Every place has a minimum set of
     settings for customization.
+
+    Methods: is_admin, is_user, is_mod
     """
     name = models.CharField(_('Name'), max_length=250, unique=True,
                             help_text=_('Max: 250 characters'))
@@ -70,8 +72,17 @@ class Space(models.Model):
     public = models.BooleanField(_('Public space'), help_text=_("This will make \
     the space visible to everyone, but registration will be necessary to participate."))
     #theme = models.CharField(_('Theme'), m)
-    
-    # Modules
+    admins = models.ManyToManyField(User, related_name="space_admins", verbose_name=_('Administrators'),
+        help_text=_('Please select the users that will be administrators of this space'),
+        blank=True, null=True)
+    mods = models.ManyToManyField(User, related_name="space_mods", verbose_name=_('Moderators'),
+        help_text=_('Please select the users that will be moderators of this space.'),
+        blank=True, null=True)
+    users = models.ManyToManyField(User, related_name="space_users", verbose_name=_('Users'),
+        help_text=_('Please select the users that can participate on this space'),
+        blank=True, null=True)
+
+# Modules
     mod_debate = models.BooleanField(_('Debate'))
     mod_proposals = models.BooleanField(_('Proposals'))
     mod_news = models.BooleanField(_('News'))
@@ -83,7 +94,9 @@ class Space(models.Model):
         verbose_name = _('Space')
         verbose_name_plural = _('Spaces')
         get_latest_by = 'date'
-
+        permissions = (
+            ('view', 'Can view this space.'),
+        )
     def __unicode__(self):
         return self.name
 
@@ -188,6 +201,9 @@ class Event(models.Model):
         verbose_name = _('Event')
         verbose_name_plural = _('Events')
         get_latest_by = 'event_date'
+        permissions = (
+            ('view', 'Can view this event'),
+        )
 
     def __unicode__(self):
         return self.title
@@ -202,7 +218,7 @@ class Intent(models.Model):
     user = models.ForeignKey(User)
     space = models.ForeignKey(Space)
     token = models.CharField(max_length=32)
-    reqested_on = models.DateTimeField(auto_now_add=True)
+    requested_on = models.DateTimeField(auto_now_add=True)
 
     def get_approve_url(self):
         site = Site.objects.all()[0]

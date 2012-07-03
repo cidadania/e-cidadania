@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load wysiwyg %}
+
+{% block title %}
+    {% trans "Edit roles" %}
+{% endblock %}
+
+{% block logo %}<a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>{% endblock %}
+{% block banner %}<img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />{% endblock %}
+
+{% block space %}
+    <a class="brand" href="{{ get_place.get_absolute_url }}">{{ get_place.name }}</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+        <h3>{% trans "Edit roles for" %} {{ get_place.name }}</h3>
+
+        <form class="form" enctype="" action="" method="post">{% csrf_token %}
+
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <span class="help-inline">{{ error|escape }}</span>
+                {% endfor %}
+            {% endif %}
+
+            {% for field in form %}
+                <div class="span4">
+                    <div class="control-group {% if field.errors %}error{% endif%}">
+                        <label>{{ field.label }}</label>
+                        <div class="controls">
+                            <div class="input-prepend">
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <span class="add-on"><a href="#" rel="tooltip" title="{{ field.help_text }}"><i class="icon-question-sign"></i></a></span>
+                                {% endif %}
+                            </div>
+                            {% if field.errors %}
+                                <p class="help-block">
+                                    {% for error in field.errors %}
+                                        {{ error|escape }}
+                                    {% endfor %}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <hr>
+            <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">&laquo; {% trans "Cancel" %}</a>
+            <input class="btn btn-small btn-primary" type="submit" value="{% trans 'Save' %}" />
+
+        </form>
+</div>
+
+{% endblock %}

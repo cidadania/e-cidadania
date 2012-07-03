@@ -26,7 +26,7 @@ from django.contrib import admin
 from django.http import HttpResponse
 from django.utils.translation import ugettext_lazy as _
 
-from core.spaces.models import Space, Entity, Document, Event
+from core.spaces.models import Space, Entity, Document, Event, Intent
 
 class EntityAdmin(admin.ModelAdmin):
 
@@ -69,7 +69,8 @@ class SpaceAdmin(admin.ModelAdmin):
         (_('Modules'), {'fields':
             ('mod_cal', 'mod_docs', 'mod_news', 'mod_proposals',
             'mod_debate')}),
-
+        (_('Staff'), {'fields':
+            [('admins', 'mods','users')]}),
     ]
     
     inlines = [
@@ -80,10 +81,24 @@ class SpaceAdmin(admin.ModelAdmin):
         if not change:
             obj.author = request.user
         obj.save()
-        request.user.profile.spaces.add(obj.id)
+        obj.users.add(request.user)
         
     def send_email(self, request, queryset):
         user_emails = queryset.objects.values('email')
+
+class IntentAdmin(admin.ModelAdmin):
+
+    """
+    This is the administrative view to manage the request from users to
+    participate on the spaces.
+    """
+    list_display = ('space', 'user', 'token', 'requested_on')
+    search_fields = ('space', 'user')
+
+    fieldsets = [
+        (None, {'fields':
+        ['user', 'space', 'token']})
+    ]
 
 class DocumentAdmin(admin.ModelAdmin):
 
@@ -125,3 +140,4 @@ admin.site.register(Space, SpaceAdmin)
 admin.site.register(Document, DocumentAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Entity, EntityAdmin)
+admin.site.register(Intent, IntentAdmin)

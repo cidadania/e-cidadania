@@ -41,7 +41,7 @@ class Interest(models.Model):
 
     """
     """
-    item = models.CharField(_('Interes'), max_length=50)
+    item = models.CharField(_('Interest'), max_length=50)
 
 class UserProfile(BaseProfile):
 
@@ -104,11 +104,7 @@ class UserProfile(BaseProfile):
     
     website = models.URLField(_('Website'), max_length=200,
                               null=True, blank=True)
-    spaces = models.ManyToManyField(Space)
     interests = models.ManyToManyField(Interest, blank=True, null=True)
-    
-    # Not required since User module automatically sets the register time.
-    #registered = models.DateTimeField('Registered', auto_now_add=True)
 
     def get_age(self):
         

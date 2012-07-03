@@ -52,7 +52,9 @@ from apps.ecidadania.debate.forms import DebateForm, UpdateNoteForm, \
     NoteForm, RowForm, ColumnForm, UpdateNotePosition
 from core.spaces.models import Space
 
+from helpers.cache import get_or_insert_object_in_cache
 
+@permission_required('debate.add_debate')
 def add_new_debate(request, space_url):
 
     """
@@ -65,55 +67,56 @@ def add_new_debate(request, space_url):
     :context: form, rowform, colform, get_place, debateid
     """
     place = get_object_or_404(Space, url=space_url)
-    
-    # Define FormSets
-    
-    # This class is used to make empty formset forms required
-    # See http://stackoverflow.com/questions/2406537/django-formsets-make-first-required/4951032#4951032
-    class RequiredFormSet(BaseFormSet):
-        """
-        """
-        def __init__(self, *args, **kwargs):
-            super(RequiredFormSet, self).__init__(*args, **kwargs)
-            for form in self.forms:
-                form.empty_permitted = False
 
-    RowFormSet = formset_factory(RowForm, max_num=10, formset=RequiredFormSet, can_delete=True)
-    ColumnFormSet = formset_factory(ColumnForm, max_num=10, formset=RequiredFormSet, can_delete=True)
-   
-    debate_form = DebateForm(request.POST or None)
-    row_formset = RowFormSet(request.POST or None, prefix="rowform")
-    column_formset = ColumnFormSet(request.POST or None, prefix="colform")
+    if request.user in place.admins.all() or request.user.is_staff or request.user.is_superuser:
 
-    # Get the last PK and add 1 to get the current PK
-    try:
-        last_debate_id = Debate.objects.latest('id')
-        current_debate_id = last_debate_id.pk + 1
-    except ObjectDoesNotExist:
-        current_debate_id = 1
+        # Define FormSets
+        # This class is used to make empty formset forms required
+        # See http://stackoverflow.com/questions/2406537/django-formsets-make-first-required/4951032#4951032
+        class RequiredFormSet(BaseFormSet):
+            """
+            """
+            def __init__(self, *args, **kwargs):
+                super(RequiredFormSet, self).__init__(*args, **kwargs)
+                for form in self.forms:
+                    form.empty_permitted = False
 
-    if request.user.has_perm('debate_add') or request.user.is_staff:
-        if request.method == 'POST':
-            if debate_form.is_valid() and row_formset.is_valid() and column_formset.is_valid():
-                debate_form_uncommited = debate_form.save(commit=False)
-                debate_form_uncommited.space = place
-                debate_form_uncommited.author = request.user
+        RowFormSet = formset_factory(RowForm, max_num=10, formset=RequiredFormSet, can_delete=True)
+        ColumnFormSet = formset_factory(ColumnForm, max_num=10, formset=RequiredFormSet, can_delete=True)
 
-                saved_debate = debate_form_uncommited.save()
-                debate_instance = get_object_or_404(Debate, pk=current_debate_id)
+        debate_form = DebateForm(request.POST or None)
+        row_formset = RowFormSet(request.POST or None, prefix="rowform")
+        column_formset = ColumnFormSet(request.POST or None, prefix="colform")
 
-                for form in row_formset.forms:
-                    row = form.save(commit=False)
-                    row.debate = debate_instance
-                    row.save()
+        # Get the last PK and add 1 to get the current PK
+        try:
+            last_debate_id = Debate.objects.latest('id')
+            current_debate_id = last_debate_id.pk + 1
+        except ObjectDoesNotExist:
+            current_debate_id = 1
 
-                for form in column_formset.forms:
-                    column = form.save(commit=False)
-                    column.debate = debate_instance
-                    column.save()
+        if request.user.has_perm('debate_add') or request.user.is_staff:
+            if request.method == 'POST':
+                if debate_form.is_valid() and row_formset.is_valid() and column_formset.is_valid():
+                    debate_form_uncommited = debate_form.save(commit=False)
+                    debate_form_uncommited.space = place
+                    debate_form_uncommited.author = request.user
 
-                return redirect('/spaces/' + space_url + '/debate/' + str(debate_form_uncommited.id))
-        return render_to_response('debate/debate_add.html',
+                    saved_debate = debate_form_uncommited.save()
+                    debate_instance = get_object_or_404(Debate, pk=current_debate_id)
+
+                    for form in row_formset.forms:
+                        row = form.save(commit=False)
+                        row.debate = debate_instance
+                        row.save()
+
+                    for form in column_formset.forms:
+                        column = form.save(commit=False)
+                        column.debate = debate_instance
+                        column.save()
+
+                    return redirect('/spaces/' + space_url + '/debate/' + str(debate_form_uncommited.id))
+            return render_to_response('debate/debate_add.html',
                                   {'form': debate_form,
                                    'rowform': row_formset,
                                    'colform': column_formset,
@@ -220,17 +223,17 @@ def update_position(request, space_url):
     position_form = UpdateNotePosition(request.POST or None, instance=note)
 
     if request.method == "POST" and request.is_ajax:
-        if position_form.is_valid():
-            position_form_uncommited = position_form.save(commit=False)
-            position_form_uncommited.column = get_object_or_404(Column, pk=request.POST['column'])
-            position_form_uncommited.row = get_object_or_404(Row, pk=request.POST['row'])
-
-            position_form_uncommited.save()
-            msg = "The note has been updated."
+        if request.user == note.author or request.user.is_staff:
+            if position_form.is_valid():
+                position_form_uncommited = position_form.save(commit=False)
+                position_form_uncommited.column = get_object_or_404(Column, pk=request.POST['column'])
+                position_form_uncommited.row = get_object_or_404(Row, pk=request.POST['row'])
+                position_form_uncommited.save()
+                msg = "The note has been updated."
+            else:
+                msg = "There has been an error validating the form."
         else:
-            msg = "There has been an error validating the form."
-    else:
-        msg = "There was some error in the petition."
+            msg = "There was some error in the petition."
 
     return HttpResponse(msg)
 
@@ -260,7 +263,8 @@ class ViewDebate(DetailView):
     template_name = 'debate/debate_view.html'
 
     def get_object(self):
-        debate = get_object_or_404(Debate, pk=self.kwargs['debate_id'])
+        key = self.kwargs['debate_id']
+        debate = get_or_insert_object_in_cache(Debate, key, pk=key)
         
         # Check debate dates
         if datetime.date.today() >= debate.end_date or datetime.date.today() <  debate.start_date:
@@ -275,8 +279,12 @@ class ViewDebate(DetailView):
         context = super(ViewDebate, self).get_context_data(**kwargs)
         columns = Column.objects.filter(debate=self.kwargs['debate_id'])
         rows = Row.objects.filter(debate=self.kwargs['debate_id'])
-        current_space = get_object_or_404(Space, url=self.kwargs['space_url'])
-        current_debate = get_object_or_404(Debate, pk=self.kwargs['debate_id'])
+        space_key = self.kwargs['space_url']
+        current_space = get_or_insert_object_in_cache(Space, space_key, 
+                                                      url=space_key)
+        debate_key = self.kwargs['debate_id']
+        current_debate = get_or_insert_object_in_cache(Debate, debate_key, 
+                                                       pk=debate_key)
         notes = Note.objects.filter(debate=current_debate.pk)
         try:
             last_note = Note.objects.latest('id')
@@ -304,7 +312,8 @@ class ListDebates(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        current_space = get_object_or_404(Space, url=self.kwargs['space_url'])
+        key = self.kwargs['space_url']
+        current_space = get_or_insert_object_in_cache(Space, key, url=key)
         debates = Debate.objects.filter(space=current_space)
 
         # Here must go a validation so a user registered to the space
@@ -315,5 +324,7 @@ class ListDebates(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ListDebates, self).get_context_data(**kwargs)
-        context['get_place'] = get_object_or_404(Space, url=self.kwargs['space_url'])
+        key = self.kwargs['space_url']
+        space = get_or_insert_object_in_cache(Space, key, url=key)
+        context['get_place'] = space
         return context

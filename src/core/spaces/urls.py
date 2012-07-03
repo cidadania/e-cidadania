@@ -29,7 +29,7 @@ from core.spaces.views import GoToSpace, ViewSpaceIndex, ListSpaces,\
                                           ListEvents, DeleteEvent, ViewEvent, \
                                           ListPosts, SpaceFeed, AddDocument, \
                                           EditDocument, AddEvent, EditEvent, \
-                                          ValidateIntent
+                                          ValidateIntent, EditRole
 
 # NOTICE: Don't change the order of urlpatterns or it will probably break.
 
@@ -91,9 +91,9 @@ urlpatterns += patterns('core.spaces.views',
 # Spaces URLs
 urlpatterns += patterns('core.spaces.views',
 
-    url(_(r'^(?P<space_url>\w+)/edit/$'), 'edit_space', name='edit-space'),
+    url(_(r'^(?P<space_url>\w+)/edit/'), 'edit_space', name='edit-space'),
 
-    url(_(r'^(?P<space_url>\w+)/delete/$'), DeleteSpace.as_view(), name='delete-space'),
+    url(_(r'^(?P<space_url>\w+)/delete/'), DeleteSpace.as_view(), name='delete-space'),
     
     url(_(r'^(?P<space_url>\w+)/news/'), ListPosts.as_view(), name='list-space-news'),
         
@@ -102,6 +102,8 @@ urlpatterns += patterns('core.spaces.views',
     url(r'^$', ListSpaces.as_view(), name='list-spaces'),
 
     url(_(r'^go/'), GoToSpace.as_view(), name='goto-space'),
+
+    url(_(r'^(?P<space_url>\w+)/roles/'), EditRole.as_view(), name='edit-roles'),
 
     url(r'^(?P<space_url>\w+)/$', ViewSpaceIndex.as_view(), name='space-index'),
 

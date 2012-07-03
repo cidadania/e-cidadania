@@ -21,11 +21,15 @@
 Proposal forms.
 """
 
+
 from django.forms import ModelForm, forms
 from django.core import validators
 from django.contrib.auth.models import User
 
 from apps.ecidadania.proposals.models import Proposal, ProposalSet
+from apps.ecidadania.debate.models import Debate
+
+import datetime
 
 class ProposalSetForm(ModelForm):
 
@@ -34,7 +38,11 @@ class ProposalSetForm(ModelForm):
     """
     class Meta:
         model = ProposalSet
-
+    
+    def __init__(self, *args, **kwargs):
+        super(ProposalSetForm, self).__init__(*args, **kwargs)
+        if self.instance:
+            self.fields['debate'].queryset = Debate.objects.filter(end_date__lte=datetime.date.today())
 
 class ProposalForm(ModelForm):
 

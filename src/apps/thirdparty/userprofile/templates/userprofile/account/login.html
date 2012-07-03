@@ -8,7 +8,8 @@
 <div class="row" style="margin-top:100px;margin-bottom:100px;">
     <div class="span3 offset3">
         {% if user.is_authenticated %}
-            <p> You are already logged in as <strong>{{ user.username }}</strong> </p>
+            <p>{% trans "You are already logged in as" %} <strong>{{ user.username }}</strong></p>
+            <p>{% trans "Maybe you're reading this message because you don't have permissions for accessing to some area." %}</p>
         {% else %}
             <form action="{% if next %}?next={{ next }}{% endif %}" method="post" accept-charset="utf-8" class="form-stacked">{% csrf_token %}
                 <fieldset>

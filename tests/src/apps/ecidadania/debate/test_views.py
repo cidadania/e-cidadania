@@ -53,14 +53,14 @@ class ListDebatesViewsTest(ECDTestCase):
         debate4 = self.seed(Debate, properties=debate_properties)
         debate5 = self.seed(Debate, properties=debate_properties)
         other_debates_list = [debate3, debate4, debate5]
-        url = self.getURL('list-debates', kwargs={'space_name':space1.url})
+        url = self.getURL('list-debates', kwargs={'space_url':space1.url})
         response = self.get(url)
         #print self.printResponse(response)
         self.assertResponseOK(response)
         self.assertEqual(len(response.context[0].dicts[0]['debate_list']), 
                          len(debates_list))
         
-        url = self.getURL('list-debates', kwargs={'space_name': space2.url})
+        url = self.getURL('list-debates', kwargs={'space_url': space2.url})
         response = self.get(url)
         self.assertResponseOK(response)
         self.assertEqual(len(response.context[0].dicts[0]['debate_list']), 
@@ -70,7 +70,7 @@ class ListDebatesViewsTest(ECDTestCase):
         """Tests ViewDebate view.
         """
         url = self.getURL('view-debate',(), {'debate_id': self.user_debate.id,
-                                             'space_name': self.user_space.url})
+                                             'space_url': self.user_space.url})
         response = self.get(url)
         self.assertResponseOK(response)
         context = response.context[0].dicts[0]
@@ -84,6 +84,6 @@ class ListDebatesViewsTest(ECDTestCase):
         self.assertEqual(len(context['rows']), 1)
         
         url = self.getURL('view-debate',(), {'debate_id': 5,
-                                             'space_name': self.user_space.url})
+                                             'space_url': self.user_space.url})
         response = self.get(url)
         self.assertResponseNotFound(response)

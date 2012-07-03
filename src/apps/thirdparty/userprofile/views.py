@@ -38,16 +38,17 @@ from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
 from django.utils import simplejson
 from django.db import models
-from django.contrib.auth.models import User, SiteProfileNotAvailable
+from django.contrib.auth.models import User, SiteProfileNotAvailable, Group
 from django.template import RequestContext
 from django.conf import settings
+from django.db.models import Q
 
 from apps.ecidadania.proposals.models import Proposal
 from apps.thirdparty.userprofile.forms import AvatarForm, AvatarCropForm, \
                           EmailValidationForm, ProfileForm, RegistrationForm, \
                           LocationForm, PublicFieldsForm, ChangeEmail
 from apps.thirdparty.userprofile.models import EmailValidation, Avatar
-
+from core.spaces.models import Space
 
 if not settings.AUTH_PROFILE_MODULE:
     raise SiteProfileNotAvailable
@@ -142,6 +143,8 @@ def overview(request):
     # AFTER TESTING
     proposals = Proposal.objects.annotate(models.Count('support_votes')).filter(author=request.user.id).order_by('pub_date')
     profile, created = Profile.objects.get_or_create(user=request.user)
+    spaces = Space.objects.filter(Q(admins__id=request.user.id) | Q(mods__id=request.user.id) | Q(users__id=request.user.id))
+
     validated = False
     try:
         email = EmailValidation.objects.get(user=request.user).email
@@ -151,7 +154,8 @@ def overview(request):
 
     template = "userprofile/profile/overview.html"
     data = { 'section': 'overview', 'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY,
-             'email': email, 'validated': validated, 'proposals': proposals }
+             'email': email, 'validated': validated, 'proposals': proposals,
+             'spaces': spaces }
     return render_to_response(template, data, context_instance=RequestContext(request))
 
 
@@ -337,12 +341,14 @@ def register(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             newuser = User.objects.create_user(username=username, email='', password=password)
-
             newuser.email = form.cleaned_data.get('email')
             EmailValidation.objects.add(user=newuser, email=newuser.email)
-
             newuser.save()
-            return HttpResponseRedirect('%scomplete/' % request.path_info)
+
+            # Add the user to the space administrators group
+            u_group = Group.objects.get(name='Space administrators')
+            u_group.user_set.add(newuser)
+        return HttpResponseRedirect('%scomplete/' % request.path_info)
     else:
         form = RegistrationForm()
 

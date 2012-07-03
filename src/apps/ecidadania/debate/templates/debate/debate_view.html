@@ -26,18 +26,19 @@
             <p><strong>{% trans "Theme:" %}</strong> {{ debate.theme}}</p>
         </div>
         <div class="span6">
-			{% with debate.start_date as start_date %}
-			{% with debate.end_date as end_date %}
+            {% with debate.start_date as start_date %}
+            {% with debate.end_date as end_date %}
                 <p><strong>{% trans "Start date:" %}</strong> {% if start_date %}{{ start_date }}{% else %}{% trans "No date" %}{% endif %}</p>
                 <p><strong>{% trans "End date:" %}</strong> {% if end_date %}{{ end_date }}{% else %}{% trans "No date" %}{% endif %}</p>
-			{% endwith %}
-			{% endwith %}
+            {% endwith %}
+            {% endwith %}
         </div>
     </div>
 
 {% endblock %}
 
 {% block freewidth %}
+{% with request.user as request_user %}
 
     <div class="row">
         <div class="span12 specialmargin">
@@ -45,11 +46,11 @@
             <div id="last-note" class="hidden">{{ lastnote }}</div>
 
             <div id="debate">
-							{% with debate.pk as debate_pk %}
+                {% with debate.pk as debate_pk %}
                 <table id="debate{{ debate_pk }}" cellspacing="0" style="width:100%;" align="left">
                     <thead>
                         <tr id="debate{{ debate_pk }}-headers">
-														{% endwith %}
+                            {% endwith %}
                             <th id="corner" class="corner-criteria"></th>
                             {% for col in columns %}
                                 <th id="col-{{ col.id }}">{{ col.criteria }}</th>
@@ -63,31 +64,31 @@
                                     The th style width is meant to make smaller the th, since most browsers make
                                     the th fill all the space.
                                 {% endcomment %}
-																{% with row.id as row_id %}
+                                {% with row.id as row_id %}
                                 <th id="row-{{ row_id }}" width="1%"><div class="debate-ttitle">{{ row.criteria }}</div></th>
                                 {% for td in columns %}
-                                		{% with td.id as td_id %}
+                                    {% with td.id as td_id %}
                                     <td headers="{{ td_id }}-{{ row_id }}" id="sortable-debate" class="connectedSortable">
                                         {% for note in notes %}
-                                            {% if note.column.id == td_id and note.row_id == row_id %}
-                                                <div id="{{ note.id }}" class="note {% if note.author == request.user %}mine{% endif %}">
+                                            {% if note.column_id == td_id and note.row_id == row_id %}
+                                                <div id="{{ note.id }}" class="note {% if note.author == request_user %}mine{% endif %} {% if note.author == request_user or request_user.is_staff %}{% else %}disabled{% endif %}">
                                                     <div class="handler">
-                                                        {% if note.author == request.user and perms.note.delete_note or request.user.is_staff %}
+                                                        {% if note.author == request_user and perms.note.delete_note or request_user.is_staff %}
                                                             <div class="deletenote hidden"><a href="#" onclick="deleteNote(this)" id="deletenote" title="{% trans 'Delete note' %}">x</a></div>
                                                         {% endif %}
                                                     </div>
                                                     <p class="note-text">{{ note.title }}</p>
-                                                    <span id="view-note" class="label hidden"><a href="#" onclick="viewNote(this)" data-toggle="modal" data-target="#view-current-note">{% trans "View" %}</a></span>
-                                                    {% if note.author == request.user %}
-                                                        <span id="edit-note" class="label hidden"><a href="#" onclick="editNote(this)" data-toggle="modal" data-target="#edit-current-note">{% trans "Edit" %}</a></span>
+                                                    <span id="view-note" class="label label-info hidden"><a href="#" onclick="viewNote(this)" data-toggle="modal" data-target="#view-current-note">{% trans "View" %}</a></span>
+                                                    {% if note.author == request_user or request_user.is_staff %}
+                                                        <span id="edit-note" class="label label-info hidden"><a href="#" onclick="editNote(this)" data-toggle="modal" data-target="#edit-current-note">{% trans "Edit" %}</a></span>
                                                     {% endif %}
                                                 </div>
                                             {% endif %}
                                         {% endfor %}
-																				{% endwith %}
+                                        {% endwith %}
                                     </td>
                                 {% endfor %}
-																{% endwith %}
+                                {% endwith %}
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -135,10 +136,9 @@
                 <div id="view-current-note" class="modal hide fade" style="display: none; ">
                     <div class="modal-header">
                         <a class="close" data-dismiss="modal">×</a>
-                        <h3>{% trans "View note" %}</h3>
+                        <h3 id="view-note-title"></h3>
                     </div>
                     <div class="modal-body">
-                        <h3 id="view-note-title"></h3>
                         <p id="view-note-desc"></p>
                     </div>
                     <div class="modal-footer">
@@ -154,4 +154,5 @@
     </div>
 
     <script src="{{ STATIC_URL }}/js/debate_board.js" type="text/javascript"></script>
+{% endwith %}
 {% endblock %}

@@ -114,7 +114,7 @@
                         <div class="span12">
                             <h4>{% trans "Spaces you're signed on" %}</h4>
                             <ul class="unstyled">
-                                {% for space in user.get_profile.spaces.all %}
+                                {% for space in spaces %}
                                     <li><a href="{{ space.get_absolute_url }}">{{ space.name }}</a></li>
                                 {% empty %}
                                     <p>{% trans "You are not signed to any space" %}.</p>

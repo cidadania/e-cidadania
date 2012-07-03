@@ -167,26 +167,62 @@ tempalte shows the help_text automatically if found in the data models.
                     </div>
                 </div>
 
-                {% if request.user.is_staff %}
-                <div class="control-group {% if form.author.errors %}error{% endif%}">
-                    <label>{{ form.author.label }}</label>
+                <div class="control-group {% if form.admins.errors %}error{% endif%}">
+                    <label>{{ form.admins.label }}</label>
                     <div class="controls">
                         <div class="input-prepend">
-                            {{ form.author }}
-                            {% if form.author.help_text %}
-                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.author.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {{ form.admins }}
+                            {% if form.admins.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.admins.help_text }}"><i class="icon-question-sign"></i></a></span>
                             {% endif %}
                         </div>
-                        {% if form.author.errors %}
+                        {% if form.admins.errors %}
+                            <p class="help-block">
+                                {% for error in form.admins.errors %}
+                                    {{ error|escape }}
+                                {% endfor %}
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            
+                <div class="control-group {% if form.mods.errors %}error{% endif%}">
+                    <label>{{ form.mods.label }}</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            {{ form.mods }}
+                            {% if form.mods.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.mods.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.mods.errors %}
                         <p class="help-block">
-                            {% for error in form.author.errors %}
+                            {% for error in form.mods.errors %}
                                 {{ error|escape }}
                             {% endfor %}
                         </p>
                         {% endif %}
                     </div>
                 </div>
-                {% endif %}
+                
+                <div class="control-group {% if form.users.errors %}error{% endif%}">
+                    <label>{{ form.users.label }}</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            {{ form.users }}
+                            {% if form.users.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.users.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.users.errors %}
+                        <p class="help-block">
+                            {% for error in form.users.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
 
                 <div class="control-group {% if form.public.errors %}error{% endif%}">
                     <label class="control-label">{{ form.public.label }}

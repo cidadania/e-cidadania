@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-18 09:27+0200\n"
+"POT-Creation-Date: 2012-06-28 11:27+0200\n"
 "PO-Revision-Date: 2012-02-29 11:35+0000\n"
 "Last-Translator: Oscar Carballal <oscar@cidadania.coop>\n"
 "Language-Team: Galician (Spain) (http://www.transifex.net/projects/p/"
@@ -63,45 +63,76 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: models.py:94
+#: models.py:85 models.py:129
+msgid "Max: 200 characters"
+msgstr ""
+
+#: models.py:90
+msgid ""
+"Select the debate associated                                with this "
+"proposal set"
+msgstr ""
+
+#: models.py:97
 #, fuzzy
-msgid "ProposalSet"
+msgid "Proposal set"
 msgstr "Proposta"
 
-#: models.py:95
+#: models.py:98
 #, fuzzy
-msgid "ProposalSets"
+msgid "Proposal sets"
 msgstr "Propostas"
 
-#: models.py:123
+#: models.py:126
 msgid "Code"
 msgstr "Código"
 
-#: models.py:125 templates/proposals/proposal_add.html:149
+#: models.py:128
 msgid "Title"
 msgstr "Título"
 
-#: models.py:128 templates/proposals/proposal_add.html:150
+#: models.py:132
+msgid ""
+"Proposal set in which the                                     proposal "
+"resides"
+msgstr ""
+
+#: models.py:134
 msgid "Description"
 msgstr "Descrición"
 
-#: models.py:134
+#: models.py:138
+msgid ""
+"Change the user that will figure                                as the author"
+msgstr ""
+
+#: models.py:141
+msgid ""
+"Insert here relevant words related with the                                 "
+"proposal"
+msgstr ""
+
+#: models.py:143
 msgid "Latitude"
 msgstr "Latitude"
 
-#: models.py:136
+#: models.py:145 models.py:148
+msgid "Specify it in decimal"
+msgstr ""
+
+#: models.py:146
 msgid "Longitude"
 msgstr "Lonxitude"
 
-#: models.py:147
+#: models.py:158
 msgid "Votes from"
 msgstr "Votos de"
 
-#: models.py:165
+#: models.py:176
 msgid "Proposal"
 msgstr "Proposta"
 
-#: models.py:166
+#: models.py:177
 msgid "Proposals"
 msgstr "Propostas"
 
@@ -149,82 +180,6 @@ msgstr ""
 msgid "^(?P<prop_id>\\w+)/delete/$"
 msgstr ""
 
-#: templates/proposals/proposal_add.html:5
-#: templates/proposals/proposal_list.html:17
-#: templates/proposals/proposalset_detail.html:17
-msgid "Add proposal"
-msgstr "Engadir proposta"
-
-#: templates/proposals/proposal_add.html:26
-msgid "Add new proposal"
-msgstr "Engadir nova proposta"
-
-#: templates/proposals/proposal_add.html:138
-#: templates/proposals/proposal_confirm_delete.html:26
-#: templates/proposals/proposal_edit.html:139
-#: templates/proposals/proposal_list.html:50
-#: templates/proposals/proposalset_add.html:70
-#: templates/proposals/proposalset_confirm_delete.html:26
-#: templates/proposals/proposalset_detail.html:50
-#: templates/proposals/proposalset_edit.html:74
-#: templates/proposals/proposalset_list.html:51
-msgid "Go back"
-msgstr "Volver"
-
-#: templates/proposals/proposal_add.html:139
-#: templates/proposals/proposal_edit.html:140
-#: templates/proposals/proposalset_edit.html:75
-msgid "Publish"
-msgstr "Publicar"
-
-#: templates/proposals/proposal_add.html:144
-msgid "Admins/moderators read this"
-msgstr "Admins/moderadores lede isto"
-
-#: templates/proposals/proposal_add.html:145
-msgid ""
-"There are a lot more options in the proposals but they will appear only when "
-"you edit the proposal."
-msgstr ""
-"Existen moitas mais opcións nas propostas, pero solo aparecerán cando se "
-"edite a proposta."
-
-#: templates/proposals/proposal_add.html:147
-msgid "How to add new proposals"
-msgstr "Cómo engadir novas propostas"
-
-#: templates/proposals/proposal_add.html:149
-msgid "Title resuming the proposal, be concise (50 characters)"
-msgstr "Título resumindo a proposta, sexa conciso (50 caracteres)"
-
-#: templates/proposals/proposal_add.html:150
-msgid ""
-"Describe here your proposal with detail. You can add images or any other "
-"content."
-msgstr ""
-"Describe aqui a túa proposta con detalle. Podes engadir imaxes ou outro tipo "
-"de contido."
-
-#: templates/proposals/proposal_add.html:151
-msgid "Latitude/Longitude"
-msgstr "Latidude/Lonxitude"
-
-#: templates/proposals/proposal_add.html:151
-msgid "You'll have to put this if you want to locate the proposal in a map."
-msgstr "Terás que poñer isto se queres localizar a proposta nun mapa."
-
-#: templates/proposals/proposal_add.html:152
-msgid "Tags"
-msgstr "Etiquetas"
-
-#: templates/proposals/proposal_add.html:152
-msgid ""
-"Relevant tags for the proposal, p.e. where the proposal is localted, what is "
-"related to it, etc."
-msgstr ""
-"Etiquetas importantes para a proposta, por exemplo, onde está localizada, "
-"cousas relacionadas, etc."
-
 #: templates/proposals/proposal_confirm_delete.html:4
 #: templates/proposals/proposal_confirm_delete.html:21
 msgid "Delete proposal"
@@ -236,6 +191,16 @@ msgid ""
 msgstr ""
 "Estás seguro de querer eliminar esta proposta? Esta acción non se pode "
 "desfacer."
+
+#: templates/proposals/proposal_confirm_delete.html:26
+#: templates/proposals/proposal_form.html:154
+#: templates/proposals/proposal_list.html:50
+#: templates/proposals/proposalset_confirm_delete.html:26
+#: templates/proposals/proposalset_detail.html:50
+#: templates/proposals/proposalset_form.html:90
+#: templates/proposals/proposalset_list.html:51
+msgid "Go back"
+msgstr "Volver"
 
 #: templates/proposals/proposal_confirm_delete.html:27
 #: templates/proposals/proposal_list.html:22
@@ -267,14 +232,28 @@ msgstr "proposto por"
 msgid " at "
 msgstr "ás"
 
-#: templates/proposals/proposal_edit.html:5
-#: templates/proposals/proposal_edit.html:22
+#: templates/proposals/proposal_form.html:14
+#: templates/proposals/proposal_form.html:37
 msgid "Edit proposal"
 msgstr "Editar proposta"
+
+#: templates/proposals/proposal_form.html:16
+#: templates/proposals/proposal_form.html:39
+msgid "Add new proposal"
+msgstr "Engadir nova proposta"
+
+#: templates/proposals/proposal_form.html:155
+msgid "Publish"
+msgstr "Publicar"
 
 #: templates/proposals/proposal_list.html:5
 msgid "View proposals"
 msgstr "Ver propostas"
+
+#: templates/proposals/proposal_list.html:17
+#: templates/proposals/proposalset_detail.html:17
+msgid "Add proposal"
+msgstr "Engadir proposta"
 
 #: templates/proposals/proposal_list.html:19
 #: templates/proposals/proposalset_detail.html:19
@@ -309,20 +288,6 @@ msgstr "de"
 msgid "next"
 msgstr "seguinte"
 
-#: templates/proposals/proposalset_add.html:5
-#, fuzzy
-msgid "Add Proposal Set"
-msgstr "Engadir proposta"
-
-#: templates/proposals/proposalset_add.html:26
-#, fuzzy
-msgid "Add new proposal set"
-msgstr "Engadir nova proposta"
-
-#: templates/proposals/proposalset_add.html:71
-msgid "Create"
-msgstr ""
-
 #: templates/proposals/proposalset_confirm_delete.html:4
 #: templates/proposals/proposalset_confirm_delete.html:21
 #, fuzzy
@@ -348,25 +313,31 @@ msgstr "Ver proposta"
 msgid "There is no proposals in this set"
 msgstr "Non hai propostas para este espazo."
 
-#: templates/proposals/proposalset_edit.html:5
+#: templates/proposals/proposalset_form.html:14
+#: templates/proposals/proposalset_form.html:37
 #, fuzzy
 msgid "Edit proposal set"
 msgstr "Editar proposta"
 
-#: templates/proposals/proposalset_edit.html:22
+#: templates/proposals/proposalset_form.html:16
+#: templates/proposals/proposalset_list.html:30
 #, fuzzy
-msgid "Edit Proposal Set"
-msgstr "Editar proposta"
+msgid "Add proposal set"
+msgstr "Engadir proposta"
+
+#: templates/proposals/proposalset_form.html:39
+#, fuzzy
+msgid "Add new proposal set"
+msgstr "Engadir nova proposta"
+
+#: templates/proposals/proposalset_form.html:91
+msgid "Create"
+msgstr ""
 
 #: templates/proposals/proposalset_list.html:5
 #, fuzzy
 msgid "List all the proposal set"
 msgstr "Ver propostas"
-
-#: templates/proposals/proposalset_list.html:30
-#, fuzzy
-msgid "Add proposal set"
-msgstr "Engadir proposta"
 
 #: templates/proposals/proposalset_list.html:42
 msgid "Created by"
@@ -381,3 +352,50 @@ msgstr "ás"
 #, fuzzy
 msgid "There is no proposal set created"
 msgstr "Non hai propostas para este espazo."
+
+#~ msgid "Admins/moderators read this"
+#~ msgstr "Admins/moderadores lede isto"
+
+#~ msgid ""
+#~ "There are a lot more options in the proposals but they will appear only "
+#~ "when you edit the proposal."
+#~ msgstr ""
+#~ "Existen moitas mais opcións nas propostas, pero solo aparecerán cando se "
+#~ "edite a proposta."
+
+#~ msgid "How to add new proposals"
+#~ msgstr "Cómo engadir novas propostas"
+
+#~ msgid "Title resuming the proposal, be concise (50 characters)"
+#~ msgstr "Título resumindo a proposta, sexa conciso (50 caracteres)"
+
+#~ msgid ""
+#~ "Describe here your proposal with detail. You can add images or any other "
+#~ "content."
+#~ msgstr ""
+#~ "Describe aqui a túa proposta con detalle. Podes engadir imaxes ou outro "
+#~ "tipo de contido."
+
+#~ msgid "Latitude/Longitude"
+#~ msgstr "Latidude/Lonxitude"
+
+#~ msgid "You'll have to put this if you want to locate the proposal in a map."
+#~ msgstr "Terás que poñer isto se queres localizar a proposta nun mapa."
+
+#~ msgid "Tags"
+#~ msgstr "Etiquetas"
+
+#~ msgid ""
+#~ "Relevant tags for the proposal, p.e. where the proposal is localted, what "
+#~ "is related to it, etc."
+#~ msgstr ""
+#~ "Etiquetas importantes para a proposta, por exemplo, onde está localizada, "
+#~ "cousas relacionadas, etc."
+
+#, fuzzy
+#~ msgid "Add Proposal Set"
+#~ msgstr "Engadir proposta"
+
+#, fuzzy
+#~ msgid "Edit Proposal Set"
+#~ msgstr "Editar proposta"

@@ -23,7 +23,7 @@ documents, meetings and entities. Most of the forms are directly generated
 from the data models.
 """
 
-from django.forms import ModelForm, ValidationError
+from django.forms import ModelForm, ValidationError, Select
 from django.forms.models import modelformset_factory
 
 from core.spaces.models import Space, Document, Event, Entity
@@ -75,6 +75,22 @@ class DocForm(ModelForm):
     """
     class Meta:
         model = Document
+
+class RoleForm(ModelForm):
+
+    """
+    Returns a form to edit the administrators, moderators and users of the space.
+    This is the way that e-cidadania uses to filter content and access.
+
+    :rtype: HTML Form
+
+    .. versionadded:: 0.1.5
+    """
+    class Meta:
+        model = Space
+        exclude = ('name', 'url', 'date', 'description', 'date', 'logo', 'banner',
+            'author', 'mod_debate', 'mod_proposals', 'mod_news', 'mod_cal',
+            'mod_docs', 'public')
 
 
 class EventForm(ModelForm):

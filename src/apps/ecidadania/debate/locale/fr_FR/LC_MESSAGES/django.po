@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-18 09:27+0200\n"
+"POT-Creation-Date: 2012-06-28 11:27+0200\n"
 "PO-Revision-Date: 2012-06-14 11:21+0000\n"
 "Last-Translator: hugodeslongchamps <hugo.deslongchamps@googlemail.com>\n"
 "Language-Team: French (http://www.transifex.net/projects/p/ecidadania/"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Title"
 msgstr "Titre"
 
-#: models.py:43 templates/debate/debate_view.html:117
+#: models.py:43 templates/debate/debate_view.html:119
 msgid "Description"
 msgstr "Description"
 
@@ -79,51 +79,71 @@ msgstr "^creer_note/"
 msgid "^delete_note/"
 msgstr "^supprimer_note/"
 
-#: templates/debate/debate_add.html:4
+#: templates/debate/debate_add.html:14 templates/debate/debate_add.html:41
+#, fuzzy
+msgid "Edit debate"
+msgstr "Voir le débat"
+
+#: templates/debate/debate_add.html:16 templates/debate/debate_add.html:43
 #: templates/debate/debate_add_simple.html:4
 msgid "Create new debate"
 msgstr "Creér un nouveau débat"
 
-#: templates/debate/debate_add.html:21
-msgid "Create a new debate"
+#: templates/debate/debate_add.html:47
+#, fuzzy
+msgid "How to create a debate"
 msgstr "Creér un nouveau débat"
 
-#: templates/debate/debate_add.html:22
+#: templates/debate/debate_add.html:50
+msgid ""
+"To create a debate, you must fill the fields with any criteria necessary for "
+"it,\n"
+"                    in this docuemntation page we have an example of a "
+"debate that you can follow to create yours.\n"
+"                    For the rest of the fields, just follow their respective "
+"instructions."
+msgstr ""
+
+#: templates/debate/debate_add.html:56
+msgid "Close"
+msgstr ""
+
+#: templates/debate/debate_add.html:64
 msgid "Remove column"
 msgstr "Retirer la colone"
 
-#: templates/debate/debate_add.html:23
+#: templates/debate/debate_add.html:65
 msgid "Add column"
 msgstr "Ajouter une colone"
 
-#: templates/debate/debate_add.html:26
+#: templates/debate/debate_add.html:67
 msgid "Remove row"
 msgstr "Retirer la ligne"
 
-#: templates/debate/debate_add.html:27
+#: templates/debate/debate_add.html:68
 msgid "Add row"
 msgstr "Ajouter une ligne"
 
-#: templates/debate/debate_add.html:60 templates/debate/debate_view.html:145
+#: templates/debate/debate_add.html:105 templates/debate/debate_view.html:149
 msgid "Add new note"
 msgstr "Ajouter une nouvelle note"
 
-#: templates/debate/debate_add.html:61
+#: templates/debate/debate_add.html:106
 msgid "Change color"
 msgstr "Changer la couleur"
 
-#: templates/debate/debate_add.html:63
+#: templates/debate/debate_add.html:110
 #: templates/debate/debate_add_simple.html:60
 msgid "Other debate data"
 msgstr "Autres données pour le débat"
 
-#: templates/debate/debate_add.html:147
+#: templates/debate/debate_add.html:215
 #: templates/debate/debate_add_simple.html:120
-#: templates/debate/debate_view.html:128
+#: templates/debate/debate_view.html:133
 msgid "Save"
 msgstr "Sauvegarder"
 
-#: templates/debate/debate_add.html:148
+#: templates/debate/debate_add.html:216
 #: templates/debate/debate_add_simple.html:121
 msgid "Cancel"
 msgstr "Annuler"
@@ -177,47 +197,47 @@ msgstr "Commencé le:"
 msgid "Finished on:"
 msgstr "Terminé le:"
 
-#: templates/debate/debate_view.html:7
+#: templates/debate/debate_view.html:6
 msgid "View debate"
 msgstr "Voir le débat"
 
-#: templates/debate/debate_view.html:26
+#: templates/debate/debate_view.html:25
 msgid "Description:"
 msgstr "Déscription:"
 
-#: templates/debate/debate_view.html:27
+#: templates/debate/debate_view.html:26
 msgid "Theme:"
 msgstr "Thème:"
 
-#: templates/debate/debate_view.html:32
+#: templates/debate/debate_view.html:31
 msgid "Start date:"
 msgstr "Date de début:"
 
-#: templates/debate/debate_view.html:32 templates/debate/debate_view.html:33
+#: templates/debate/debate_view.html:31 templates/debate/debate_view.html:32
 msgid "No date"
 msgstr "Pas de date"
 
-#: templates/debate/debate_view.html:33
+#: templates/debate/debate_view.html:32
 msgid "End date:"
 msgstr "Date de fin:"
 
-#: templates/debate/debate_view.html:79
+#: templates/debate/debate_view.html:78
 msgid "Delete note"
 msgstr "Suprimer la note"
 
-#: templates/debate/debate_view.html:83
+#: templates/debate/debate_view.html:82
 msgid "View"
 msgstr "Afficher"
 
-#: templates/debate/debate_view.html:85
+#: templates/debate/debate_view.html:84
 msgid "Edit"
 msgstr "Éditer"
 
-#: templates/debate/debate_view.html:104
+#: templates/debate/debate_view.html:103
 msgid "Edit note"
 msgstr "Modifier la note"
 
-#: templates/debate/debate_view.html:110
+#: templates/debate/debate_view.html:109
 msgid "Note title"
 msgstr "Titre de la note"
 
@@ -225,6 +245,9 @@ msgstr "Titre de la note"
 msgid "100 characters"
 msgstr "100 Charactères"
 
-#: templates/debate/debate_view.html:135
-msgid "View note"
-msgstr "Afficher la note"
+#: templates/debate/debate_view.html:124
+msgid "Long description of the note"
+msgstr ""
+
+#~ msgid "View note"
+#~ msgstr "Afficher la note"

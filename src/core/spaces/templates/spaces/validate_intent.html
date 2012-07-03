@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ get_place.name }} - {% trans "Validate participation" %}{% endblock %}
+{% block logo %}<a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ get_place.logo }}" /></a>{% endblock %}
+{% block banner %}<img src="{{ MEDIA_URL }}{{ get_place.banner }}" />{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="span12">
+            <h4>{% blocktrans %}Authorize participation to user {{ request_user }}{% endblocktrans %}</h4>
+            <h4>{{ status }}</h4>
+
+            <hr />
+            <a href="{{ get_place.get_absolute_url }}" class="btn btn-small btn-danger">&laquo; {% trans "Back to" %} {{ get_place.name }}</a>
+        </div>
+    </div>
+{% endblock %}

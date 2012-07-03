@@ -100,6 +100,39 @@ footer {
     margin:0px;
 }
 
+.indexrow {
+    width: 960px;
+    margin: 0px auto;
+}
+
+.indexblock {
+    width: 91%;
+    padding: 1% 4%;
+    padding: 40px 4.52%;
+    box-shadow: 0 -1px 1px #AAA;
+}
+
+.one {
+    background: #333;
+    border-top: 1px solid #444;
+    border-bottom: 1px solid #999;
+    box-shadow: 0 -1px 1px #AAA;
+    margin-top:25px;
+}
+
+.two {
+    background: #EFEFEF;
+    border-top: 1px solid #EFEFEF;
+    border-bottom: 1px solid #999;
+    box-shadow: 0 -1px 1px #AAA;
+}
+
+.three {
+    background: #FFF;
+    border-top: 1px solid #EFEFEF;
+    box-shadow: 0 -2px 2px #AAA;
+}
+
 .languageform img {
     float:left; 
     padding-right:15px;
@@ -410,6 +443,14 @@ td.filled ul li a {
     border-style: none;
 }
 
+.note #view-note a {
+    color: #FFF;
+}
+
+.note #edit-note a {
+    color: #FFF;
+}
+
 #debate td, th {
   	border-width: 1px;
 	border-spacing: 0px;
@@ -468,7 +509,7 @@ tbody td.criteria-title, tbody th.criteria-title {
 }
 
 .mine {
-    background-color: #CCC; /*#FFFF99;*/
+    background-color: #FFFF99;
 }
 
 .note-alpha {

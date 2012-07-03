@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-18 09:27+0200\n"
+"POT-Creation-Date: 2012-06-28 11:27+0200\n"
 "PO-Revision-Date: 2012-01-05 10:57\n"
 "Last-Translator:   <a@a.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,32 +27,53 @@ msgid "Title"
 msgstr "Título"
 
 #: models.py:34
+msgid "Max: 200 characters"
+msgstr ""
+
+#: models.py:35
 msgid "Text"
 msgstr "Texto"
 
-#: models.py:35
+#: models.py:36
 msgid "Date"
 msgstr "Fecha"
 
-#: models.py:36
+#: models.py:37
 msgid "Last update"
 msgstr "Última actualización"
 
-#: models.py:37
+#: models.py:38
 msgid "Author"
 msgstr "Autor"
 
 #: models.py:39
-msgid "Publish in index page"
-msgstr "Publicar en el página principal"
+msgid ""
+"Change the user that will figure as the                                   "
+"author"
+msgstr ""
 
-#: models.py:40
+#: models.py:41
+#, fuzzy
+msgid "Publish in index"
+msgstr "Publicar en la página principal:"
+
+#: models.py:42
+msgid "This will publish the post in the main site page"
+msgstr ""
+
+#: models.py:43
 msgid "Publish in"
 msgstr "Publicar en "
 
-#: models.py:42
+#: models.py:45
 msgid "If you want to post to the index leave this blank"
 msgstr "Si quieres publicarlo en la página principal deja esto en blanco"
+
+#: models.py:46
+msgid ""
+"Insert here relevant words related with                                      "
+"the post"
+msgstr ""
 
 #: urls.py:28
 msgid "^add/$"
@@ -90,59 +111,10 @@ msgstr "de"
 msgid "next"
 msgstr "siguiente"
 
-#: templates/news/news_list.html:64 templates/news/post_add.html:112
-#: templates/news/post_confirm_delete.html:37
-#: templates/news/post_edit.html:139
+#: templates/news/news_list.html:64 templates/news/post_confirm_delete.html:37
+#: templates/news/post_form.html:180
 msgid "Go back"
 msgstr "Volver"
-
-#: templates/news/post_add.html:5 templates/news/post_add.html.py:29
-msgid "Add new post"
-msgstr "Añadir nueva entrada"
-
-#: templates/news/post_add.html:113 templates/news/post_edit.html:140
-msgid "Publish"
-msgstr "Publicar"
-
-#: templates/news/post_add.html:118
-msgid "How to add new posts"
-msgstr "Cómo añadir nuevas entradas"
-
-#: templates/news/post_add.html:120
-msgid "Title:"
-msgstr "Título:"
-
-#: templates/news/post_add.html:120
-msgid "An spectacular title! (100 characters)"
-msgstr "Un título espectacular! (100 caracteres)"
-
-#: templates/news/post_add.html:121
-msgid "Text:"
-msgstr "Texto:"
-
-#: templates/news/post_add.html:121
-msgid "Your story."
-msgstr "Tu historia."
-
-#: templates/news/post_add.html:122
-msgid "Tags:"
-msgstr "Etiquetas:"
-
-#: templates/news/post_add.html:122
-msgid "Please use them carefully, you are limited to 4 tags."
-msgstr "Por favor úsalas con cuidado, estás limitado a 4 etiquetas."
-
-#: templates/news/post_add.html:123
-msgid "Publish in index:"
-msgstr "Publicar en la página principal:"
-
-#: templates/news/post_add.html:123
-msgid ""
-"If you mark this, the post will appear in the spaces index page AND in the "
-"main index."
-msgstr ""
-"Si marcas esto, la entrada aparecerá en el índice del espacio y la página "
-"principal."
 
 #: templates/news/post_confirm_delete.html:4
 msgid "Delete news"
@@ -192,10 +164,53 @@ msgstr "Entradas relacionadas"
 msgid "Share this post"
 msgstr "Compartir esta entrada"
 
-#: templates/news/post_edit.html:5
-msgid "Edit news"
-msgstr "Editar noticias"
-
-#: templates/news/post_edit.html:28
+#: templates/news/post_form.html:14 templates/news/post_form.html.py:44
 msgid "Edit post"
 msgstr "Editar entrada"
+
+#: templates/news/post_form.html:16 templates/news/post_form.html.py:46
+#, fuzzy
+msgid "Create new post"
+msgstr "Añadir nueva entrada"
+
+#: templates/news/post_form.html:118
+msgid "Staff members options"
+msgstr ""
+
+#: templates/news/post_form.html:181
+msgid "Publish"
+msgstr "Publicar"
+
+#~ msgid "Publish in index page"
+#~ msgstr "Publicar en el página principal"
+
+#~ msgid "How to add new posts"
+#~ msgstr "Cómo añadir nuevas entradas"
+
+#~ msgid "Title:"
+#~ msgstr "Título:"
+
+#~ msgid "An spectacular title! (100 characters)"
+#~ msgstr "Un título espectacular! (100 caracteres)"
+
+#~ msgid "Text:"
+#~ msgstr "Texto:"
+
+#~ msgid "Your story."
+#~ msgstr "Tu historia."
+
+#~ msgid "Tags:"
+#~ msgstr "Etiquetas:"
+
+#~ msgid "Please use them carefully, you are limited to 4 tags."
+#~ msgstr "Por favor úsalas con cuidado, estás limitado a 4 etiquetas."
+
+#~ msgid ""
+#~ "If you mark this, the post will appear in the spaces index page AND in "
+#~ "the main index."
+#~ msgstr ""
+#~ "Si marcas esto, la entrada aparecerá en el índice del espacio y la página "
+#~ "principal."
+
+#~ msgid "Edit news"
+#~ msgstr "Editar noticias"

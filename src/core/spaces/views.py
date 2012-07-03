@@ -26,9 +26,9 @@ import itertools
 import hashlib
 
 # Generic class-based views
-from django.views.generic.base import TemplateView, RedirectView
+from django.views.generic.base import RedirectView
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic import FormView
 
@@ -36,35 +36,26 @@ from django.views.generic import FormView
 # to method decorators that can be put in subclass methods.
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required, permission_required
-from django.contrib.admin.views.decorators import staff_member_required
+from django.conf import settings
 
 # Response types
-from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 
 # Some extras
-from django.contrib.auth.models import User, Group
 from django.contrib import messages
 from django.template import RequestContext
-from django.contrib.syndication.views import Feed, FeedDoesNotExist
+from django.contrib.syndication.views import Feed
 from django.utils.translation import ugettext_lazy as _
-from django.db import connection
 from django.core.mail import send_mail
-
-# Function-based views
-from django.views.generic.list_detail import object_list, object_detail
-from django.views.generic.create_update import create_object, update_object
-from django.views.generic.create_update import delete_object
 
 # e-cidadania data models
 from core.spaces.models import Space, Entity, Document, Event, Intent
 from apps.ecidadania.news.models import Post
-from core.spaces.forms import SpaceForm, DocForm, EventForm, \
-     EntityFormSet
+from core.spaces.forms import SpaceForm, DocForm, EventForm, EntityFormSet, \
+    RoleForm
 from apps.ecidadania.proposals.models import Proposal, ProposalSet
 from apps.ecidadania.staticpages.models import StaticPage
 from apps.ecidadania.debate.models import Debate
-from django.conf import settings
 
 #
 # RSS FEED
@@ -73,7 +64,7 @@ from django.conf import settings
 class SpaceFeed(Feed):
 
     """
-    Returns a space feed with the content of various applciations. In the future
+    Returns a space feed with the content of various applications. In the future
     this function must detect applications and returns their own feeds.
     """
 
@@ -125,7 +116,7 @@ def add_intent(request, space_url):
          intent.save()
          subject = _("New participation request")
          body = _("User {0} wants to participate in space {1}.\n \
-                  Plese click on the link below to approve.\n {2}"\
+                  Please click on the link below to approve.\n {2}"\
                   .format(request.user.username, space.name, intent.get_approve_url()))
          heading = _("Your request is being processed.")
          send_mail(subject=subject, message=body,
@@ -139,26 +130,42 @@ def add_intent(request, space_url):
 
 
 class ValidateIntent(DetailView):
-    context_object_name = 'space_name'
+
+    """
+    Validate the user petition to join a space. This will add the user to the
+    users list in the space, allowing him participation. This function checks if
+    the user visiting the token url is admin of the space. If he or she is an
+    admin proceeds with the validation.
+
+    .. versionadded: 0.1.5
+    """
+    context_object_name = 'get_place'
     template_name = 'spaces/validate_intent.html'
-    heading = _("The requested intent does not exist!")
+    status = _("The requested intent does not exist!")
 
     def get_object(self):
         space_object = get_object_or_404(Space, url=self.kwargs['space_url'])
 
-        if self.request.user.is_staff:
-            intent = get_object_or_404(Intent, token=self.kwargs['token'])
-            intent.user.profile.spaces.add(space_object)
-            self.heading = _("The user has been authorized to participate in space \"%s\"." % space_object.name)
-            messages.info(self.request, _("Autorization succesful"))
-            self.template_name = 'validate_intent.html'
-        return space_object
+        if self.request.user in space_object.admins.all() \
+        or self.request.user in space_object.mods.all() \
+        or self.request.user.is_staff or self.request.user.is_superuser:
+            try:
+                intent = Intent.objects.get(token=self.kwargs['token'])
+                intent.space.users.add(intent.user)
+                self.status = _("The user has been authorized to participate \
+                in space \"%s\"." % space_object.name)
+                messages.success(self.request, _("Authorization successful"))
+
+            except Intent.DoesNotExist:
+                self.status  = _("The requested intent does not exist!")
+
+            return space_object
 
     def get_context_data(self, **kwargs):
         context = super(ValidateIntent, self).get_context_data(**kwargs)
-        context['heading'] = self.heading
+        context['status'] = self.status
+        context['request_user'] = Intent.objects.get(token=self.kwargs['token']).user
         return context
-
 
 
 # SPACE VIEWS
@@ -185,32 +192,31 @@ def create_space(request):
     entity_forms = EntityFormSet(request.POST or None, request.FILES or None,
                                  queryset=Entity.objects.none())
     
-    if request.user.is_staff:    
-        if request.method == 'POST':
-            if space_form.is_valid() and entity_forms.is_valid():
-                space_form_uncommited = space_form.save(commit=False)
-                space_form_uncommited.author = request.user
+    if request.method == 'POST':
+        if space_form.is_valid() and entity_forms.is_valid():
+            space_form_uncommited = space_form.save(commit=False)
+            space_form_uncommited.author = request.user
                 
-                new_space = space_form_uncommited.save()
-                space = get_object_or_404(Space, name=space_form_uncommited.name)
+            new_space = space_form_uncommited.save()
+            space = get_object_or_404(Space, name=space_form_uncommited.name)
+
+            ef_uncommited = entity_forms.save(commit=False)
+            for ef in ef_uncommited:
+                ef.space = space
+                ef.save()
+            # We add the created spaces to the user allowed spaces
     
-                ef_uncommited = entity_forms.save(commit=False)
-                for ef in ef_uncommited:
-                    ef.space = space
-                    ef.save()
-                # We add the created spaces to the user allowed spaces
+            space.admins.add(request.user)
+            #messages.success(request, _('Space %s created successfully.') % space.name)
+            return redirect('/spaces/' + space.url)
     
-                request.user.profile.spaces.add(space)
-                #messages.success(request, _('Space %s created successfully.') % space.name)
-                return redirect('/spaces/' + space.url)
-    
-        return render_to_response('spaces/space_form.html',
+    return render_to_response('spaces/space_form.html',
                               {'form': space_form,
                                'entityformset': entity_forms},
                               context_instance=RequestContext(request))
-    else:
-        return render_to_response('not_allowed.html',
-                                  context_instance=RequestContext(request))
+#    else:
+#        return render_to_response('not_allowed.html',
+#                                  context_instance=RequestContext(request))
                                   
 
 class ViewSpaceIndex(DetailView):
@@ -231,7 +237,9 @@ class ViewSpaceIndex(DetailView):
         space_url = self.kwargs['space_url']
         space_object = get_object_or_404(Space, url=space_url)
 
-        if space_object.public == True or self.request.user.is_staff:
+        
+        if space_object.public == True or self.request.user.is_staff or \
+        self.request.user.is_superuser:
             if self.request.user.is_anonymous():
                 messages.info(self.request, _("Hello anonymous user. Remember \
                                               that this space is public to view, but \
@@ -246,10 +254,21 @@ class ViewSpaceIndex(DetailView):
             self.template_name = 'not_allowed.html'
             return space_object
 
-        for i in self.request.user.profile.spaces.all():
-            if i.url == space_url:
+        # Check if the user is in the admitted users of the space
+        for u in space_object.users.all():
+            if self.request.user == u:
                 return space_object
-        
+
+        # Check if the user is an admin
+        for u in space_object.admins.all():
+            if self.request.user == u:
+                return space_object
+
+        # Check if the user is a moderator
+        for u in space_object.mods.all():
+            if self.request.user == u:
+                return space_object
+
         messages.warning(self.request, _("You're not registered to this space."))
         self.template_name = 'not_allowed.html'
         return space_object
@@ -270,17 +289,17 @@ class ViewSpaceIndex(DetailView):
         return context
         
 
-# Please take in mind that the edit_space view can't be replaced by a CBV
+# Please take in mind that the change_space view can't be replaced by a CBV
 # (class-based view) since it manipulates two forms at the same time. Apparently
 # that creates some trouble in the django API. See this ticket:
 # https://code.djangoproject.com/ticket/16256
-@permission_required('spaces.edit_space')
+@permission_required('spaces.change_space')
 def edit_space(request, space_url):
 
     """
     Returns a form filled with the current space data to edit. Access to
     this view is restricted only to site and space administrators. The filter
-    for space administrators is given by the edit_space permission and their
+    for space administrators is given by the change_space permission and their
     belonging to that space.
     
     :attributes: - place: current space intance.
@@ -293,32 +312,30 @@ def edit_space(request, space_url):
     """
     place = get_object_or_404(Space, url=space_url)
 
-    form = SpaceForm(request.POST or None, request.FILES or None, instance=place)
-    entity_forms = EntityFormSet(request.POST or None, request.FILES or None,
+    if request.user in place.admins.all():
+        form = SpaceForm(request.POST or None, request.FILES or None, instance=place)
+        entity_forms = EntityFormSet(request.POST or None, request.FILES or None,
                                  queryset=Entity.objects.all().filter(space=place))
 
-    if request.method == 'POST':        
-        if form.is_valid() and entity_forms.is_valid():
-            form_uncommited = form.save(commit=False)
-            form_uncommited.author = request.user
+        if request.method == 'POST':
+            if form.is_valid() and entity_forms.is_valid():
+                form_uncommited = form.save(commit=False)
+                form_uncommited.author = request.user
             
-            new_space = form_uncommited.save()
-            space = get_object_or_404(Space, name=form_uncommited.name)
+                new_space = form_uncommited.save()
+                space = get_object_or_404(Space, name=form_uncommited.name)
             
-            ef_uncommited = entity_forms.save(commit=False)
-            for ef in ef_uncommited:
-                ef.space = space
-                ef.save()
+                ef_uncommited = entity_forms.save(commit=False)
+                for ef in ef_uncommited:
+                    ef.space = space
+                    ef.save()
             
-            messages.success(request, _('Space edited successfully'))
-            return redirect('/spaces/' + space.url + '/')
+                messages.success(request, _('Space edited successfully'))
+                return redirect('/spaces/' + space.url + '/')
 
-    for i in request.user.profile.spaces.all():
-        if i.url == space_url or request.user.is_staff:
-            return render_to_response('spaces/space_form.html',
-                              {'form': form, 'get_place': place,
-                              'entityformset': entity_forms},
-                              context_instance=RequestContext(request))
+        return render_to_response('spaces/space_form.html', {'form': form,
+                    'get_place': place, 'entityformset': entity_forms},
+                    context_instance=RequestContext(request))
             
     return render_to_response('not_allowed.html', context_instance=RequestContext(request))
 
@@ -340,7 +357,12 @@ class DeleteSpace(DeleteView):
         return super(DeleteSpace, self).dispatch(*args, **kwargs)
 
     def get_object(self):
-        return get_object_or_404(Space, url = self.kwargs['space_url'])
+        space = get_object_or_404(Space, url = self.kwargs['space_url'])
+        if self.request.user in space.admins.all():
+            return space
+        else:
+            self.template_name = 'not_allowed.html'
+            return space
       
 
 class GoToSpace(RedirectView):
@@ -370,14 +392,54 @@ class ListSpaces(ListView):
     paginate_by = 10
     
     def get_queryset(self):
+        current_user = self.request.user
         public_spaces = Space.objects.all().filter(public=True)
+        all_spaces = Space.objects.all()
         
-        if not self.request.user.is_anonymous():
-            user_spaces = self.request.user.profile.spaces.all()
-            return public_spaces | user_spaces
+        if not current_user.is_anonymous():
+            user_spaces = []
+            for space in all_spaces:
+                if current_user in space.users.all() \
+                    or current_user in space.admins.all() \
+                    or current_user in space.mods.all():
+                    user_spaces.append(space)
+                    public_spaces._result_cache(space)
+
+            return public_spaces
             
         return public_spaces
- 
+
+
+class EditRole(UpdateView):
+
+    """
+    This view allows the administrator to edit the roles for every user in the
+    platform.
+
+    .. versionadded: 0.1.5
+    """
+
+    form_class = RoleForm
+    model = Space
+    template_name = 'spaces/user_groups.html'
+
+    def get_success_url(self):
+        self.space = get_object_or_404(Space, url=self.kwargs['space_url'])
+        return '/spaces/' + self.space.name
+
+    def get_object(self):
+        cur_space = get_object_or_404(Space, url=self.kwargs['space_url'])
+        return cur_space
+
+    def get_context_data(self, **kwargs):
+        context = super(EditRole, self).get_context_data(**kwargs)
+        context['get_place'] = get_object_or_404(Space, url=self.kwargs['space_url'])
+        return context
+
+    @method_decorator(permission_required('spaces.change_space'))
+    def dispatch(self, *args, **kwargs):
+        return super(EditRole, self).dispatch(*args, **kwargs)
+
 
 #
 # DOCUMENTS VIEWS
@@ -442,7 +504,7 @@ class EditDocument(UpdateView):
         context['get_place'] = get_object_or_404(Space, url=self.kwargs['space_url'])
         return context
         
-    @method_decorator(permission_required('spaces.edit_document'))
+    @method_decorator(permission_required('spaces.change_document'))
     def dispatch(self, *args, **kwargs):
         return super(EditDocument, self).dispatch(*args, **kwargs)
         
@@ -468,6 +530,11 @@ class DeleteDocument(DeleteView):
         context['get_place'] = get_object_or_404(Space, url=self.kwargs['space_url'])
         return context
 
+    @method_decorator(permission_required('spaces.delete_document'))
+    def dispatch(self, *args, **kwargs):
+        return super(DeleteDocument, self).dispatch(*args, **kwargs)
+
+
 
 class ListDocs(ListView):
 
@@ -483,18 +550,17 @@ class ListDocs(ListView):
     def get_queryset(self):
         place = get_object_or_404(Space, url=self.kwargs['space_url'])
         objects = Document.objects.all().filter(space=place.id).order_by('pub_date')
-        
-        if self.request.user.is_staff:
+
+        cur_user = self.request.user
+        if cur_user in place.admins or \
+           cur_user in place.mods or \
+           cur_user in place.users:
             return objects
         
         if self.request.user.is_anonymous():
             self.template_name = 'not_allowed.html'
             return objects
-        
-        for i in self.request.user.profile.spaces.all():
-            if i.url == place:
-                return objects
-        
+
         self.template_name = 'not_allowed.html'
         return objects
 
@@ -537,6 +603,10 @@ class AddEvent(FormView):
         context['get_place'] = get_object_or_404(Space, url=self.kwargs['space_url'])
         return context
 
+    @method_decorator(permission_required('spaces.add_event'))
+    def dispatch(self, *args, **kwargs):
+        return super(AddEvent, self).dispatch(*args, **kwargs)
+
 
 class ViewEvent(DetailView):
     
@@ -563,6 +633,10 @@ class ViewEvent(DetailView):
         context['get_place'] = get_object_or_404(Space, url=self.kwargs['space_url'])
         return context
 
+    @method_decorator(permission_required('spaces.view_event'))
+    def dispatch(self, *args, **kwargs):
+        return super(ViewEvent, self).dispatch(*args, **kwargs)
+
 
 class EditEvent(UpdateView):
 
@@ -588,7 +662,7 @@ class EditEvent(UpdateView):
         context['get_place'] = get_object_or_404(Space, url=self.kwargs['space_url'])
         return context
         
-    @method_decorator(permission_required('spaces.edit_event'))
+    @method_decorator(permission_required('spaces.change_event'))
     def dispatch(self, *args, **kwargs):
         return super(EditEvent, self).dispatch(*args, **kwargs)
         
@@ -613,8 +687,13 @@ class DeleteEvent(DeleteView):
         context = super(DeleteEvent, self).get_context_data(**kwargs)
         context['get_place'] = get_object_or_404(Space, url=self.kwargs['space_url'])
         return context
-        
-          
+
+    @method_decorator(permission_required('spaces.delete_event'))
+    def dispatch(self, *args, **kwargs):
+        return super(AddEvent, self).dispatch(*args, **kwargs)
+
+
+
 class ListEvents(ListView):
 
     """
@@ -659,8 +738,6 @@ class ListPosts(ListView):
         
         if settings.DEBUG:
             messages.set_level(self.request, messages.DEBUG)
-            messages.debug(self.request, "Succesful query.")
-       
         return Post.objects.all().filter(space=place).order_by('-pub_date')
     
     def get_context_data(self, **kwargs):

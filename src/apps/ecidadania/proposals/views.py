@@ -52,7 +52,7 @@ class AddProposal(FormView):
     :context: form, get_place
     """
     form_class = ProposalForm
-    template_name = 'proposals/proposal_add.html'
+    template_name = 'proposals/proposal_form.html'
     
     def get_success_url(self):
         return '/spaces/' + self.kwargs['space_url']
@@ -118,7 +118,7 @@ class EditProposal(UpdateView):
     :parameters: space_url, prop_id
     """
     model = Proposal
-    template_name = 'proposals/proposal_edit.html'
+    template_name = 'proposals/proposal_form.html'
     
     def get_success_url(self):
         return '/spaces/{0}/proposal/{1}/'.format(self.kwargs['space_url'], self.kwargs['prop_id'])
@@ -258,7 +258,7 @@ class AddProposalSet(FormView):
     :context: form, get_place
     """
     form_class = ProposalSetForm
-    template_name = 'proposals/proposalset_add.html'
+    template_name = 'proposals/proposalset_form.html'
     
     def get_success_url(self):
         return '/spaces/' + self.kwargs['space_url']
@@ -292,7 +292,7 @@ class EditProposalSet(UpdateView):
     :context: form, get_place
     """
     model = ProposalSet
-    template_name = 'proposals/proposalset_edit.html'
+    template_name = 'proposals/proposalset_form.html'
     
     def get_success_url(self):
         return '/spaces/{0}/proposal/psets/{1}/'.format(self.kwargs['space_url'], self.kwargs['set_id'])

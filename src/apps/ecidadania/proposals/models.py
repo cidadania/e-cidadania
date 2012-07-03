@@ -81,20 +81,21 @@ class ProposalSet(models.Model):
 
     """
 
-    name = models.CharField(_('Name'), max_length=100, unique=True,
-            help_text = _('Max: 200 character'))
+    name = models.CharField(_('Name'), max_length=200, unique=True,
+                            help_text = _('Max: 200 characters'))
     space = models.ForeignKey(Space, blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, blank=True, null=True)
     debate = models.ForeignKey(Debate, blank=True, null=True,
-            help_text = _('Select the debate associated with this proposalset'))
+                               help_text = _('Select the debate associated \
+                               with this proposal set'))
 
     def __unicode__(self):
         return self.name
 
     class Meta:
-        verbose_name = _('ProposalSet')
-        verbose_name_plural = _('ProposalSets')
+        verbose_name = _('Proposal set')
+        verbose_name_plural = _('Proposal sets')
         get_latest_by = 'pub_date'
 
     @models.permalink
@@ -127,15 +128,18 @@ class Proposal(BaseProposalAbstractModel):
     title = models.CharField(_('Title'), max_length=100, unique=True,
                              help_text = _('Max: 200 characters'))
     proposalset = models.ForeignKey(ProposalSet, related_name='proposal_in',
-                                    blank=True, null=True, help_text=_('Proposal set \
-                                            in which the proposal resides'))
+                                    blank=True, null=True,
+                                    help_text=_('Proposal set in which the \
+                                    proposal resides'))
     description = models.TextField(_('Description'), max_length=300)
     space = models.ForeignKey(Space, blank=True, null=True)
     author = models.ForeignKey(User, related_name='proposal_authors',
                                blank=True, null=True, 
-                               help_text = _('Change the user that will figure as the author'))
+                               help_text = _('Change the user that will figure \
+                               as the author'))
     #debatelink = models.ForeignKey()
-    tags = TagField(help_text = _('Insert here relevent words related with the proposal'))
+    tags = TagField(help_text = _('Insert here relevant words related with the \
+                                proposal'))
     latitude = models.DecimalField(_('Latitude'), blank=True, null=True,
                                    max_digits=8, decimal_places=6, 
                                    help_text =_('Specify it in decimal'))

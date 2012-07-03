@@ -1,49 +1,93 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load wysiwyg %}
 
-{% block title %}{% trans "Create new debate" %}{% endblock %}
-{% block logo %}<a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>{% endblock %}
-{% block banner %}<img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />{% endblock %}
+{% comment %}
+The way to validate in this form if it is an edit or an add request is to
+validate the title field. If it's True, it means that it's populated, therefore
+we're editing the form. Remember that this tempalte shows the help_text
+automatically if found in the data models.
+{% endcomment %}
 
-{% block content %}
+{% block title %}
+    {% if form.title.value %}
+        {% trans "Edit debate" %} {{ form.title.value }}
+    {% else %}
+        {% trans "Create new debate" %}
+    {% endif %}
+{% endblock %}
 
-{% block centercol %}
-<div class="grid_16">
+{% block logo %}
+    <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
+{% endblock %}
+
+{% block banner %}
+    <img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />
+{% endblock %}
+
+{% block extrajs %}
     <script src="{{ STATIC_URL }}/js/jquery.formset.js" type="text/javascript"></script>
     <script src="{{ STATIC_URL }}/js/debate_board.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function() {
-                $('#ajaxform thead tr').formset();
-                $('#ajaxform tbody tr').formset();
-                })
-</script>
-<div id="contenttitles">
-    <h2>{% trans "Create a new debate" %}</h2>
+            $('#ajaxform thead tr').formset();
+            $('#ajaxform tbody tr').formset();
+        })
+    </script>
+{% endblock %}
+
+{% block content %}
+    {% if form.title.value %}
+        <h3>{% trans "Edit debate" %} {{ form.title.value }}</h3>
+    {% else %}
+        <h3>{% trans "Create new debate" %}</h3>
+        <div class="modal hide fade" id="myModal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>{% trans "How to create a debate" %}</h3>
+            </div>
+            <div class="modal-body">
+                <p>{% blocktrans %}To create a debate, you must fill the fields with any criteria necessary for it,
+                    in this docuemntation page we have an example of a debate that you can follow to create yours.
+                    For the rest of the fields, just follow their respective instructions.{% endblocktrans %}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">{% trans "Close" %}</a>
+            </div>
+        </div>
+        <br>
+    {% endif %}
+
+<div class="row">
+
     <span class="btn btn-small btn-danger" id="del-column-btn" onclick="removeTableColumn()">{% trans "Remove column" %}</span>
     <span class="btn btn-small btn-primary" id="new-column-btn" onclick="addTableColumn()">{% trans "Add column" %}</span>
 
-</div>
-<span class="btn btn-small btn-danger" onclick="removeTableRow()">{% trans "Remove row" %}</span>
-<span class="btn btn-small btn-primary" onclick="addTableRow()">{% trans "Add row" %}</span>
+    <span class="btn btn-small btn-danger" onclick="removeTableRow()">{% trans "Remove row" %}</span>
+    <span class="btn btn-small btn-primary" onclick="addTableRow()">{% trans "Add row" %}</span>
 
-<div id="debate-number" class="hidden">{{ debateid }}</div>
+    <div id="debate-number" class="hidden">{{ debateid }}</div>
 
-<div id="debate">
+    <hr />
 
-    <form id="ajaxform" enctype="" action="" method="post">{% csrf_token %}
-        <table id="debate{{ debateid }}" cellspacing="0" cellpadding="0" border="0">
-            <thead>
+    <div id="debate">
+
+        <a data-toggle="modal" id="debate-tutorial" href="#myModal" ><img src="{{ STATIC_URL }}/assets/icons/question.png" /></a>
+        <form class="form-horizontal" id="ajaxform" enctype="" action="" method="post">{% csrf_token %}
+            <table id="debate{{ debateid }}" cellspacing="0" cellpadding="0" border="0">
+                <thead>
                 <tr id="debate{{ debateid }}-headers">
                     {{ colform.management_form }}
                     <th id="corner" class="corner-criteria"></th>
                     {% for col in colform.forms %}
-                    <th id="debate-vcriteria{{ debate_id }}" class="criteria-vtitle">
-                        {{ col.criteria }}
-                    </th>
+                        <th id="debate-vcriteria{{ debate_id }}" class="criteria-vtitle">
+                            {{ col.criteria }}
+                        </th>
                     {% endfor %}
                 </tr>
-            </thead>
-            <tbody id="debate-body">
+                </thead>
+                <tbody id="debate-body">
                 {{ rowform.management_form }}
                 {% for row in rowform.forms %}
                 <tr>
@@ -55,114 +99,122 @@
                     <td id="sortable-debate{{ debateid }}" class="connectedSortable"></td>
                 </tr>
                 {% endfor %}
-            </tbody>
-        </table>
-        <!-- <span class="btn btn-small  btn-primary" onclick="createNote()">{% trans "Add new note" %}</span>
-        <span class="btn btn-small  btn-primary" onclick="addForm(this, 'form')">{% trans "Change color" %}</span>-->
-        <hr />
-        <h1>{% trans "Other debate data" %}</h1><br/><br/>
-        {% if form.non_field_errors %}
-        {% for error in form.non_field_errors %}
-        <span class="help-inline">{{ error|escape }}</span>
-        {% endfor %}
-        {% endif %}
+                </tbody>
+            </table>
+            <!--
+                <span class="btn btn-small  btn-primary" onclick="createNote()">{% trans "Add new note" %}</span>
+                <span class="btn btn-small  btn-primary" onclick="addForm(this, 'form')">{% trans "Change color" %}</span>
+            -->
+            <hr />
 
-        <div class="clearfix {% if form.title.errors %}error{% endif%}">
-            <label for="prependedInput">{{ form.title.label }}</label>
-            <div class="input">
-                {{ form.title }}
-                <span class="help-inline">
+            <h3>{% trans "Other debate data" %}</h3><br/><br/>
+
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <span class="help-inline">{{ error|escape }}</span>
+                {% endfor %}
+            {% endif %}
+
+            <div class="control-group {% if form.title.errors %}error{% endif %}">
+                <label>{{ form.title.label }}</label>
+                <div class="controls">
+                    <div class="input-append">
+                        {{ form.title }}
+                        {% if form.title.help_text %}
+                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.title.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {% endif %}
+                    </div>
                     {% if form.title.errors %}
-                    {% for error in form.title.errors %}
-                    {{ error|escape }}
-                    {% endfor %}
-                    {% else %}
-                    {{ form.title.help_text }}
+                        <p class="help-block">
+                            {% for error in form.title.errors %}
+                                {{ error|escape }}
+                            {% endfor%}
+                        </p>
                     {% endif %}
-                </span>
+                </div>
             </div>
-        </div>
-        <div class="clearfix {% if form.theme.errors %}error{% endif%}">
-            <label for="prependedInput">{{ form.theme.label }}</label>
-            <div class="input">
-                {{ form.theme }}
-                <span class="help-inline">
+
+            <div class="control-group {% if form.theme.errors %}error{% endif %}">
+                <label>{{ form.theme.label }}</label>
+                <div class="controls">
+                    <div class="input-append">
+                        {{ form.theme }}
+                        {% if form.theme.help_text %}
+                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.theme.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {% endif %}
+                    </div>
                     {% if form.theme.errors %}
-                    {% for error in form.theme.errors %}
-                    {{ error|escape }}
-                    {% endfor %}
-                    {% else %}
-                    {{ form.theme.help_text }}
+                        <p class="help-block">
+                            {% for error in form.theme.errors %}
+                                {{ error|escape }}
+                            {% endfor%}
+                        </p>
                     {% endif %}
-                </span>
-            </div>
-        </div>
-        <div>
-            <div class="clearfix {% if form.start_date.errors %}error{% endif %}">
-                <label for="prependedInput">{{ form.start_date.label }}</label>
-                <div class="input">
-                <input type="text" name="start_date" id="datepicker-start" class="hasDatePicker">
-                    <span class="help-inline">
-                        {% if form.start_date.errors %}
-                        {% for error in form.start_date.errors %}
-                        {{ error|escape }}
-                        {% endfor %}
-                        {% else %}
-                        {{ form.start_date.help_text }}
-                        {% endif %}
-                    </span>
                 </div>
-                <div class="clearfix {% if form.end_date.errors %}error{% endif %}">
-                <label for="prependedInput">{{ form.end_date.label }}</label>
-                <input type="text" name="end_date" id="datepicker-end" class="hasDatePicker">
-                    <span class="help-inline">
-                        {% if form.end_date.errors %}
-                        {% for error in form.end_date.errors %}
-                        {{ error|escape }}
-                        {% endfor %}
-                        {% else %}
-                        {{ form.end_date.help_text }}
-                        {% endif %}
-                    </span>
-                </div>
-              </div>
             </div>
-            <div class="clearfix {% if form.description.errors %}error{% endif%}">
-                <label for="prependedInput">{{ form.description.label }}</label>
-                <div class="input">
-                    {{ form.description }}
-                    <span class="help-inline">
-                        {% if form.description.errors %}
+
+            <div class="control-group {% if form.start_date.errors %}error{% endif %}">
+                <label>{{ form.start_date.label }}</label>
+                <div class="controls">
+                    <div class="input-append">
+                        <input type="text" name="start_date" id="datepicker-start" class="hasDatePicker">
+                        {% if form.start_date.help_text %}
+                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.start_date.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {% endif %}
+                    </div>
+                    {% if form.start_date.errors %}
+                        <p class="help-block">
+                            {% for error in form.start_date.errors %}
+                                {{ error|escape }}
+                            {% endfor%}
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="control-group {% if form.end_date.errors %}error{% endif %}">
+                <label>{{ form.end_date.label }}</label>
+                <div class="controls">
+                    <div class="input-append">
+                        <input type="text" name="end_date" id="datepicker-end" class="hasDatePicker">
+                        {% if form.end_date.help_text %}
+                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.end_date.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {% endif %}
+                    </div>
+                    {% if form.end_date.errors %}
+                        <p class="help-block">
+                            {% for error in form.end_date.errors %}
+                                {{ error|escape }}
+                            {% endfor%}
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="control-group {% if form.description.errors %}error{% endif %}">
+                <label>{{ form.description.label }}</label>
+                <div class="controls">
+                    <div class="input-prepend">
+                        {{ form.description }}
+                        {% wysiwyg_editor "id_description" %}
+                        {% if form.description.help_text %}
+                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.description.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {% endif %}
+                    </div>
+                    {% if form.description.errors %}
                         {% for error in form.description.errors %}
-                        {{ error|escape }}
+                            {{ error|escape }}
                         {% endfor %}
-                        {% else %}
-                        {{ form.description.help_text }}
-                        {% endif %}
-                    </span>
+                    {% endif %}
                 </div>
             </div>
+
             {{ form.columns.as_hidden }}
+
             <hr />
             <input class="btn btn-primary btn-small" type="submit" value="{% trans 'Save' %}" />
             <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">{% trans "Cancel" %}</a>
         </form>
     </div>
-
 </div>
-
-{% endblock %}
-
-{% comment %}
-{% block rightcol %}
-<div class="grid_5">
-    <div id="widget">
-        <h2>{% trans "How to add new debates" %}</h2><br/>
-        <ul class="instructions">
-            <li><strong>{% trans "Modules" %}</strong>: {% trans "Select the modules you will use in your space. This can be edited afterwards." %}</li>
-        </ul>
-    </div>
-</div>
-{% endblock %}
-{% endcomment %}
 {% endblock %}

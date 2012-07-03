@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load wysiwyg %}
+
+{% comment %}
+The way to validate in this form if it is an edit or an add request is to
+validate the title field. If it's True, it means that it's populated, therefore
+we're editing the form. Remember that this tempalte shows the help_text
+automatically if found in the data models.
+{% endcomment %}
+
+{% block title %}
+    {% if form.title.value %}
+        {% trans "Edit proposal set" %} {{ form.title.value }}
+    {% else %}
+        {% trans "Add proposal set" %}
+    {% endif %}
+{% endblock %}
+
+{% block logo %}
+    <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
+{% endblock %}
+
+{% block banner %}
+    <img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />
+{% endblock %}
+
+{% block space %}
+    <a class="brand" href="{{ get_place.get_absolute_url }}">{{ get_place.name }}</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="span12">
+        {% if form.title.value %}
+            <h3>{% trans "Edit proposal set" %} {{ form.name.value }}</h3>
+        {% else %}
+            <h3>{% trans "Add new proposal set" %}</h3>
+        {% endif %}
+
+        <form class="form-horizontal" action="" method="post">{% csrf_token %}
+
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <span class="help-inline">{{ error|escape }}</span>
+                {% endfor %}
+            {% endif %}
+
+            <div class="control-group {% if form.name.errors %}error{% endif %}">
+                <label>{{ form.name.label }}</label>
+                <div class="controls">
+                    <div class="input-append">
+                        {{ form.name }}
+                        {% if form.name.help_text %}
+                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.name.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {% endif %}
+                    </div>
+                    {% if form.name.errors %}
+                        <p class="help-block">
+                            {% for error in form.name.errors %}
+                                {{ error|escape }}
+                            {% endfor%}
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="control-group {% if form.debate.errors %}error{% endif %}">
+                <label>{{ form.debate.label }}</label>
+                <div class="controls">
+                    <div class="input-prepend">
+                        {{ form.debate }}
+                        {% if form.debate.help_text %}
+                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.debate.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {% endif %}
+                    </div>
+                    {% if form.debate.errors %}
+                        <p class="help-block">
+                            {% for error in form.debate.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+
+
+            <hr />
+            <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">&laquo; {% trans "Go back" %}</a>
+            <input class="btn btn-small btn-primary" type="submit" value="{% trans 'Create' %}" />
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -270,7 +270,7 @@ function addTableColumn() {
     var formCount = parseInt($('#id_colform-TOTAL_FORMS').val());
 
     if (criteriacount >= 10) return false;
-    $('#' + tableID + ' tr:first').append("<th id='debate-vcriteria" + (criteriacount+1) + "' class='criteria-vtitle'><input id='" + tableID + "-criteria" + (inputs+1) + "' name='colform-" + (criteriacount) + "-criteria' type='text' class='small' value='Test criteria'></th>");
+    $('#' + tableID + ' tr:first').append("<th id='debate-vcriteria" + (criteriacount+1) + "' class='criteria-vtitle'><input id='" + tableID + "-criteria" + (inputs+1) + "' name='colform-" + (criteriacount) + "-criteria' type='text' class='small'></th>");
     $('#' + tableID + ' tbody tr').each(function(){
         //var tdlength = $('#' + tableID + ' td').length;
         $(this).append("<td id='sortable" + (tdlength) + "-" + tableID + "' class='connectedSortable'></td>").fadeIn("slow");
@@ -292,7 +292,7 @@ function addTableRow() {
     if (numRows >= 10) return false;
 
     var tr = $('<tr>');
-    tr.append("<td class='criteria-htitle'><div id='debate-ttitle'><input id='" + tableID + "-criteria" + (numRows) + "' name='rowform-" + (numRows) + "-criteria' type='text'></div></td>");
+    tr.append("<td class='criteria-htitle'><div id='debate-ttitle'><input style='width:100px;' id='" + tableID + "-criteria" + (numRows) + "' name='rowform-" + (numRows) + "-criteria' type='text'></div></td>");
     $('#id_rowform-TOTAL_FORMS').val(formCount_row + 1);
     for (i=0; i<numColumns; i++) {
         tr.append('<td>');

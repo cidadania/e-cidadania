@@ -499,6 +499,10 @@ tbody * ul {
     float: right;
 }
 
+#debate-tutorial {
+    margin: 0 auto;
+}
+
 .note textarea {
     width: 80px;
     height: 70px;
@@ -544,9 +548,13 @@ table .criteria-title {
 }
 
 #debate input {
-    width: 100px;
-    text-align: center;
+/*    width: 100px;
+    text-align: center;*/
     margin: 0;
+}
+
+.dynamic-form input {
+    width: 100px;
 }
 
 #debate-ttitle input {

@@ -101,23 +101,29 @@
                         <h3>{% trans "Edit note" %}</h3>
                     </div>
                     <div class="modal-body">
-                        <form enctype="" action="" method="post">{% csrf_token %}
+                        <form class="form-horizontal" enctype="" action="" method="post">{% csrf_token %}
 
-                            <div class="clearfix">
-                                <label for="prependedInput">{% trans "Note title" %}</label>
-                                <div class="input">
-                                    <input type="text" name="notename" />
-                                    <span class="help-inline">{% trans "100 characters" %}</span>
+                            <div class="control-group">
+                                <label>{% trans "Note title" %}</label>
+                                <div class="controls">
+                                    <div class="input-append">
+                                        <input class="span2" id="appendedInput" size="16" type="text" name="notename" />
+                                        <span class="add-on"><a href="#" rel="tooltip" title="{% trans '100 characters' %}"><i class="icon-question-sign"></i></a></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="clearfix">
-                                <label for="prependedInput">{% trans "Description" %}</label>
-                                <div class="input">
-                                    <textarea id="id_note_message"></textarea>
-                                    {% wysiwyg_editor "id_note_message" %}
-                                    <span class="help-inline"></span>
+
+                            <div class="control-group">
+                                <label>{% trans "Description" %}</label>
+                                <div class="controls">
+                                    <div class="input-prepend">
+                                        <textarea id="id_note_message"></textarea>
+                                        {% wysiwyg_editor "id_note_message" %}
+                                        <span class="add-on"><a href="#" rel="tooltip" title="{% trans 'Long description of the note' %}"><i class="icon-question-sign"></i></a></span>
+                                    </div>
                                 </div>
                             </div>
+
                             <div id="last-edited-note" class="hidden"></div>
                         </form>
                     </div>

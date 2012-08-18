@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load wysiwyg %}
+
+{% comment %}
+This is a form to edit the fields of the form. You can also add new fields to the poll.
+{% endcomment %}
+
+{% block title %}
+        {% trans "Edit poll" %} 
+{% endblock %}
+
+
+{% block logo %}
+    {% if get_place %}
+        <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
+    {% else %}
+        <a href="{% url 'site-index' %}"><img src="{{ STATIC_URL }}/assets/logos/index.png" /></a>
+    {% endif %}
+{% endblock %}
+
+{% block banner %}
+    {% if get_place %}
+        <img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />
+    {% else %}
+        <img src="{{ STATIC_URL }}/assets/banners/index.png" />
+    {% endif %}
+{% endblock %}
+
+{% block extrajs %}
+    <script src="{{ STATIC_URL }}/js/jquery.formset.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}/js/poll_choice.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#ajaxform thead tr').formset();
+            $('#ajaxform tbody tr').formset();
+        })
+    </script>
+{% endblock %}
+
+{% block space %}
+    {% if get_place %}
+        <a class="brand" href="{{ get_place.get_absolute_url }}">{{ get_place.name }}</a>
+    {% else %}
+        <a class="brand" href="{% url 'site-index' %}">e-cidadania</a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="span12">
+            <h3>{% trans "Edit poll" %} {{ form.question.value }}</h3>
+
+        <form class="form-horizontal" id="ajaxform" enctype="" action="" method="post">{% csrf_token %}
+
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <span class="help-inline">{{ error|escape }}</span>
+                {% endfor %}
+            {% endif %}
+
+            <div class="control-group {% if form.question.errors %}error{% endif%}">
+                <label>{{ form.question.label }}</label>
+                <div class="controls">
+                    <div class="input-append">
+                        {{ form.question }}
+                        {% if form.question.help_text %}
+                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.question.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {% endif %}
+                    </div>
+                    {% if form.question.errors %}
+                    <p class="help-block">
+                        {% for error in form.question.errors %}
+                        {{ error|escape }}
+                        {% endfor %}
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="control-group {% if form.poll_tags.errors %}error{% endif%}">
+                <label>{{ form.poll_tags.label }}</label>
+                <div class="controls">
+                    <div class="input-append">
+                        {{ form.poll_tags }}
+                        {% if form.poll_tags.help_text %}
+                        <span class="add-on"><a href="#" rel="tooltip" title="{{ form.poll_tags.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {% endif %}
+                    </div>
+                    {% if form.poll_tags.errors %}
+                    <p class="help-block">
+                        {% for error in form.poll_tags.errors %}
+                        {{ error|escape }}
+                        {% endfor %}
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+
+            {{ choiceform.management_form }}
+            {% for choice in choiceform %}
+            {{ choice.id }}
+            <div class="control-group {% if choice.choice_text.errors %}error{% endif %}">
+                <label>{{ choice.choice_text.label }}</label>
+                <div class="controls">
+                    <div class="input-append">
+                            {{ choice.choice_text }}
+                        {% if choice.choice_text.help_text %}
+                        <span class="add-on"><a href="#" rel="tooltip" title="{{ choice.choice_text.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {% endif %}
+                    </div>
+                    {% if choice.choice_text.errors %}
+                    <p class="help-block">
+                        {% for error in choice.choice_text.errors %}
+                        {{ error|escape }}
+                        {% endfor %}
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="control-group {% if choice.votes.errors %}error{% endif %}">
+                <label>{{ choice.votes.label }}</label>
+                <div class="controls">
+                    <div class="input-append">
+                        {{ choice.votes }}
+                        {% if choice.votes.help_text %}
+                        <span class="add-on"><a href="#" rel="tooltip" title="{{ choice.votes.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {% endif %}
+                    </div>
+                    {% if choice.votes.errors %}
+                    <p class="help-block">
+                        {% for error in choice.votes.errors %}
+                        {{ error|escape }}
+                        {% endfor %}
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+
+
+            {% if request.user.is_staff %}
+            <hr>
+            <h3>{% trans "Staff members options" %}</h3>
+
+            <div class="control-group {% if form.author.errors %}error{% endif%}">
+                <label>{{ form.author.label }}</label>
+                <div class="controls">
+                    <div class="input-prepend">
+                        {{ form.author }}
+                        {% if form.author.help_text %}
+                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.author.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {% endif %}
+                    </div>
+                    {% if form.author.errors %}
+                        <p class="help-block">
+                            {% for error in form.author.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="control-group {% if form.space.errors %}error{% endif%}">
+                <label>{{ form.space.label }}</label>
+                <div class="controls">
+                    <div class="input-prepend">
+                        {{ form.space }}
+                        {% if form.space.help_text %}
+                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.space.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {% endif %}
+                    </div>
+                    {% if form.space.errors %}
+                        <p class="help-block">
+                            {% for error in form.space.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            <hr />
+            <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">&laquo; {% trans "Go back" %}</a>
+            <input class="btn btn-small btn-primary" type="submit" value="{% trans 'Publish' %}" />
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+

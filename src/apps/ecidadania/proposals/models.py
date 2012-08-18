@@ -24,6 +24,7 @@ Proposal data models are the ones to store the data inside the DB.
 import datetime
 from django.core import urlresolvers
 
+from django import forms
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
@@ -42,6 +43,12 @@ CLOSE_REASONS = (
     (2, _('Legally not viable')),
     (3, _('Technically not viable')),
     (4, _('Offtopic'))
+)
+
+OPTIONAL_FIELDS = (
+    ('tags', _('Tags')), 
+    ('latitude', _('Latitude')),
+    ('longitude', _('Longitude'))
 )
 
 
@@ -75,6 +82,8 @@ class ProposalSet(models.Model):
     """
     ProposalSet date model. This will contain a group of proposal
     which will be created after the debate using the debate note after it is finished.
+
+    .. addedversion:: 0.1.5b
 
     :automatically filled fields: space, author, pub_date, debate
     :user filled fields: Name
@@ -152,7 +161,8 @@ class Proposal(BaseProposalAbstractModel):
     close_reason = models.SmallIntegerField(choices=CLOSE_REASONS, null=True,
                                             blank=True)
     merged = models.NullBooleanField(default=False, blank=True, null=True)
-    merged_proposals = models.ManyToManyField(ProposalSet, blank=True, null=True)
+    merged_proposals = models.ManyToManyField('self', blank=True, null=True, help_text = \
+                                                _("select proposals from the list"))
 
     anon_allowed = models.NullBooleanField(default=False, blank=True)
     support_votes = models.ManyToManyField(User, verbose_name=_('Votes from'),
@@ -182,3 +192,27 @@ class Proposal(BaseProposalAbstractModel):
         return ('view-proposal', (), {
             'space_url': self.space.url,
             'prop_id': str(self.id)})
+
+class ProposalField(models.Model):
+    
+    """
+    Proposal Fields data model. This will store details of addition form fields which can be 
+    optionally added the proposal form which is residing in a particular proposal set.
+
+    user filled fields: proposalset, field_name
+    const:`OPTIONAL_FIELD` for class:ProposalField is hardcoded with three field values, more \
+            field can be added as need.
+
+    """
+
+    proposalset= models.ForeignKey(ProposalSet, help_text= _('Customizing proposal \
+                                    form for a proposal set'), unique=False)
+    field_name = models.CharField(max_length=100, choices=OPTIONAL_FIELDS,help_text \
+                                    = _('Additional field that needed to added to the proposal form'))
+
+    def __unicode__(self):
+        return self.field_name
+
+    class Meta:
+        verbose_name = _('ProposalField')
+        verbose_name_plural = _('ProposalFields')

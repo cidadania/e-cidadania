@@ -72,6 +72,27 @@ class ProposalAdmin(admin.ModelAdmin):
 
     ]
     
+
+class ProposalFieldAdmin(admin.ModelAdmin):
     
+    """
+    Basic proposal administration interface since most part is done in 
+    the website.
+
+    :list display: proposalset, field_name
+    :search:none
+
+    .. versionadded:: 0.1.5b
+    """
+    list_display = ('proposalset', 'field_name')
+
+    fieldsets = [
+        (None, {'fields':
+            ['proposalset','field_name']}),
+    ]
+
+
+
 admin.site.register(ProposalSet, ProposalSetAdmin)
 admin.site.register(Proposal, ProposalAdmin)
+admin.site.register(ProposalField, ProposalFieldAdmin)

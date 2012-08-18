@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load cache %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xml:lang="es-ES">
 	<head>
@@ -9,6 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/smoothness/jquery-ui-1.8.13.custom.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/bootstrap-wysihtml5-0.0.2.css" media="screen">
 		<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}/css/screen.css"/>
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}/css/comments.css"/>
 		<!-- End load CSS -->
 		<link rel="shortcut icon" href="{{ STATIC_URL }}/assets/favicon.ico" type="image/ico"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -30,7 +32,10 @@
 
 	</head>
 	<body>
+
+        {% get_current_language as LANGUAGE_CODE %}
     
+        {% cache 500 base_cache_block_1 LANGUAGE_CODE request.user.username %}
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
@@ -41,6 +46,7 @@
                 </div>
             </div>
         </div>
+        {% endcache %}
         
         {% if messages %}
             {% for message in messages %}

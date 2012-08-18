@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load wysiwyg %}
+
+{% comment %}
+This template shows the help_text automatically if found in the data models.
+{% endcomment %}
+
+{% block title %}
+    {% trans "Delete Proposal Form Field" %}
+{% endblock %}
+
+{% block logo %}
+    <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
+{% endblock %}
+
+{% block banner %}
+    <img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />
+{% endblock %}
+
+{% block space %}
+    <a class="brand" href="{{ get_place.get_absolute_url }}">{{ get_place.name }}</a>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="span12">
+        <h3>{% trans "Delete Proposal Field" %}</h3>
+        <br />
+        <form class="form-horizontal" action="" method="post">{% csrf_token %}
+
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <span class="help-inline">{{ error|escape }}</span>
+                {% endfor %}
+            {% endif %}
+
+        <div class="control-group {% if form.proposalset.errors %}error{% endif %}">
+            <label>{{ form.proposalset.label }}</label>
+            <div class="controls">
+                <div class="input-append" id="prop_set">
+                    {{ form.proposalset }}
+                    {% if form.proposalset.help_text %}
+                        <span class="add-on"><a href="#" rel="tooltip" title="{{ form.proposalset.help_text }}"><i class="icon-question-sign"></i></a></span>
+                    {% endif %}
+                </div>
+                {% if form.proposalset.errors %}
+                    <p class="help-block">
+                        {% for error in form.proposalset.errors %}
+                            {{ error|escape }}
+                        {% endfor%}
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="control-group {% if form.field_name.errors %}error{% endif %}">
+            <label>{{ form.field_name.label }}</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    {{ form.field_name }}
+                    {% if form.field_name.help_text %}
+                        <span class="add-on"><a href="#" rel="tooltip" title="{{ form.field_name.help_text }}"><i class="icon-question-sign"></i></a></span>
+                    {% endif %}
+                </div>
+                {% if form.field_name.errors %}
+                    <p class="help-block">
+                        {% for error in form.field_name.errors %}
+                            {{ error|escape }}
+                        {% endfor %}
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+        <hr />
+        <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">&laquo; {% trans "Go back" %}</a>
+        <input class="btn btn-small btn-primary" type="submit" value="{% trans 'Delete' %}" />
+        </form>
+    </div>
+
+</div>
+{% endblock %}

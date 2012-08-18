@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load wysiwyg %}
+
+{% block title %}
+{{ voting.title }}
+{% endblock %}
+
+
+{% block logo %}
+    {% if get_place %}
+        <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
+    {% else %}
+        <a href="{% url 'site-index' %}"><img src="{{ STATIC_URL }}/assets/logos/index.png" /></a>
+    {% endif %}
+{% endblock %}
+
+{% block banner %}
+    {% if get_place %}
+        <img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />
+    {% else %}
+        <img src="{{ STATIC_URL }}/assets/banners/index.png" />
+    {% endif %}
+{% endblock %}
+{% block space %}
+    {% if get_place %}
+        <a class="brand" href="{{ get_place.get_absolute_url }}">{{ get_place.name }}</a>
+    {% else %}
+        <a class="brand" href="{% url 'site-index' %}">e-cidadania</a>
+    {% endif %}
+{% endblock %}
+{% block content %}
+<h1>{{ voting.title }}</h1>
+<br />
+<h5>{% trans "Description:" %}  {{ voting.description }}</h5>
+<h5>{% trans "Created by:" %}  {{ voting.author }}</h5>
+<h5>{% trans "Start date:" %}  {{ voting.start_date }}</h5>
+<h5>{% trans "End date:" %}  {{ voting.end_date }}</h5>
+<br /><br />
+<h5>{% trans "Vote on the following:" %}</h5>
+<div><h5>{% trans "Proposalsets:" %}</h5>
+<br />
+{% for proposalset in proposalsets %}
+<div style=" width: 300px; float: left;"><a href="">{{ proposalset }}</a>
+{% if proposalset.debate %}
+<br /><b>{% trans "Linked to debate:" %}</b> <a href="{{ proposalset.debate.get_absolute_url }}">{{ proposalset.debate }}</a>
+{% endif %}
+<br />
+{% trans "Proposals in this proposalset:" %}
+<br />
+{% for all in all_proposals %}
+{% if all.proposalset.pk == proposalset.pk %}
+<a href="{{ all.get_absolute_url }}">{{ all }}</a>
+<br/><b>{% trans "Description:" %}</b> {{ all.description|truncatewords:40 }}
+<br /><b>{% trans "Current votes status:" %}</b> {{ all.support_votes.count }}
+<br />
+<br />
+{% endif %}
+{% endfor %}
+</div>
+<br />
+<br />
+{% endfor %}
+<br />
+</div>
+<div style=" width: 300px; float: left;">
+<h5>{% trans "Unlinked proposals:" %}</h5>
+<br />
+{% for proposal in proposals %}
+<a href="{{ proposal.get_absolute_url }}">{{ proposal }}</a>
+<br/><b>{% trans "Description:" %}</b> {{ proposal.description|truncatewords:40 }}
+<br /><b>{% trans "Current votes status:" %}</b> {{ proposal.support_votes.count }}
+<br />
+<br />
+
+{% endfor %}
+</div>
+{% endblock %}

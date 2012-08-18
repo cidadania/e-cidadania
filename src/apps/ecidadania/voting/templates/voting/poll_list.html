@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Polls list" %}{% endblock %}
+{% block logo %}
+    {% if get_place %}
+        <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
+    {% else %}
+        <a href="/"><img src="{{ STATIC_URL }}/assets/logos/index.png" /></a>
+    {% endif %}
+{% endblock %}
+
+{% block banner %}
+    {% if get_place %}
+        <img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />
+    {% else %}
+        <img src="{{ STATIC_URL }}/assets/banners/index.png"/>
+    {% endif %}
+{% endblock %}
+
+{% block space %}
+    {% if get_place %}
+        <a class="brand" href="{{ get_place.get_absolute_url }}">{{ get_place.name }}</a>
+    {% else %}
+        <a class="brand" href="{% url 'site-index' %}">e-cidadania</a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="span12">
+            <h4>{% trans "Polls archive" %}</h4>
+            {% for poll in poll_list %}
+                {% ifchanged poll.pub_date|date:"F" %}
+                    <h2 class="listmonth">{{ poll.pub_date|date:"F Y" }}</h2>
+                {% endifchanged %}
+                <div class="listitem">
+                    <div class="listdate">{{ poll.pub_date|date:"l d" }}</div>
+                    <div class="listtitle"><a href="../{{ poll.id }}">{{ poll.question }}</a></div>
+                </div>
+                <div class="clear"></div>
+            {% empty %}
+                <p>{% trans "There are no polls in this space." %}</p>
+            {% endfor %}
+            
+            {% if is_paginated %}
+                <div class="pagination">
+                    <span class="page-links">
+                        {% if page_obj.has_previous %}
+                            <a href="{% url 'list-polls' get_place.url %}?page={{ page_obj.previous_page_number }}">&laquo; {% trans "previous" %} | </a>
+                        {% endif %}
+                        <span class="page-current">
+                            {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a href="{% url 'list-polls' get_place.url %}?page={{ page_obj.next_page_number }}"> | {% trans "next" %} &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+            {% endif %}
+           
+            <hr />
+            <a href="{{ get_place.get_absolute_url }}" class="btn small">&laquo; {% trans "Go back" %}</a>
+        </div>
+    </div>
+
+{% endblock %}
+

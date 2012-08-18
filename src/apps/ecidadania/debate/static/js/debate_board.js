@@ -101,7 +101,19 @@ function viewNote(obj) {
     request.done(function(note) {
         $('h3#view-note-title').text(note.title);
         $('p#view-note-desc').html(note.message);
-    });
+
+        var html = '';
+        var comment_count = "<h5 class='note-comment-title'>Comments (" + note.comments.length + ")";
+for(var i=0; i<note.comments.length; i++) {
+            var item = note.comments[i];
+        html += "<div class='comment-bubble' id='comment" + i +"'>" + "<p id='username' class='viewer'>"+ item.username + "</p>";
+        html += "<p id='date' class='viewer-date'>"+ item.submit_date +"</p>";
+        html += "<p id='comments" + i + "' class='viewer-comment'>" + item.comment +"</p><img src='/static/img/images/arrow-2.png' width='20' height='21'></div>";
+}
+        $('div#comments').html(html);
+        $('span#num-comments').html(comment_count);
+        $('form#form_comments div.kopce').html(note.form_html);
+   });
 
     request.fail(function (jqXHR, textStatus) {
         $('#edit-current-note').modal('hide');
@@ -127,10 +139,11 @@ function editNote(obj) {
     });
 
     request.done(function(note) {
-
         $("input[name='notename']").val(note.title);
+        wysieditor.data("wysihtml5").editor.setValue(note.message, true);
+        // If for some reason the WYSIHTML5 editor fails, it will fallback
+        // into a simple textarea that gets shown
         $("textarea#id_note_message").val(note.message);
-        $("#last-edited-note").html(noteID);
     });
 
     request.fail(function (jqXHR, textStatus) {

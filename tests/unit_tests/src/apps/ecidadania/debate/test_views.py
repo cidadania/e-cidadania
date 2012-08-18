@@ -78,7 +78,7 @@ class ListDebatesViewsTest(ECDTestCase):
         assert 'columns' in context
         assert 'rows' in context
         assert 'get_place' in context
-        print context['columns']
+        #print context['columns']
         self.assertEqual(len(context['notes']), 1)
         self.assertEqual(len(context['columns']), 1)
         self.assertEqual(len(context['rows']), 1)

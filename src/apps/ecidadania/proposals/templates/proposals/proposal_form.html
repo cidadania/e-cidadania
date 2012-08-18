@@ -64,24 +64,6 @@ automatically if found in the data models.
                 </div>
             </div>
 
-
-            <div class="control-group {% if form.proposalset.errors %}error{% endif %}">
-                <label>{{ form.proposalset.label }}</label>
-                <div class="controls">
-                    <div class="input-prepend">
-                        {{ form.proposalset }}
-                        {% if form.proposalset.help_text %}
-                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.proposalset.help_text }}"><i class="icon-question-sign"></i></a></span>
-                        {% endif %}
-                    </div>
-                    {% if form.proposalset.errors %}
-                        {% for error in form.proposalset.errors %}
-                            {{ error|escape }}
-                        {% endfor %}
-                    {% endif %}
-                </div>
-            </div>
-
             <div class="control-group {% if form.description.errors %}error{% endif %}">
                 <label>{{ form.description.label }}</label>
                 <div class="controls">
@@ -99,7 +81,7 @@ automatically if found in the data models.
                     {% endif %}
                 </div>
             </div>
-
+            {% if "latitude" in form_field %}
             <div class="control-group {% if form.latitude.errors %}error{% endif %}">
                 <label>{{ form.latitude.label }}</label>
                 <div class="controls">
@@ -116,7 +98,8 @@ automatically if found in the data models.
                     {% endif %}
                 </div>
             </div>
-
+            {% endif %}
+            {% if "longitude" in form_field %}
             <div class="control-group {% if form.longitude.errors %}error{% endif %}">
                 <label>{{ form.longitude.label }}</label>
                 <div class="controls">
@@ -133,6 +116,8 @@ automatically if found in the data models.
                     {% endif %}
                 </div>
             </div>
+            {% endif %}
+            {% if "tags" in form_field %}
             <div class="control-group {% if form.tags.errors %}error{% endif %}">
                 <label>{{ form.tags.label }}</label>
                 <div class="controls">
@@ -149,7 +134,7 @@ automatically if found in the data models.
                     {% endif %}
                 </div>
             </div>
-
+            {% endif %}
             <hr />
             <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">&laquo; {% trans "Go back" %}</a>
             <input class="btn btn-small btn-primary" type="submit" value="{% trans 'Publish' %}" />

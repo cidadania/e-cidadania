@@ -234,7 +234,7 @@ class ECDTestCase(TestCase):
         results in exception when printed directly i.e print response.
         """
         
-        return smart_str(response)
+        print smart_str(response)
     
     
     def assertResponseCode(self, response, status_code):

@@ -90,7 +90,7 @@ class RoleForm(ModelForm):
         model = Space
         exclude = ('name', 'url', 'date', 'description', 'date', 'logo', 'banner',
             'author', 'mod_debate', 'mod_proposals', 'mod_news', 'mod_cal',
-            'mod_docs', 'public')
+            'mod_docs', 'mod_voting', 'public')
 
 
 class EventForm(ModelForm):

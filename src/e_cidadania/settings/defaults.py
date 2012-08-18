@@ -94,8 +94,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    #GZipMiddleware compresses content for modern browsers
+    # GZipMiddleware compresses content for modern browsers
     'django.middleware.gzip.GZipMiddleware',
+    # ConditionalGetMiddleware adds support for modern browsers to conditionaly 
+    # GET responses
+    'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -134,6 +137,7 @@ DJANGO_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.messages',
+    'django.contrib.comments',
     'grappelli.dashboard',
     'grappelli',
     'django.contrib.admin',
@@ -162,6 +166,7 @@ ECIDADANIA_MODULES = (
     'apps.ecidadania.staticpages',
     'apps.ecidadania.cal',
     'extras.custom_stuff',
+    'apps.ecidadania.voting',
 )
 
 #Defining user roles
@@ -172,7 +177,6 @@ USER_ROLES = (
     'user',
     'anonymous'
 )
-
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

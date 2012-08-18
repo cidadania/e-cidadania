@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load wysiwyg %}
-
+{% load comments %}
 {% with debate.title as debate_title %}
 {% block title %}{% trans "View debate" %} {{ debate_title }}{% endblock %}
 {% block logo %}<a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>{% endblock %}
@@ -81,7 +81,11 @@
                                                     <span id="view-note" class="label label-info hidden"><a href="#" onclick="viewNote(this)" data-toggle="modal" data-target="#view-current-note">{% trans "View" %}</a></span>
                                                     {% if note.author == request_user or request_user.is_staff %}
                                                         <span id="edit-note" class="label label-info hidden"><a href="#" onclick="editNote(this)" data-toggle="modal" data-target="#edit-current-note">{% trans "Edit" %}</a></span>
-                                                    {% endif %}
+																												{% endif %}
+																												<br />{% get_comment_count for note as comment_count %}
+																												<span class="comments">{{ comment_count	}} comments</span>
+																											</div>
+
                                                 </div>
                                             {% endif %}
                                         {% endfor %}
@@ -95,6 +99,8 @@
                 </table>
 
                 <br />
+                <span class="btn btn-primary btn-small" id="new-note" onclick="createNote()">{% trans "Add new note" %}</span>
+                <div id="sortable-dispatcher"></div>
 
                 <div id="edit-current-note" class="modal hide fade" style="display: none; ">
                     <div class="modal-header">
@@ -115,11 +121,10 @@
                             </div>
 
                             <div class="control-group">
-                                <label>{% trans "Description" %}</label>
+															<label>{% trans "Description" %}</label>
                                 <div class="controls">
                                     <div class="input-prepend">
-                                        <textarea id="id_note_message"></textarea>
-                                        {% wysiwyg_editor "id_note_message" %}
+																				{% wysiwyg_editor "message" %}
                                         <span class="add-on"><a href="#" rel="tooltip" title="{% trans 'Long description of the note' %}"><i class="icon-question-sign"></i></a></span>
                                     </div>
                                 </div>
@@ -130,6 +135,7 @@
                     </div>
                     <div class="modal-footer">
                         <a href="#" onclick="saveNote()" class="btn btn-primary">{% trans "Save" %}</a>
+                        <a href="#" onclick="saveNote()" class="btn btn-primary">{% trans "Save" %}</a>
                     </div>
                 </div>
 
@@ -139,14 +145,29 @@
                         <h3 id="view-note-title"></h3>
                     </div>
                     <div class="modal-body">
-                        <p id="view-note-desc"></p>
+											<p id="view-note-desc"></p>
+											<span id="num-comments"></span>
+											<div id="comments"></div>
                     </div>
-                    <div class="modal-footer">
+										<div class="modal-footer">
+											{% if user.is_authenticated %}
+<h5 class="note-comment-title">Comment</h5><div id="note-comment">
+<form id="form_comments" action="{% comment_form_target %}" method="post">
+   {% csrf_token %}
+<table>
+<tr>
+     <td colspan="2">
+       <div class="kopce"></div>
+       <input type="submit" name="submit" value="Submit">
+       <input type="submit" name="preview" value="Preview">
+     </td>
+   </tr>
+</table>
+</form>
+{% endif %}
                     </div>
                 </div>
 
-                <span class="btn btn-primary btn-small" id="new-note" onclick="createNote()">{% trans "Add new note" %}</span>
-                <div id="sortable-dispatcher"></div>
 
             </div>
 

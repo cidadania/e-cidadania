@@ -45,9 +45,15 @@ class Post(models.Model):
             help_text=_('If you want to post to the index leave this blank'))
     post_tags = TagField(help_text=_('Insert here relevant words related with \
                                      the post'))
+    views = models.IntegerField(_('Views'), blank=True, null=True)
 
     def __unicode__(self):
         return self.post_title
+
+    def comment_count(self):
+        ct = ContentType.objects.get_for_model(Post)
+        obj_pk = self.id
+        return Comment.objects.filter(content_type=ct,object_pk=obj_pk).count()
 
     def set_tags(self, tags):
         Tag.objects.update_tags(self, tags)

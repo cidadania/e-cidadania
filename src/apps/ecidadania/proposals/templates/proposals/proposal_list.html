@@ -14,7 +14,7 @@
                 <div id="proposal-wrapper">
                     {% if perms.proposals.add_proposal %}
                         <div id="tools">
-                            <a href="{% url 'add-proposal' get_place.url %}"><img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add proposal' %}" title="{% trans 'Add proposal' %}"/></a> 
+                            <a href="{% url 'select_set' get_place.url %}"><img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add proposal' %}" title="{% trans 'Add proposal' %}"/></a> 
                             {% if perms.proposals.edit_proposal %}
                                 <a href="{% url 'edit-proposal' get_place.url p.id %}"><img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/></a> 
                             {% endif %}

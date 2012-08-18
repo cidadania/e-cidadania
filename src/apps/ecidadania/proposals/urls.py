@@ -37,13 +37,23 @@ urlpatterns = patterns('apps.ecidadania.proposals.views',
     
     url(_(r'^psets/(?P<set_id>\w+)/'), ViewProposalSet.as_view(), name='view-proposalset'),
 
+    url(_(r'^add/(?P<p_set>\w+)/'), AddProposal.as_view(), name='add-proposal'),
+
+    url(_(r'^merged/(?P<p_set>\w+)/'),'merged_proposal', name='merged_proposal'),
+
     url(_(r'^psets/'), ListProposalSet.as_view(), name='list-proposalset'),
 
     url(_(r'^addset/'), AddProposalSet.as_view(), name='add-proposalset'),
 
-    url(_(r'^add/'), AddProposal.as_view(), name='add-proposal'),
-
     url(_(r'^add_support_vote/'),'vote_proposal'),
+    
+    url(_(r'^merge_proposals/'),'mergedproposal_to_set', name='merge_proposal'),
+ 
+    url(_(r'^field_add/'),'add_proposal_fields', name='add_fields'),
+ 
+    url(_(r'^field_remove/'),'remove_proposal_field', name='delete_fields'),
+
+    url(_(r'^select_set/'),'proposal_to_set', name='select_set'),
 
     url(_(r'^(?P<prop_id>\w+)/$'), ViewProposal.as_view(), name='view-proposal'),
   

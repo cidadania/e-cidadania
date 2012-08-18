@@ -41,7 +41,7 @@ class InviteViewTest(ECDTestCase):
         self.create_user('test_user', 'user_pass', logged_in=True)
         response = self.get(url)
         #print self.printResponse(response)
-        print response.context['uri']
+        #print response.context['uri']
         self.assertResponseOK(response)
         
         post_data = {'email_addr': 'test@gmail.com', 'mail_msg':'test'}

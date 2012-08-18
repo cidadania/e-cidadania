@@ -8,6 +8,25 @@
 */
 
 /* HTML TAGS DEFINITION */
+
+.add-row.btn.primary.small {
+  visibility:hidden;
+}
+
+.poll_info {
+  height: 30px;
+}
+
+.poll_detail {
+  margin-top: 10px;
+  margin-left: 50px;
+}
+.poll_question {
+  color: #006DCC;
+}
+.votes {
+  visibility:hidden;
+}
 body {
 	background: #FAFAFA;
 	padding: 0;
@@ -282,6 +301,16 @@ footer {
     font-size: 10px;
     font-style: italic;
     margin-bottom: 5px;
+}
+
+
+.map, #proposalmap {
+    width: 400px;
+    height: 350px;
+}
+
+.map img {
+    max-width:none;
 }
 /* END PROPOSAL STYLES */
 

@@ -54,6 +54,13 @@ from core.spaces.models import Space
 
 from helpers.cache import get_or_insert_object_in_cache
 
+from django.contrib.comments import *
+from django.contrib.contenttypes.models import ContentType
+from django.core.serializers.json import DjangoJSONEncoder
+from django.contrib.comments.forms import CommentForm
+from django.db import connection
+
+
 @permission_required('debate.add_debate')
 def add_new_debate(request, space_url):
 
@@ -186,12 +193,17 @@ def update_note(request, space_url):
 
     if request.method == "GET" and request.is_ajax:
         note = get_object_or_404(Note, pk=request.GET['noteid'])
+        ctype = ContentType.objects.get_for_model(Note)
+        latest_comments = Comment.objects.filter(is_public=True, is_removed=False, content_type=ctype, object_pk=note.id).order_by('-submit_date')[:5]
+        form = CommentForm(target_object = note)
 
         response_data = {}
         response_data['title'] = note.title
         response_data['message'] = note.message
+        response_data['comments'] = [ {'username': c.user.username, 'comment': c.comment, 'submit_date': c.submit_date} for c in latest_comments]
+        response_data["form_html"] = form.as_p()
 
-        return HttpResponse(json.dumps(response_data), mimetype="application/json")
+        return HttpResponse(json.dumps(response_data, cls=DjangoJSONEncoder), mimetype="application/json")
 
     if request.method == "POST" and request.is_ajax:
         note = get_object_or_404(Note, pk=request.POST['noteid'])
@@ -245,7 +257,13 @@ def delete_note(request, space_url):
     """
     note = get_object_or_404(Note, pk=request.POST['noteid'])
 
-    if note.author == request.user:
+    if note.author == request.user or request.user.is_staff:
+        ctype = ContentType.objects.get_for_model(Note)
+        all_comments = Comment.objects.filter(is_public=True,
+                is_removed=False, content_type=ctype,
+                object_pk=note.id).all()
+        for i in range(note.comment_count):
+            all_comments[i].delete()
         note.delete()
         return HttpResponse("The note has been deleted.")
 

@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load cache %}
 
+{% get_current_language as LANGUAGE_CODE %}
+
+{% cache cache_timeout index_cache_block_1 LANGUAGE_CODE %}
 {% block title %}{% trans "e-cidadania" %}{% endblock %}
 
 {% block logo %}{% endblock %}
@@ -8,7 +12,11 @@
 {% block space %}
     <a class="brand" href="{% url 'site-index' %}">e-cidadania {% if debug_mode %}<span style="font-size:0.5em;color:#F00;">debug mode v{{ version }} {{ status }}</span>{% endif %}</a>
 {% endblock %}
+{% endcache %}
 
+{% with user.is_anonymous as user_is_anonymous %}
+
+{% cache cache_timeout index_cache_block_2 LANGUAGE_CODE  user_is_anonymous %}
 {% block content %}
 
 <div class="row" style="margin-top: -80px;">
@@ -18,7 +26,7 @@
         <h3 class="lead">e-cidadania provides a free service for making participative democracy
             through debates, proposals, voting systems... with automated reports of
             the process, file repositositories, RSS feeds...</h3>
-        {% if user.is_anonymous %}
+        {% if user_is_anonymous %}
         <div style="margin-left:60px;">
             <a href="{% url 'signup' %}" class="btn btn-success btn-large">{% trans "Sign up <i>-it's free!-</i>" %}</a> {% trans "or" %} <a href="{% url 'login' %}" class="btn btn-primary btn-large">{% trans "Log in" %}</a>
         </div>
@@ -30,9 +38,13 @@
 </div>
 
 {% endblock %}
+{% endcache %}
+
+{% endwith %}
 
 {% block freewidth %}
 
+{% cache cache_timeout index_cache_block_3 LANGUAGE_CODE %}
 <div class="indexblock one">
     <div class="row indexrow">
         <p style="font-size: 2em;line-height:30px;font-weight: bold;color:#FEFEFE;">{% trans "Features" %}</p>
@@ -61,6 +73,7 @@
 
     </div>
 </div>
+{% endcache %}
 
 <div class="indexblock two">
     <div class="row indexrow">
@@ -111,6 +124,7 @@
     </div>
 </div>
 
+{% cache cache_timeout index_cache_block_4 LANGUAGE_CODE %}
 <div class="indexblock three">
     <div class="row indexrow">
         <div class="span12">
@@ -131,7 +145,7 @@
             <!-- Google Plus -->
             <g:plusone size="tall" href="http://ecidadania.org"></g:plusone>
             <script type="text/javascript">
-                window.___gcfg = {lang: 'es'};
+                window.___gcfg = {lang: '{{ LANGUAGE_CODE }}'};
                 (function() {
                     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
                     po.src = 'https://apis.google.com/js/plusone.js';
@@ -151,7 +165,7 @@
             <!-- End Identi.ca -->
 
             <!-- Twitter -->
-            <a href="https://twitter.com/ecidadaniafloss" class="twitter-share-button" date-url="http://ecidadania.org" data-counturl="http://ecidadania.org" data-count="vertical" data-lang="es">{% trans "Tweet" %}</a>
+            <a href="https://twitter.com/ecidadaniafloss" class="twitter-share-button" date-url="http://ecidadania.org" data-counturl="http://ecidadania.org" data-count="vertical" data-lang="{{ LANGUAGE_CODE }}">{% trans "Tweet" %}</a>
             <script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
             <!-- End Twitter -->
                 
@@ -162,6 +176,7 @@
         </div>
     </div>
 </div>
+{% endcache %}
     
 {% endblock %}
 

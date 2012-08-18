@@ -83,7 +83,10 @@ class ViewPost(DetailView):
     template_name = 'news/post_detail.html'
 
     def get_object(self):
-        return Post.objects.get(pk=self.kwargs['post_id'])
+        post = Post.objects.get(pk=self.kwargs['post_id'])
+        post.views = post.views + 1
+        post.save()
+        return post
 
     def get_context_data(self, **kwargs):
 

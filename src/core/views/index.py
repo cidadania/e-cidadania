@@ -54,6 +54,7 @@ def index_view(request):
         'version': settings.__version__,
         'status': settings.__status__,
         'debug_mode': settings.DEBUG,
+        'cache_timeout': 500,
     }
 
     if request.user.is_anonymous():

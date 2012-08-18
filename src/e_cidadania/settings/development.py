@@ -71,7 +71,7 @@ TEST_APPS = (
 
 # Override django's default test runner to use Nose test runner instead.            
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
-NOSE_ARGS = ['tests', '-s', '--cov-report', 'term-missing']
+NOSE_ARGS = ['tests.unit_tests', '-s', '--cov-report', 'term-missing']
 
 NOSE_PLUGINS = [
     'tests.nose_plugins.DatabaseFlushPlugin',

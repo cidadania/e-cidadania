@@ -3,30 +3,29 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Documentación de e-cidadania
-============================
+e-cidadania documentation
+=========================
 
-**e-cidadania** é unha plataforma de e-democracia feita con software aberto
-para a participación cidadá. As características clave son: un sistema de
-propostas, un revolucionario sistema de debate ordenado, repositorio de documentos,
-informes autoxerados e perfís avanzados de usuario entre outras cousas como
-xeolocalización e mensaxería.
+**e-cidadania** is an open-source e-democracy web tool intended for citizen participation.
 
-Esta plataforma está baseada no framework `django <http://www.djangoproject.com>`_ 
-e algunhas librerías externas.
+e-cidadania was designed with complex participative processes in mind, lile a participative budget
+where people can decide what to do with a part of the annual bugets of a region or city, where
+making a simple meeting and disordered proposals doesn't meet the expectations.
+
+This software is based on the `django <http://www.djangoproject.com>`_ framework
+and some external libraries.
 
 |Models|_
 
 .. |Models| image:: ../images/models.png
-.. _Models: http://postimage.org/image/z7b8s72c/full/
+.. _Models: http://i.imgur.com/BxHbK.png
 
-.. warning:: e-cidadania está en desenvolvemento, e por isto algúns compoñentes poden
-             variar as súas características, especialmente os modelos de datos e
-             esta documentación.
+.. warning:: e-cidadania is in heavy development, because of that some parts
+             of it may suffer changes, especially the data models and documentation
+             until some releases.
 
-
-Instalación e configuración
----------------------------
+Installation & Configuration
+----------------------------
 
 .. toctree::
     :maxdepth: 2
@@ -34,38 +33,39 @@ Instalación e configuración
     docs/installation
     docs/configuration
     docs/deployment
-    
-Manuais
+
+Manuals
 -------
 
 .. toctree::
     :maxdepth: 3
-    
+
     docs/usermanual
     docs/adminmanual
 
-Apariencia / Temas
-------------------
+Appearance / Themes
+-------------------
 
 .. toctree::
     :maxdepth: 2
 
     theming/themes
 
-Desenvolvemento
----------------
+Development
+-----------
 
 .. toctree::
     :maxdepth: 2
 
+    dev/environment
     dev/styleguide
     dev/useraccounts
     dev/modules
     dev/documenting
     dev/i18n
 
-Referencia (inglés)
--------------------
+Reference
+---------
 
 .. toctree::
     :maxdepth: 2
@@ -76,23 +76,17 @@ Referencia (inglés)
     reference/proposals
     reference/news
 
-Colofón
-=======
+Getting help
+------------
 
-Conseguir axuda
----------------
-
-- Proba a mirar no `P+F <http://app.ecidadania.org/faq>`_ (Preguntas Máis Frecuentes).
-- Listas de correo de e-cidadania
+- Try looking the `FAQ <http://ecidadania.org/faq>`_.
+- e-cidadania mailing lists
 
   * ecidadania-users@freelists.org
   * ecidadania-dev@freelists.org
   * ecidadania-es@freelists.org
 
-- Crear un informe de erro no `bug tracker <http://dev.ecidadania.org>`_ ou
-  infórmanos a través de correo electrónico en soporte@ecidadania.org
+- Bug reporting in the e-cidadania `bug tracker <http://code.ecidadania.org>`_ or
+  contact us through e-mail at soporte@ecidadania.org
 
-.. toctree::
-    :maxdepth: 1
-    
-    authors
+:doc:`authors`

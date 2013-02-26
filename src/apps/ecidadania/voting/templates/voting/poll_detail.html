@@ -3,7 +3,7 @@
 {% load wysiwyg %}
 
 {% block title %}
-{% trans "View poll" %}{{ poll.question }}
+{% trans "View poll" %} {{ poll.question }}
 {% endblock %}
 
 
@@ -39,13 +39,15 @@
 
             {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
                 <div class="poll_detail">
-                    <form action="{{ get_place.get_absolute_url }}vote/" method="post">
+                    <form action="{% url 'vote-poll' get_place.url poll.id %}" method="post">
                         {% csrf_token %}
                         {% for choice in poll.choice_set.all %}
                             <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
                             <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
                         {% endfor %}
-                        <input class="btn btn-small btn-primary" type="submit" value="{% trans "Vote" %}" />
+                        <hr />
+                        <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">&laquo; {% trans "Go back" %}</a>
+                        <input class="btn btn-small btn-primary" type="submit" value="{% trans 'Vote' %}" />
                     </form>
                 </div>
         </div>

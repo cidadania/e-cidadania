@@ -1,22 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+# Translators:
+# Oscar Carballal <oscar.carballal@cidadania.coop>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: e-cidadania\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-28 11:27+0200\n"
-"PO-Revision-Date: 2012-01-05 10:57\n"
-"Last-Translator:   <a@a.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-01-08 11:54+0100\n"
+"PO-Revision-Date: 2012-12-17 12:08+0000\n"
+"Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
+"Language-Team: Spanish (Spain) (http://www.transifex.com/projects/p/"
+"ecidadania/language/es_ES/)\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Translated-Using: django-rosetta 0.6.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: admin.py:37
 msgid "Other data"
@@ -28,11 +29,11 @@ msgstr "Título"
 
 #: models.py:34
 msgid "Max: 200 characters"
-msgstr ""
+msgstr "Máximo: 200 caracteres"
 
 #: models.py:35
-msgid "Text"
-msgstr "Texto"
+msgid "Description"
+msgstr "Descripción"
 
 #: models.py:36
 msgid "Date"
@@ -50,20 +51,19 @@ msgstr "Autor"
 msgid ""
 "Change the user that will figure as the                                   "
 "author"
-msgstr ""
+msgstr "Cambiar el usuario que figura como autor"
 
 #: models.py:41
-#, fuzzy
 msgid "Publish in index"
-msgstr "Publicar en la página principal:"
+msgstr "Publicar en el indice"
 
 #: models.py:42
 msgid "This will publish the post in the main site page"
-msgstr ""
+msgstr "Esto publicará el post en la página principal del sitio"
 
 #: models.py:43
 msgid "Publish in"
-msgstr "Publicar en "
+msgstr "Publicar en"
 
 #: models.py:45
 msgid "If you want to post to the index leave this blank"
@@ -73,48 +73,92 @@ msgstr "Si quieres publicarlo en la página principal deja esto en blanco"
 msgid ""
 "Insert here relevant words related with                                      "
 "the post"
-msgstr ""
+msgstr "Introduce aquí las palabras relevantes relacionadas con el post"
 
-#: urls.py:28
-msgid "^add/$"
-msgstr ""
-
-#: urls.py:30
-msgid "^(?P<post_id>\\d+)/delete/$"
-msgstr ""
-
-#: urls.py:32
-msgid "^(?P<post_id>\\d+)/edit/$"
-msgstr ""
+#: models.py:48
+msgid "Views"
+msgstr "Vistas"
 
 #: templates/news/news_list.html:4
 msgid "News list"
-msgstr "Lista de noticias"
+msgstr "Listado de noticias"
 
-#: templates/news/news_list.html:33
+#: templates/news/news_list.html:33 templates/news/post_archive.html:4
+#: templates/news/post_archive.html:33
 msgid "News archive"
 msgstr "Archivo de noticias"
 
-#: templates/news/news_list.html:44
+#: templates/news/news_list.html:44 templates/news/post_archive.html:44
+#: templates/news/post_archive_month.html:49
+#: templates/news/post_archive_year.html:49
 msgid "There are no posts in this space."
 msgstr "No hay entradas en este espacio."
 
-#: templates/news/news_list.html:51
+#: templates/news/news_list.html:51 templates/news/post_archive.html:51
+#: templates/news/post_archive_month.html:56
+#: templates/news/post_archive_year.html:56
 msgid "previous"
 msgstr "anterior"
 
-#: templates/news/news_list.html:54
+#: templates/news/news_list.html:54 templates/news/post_archive.html:54
+#: templates/news/post_archive_month.html:59
+#: templates/news/post_archive_year.html:59
 msgid "of"
 msgstr "de"
 
-#: templates/news/news_list.html:57
+#: templates/news/news_list.html:57 templates/news/post_archive.html:57
+#: templates/news/post_archive_month.html:62
+#: templates/news/post_archive_year.html:62
 msgid "next"
 msgstr "siguiente"
 
-#: templates/news/news_list.html:64 templates/news/post_confirm_delete.html:37
-#: templates/news/post_form.html:180
+#: templates/news/news_list.html:64 templates/news/post_archive.html:64
+#: templates/news/post_archive_month.html:69
+#: templates/news/post_archive_year.html:69
+#: templates/news/post_confirm_delete.html:37
+#: templates/news/post_form.html:186
 msgid "Go back"
 msgstr "Volver"
+
+#: templates/news/post_archive_month.html:5
+#, python-format
+msgid ""
+"\n"
+"        Archive for %(m)s %(y)s\n"
+"    "
+msgstr ""
+"\n"
+"Archivo de %(m)s %(y)s"
+
+#: templates/news/post_archive_month.html:38
+#, python-format
+msgid ""
+"\n"
+"                    Archive for %(m)s %(y)s\n"
+"                "
+msgstr ""
+"\n"
+"Archivo de %(m)s %(y)s"
+
+#: templates/news/post_archive_year.html:5
+#, python-format
+msgid ""
+"\n"
+"        Archive for %(y)s\n"
+"    "
+msgstr ""
+"\n"
+"Archivo de %(y)s"
+
+#: templates/news/post_archive_year.html:38
+#, python-format
+msgid ""
+"\n"
+"                    Archive for %(y)s\n"
+"                "
+msgstr ""
+"\n"
+"Archivo de %(y)s"
 
 #: templates/news/post_confirm_delete.html:4
 msgid "Delete news"
@@ -122,7 +166,7 @@ msgstr "Eliminar noticias"
 
 #: templates/news/post_confirm_delete.html:32
 msgid "Delete post"
-msgstr "Eliminar entrada"
+msgstr "Eliminar post"
 
 #: templates/news/post_confirm_delete.html:34
 msgid ""
@@ -164,53 +208,18 @@ msgstr "Entradas relacionadas"
 msgid "Share this post"
 msgstr "Compartir esta entrada"
 
-#: templates/news/post_form.html:14 templates/news/post_form.html.py:44
+#: templates/news/post_form.html:14 templates/news/post_form.html.py:50
 msgid "Edit post"
 msgstr "Editar entrada"
 
-#: templates/news/post_form.html:16 templates/news/post_form.html.py:46
-#, fuzzy
+#: templates/news/post_form.html:16 templates/news/post_form.html.py:52
 msgid "Create new post"
-msgstr "Añadir nueva entrada"
+msgstr "Crear un nuevo post"
 
-#: templates/news/post_form.html:118
+#: templates/news/post_form.html:124
 msgid "Staff members options"
-msgstr ""
+msgstr "Opciones de los miembros del staff"
 
-#: templates/news/post_form.html:181
+#: templates/news/post_form.html:187
 msgid "Publish"
 msgstr "Publicar"
-
-#~ msgid "Publish in index page"
-#~ msgstr "Publicar en el página principal"
-
-#~ msgid "How to add new posts"
-#~ msgstr "Cómo añadir nuevas entradas"
-
-#~ msgid "Title:"
-#~ msgstr "Título:"
-
-#~ msgid "An spectacular title! (100 characters)"
-#~ msgstr "Un título espectacular! (100 caracteres)"
-
-#~ msgid "Text:"
-#~ msgstr "Texto:"
-
-#~ msgid "Your story."
-#~ msgstr "Tu historia."
-
-#~ msgid "Tags:"
-#~ msgstr "Etiquetas:"
-
-#~ msgid "Please use them carefully, you are limited to 4 tags."
-#~ msgstr "Por favor úsalas con cuidado, estás limitado a 4 etiquetas."
-
-#~ msgid ""
-#~ "If you mark this, the post will appear in the spaces index page AND in "
-#~ "the main index."
-#~ msgstr ""
-#~ "Si marcas esto, la entrada aparecerá en el índice del espacio y la página "
-#~ "principal."
-
-#~ msgid "Edit news"
-#~ msgstr "Editar noticias"

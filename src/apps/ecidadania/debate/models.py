@@ -47,8 +47,8 @@ class Debate(models.Model):
     date = models.DateTimeField(_('Date created'), auto_now_add=True)
     date_mod = models.DateTimeField(_('Last update'), auto_now=True)
     author = models.ForeignKey(User, blank=True, null=True)
-    start_date = models.DateField(_('Start date'), blank=True, null=True)
-    end_date = models.DateField(_('End date'), blank=True, null=True)
+    start_date = models.DateField(_('Start date'))
+    end_date = models.DateField(_('End date'))
 
     class Meta:
         permissions = (

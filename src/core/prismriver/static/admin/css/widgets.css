@@ -1,0 +1,1020 @@
+.selector {
+    float: left;
+    width: 580px;
+}
+
+.selector select {
+    height: 17.2em;
+    width: 270px;
+}
+
+.selector-available, .selector-chosen {
+    float: left;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 270px;
+}
+
+.selector-available h2, .selector-chosen h2 {
+    border: 1px solid #CCCCCC;
+}
+
+.selector .selector-available h2 {
+    color: #666666;
+}
+
+.selector .selector-filter {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 white;
+    border-color: #CCCCCC;
+    border-radius: 0 0 0 0;
+    border-style: solid;
+    border-width: 0 1px;
+    color: #999999;
+    font-size: 10px;
+    height: 33px;
+    margin: 0 !important;
+    padding: 3px;
+    text-align: left;
+}
+
+.selector .selector-chosen .selector-filter {
+    line-height: 3em;
+    padding: 4px 5px;
+}
+
+.selector .selector-available input {
+    width: 230px;
+}
+
+.selector ul.selector-chooser {
+    background: url("../img/admin/chooser-bg.gif") no-repeat scroll center top transparent;
+    float: left;
+    height: 50px;
+    margin: 8em 3px 0;
+    padding: 0;
+    width: 22px;
+}
+
+.selector-chooser li {
+    list-style-type: none;
+    margin: 0;
+    padding: 3px;
+}
+
+.selector select {
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.selector-add, .selector-remove {
+    display: block;
+    height: 16px;
+    overflow: hidden;
+    text-indent: -3000px;
+    width: 16px;
+}
+
+.selector-add {
+    background: url("../img/admin/selector-add.gif") no-repeat scroll center top transparent;
+    margin-bottom: 2px;
+}
+
+.selector-remove {
+    background: url("../img/admin/selector-remove.gif") no-repeat scroll center top transparent;
+}
+
+a.selector-chooseall, a.selector-clearall {
+    color: #666666;
+    display: block;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3px 0 3px 18px;
+    text-align: left;
+    width: 6em;
+}
+
+a.selector-chooseall:hover, a.selector-clearall:hover {
+    color: #003366;
+}
+
+a.selector-chooseall {
+    background: url("../img/admin/selector-addall.gif") no-repeat scroll left center transparent;
+    width: 7em;
+}
+
+a.selector-clearall {
+    background: url("../img/admin/selector-removeall.gif") no-repeat scroll left center transparent;
+}
+
+.stacked {
+    float: left;
+    width: 500px;
+}
+
+.stacked select {
+    height: 10.1em;
+    width: 480px;
+}
+
+.stacked .selector-available, .stacked .selector-chosen {
+    width: 480px;
+}
+
+.stacked .selector-available {
+    margin-bottom: 0;
+}
+
+.stacked .selector-available input {
+    width: 442px;
+}
+
+.stacked ul.selector-chooser {
+    background: url("../img/admin/chooser_stacked-bg.gif") no-repeat scroll center top transparent;
+    height: 22px;
+    margin: 0 0 3px 40%;
+    width: 50px;
+}
+
+.stacked .selector-chooser li {
+    float: left;
+    padding: 3px 3px 3px 5px;
+}
+
+.stacked .selector-chooseall, .stacked .selector-clearall {
+    display: none;
+}
+
+.stacked .selector-add {
+    background-image: url("../img/admin/selector_stacked-add.gif");
+}
+
+.stacked .selector-remove {
+    background-image: url("../img/admin/selector_stacked-remove.gif");
+}
+
+p.datetime {
+    color: #666666;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.datetime span {
+    color: #CCCCCC;
+    font-size: 11px;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+table p.datetime {
+    font-size: 10px;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+p.file-upload {
+    color: #666666;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.file-upload a {
+    font-weight: normal;
+}
+
+.file-upload .deletelink {
+    margin-left: 5px;
+}
+
+span.clearable-file-input label {
+    color: #333333;
+    display: inline;
+    float: none;
+    font-size: 11px;
+}
+
+.calendarbox, .clockbox {
+    background: none repeat scroll 0 0 white;
+    font-size: 11px;
+    margin: 5px auto;
+    position: relative;
+    text-align: center;
+    width: 16em;
+}
+
+.clockbox {
+    width: auto;
+}
+
+.calendar {
+    margin: 0;
+    padding: 0;
+}
+
+.calendar table {
+    background: none repeat scroll 0 0 white;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 99%;
+}
+
+.calendar caption, .calendarbox h2 {
+    border-top: medium none;
+    font-size: 11px;
+    margin: 0;
+    text-align: center;
+}
+
+.calendar th {
+    background: url("../img/admin/nav-bg.gif") repeat-x scroll 0 50% #E1E1E1;
+    border-bottom: 1px solid #DDDDDD;
+    color: #666666;
+    font-size: 10px;
+    padding: 2px 3px;
+    text-align: center;
+}
+
+.calendar td {
+    border-bottom: medium none;
+    border-top: 1px solid #EEEEEE;
+    font-size: 11px;
+    padding: 0;
+    text-align: center;
+}
+
+.calendar td.selected a {
+    background: none repeat scroll 0 0 #C9DBED;
+}
+
+.calendar td.nonday {
+    background: none repeat scroll 0 0 #EFEFEF;
+}
+
+.calendar td.today a {
+    background: none repeat scroll 0 0 #FFFFCC;
+}
+
+.calendar td a, .timelist a {
+    color: #444444;
+    display: block;
+    font-weight: bold;
+    padding: 4px;
+    text-decoration: none;
+}
+
+.calendar td a:hover, .timelist a:hover {
+    background: none repeat scroll 0 0 #5B80B2;
+    color: white;
+}
+
+.calendar td a:active, .timelist a:active {
+    background: none repeat scroll 0 0 #003366;
+    color: white;
+}
+
+.calendarnav {
+    color: #CCCCCC;
+    font-size: 10px;
+    margin: 0;
+    padding: 1px 3px;
+    text-align: center;
+}
+
+.calendarnav a:link, #calendarnav a:visited, #calendarnav a:hover {
+    color: #999999;
+}
+
+.calendar-shortcuts {
+    background: none repeat scroll 0 0 white;
+    border-top: 1px solid #EEEEEE;
+    color: #CCCCCC;
+    font-size: 10px;
+    line-height: 11px;
+    padding: 3px 0 4px;
+}
+
+.calendarbox .calendarnav-previous, .calendarbox .calendarnav-next {
+    background: url("../img/admin/default-bg.gif") repeat-x scroll left bottom #C9DBED;
+    color: white;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 1px 4px 2px;
+    position: absolute;
+}
+
+.calendarnav-previous:hover, .calendarnav-next:hover {
+    background: none repeat scroll 0 0 #003366;
+}
+
+.calendarnav-previous {
+    left: 0;
+    top: 0;
+}
+
+.calendarnav-next {
+    right: 0;
+    top: 0;
+}
+
+.calendar-cancel {
+    background: url("../img/admin/nav-bg.gif") repeat-x scroll 0 50% #E1E1E1;
+    border-top: 1px solid #DDDDDD;
+    font-size: 10px;
+    margin: 0 !important;
+    padding: 0;
+}
+
+.calendar-cancel a {
+    color: #999999;
+    padding: 2px;
+}
+
+ul.timelist, .timelist li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.timelist a {
+    padding: 2px;
+}
+
+ul.orderer {
+    list-style-type: none;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative;
+}
+
+ul.orderer li {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("../img/admin/nav-bg-grabber.gif") repeat-y scroll 0 0 #E2E2E2;
+    border-color: #BBBBBB;
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    white-space: nowrap;
+}
+
+ul.orderer li:hover {
+    background-color: #DDDDDD;
+    cursor: move;
+}
+
+ul.orderer li a.selector {
+    font-size: 10px !important;
+    margin-left: 12px;
+    overflow: hidden;
+    padding: 0.6em 0;
+    width: 83%;
+}
+
+ul.orderer li a:link, ul.orderer li a:visited {
+    color: #333333;
+}
+
+ul.orderer li .inline-deletelink {
+    margin-top: 0.6em;
+    position: absolute;
+    right: 4px;
+}
+
+ul.orderer li.selected {
+    background-color: #F8F8F8;
+    border-right-color: #F8F8F8;
+}
+
+ul.orderer li.deleted {
+    background: url("../img/admin/deleted-overlay.gif") repeat scroll 0 0 #BBBBBB;
+}
+
+ul.orderer li.deleted a:link, ul.orderer li.deleted a:visited {
+    color: #888888;
+}
+
+ul.orderer li.deleted .inline-deletelink {
+    background-image: url("../img/admin/inline-restore.png");
+}
+
+ul.orderer li.deleted:hover, ul.orderer li.deleted a.selector:hover {
+    cursor: default;
+}
+
+.inline-deletelink {
+    background: url("../img/admin/inline-delete.png") no-repeat scroll 0 0 transparent;
+    border: 0 none;
+    float: right;
+    height: 15px;
+    outline: 0 none;
+    text-indent: -9999px;
+    width: 15px;
+}
+
+.inline-deletelink:hover {
+    background-position: -15px 0;
+    cursor: pointer;
+}
+
+.editinline button.addlink {
+    border: 0 none;
+    color: #5B80B2;
+    cursor: pointer;
+    font-size: 100%;
+}
+
+.editinline button.addlink:hover {
+    color: #003366;
+    cursor: pointer;
+}
+
+.editinline table .help {
+    float: right;
+    padding-left: 2em;
+    text-align: right;
+}
+
+.editinline tfoot .addlink {
+    white-space: nowrap;
+}
+
+.editinline table thead th:last-child {
+    border-left: medium none;
+}
+
+.editinline tr.deleted {
+    background: url("../img/admin/deleted-overlay.gif") repeat scroll 0 0 #DDDDDD;
+}
+
+.editinline tr.deleted .inline-deletelink {
+    background-image: url("../img/admin/inline-restore.png");
+}
+
+.editinline tr.deleted td:hover {
+    cursor: default;
+}
+
+.editinline tr.deleted td:first-child {
+    background-image: none !important;
+}
+
+.editinline-stacked {
+    min-width: 758px;
+}
+
+.editinline-stacked .inline-object {
+    background: none repeat scroll 0 0 white;
+    margin-left: 210px;
+}
+
+.editinline-stacked .inline-source {
+    background: none repeat scroll 0 0 #F8F8F8;
+    float: left;
+    width: 200px;
+}
+
+.editinline-stacked .inline-splitter {
+    background: url("../img/admin/inline-splitter-bg.gif") no-repeat scroll 50% 50% #F8F8F8;
+    border-right: 1px solid #CCCCCC;
+    float: left;
+    width: 9px;
+}
+
+.editinline-stacked .controls {
+    background: url("../img/admin/nav-bg.gif") repeat-x scroll left top #E1E1E1;
+    border-top: 1px solid #DDDDDD;
+    clear: both;
+    font-size: 11px;
+    padding: 3px 4px;
+}
+
+.selector {
+    float: left;
+    width: 580px;
+}
+
+.selector select {
+    height: 17.2em;
+    width: 270px;
+}
+
+.selector-available, .selector-chosen {
+    float: left;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 270px;
+}
+
+.selector-available h2, .selector-chosen h2 {
+    border: 1px solid #CCCCCC;
+}
+
+.selector .selector-available h2 {
+    color: #666666;
+}
+
+.selector .selector-filter {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 white;
+    border-color: #CCCCCC;
+    border-radius: 0 0 0 0;
+    border-style: solid;
+    border-width: 0 1px;
+    color: #999999;
+    font-size: 10px;
+    height: 33px;
+    margin: 0;
+    padding: 3px;
+    text-align: left;
+}
+
+.selector .selector-chosen .selector-filter {
+    line-height: 3em;
+    padding: 4px 5px;
+}
+
+.selector .selector-available input {
+    width: 230px;
+}
+
+.selector ul.selector-chooser {
+    background: url("../img/admin/chooser-bg.gif") no-repeat scroll center top transparent;
+    float: left;
+    height: 50px;
+    margin: 8em 3px 0;
+    padding: 0;
+    width: 22px;
+}
+
+.selector-chooser li {
+    list-style-type: none;
+    margin: 0;
+    padding: 3px;
+}
+
+.selector select {
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.selector-add, .selector-remove {
+    display: block;
+    height: 16px;
+    overflow: hidden;
+    text-indent: -3000px;
+    width: 16px;
+}
+
+.selector-add {
+    background: url("../img/admin/selector-add.gif") no-repeat scroll center top transparent;
+    margin-bottom: 2px;
+}
+
+.selector-remove {
+    background: url("../img/admin/selector-remove.gif") no-repeat scroll center top transparent;
+}
+
+a.selector-chooseall, a.selector-clearall {
+    color: #666666;
+    display: block;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3px 0 3px 18px;
+    text-align: left;
+    width: 6em;
+}
+
+a.selector-chooseall:hover, a.selector-clearall:hover {
+    color: #003366;
+}
+
+a.selector-chooseall {
+    background: url("../img/admin/selector-addall.gif") no-repeat scroll left center transparent;
+    width: 7em;
+}
+
+a.selector-clearall {
+    background: url("../img/admin/selector-removeall.gif") no-repeat scroll left center transparent;
+}
+
+.stacked {
+    float: left;
+    width: 500px;
+}
+
+.stacked select {
+    height: 10.1em;
+    width: 480px;
+}
+
+.stacked .selector-available, .stacked .selector-chosen {
+    width: 480px;
+}
+
+.stacked .selector-available {
+    margin-bottom: 0;
+}
+
+.stacked .selector-available input {
+    width: 442px;
+}
+
+.stacked ul.selector-chooser {
+    background: url("../img/admin/chooser_stacked-bg.gif") no-repeat scroll center top transparent;
+    height: 22px;
+    margin: 0 0 3px 40%;
+    width: 50px;
+}
+
+.stacked .selector-chooser li {
+    float: left;
+    padding: 3px 3px 3px 5px;
+}
+
+.stacked .selector-chooseall, .stacked .selector-clearall {
+    display: none;
+}
+
+.stacked .selector-add {
+    background-image: url("../img/admin/selector_stacked-add.gif");
+}
+
+.stacked .selector-remove {
+    background-image: url("../img/admin/selector_stacked-remove.gif");
+}
+
+p.datetime {
+    color: #666666;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.datetime span {
+    color: #CCCCCC;
+    font-size: 11px;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+table p.datetime {
+    font-size: 10px;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+p.file-upload {
+    color: #666666;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.file-upload a {
+    font-weight: normal;
+}
+
+.file-upload .deletelink {
+    margin-left: 5px;
+}
+
+span.clearable-file-input label {
+    color: #333333;
+    display: inline;
+    float: none;
+    font-size: 11px;
+}
+
+.calendarbox, .clockbox {
+    background: none repeat scroll 0 0 white;
+    font-size: 11px;
+    margin: 5px auto;
+    position: relative;
+    text-align: center;
+    width: 16em;
+}
+
+.clockbox {
+    width: auto;
+}
+
+.calendar {
+    margin: 0;
+    padding: 0;
+}
+
+.calendar table {
+    background: none repeat scroll 0 0 white;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 99%;
+}
+
+.calendar caption, .calendarbox h2 {
+    border-top: medium none;
+    font-size: 11px;
+    margin: 0;
+    text-align: center;
+}
+
+.calendar th {
+    background: url("../img/admin/nav-bg.gif") repeat-x scroll 0 50% #E1E1E1;
+    border-bottom: 1px solid #DDDDDD;
+    color: #666666;
+    font-size: 10px;
+    padding: 2px 3px;
+    text-align: center;
+}
+
+.calendar td {
+    border-bottom: medium none;
+    border-top: 1px solid #EEEEEE;
+    font-size: 11px;
+    padding: 0;
+    text-align: center;
+}
+
+.calendar td.selected a {
+    background: none repeat scroll 0 0 #C9DBED;
+}
+
+.calendar td.nonday {
+    background: none repeat scroll 0 0 #EFEFEF;
+}
+
+.calendar td.today a {
+    background: none repeat scroll 0 0 #FFFFCC;
+}
+
+.calendar td a, .timelist a {
+    color: #444444;
+    display: block;
+    font-weight: bold;
+    padding: 4px;
+    text-decoration: none;
+}
+
+.calendar td a:hover, .timelist a:hover {
+    background: none repeat scroll 0 0 #5B80B2;
+    color: white;
+}
+
+.calendar td a:active, .timelist a:active {
+    background: none repeat scroll 0 0 #003366;
+    color: white;
+}
+
+.calendarnav {
+    color: #CCCCCC;
+    font-size: 10px;
+    margin: 0;
+    padding: 1px 3px;
+    text-align: center;
+}
+
+.calendarnav a:link, #calendarnav a:visited, #calendarnav a:hover {
+    color: #999999;
+}
+
+.calendar-shortcuts {
+    background: none repeat scroll 0 0 white;
+    border-top: 1px solid #EEEEEE;
+    color: #CCCCCC;
+    font-size: 10px;
+    line-height: 11px;
+    padding: 3px 0 4px;
+}
+
+.calendarbox .calendarnav-previous, .calendarbox .calendarnav-next {
+    background: url("../img/admin/default-bg.gif") repeat-x scroll left bottom #C9DBED;
+    color: white;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 1px 4px 2px;
+    position: absolute;
+}
+
+.calendarnav-previous:hover, .calendarnav-next:hover {
+    background: none repeat scroll 0 0 #003366;
+}
+
+.calendarnav-previous {
+    left: 0;
+    top: 0;
+}
+
+.calendarnav-next {
+    right: 0;
+    top: 0;
+}
+
+.calendar-cancel {
+    background: url("../img/admin/nav-bg.gif") repeat-x scroll 0 50% #E1E1E1;
+    border-top: 1px solid #DDDDDD;
+    font-size: 10px;
+    margin: 0 !important;
+    padding: 0;
+}
+
+.calendar-cancel a {
+    color: #999999;
+    padding: 2px;
+}
+
+ul.timelist, .timelist li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.timelist a {
+    padding: 2px;
+}
+
+ul.orderer {
+    list-style-type: none;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative;
+}
+
+ul.orderer li {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("../img/admin/nav-bg-grabber.gif") repeat-y scroll 0 0 #E2E2E2;
+    border-color: #BBBBBB;
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    white-space: nowrap;
+}
+
+ul.orderer li:hover {
+    background-color: #DDDDDD;
+    cursor: move;
+}
+
+ul.orderer li a.selector {
+    font-size: 10px !important;
+    margin-left: 12px;
+    overflow: hidden;
+    padding: 0.6em 0;
+    width: 83%;
+}
+
+ul.orderer li a:link, ul.orderer li a:visited {
+    color: #333333;
+}
+
+ul.orderer li .inline-deletelink {
+    margin-top: 0.6em;
+    position: absolute;
+    right: 4px;
+}
+
+ul.orderer li.selected {
+    background-color: #F8F8F8;
+    border-right-color: #F8F8F8;
+}
+
+ul.orderer li.deleted {
+    background: url("../img/admin/deleted-overlay.gif") repeat scroll 0 0 #BBBBBB;
+}
+
+ul.orderer li.deleted a:link, ul.orderer li.deleted a:visited {
+    color: #888888;
+}
+
+ul.orderer li.deleted .inline-deletelink {
+    background-image: url("../img/admin/inline-restore.png");
+}
+
+ul.orderer li.deleted:hover, ul.orderer li.deleted a.selector:hover {
+    cursor: default;
+}
+
+.inline-deletelink {
+    background: url("../img/admin/inline-delete.png") no-repeat scroll 0 0 transparent;
+    border: 0 none;
+    float: right;
+    height: 15px;
+    outline: 0 none;
+    text-indent: -9999px;
+    width: 15px;
+}
+
+.inline-deletelink:hover {
+    background-position: -15px 0;
+    cursor: pointer;
+}
+
+.editinline button.addlink {
+    border: 0 none;
+    color: #5B80B2;
+    cursor: pointer;
+    font-size: 100%;
+}
+
+.editinline button.addlink:hover {
+    color: #003366;
+    cursor: pointer;
+}
+
+.editinline table .help {
+    float: right;
+    padding-left: 2em;
+    text-align: right;
+}
+
+.editinline tfoot .addlink {
+    white-space: nowrap;
+}
+
+.editinline table thead th:last-child {
+    border-left: medium none;
+}
+
+.editinline tr.deleted {
+    background: url("../img/admin/deleted-overlay.gif") repeat scroll 0 0 #DDDDDD;
+}
+
+.editinline tr.deleted .inline-deletelink {
+    background-image: url("../img/admin/inline-restore.png");
+}
+
+.editinline tr.deleted td:hover {
+    cursor: default;
+}
+
+.editinline tr.deleted td:first-child {
+    background-image: none !important;
+}
+
+.editinline-stacked {
+    min-width: 758px;
+}
+
+.editinline-stacked .inline-object {
+    background: none repeat scroll 0 0 white;
+    margin-left: 210px;
+}
+
+.editinline-stacked .inline-source {
+    background: none repeat scroll 0 0 #F8F8F8;
+    float: left;
+    width: 200px;
+}
+
+.editinline-stacked .inline-splitter {
+    background: url("../img/admin/inline-splitter-bg.gif") no-repeat scroll 50% 50% #F8F8F8;
+    border-right: 1px solid #CCCCCC;
+    float: left;
+    width: 9px;
+}
+
+.editinline-stacked .controls {
+    background: url("../img/admin/nav-bg.gif") repeat-x scroll left top #E1E1E1;
+    border-top: 1px solid #DDDDDD;
+    clear: both;
+    font-size: 11px;
+    padding: 3px 4px;
+}
+

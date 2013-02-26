@@ -1,0 +1,391 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-08 11:54+0100\n"
+"PO-Revision-Date: 2012-12-17 12:08+0000\n"
+"Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
+"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/"
+"ecidadania/language/mk_MK/)\n"
+"Language: mk_MK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
+
+#: admin.py:61
+msgid "Location"
+msgstr ""
+
+#: admin.py:64
+msgid "Relations"
+msgstr ""
+
+#: admin.py:67
+msgid "Other"
+msgstr ""
+
+#: admin.py:70
+msgid "Options"
+msgstr ""
+
+#: models.py:42
+msgid "Economically not viable"
+msgstr ""
+
+#: models.py:43
+msgid "Legally not viable"
+msgstr ""
+
+#: models.py:44
+msgid "Technically not viable"
+msgstr ""
+
+#: models.py:45
+msgid "Offtopic"
+msgstr ""
+
+#: models.py:49
+msgid "Tags"
+msgstr ""
+
+#: models.py:50 models.py:159
+msgid "Latitude"
+msgstr ""
+
+#: models.py:51 models.py:161
+msgid "Longitude"
+msgstr ""
+
+#: models.py:67
+msgid "object ID"
+msgstr ""
+
+#: models.py:97
+msgid "Name"
+msgstr ""
+
+#: models.py:98 models.py:148
+msgid "Max: 200 characters"
+msgstr ""
+
+#: models.py:111
+msgid "Select the debate associated with this proposal set"
+msgstr ""
+
+#: models.py:117
+msgid "Proposal set"
+msgstr ""
+
+#: models.py:118
+msgid "Proposal sets"
+msgstr ""
+
+#: models.py:145
+msgid "Code"
+msgstr ""
+
+#: models.py:147
+msgid "Title"
+msgstr ""
+
+#: models.py:150
+msgid "Proposal set in which the         proposal resides"
+msgstr ""
+
+#: models.py:152
+msgid "Description"
+msgstr ""
+
+#: models.py:155
+msgid "Change the user that will         figure as the author"
+msgstr ""
+
+#: models.py:157
+msgid "Insert here relevant words related with         the proposal"
+msgstr ""
+
+#: models.py:160 models.py:162
+msgid "Specify it in decimal"
+msgstr ""
+
+#: models.py:170
+msgid "Select proposals from the list"
+msgstr ""
+
+#: models.py:174
+msgid "Support votes from"
+msgstr ""
+
+#: models.py:175
+msgid "Votes from"
+msgstr ""
+
+#: models.py:193
+msgid "Proposal"
+msgstr ""
+
+#: models.py:194
+msgid "Proposals"
+msgstr ""
+
+#: models.py:217
+msgid "Customizing         proposal form for a proposal set"
+msgstr ""
+
+#: models.py:219
+msgid "Additional field that needed to added to the proposal         form"
+msgstr ""
+
+#: models.py:226
+msgid "ProposalField"
+msgstr ""
+
+#: models.py:227
+msgid "ProposalFields"
+msgstr ""
+
+#: templates/proposals/mergedproposal_in_set.html:10
+#: templates/proposals/mergedproposal_in_set.html:30
+#: templates/proposals/proposalset_select_form.html:10
+#: templates/proposals/proposalset_select_form.html:30
+msgid "Select Proposal Set"
+msgstr ""
+
+#: templates/proposals/mergedproposal_in_set.html:58
+#: templates/proposals/proposal_add_fields.html:92
+#: templates/proposals/proposal_confirm_delete.html:26
+#: templates/proposals/proposal_form.html:150
+#: templates/proposals/proposal_form_in_set.html:153
+#: templates/proposals/proposal_list.html:50
+#: templates/proposals/proposal_merged.html:156
+#: templates/proposals/proposalfield_remove_fields.html:78
+#: templates/proposals/proposalform_remove_field.html:82
+#: templates/proposals/proposalset_confirm_delete.html:26
+#: templates/proposals/proposalset_detail.html:50
+#: templates/proposals/proposalset_form.html:88
+#: templates/proposals/proposalset_list.html:51
+#: templates/proposals/proposalset_select_form.html:61
+msgid "Go back"
+msgstr ""
+
+#: templates/proposals/mergedproposal_in_set.html:59
+#: templates/proposals/proposal_add_fields.html:93
+#: templates/proposals/proposalset_form.html:89
+#: templates/proposals/proposalset_select_form.html:62
+msgid "Create"
+msgstr ""
+
+#: templates/proposals/proposal_add_fields.html:10
+msgid "Add form field to proposal form"
+msgstr ""
+
+#: templates/proposals/proposal_add_fields.html:30
+msgid "Add field to proposal form"
+msgstr ""
+
+#: templates/proposals/proposal_add_fields.html:78
+msgid "Additional Fields for the Proposal form in this Proposal Set"
+msgstr ""
+
+#: templates/proposals/proposal_confirm_delete.html:4
+#: templates/proposals/proposal_confirm_delete.html:21
+msgid "Delete proposal"
+msgstr ""
+
+#: templates/proposals/proposal_confirm_delete.html:23
+msgid ""
+"Are you sure you want to delete this proposal? This action cannot be undone."
+msgstr ""
+
+#: templates/proposals/proposal_confirm_delete.html:27
+#: templates/proposals/proposal_list.html:22
+#: templates/proposals/proposalfield_remove_fields.html:79
+#: templates/proposals/proposalform_remove_field.html:83
+#: templates/proposals/proposalset_confirm_delete.html:27
+#: templates/proposals/proposalset_detail.html:22
+#: templates/proposals/proposalset_list.html:35
+msgid "Delete"
+msgstr ""
+
+#: templates/proposals/proposal_detail.html:5
+msgid "View proposal"
+msgstr ""
+
+#: templates/proposals/proposal_detail.html:64
+#: templates/proposals/proposal_list.html:29
+#: templates/proposals/proposalset_detail.html:29
+msgid "support"
+msgstr ""
+
+#: templates/proposals/proposal_detail.html:69
+#: templates/proposals/proposal_list.html:37
+#: templates/proposals/proposalset_detail.html:37
+msgid "proposed by "
+msgstr ""
+
+#: templates/proposals/proposal_detail.html:69
+#: templates/proposals/proposal_list.html:37
+#: templates/proposals/proposalset_detail.html:37
+msgid " at "
+msgstr ""
+
+#: templates/proposals/proposal_detail.html:71
+#: templates/proposals/proposal_form.html:143
+#: templates/proposals/proposal_form_in_set.html:145
+msgid "Show map"
+msgstr ""
+
+#: templates/proposals/proposal_detail.html:75
+msgid "Merged Proposal"
+msgstr ""
+
+#: templates/proposals/proposal_form.html:14
+#: templates/proposals/proposal_form.html:43
+#: templates/proposals/proposal_form_in_set.html:14
+#: templates/proposals/proposal_form_in_set.html:43
+#: templates/proposals/proposal_merged.html:14
+#: templates/proposals/proposal_merged.html:37
+msgid "Edit proposal"
+msgstr ""
+
+#: templates/proposals/proposal_form.html:16
+#: templates/proposals/proposal_form.html:45
+#: templates/proposals/proposal_form_in_set.html:16
+#: templates/proposals/proposal_form_in_set.html:45
+msgid "Add new proposal"
+msgstr ""
+
+#: templates/proposals/proposal_form.html:142
+#: templates/proposals/proposal_form_in_set.html:144
+msgid "If you want to add location information please click 'Show map'"
+msgstr ""
+
+#: templates/proposals/proposal_form.html:151
+#: templates/proposals/proposal_form_in_set.html:154
+#: templates/proposals/proposal_merged.html:157
+msgid "Publish"
+msgstr ""
+
+#: templates/proposals/proposal_list.html:5
+msgid "View proposals"
+msgstr ""
+
+#: templates/proposals/proposal_list.html:17
+#: templates/proposals/proposalset_detail.html:17
+msgid "Add proposal"
+msgstr ""
+
+#: templates/proposals/proposal_list.html:19
+#: templates/proposals/proposalset_detail.html:19
+#: templates/proposals/proposalset_list.html:32
+msgid "Edit"
+msgstr ""
+
+#: templates/proposals/proposal_list.html:37
+msgid " on "
+msgstr ""
+
+#: templates/proposals/proposal_list.html:37
+#: templates/proposals/proposalset_detail.html:37
+msgid "comments"
+msgstr ""
+
+#: templates/proposals/proposal_list.html:46
+msgid "There are no proposals for this space"
+msgstr ""
+
+#: templates/proposals/proposal_list.html:56
+#: templates/proposals/proposalset_detail.html:56
+#: templates/proposals/proposalset_list.html:57
+msgid "previous"
+msgstr ""
+
+#: templates/proposals/proposal_list.html:59
+#: templates/proposals/proposalset_detail.html:59
+#: templates/proposals/proposalset_list.html:60
+msgid "of"
+msgstr ""
+
+#: templates/proposals/proposal_list.html:62
+#: templates/proposals/proposalset_detail.html:62
+#: templates/proposals/proposalset_list.html:63
+msgid "next"
+msgstr ""
+
+#: templates/proposals/proposal_merged.html:16
+#: templates/proposals/proposal_merged.html:39
+msgid "Add new merged proposal"
+msgstr ""
+
+#: templates/proposals/proposalfield_remove_fields.html:10
+#: templates/proposals/proposalform_remove_field.html:10
+#: templates/proposals/proposalform_remove_field.html:30
+msgid "Delete Proposal Form Field"
+msgstr ""
+
+#: templates/proposals/proposalfield_remove_fields.html:30
+msgid "Delete Proposal Field"
+msgstr ""
+
+#: templates/proposals/proposalset_confirm_delete.html:4
+#: templates/proposals/proposalset_confirm_delete.html:21
+msgid "Delete Proposal Set"
+msgstr ""
+
+#: templates/proposals/proposalset_confirm_delete.html:23
+msgid ""
+"Are you sure you want to delete this proposal set? This action cannot be "
+"undone."
+msgstr ""
+
+#: templates/proposals/proposalset_detail.html:5
+msgid "View Proposal Set"
+msgstr ""
+
+#: templates/proposals/proposalset_detail.html:46
+msgid "There is no proposals in this set"
+msgstr ""
+
+#: templates/proposals/proposalset_form.html:14
+#: templates/proposals/proposalset_form.html:37
+msgid "Edit proposal set"
+msgstr ""
+
+#: templates/proposals/proposalset_form.html:16
+#: templates/proposals/proposalset_list.html:30
+msgid "Add proposal set"
+msgstr ""
+
+#: templates/proposals/proposalset_form.html:39
+msgid "Add new proposal set"
+msgstr ""
+
+#: templates/proposals/proposalset_list.html:5
+msgid "List all the proposal set"
+msgstr ""
+
+#: templates/proposals/proposalset_list.html:42
+msgid "Created by"
+msgstr ""
+
+#: templates/proposals/proposalset_list.html:42
+msgid "at"
+msgstr ""
+
+#: templates/proposals/proposalset_list.html:47
+msgid "There is no proposal set created"
+msgstr ""
+
+#: templates/proposals/proposalset_select_form.html:59
+msgid "If you want to create independent proposals"
+msgstr ""
+
+#: templates/proposals/proposalset_select_form.html:59
+msgid "Click here"
+msgstr ""

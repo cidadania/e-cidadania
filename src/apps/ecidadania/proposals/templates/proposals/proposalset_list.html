@@ -25,20 +25,21 @@
         <div class="span8">
             {% for pset in object_list %}
                 <div id="proposal-wrapper">
-                    {% if perms.proposals.add_proposalset %}
-                        <div id="tools">
-                            <a href="{% url 'add-proposalset' get_place.url %}"><img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add proposal set' %}" title="{% trans 'Add proposal set' %}"/></a>
-                            {% if perms.proposals.edit_proposalset %}
-                                <a href="{% url 'edit-proposalset' get_place.url pset.id %}"><img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/></a>
-                            {% endif %} 
-                            {% if perms.proposals.delete_proposalset %}
-                                <a href="{% url 'delete-proposalset' get_place.url pset.id %}"><img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/></a>
+                    <div id="proposal">
+                        <div class="title"><a href="{{ pset.get_absolute_url }}">{{ pset.name }}</a>
+                            {% if perms.proposals.add_proposalset %}
+                                <a class="nounderline" href="{% url 'add-proposalset' get_place.url %}" title="{% trans 'Add proposal set' %}">
+                                    <i class="icon-plus" style="font-size:16px;"></i></a>
+                                {% if perms.proposals.change_proposalset %}
+                                    <a class="nounderline" href="{% url 'edit-proposalset' get_place.url pset.id %}" title="{% trans 'Edit proposal set' %}">
+                                        <i class="icon-edit" style="font-size:16px;"></i></a>
+                                {% endif %} 
+                                {% if perms.proposals.delete_proposalset %}
+                                    <a class="nounderline" href="{% url 'delete-proposalset' get_place.url pset.id %}" title="{% trans 'Delete proposal set' %}">
+                                        <i class="icon-trash" style="font-size:16px;"></i></a>
+                                {% endif %}
                             {% endif %}
                         </div>
-                    {% endif %}
-
-                    <div id="proposal">
-                        <div class="title"><a href="{{ pset.get_absolute_url }}">{{ pset.name }}</a></div>
                         <div class="creator">{% trans "Created by" %} <a href="">{{ pset.author }}</a> {% trans "at" %} {{ pset.pub_date|date:"j/m/Y G:i" }} </div>
                     </div>
                     <div style="clear:left;"></div>
@@ -48,7 +49,7 @@
             {% endfor %}
     
             <hr />
-            <a href="/" class="btn small">&laquo; {% trans "Go back" %}</a>
+            <a href="{% url 'space-index' get_place.url %}" class="btn small">&laquo; {% trans "Go back" %}</a>
   
             {% if is_paginated %}
                 <div class="pagination">
@@ -67,7 +68,6 @@
             {% endif %}
         </div>
         <div class="span4">
-            <h4>Empty space!</h4>
         </div>
     </div>
 

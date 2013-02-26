@@ -51,7 +51,7 @@ copyright = u'2010-2012, Cidadania S. Coop. Galega'
 # built documents.
 #
 # The short X.Y version.
-version = '0.1.5 RC1'
+version = '0.1.8 beta'
 
 # The full version, including alpha/beta/rc tags.
 #release = 'final'

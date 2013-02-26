@@ -1,38 +1,39 @@
-Acerca de este documento
-========================
+About this document
+===================
 
-:Autores:
+:Authors:
 
     Oscar Carballal Prego <oscar.carballal@cidadania.coop>
 
-:Corrección:
+:Fixes:
 
     Ana Lorenzo Vila <ana.lorenzo@cidadania.coop>
 
-Traducións
-..........
+    Bithin A. <bithin2007@gmail.com>
 
-:Galego:
+    Arvind S. Raj <sraj.arvind@gmail.com>
+
+    Praveen Kumar <praveen97uma@gmail.com>
+
+Translations
+............
+
+:Galician:
 
     Armando Broz Fidalgo <armando.broz@cidadania.coop>
 
-    Rosa Muñíz Castro <rosa.munhiz@cidadania.coop>
-    
+    Rosa Muñiz Castro <rosa.munhiz@cidadania.coop>
+
     Antón Meixome <meixome@certima.net>
-    
-    Luísa Vicente Comojo <luisa.vicente@cidadania.coop>
+
+    Luisa Vicente Comojo <luisa.vicente@cidadania.coop>
 
 
-:Inglés:
+:Spanish:
 
     Oscar Carballal Prego <oscar.carballal@cidadania.coop>
 
-Agradecementos
---------------
+Thanks
+------
 
-- Algueirada
-- Xunta de Galicia
-- CESGA (Centro de Supercomputación de Galicia)
-- Concello de Ferrol
-- NovaCaixaGalicia
-- Google
+- Google Inc.

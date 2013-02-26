@@ -23,28 +23,29 @@ access to '/spaces/'.
 """
 from django.conf.urls import *
 from django.utils.translation import ugettext_lazy as _
-
-from apps.ecidadania.debate.views import ListDebates, ViewDebate
+from django.contrib.auth.decorators import permission_required
+from apps.ecidadania.debate.views import ListDebates, ViewDebate, edit_debate 
+from apps.ecidadania.debate.url_names import *
 
 urlpatterns = patterns('apps.ecidadania.debate.views',
 
-    url(r'^$', ListDebates.as_view(), name='list-debates'),
+    url(r'^$', ListDebates.as_view(), name=DEBATE_LIST),
 
-    url(r'^(?P<debate_id>\d+)/', ViewDebate.as_view(), name='view-debate'),
+    url(r'^(?P<debate_id>\d+)/', ViewDebate.as_view(), name=DEBATE_VIEW),
 
-    url(_(r'^add/'), 'add_new_debate', name='add-debate'),
+    url(r'^add/', 'add_new_debate', name=DEBATE_ADD),
 
-    url(_(r'^update_position/'), 'update_position', name='update-note-position'),
+    url(r'^update_position/', 'update_position', name=NOTE_UPDATE_POSITION),
 
-    url(_(r'^update_note/'), 'update_note', name='update-note'),
+    url(r'^update_note/', 'update_note', name=NOTE_UPDATE),
 
-    url(_(r'^create_note/'), 'create_note', name='create-note'),
+    url(r'^create_note/', 'create_note', name=NOTE_ADD),
 
-    url(_(r'^delete_note/'), 'delete_note', name='delete-note'),
+    url(r'^delete_note/', 'delete_note', name=NOTE_DELETE),
 
     # Editing debates is not allowed at this time
-    #(r'^(?P<debate_id>\d+)', 'edit_debate'),
+    url(r'^edit/(?P<debate_id>\d+)/', 'edit_debate', name=DEBATE_EDIT),
 
-    #(r'^(?P<debate_id>\d+)', 'delete_debate'),
+    #(r'^edit/(?P<pk>\d+)', 'delete_debate'),
 
 )

@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-28 11:27+0200\n"
-"PO-Revision-Date: 2012-06-13 20:43+0000\n"
-"Last-Translator: hugodeslongchamps <hugo.deslongchamps@googlemail.com>\n"
-"Language-Team: French (http://www.transifex.net/projects/p/ecidadania/"
+"POT-Creation-Date: 2013-01-08 11:54+0100\n"
+"PO-Revision-Date: 2012-12-17 12:08+0000\n"
+"Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/ecidadania/"
 "language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: admin.py:37
 msgid "Other data"
@@ -32,8 +32,8 @@ msgid "Max: 200 characters"
 msgstr ""
 
 #: models.py:35
-msgid "Text"
-msgstr "Texte"
+msgid "Description"
+msgstr "Description"
 
 #: models.py:36
 msgid "Date"
@@ -54,9 +54,8 @@ msgid ""
 msgstr ""
 
 #: models.py:41
-#, fuzzy
 msgid "Publish in index"
-msgstr "Publier dans l'indexe;"
+msgstr ""
 
 #: models.py:42
 msgid "This will publish the post in the main site page"
@@ -76,46 +75,82 @@ msgid ""
 "the post"
 msgstr ""
 
-#: urls.py:28
-msgid "^add/$"
-msgstr "^ajouter/"
-
-#: urls.py:30
-msgid "^(?P<post_id>\\d+)/delete/$"
-msgstr "^(?P<post_id>\\d+)/supprimer/$"
-
-#: urls.py:32
-msgid "^(?P<post_id>\\d+)/edit/$"
-msgstr "^(?P<post_id>\\d+)/editer/$"
+#: models.py:48
+msgid "Views"
+msgstr ""
 
 #: templates/news/news_list.html:4
 msgid "News list"
 msgstr "Nouvelle Liste"
 
-#: templates/news/news_list.html:33
+#: templates/news/news_list.html:33 templates/news/post_archive.html:4
+#: templates/news/post_archive.html:33
 msgid "News archive"
 msgstr "Archive des actualités"
 
-#: templates/news/news_list.html:44
+#: templates/news/news_list.html:44 templates/news/post_archive.html:44
+#: templates/news/post_archive_month.html:49
+#: templates/news/post_archive_year.html:49
 msgid "There are no posts in this space."
 msgstr "Il n'y a pas de posts sur cet espace."
 
-#: templates/news/news_list.html:51
+#: templates/news/news_list.html:51 templates/news/post_archive.html:51
+#: templates/news/post_archive_month.html:56
+#: templates/news/post_archive_year.html:56
 msgid "previous"
 msgstr "précédent"
 
-#: templates/news/news_list.html:54
+#: templates/news/news_list.html:54 templates/news/post_archive.html:54
+#: templates/news/post_archive_month.html:59
+#: templates/news/post_archive_year.html:59
 msgid "of"
 msgstr "de"
 
-#: templates/news/news_list.html:57
+#: templates/news/news_list.html:57 templates/news/post_archive.html:57
+#: templates/news/post_archive_month.html:62
+#: templates/news/post_archive_year.html:62
 msgid "next"
 msgstr "suivant"
 
-#: templates/news/news_list.html:64 templates/news/post_confirm_delete.html:37
-#: templates/news/post_form.html:180
+#: templates/news/news_list.html:64 templates/news/post_archive.html:64
+#: templates/news/post_archive_month.html:69
+#: templates/news/post_archive_year.html:69
+#: templates/news/post_confirm_delete.html:37
+#: templates/news/post_form.html:186
 msgid "Go back"
 msgstr "Revenir en arrière"
+
+#: templates/news/post_archive_month.html:5
+#, python-format
+msgid ""
+"\n"
+"        Archive for %(m)s %(y)s\n"
+"    "
+msgstr ""
+
+#: templates/news/post_archive_month.html:38
+#, python-format
+msgid ""
+"\n"
+"                    Archive for %(m)s %(y)s\n"
+"                "
+msgstr ""
+
+#: templates/news/post_archive_year.html:5
+#, python-format
+msgid ""
+"\n"
+"        Archive for %(y)s\n"
+"    "
+msgstr ""
+
+#: templates/news/post_archive_year.html:38
+#, python-format
+msgid ""
+"\n"
+"                    Archive for %(y)s\n"
+"                "
+msgstr ""
 
 #: templates/news/post_confirm_delete.html:4
 msgid "Delete news"
@@ -165,53 +200,18 @@ msgstr "Posts reliés"
 msgid "Share this post"
 msgstr "Partager ce post"
 
-#: templates/news/post_form.html:14 templates/news/post_form.html.py:44
+#: templates/news/post_form.html:14 templates/news/post_form.html.py:50
 msgid "Edit post"
 msgstr "Editer le poste"
 
-#: templates/news/post_form.html:16 templates/news/post_form.html.py:46
-#, fuzzy
+#: templates/news/post_form.html:16 templates/news/post_form.html.py:52
 msgid "Create new post"
-msgstr "Ajouter un nouveau post"
+msgstr ""
 
-#: templates/news/post_form.html:118
+#: templates/news/post_form.html:124
 msgid "Staff members options"
 msgstr ""
 
-#: templates/news/post_form.html:181
+#: templates/news/post_form.html:187
 msgid "Publish"
 msgstr "Publier"
-
-#~ msgid "Publish in index page"
-#~ msgstr "Publier sur la page de l'indexe"
-
-#~ msgid "How to add new posts"
-#~ msgstr "Comment ajouter un nouveau post"
-
-#~ msgid "Title:"
-#~ msgstr "Titre;"
-
-#~ msgid "An spectacular title! (100 characters)"
-#~ msgstr "Un titre spectaculaire ! (100 caractères)"
-
-#~ msgid "Text:"
-#~ msgstr "Texte;"
-
-#~ msgid "Your story."
-#~ msgstr "Votre Histoire."
-
-#~ msgid "Tags:"
-#~ msgstr "Tags;"
-
-#~ msgid "Please use them carefully, you are limited to 4 tags."
-#~ msgstr "Utilisez les avec prudence, vous êtes limité à 4 tags."
-
-#~ msgid ""
-#~ "If you mark this, the post will appear in the spaces index page AND in "
-#~ "the main index."
-#~ msgstr ""
-#~ "Si vous marquez ceci, ce post apparaîtra dans la page d'indexe ET dans "
-#~ "l'indexe princial."
-
-#~ msgid "Edit news"
-#~ msgstr "Editer l'actualité"

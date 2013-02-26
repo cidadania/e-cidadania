@@ -18,9 +18,11 @@
 # You should have received a copy of the GNU General Public License
 # along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
 
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.template import RequestContext, loader, Context
+from django.utils.translation import ugettext_lazy as _
+from e_cidadania import settings
 
 def invite(request):
 
@@ -33,10 +35,20 @@ def invite(request):
         mail_addr = request.POST['email_addr']
         raw_addr_list = mail_addr.split(',')
         addr_list = [x.strip() for x in raw_addr_list]
-        print addr_list
-        mail_msg = request.POST['mail_msg']
-        email = EmailMessage('Invitation to join e-cidadania', mail_msg, 
-                'noreply@ecidadania.org', [], addr_list)
+        usr_msg = request.POST['mail_msg']
+
+        plain_template = "invite/invite_plain.txt"
+        html_template = "invite/invite.html"
+        
+        plain_msg = loader.get_template(plain_template).render(
+                                                RequestContext(request,
+                                                {'msg': usr_msg}))
+        html_msg = loader.get_template(html_template).render(
+                                                RequestContext(request,
+                                                {'msg': usr_msg}))
+
+        email = EmailMultiAlternatives(_('Invitation to join e-cidadania'), plain_msg, settings.DEFAULT_FROM_EMAIL, [], addr_list)
+        email.attach_alternative(html_msg, 'text/html')
         email.send(fail_silently=False)
         return render_to_response('invite_done.html',
                                   context_instance=RequestContext(request))

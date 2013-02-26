@@ -22,7 +22,7 @@
 
     <div class="row">
         <div class="span6">
-            <p><strong>{% trans "Description:" %}</strong> {{ debate.description }}</p>
+            <p><strong>{% trans "Description:" %}</strong> {{ debate.description|safe }}</p>
             <p><strong>{% trans "Theme:" %}</strong> {{ debate.theme}}</p>
         </div>
         <div class="span6">
@@ -71,22 +71,25 @@
                                     <td headers="{{ td_id }}-{{ row_id }}" id="sortable-debate" class="connectedSortable">
                                         {% for note in notes %}
                                             {% if note.column_id == td_id and note.row_id == row_id %}
-                                                <div id="{{ note.id }}" class="note {% if note.author == request_user %}mine{% endif %} {% if note.author == request_user or request_user.is_staff %}{% else %}disabled{% endif %}">
+                                                <div id="{{ note.id }}" class="note {% if note.author == request_user %}mine{% endif %} {% if note.author == request_user or request_user.is_staff %}{% else %}disabled{% endif %}" rel="popover" data-title="{{note.title}}" data-content="<span style='font-weight:bold;line-height:1.5em;'>Author: {{note.author}}</span><br/>{{note.message|truncatechars:350}}">
                                                     <div class="handler">
+                                                        <span id="view-note" style="float:left;">
+                                                            <a href="#" class="nounderline" onclick="viewNote(this)" data-toggle="modal" data-target="#view-current-note" title="{% trans 'View' %}"><i class="icon-eye-open" style="font-size:12px;"></i></a>
+                                                        </span>
                                                         {% if note.author == request_user and perms.note.delete_note or request_user.is_staff %}
-                                                            <div class="deletenote hidden"><a href="#" onclick="deleteNote(this)" id="deletenote" title="{% trans 'Delete note' %}">x</a></div>
+                                                            <div class="deletenote" style="float:right;"><a href="#" onclick="deleteNote(this)" id="deletenote" title="{% trans 'Delete note' %}"><i class="icon-remove" style="font-size:12px;"></i></a></div>
+                                                        {% endif %}
+                                                        {% if note.author == request_user or request_user.is_staff %}
+                                                            <span id="edit-note" style="float:right;">
+                                                                <a href="#" class="nounderline" onclick="editNote(this)" data-toggle="modal" data-target="#edit-current-note" title="{% trans 'Edit' %}"><i class="icon-pencil" style="font-size:12px;"></i></a>
+                                                            </span>
                                                         {% endif %}
                                                     </div>
                                                     <p class="note-text">{{ note.title }}</p>
-                                                    <span id="view-note" class="label label-info hidden"><a href="#" onclick="viewNote(this)" data-toggle="modal" data-target="#view-current-note">{% trans "View" %}</a></span>
-                                                    {% if note.author == request_user or request_user.is_staff %}
-                                                        <span id="edit-note" class="label label-info hidden"><a href="#" onclick="editNote(this)" data-toggle="modal" data-target="#edit-current-note">{% trans "Edit" %}</a></span>
-																												{% endif %}
-																												<br />{% get_comment_count for note as comment_count %}
-																												<span class="comments">{{ comment_count	}} comments</span>
-																											</div>
+                                                    {% get_comment_count for note as comment_count %}
+                                                    <span class="comments">{{ comment_count }} {% trans "comments" %}</span><br/>
+												</div>
 
-                                                </div>
                                             {% endif %}
                                         {% endfor %}
                                         {% endwith %}
@@ -108,33 +111,32 @@
                         <h3>{% trans "Edit note" %}</h3>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" enctype="" action="" method="post">{% csrf_token %}
-
+                        <form enctype="" action="" method="post">{% csrf_token %}
                             <div class="control-group">
-                                <label>{% trans "Note title" %}</label>
                                 <div class="controls">
                                     <div class="input-append">
-                                        <input class="span2" id="appendedInput" size="16" type="text" name="notename" />
+                                        <input class="input-large" id="appendedInput" size="16" type="text" name="notename" />
                                         <span class="add-on"><a href="#" rel="tooltip" title="{% trans '100 characters' %}"><i class="icon-question-sign"></i></a></span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="control-group">
-															<label>{% trans "Description" %}</label>
                                 <div class="controls">
                                     <div class="input-prepend">
-																				{% wysiwyg_editor "message" %}
-                                        <span class="add-on"><a href="#" rel="tooltip" title="{% trans 'Long description of the note' %}"><i class="icon-question-sign"></i></a></span>
-                                    </div>
+                                    <div class="input">
+                                    <textarea id="id_note_message"></textarea>
+                                    {% wysiwyg_editor "id_note_message" %}
+                                    <span class="help-inline"></span>
                                 </div>
                             </div>
-
+                                </div>
+                            </div>
                             <div id="last-edited-note" class="hidden"></div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <a href="#" onclick="saveNote()" class="btn btn-primary">{% trans "Save" %}</a>
+                        <a href="#" class="btn" data-dismiss="modal">{% trans "Cancel" %}</a>
                         <a href="#" onclick="saveNote()" class="btn btn-primary">{% trans "Save" %}</a>
                     </div>
                 </div>
@@ -145,35 +147,38 @@
                         <h3 id="view-note-title"></h3>
                     </div>
                     <div class="modal-body">
-											<p id="view-note-desc"></p>
-											<span id="num-comments"></span>
-											<div id="comments"></div>
+                        <p id="view-note-desc"></p>
+                        {% trans "Author:" %}  <span id="view-note-author"></span>
+                        <span id="num-comments"></span>
+                        <div id="comments"></div>
                     </div>
-										<div class="modal-footer">
-											{% if user.is_authenticated %}
-<h5 class="note-comment-title">Comment</h5><div id="note-comment">
-<form id="form_comments" action="{% comment_form_target %}" method="post">
-   {% csrf_token %}
-<table>
-<tr>
-     <td colspan="2">
-       <div class="kopce"></div>
-       <input type="submit" name="submit" value="Submit">
-       <input type="submit" name="preview" value="Preview">
-     </td>
-   </tr>
-</table>
-</form>
-{% endif %}
+                    <div class="modal-footer">
+                        {% if user.is_authenticated %}
+                            <h5 class="note-comment-title">{% trans "Comment" %}</h5>
+                            <div id="note-comment">
+                                <form id="form_comments" action="{% comment_form_target %}" method="post">{% csrf_token %}
+                                    <div class="kopce"></div>
+                                    <input class="btn btn-small btn-primary" type="submit" value="{% trans 'Submit' %}" />
+                                    <input class="btn btn-small" type="submit" value="{% trans 'Preview' %}" />
+                                </form>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
-
-
             </div>
-
         </div>
     </div>
 
     <script src="{{ STATIC_URL }}/js/debate_board.js" type="text/javascript"></script>
+    <script>
+        $(function() {
+            $(".note").popover({
+                placement : 'top',
+                trigger: 'hover',
+                html: true,
+                delay: { show: 500, hide: 100 }
+            });
+        });
+</script>
 {% endwith %}
 {% endblock %}

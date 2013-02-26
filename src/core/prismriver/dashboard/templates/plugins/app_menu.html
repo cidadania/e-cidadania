@@ -1,0 +1,33 @@
+{% load admin_static %}
+<div id="app plugin" style="clear: both;">
+    <h1 style="margin: 7px; border-bottom: 2px solid rgb(119, 119, 119);">Dashboard</h1>
+    {% if custom %}
+    {% for app in apps %}
+    <div class="plugged_app">
+        <a class="app_title" href="javascript:void(0)"> <img src="{% static "admin/img/app_icon/" %}{{ app.big_icon }}">
+            {{ app.name }}</a>
+
+        <div class="description"> {{ app.description }}</div>
+        <ul style="display:none">
+            {% for model in app.models %}
+            <li><a href="/admin/{{ model.admin_url }}">{{ model.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+    {% else %}
+    {% for app in apps %}
+    <div class="plugged_app">
+        <a class="app_title" href="javascript:void(0)"><img src="{% static "admin/img/app_icon/" %}{{ app.big_icon }}">
+            {{ app.name }}</a>
+
+        <div class="description"> {{ app.description }}</div>
+        <ul style="display:none">
+            {% for model in app.models %}
+            <li><a href="/admin/{{ model.admin_url }}">{{ model.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>

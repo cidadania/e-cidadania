@@ -1,18 +1,23 @@
-Creando módulos
-===============
+Creating modules
+================
 
-e-cidadania é extensible a través de módulos, incluso antes de instalalo.
+e-cidadania is extensible through modules, which are nothing more than django
+apps.
 
-Estrutura
+.. warning:: If you want to install modules, you will have to do it on deployment.
+             Django does not support modules hotplugging.
+
+Structure
 ---------
 
-Un módulo é basicamente unha aplicación de django que incorporamos a e-cidadania.
-Nestes momentos apostamos pola estrutura estándar en canto a distribución e
-nomeado de arquivos.
+A module is basically a django application which we integrate in e-cidadania. At
+this time we advocate for the django default structure in the distribution and file
+names.
 
-.. warning:: Recomendamos encarecidamente que se teña experiencia previa en
-             django e python antes de crear un módulo.
+.. warning:: It's recommended to have expertise in django and python before
+             creating a new module.
 
-Un módulo consta de tres partes básicas, o modelo de datos, a vista e modelo de vista.
+A module has three basic components, the data model, the view and the
+template.
 
-.. note:: Valorar se se debe explicar a creación dun módulo.
+.. note:: Discuss if is worthy to explain the creation of a module.

@@ -23,29 +23,47 @@ from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from apps.ecidadania.voting.views import *
+from apps.ecidadania.voting.views.polls import ViewPoll, DeletePoll, \
+    ListPolls, ViewPollResults
+from apps.ecidadania.voting.views.voting import ViewVoting, ListVotings, \
+    AddVoting, EditVoting, DeleteVoting
+from apps.ecidadania.voting.url_names import *
 
 
 urlpatterns = patterns('apps.ecidadania.voting.views',
 
-        url(_(r'^list/$'), ListPolls.as_view(), name='list-polls'),
+    url(r'^$', ListVotings.as_view(), name=LIST_VOTING),
 
-        url(_(r'^addpoll/$'), AddPoll, name='add-poll'),
+    url(r'^poll/$', ListPolls.as_view(), name=LIST_POLL),
+
+    url(r'^add/$', AddVoting.as_view(), name=ADD_VOTING),
+
+    url(r'^add/poll/$', 'polls.add_poll', name=ADD_POLL),
+
+    url(r'^poll/(?P<poll_id>\d+)/edit/$', 'polls.edit_poll', name=EDIT_POLL),
+
+    url(r'^(?P<voting_id>\d+)/edit/$', EditVoting.as_view(),
+        name=EDIT_VOTING),
         
-        url(_(r'^(?P<poll_id>\d+)/delete/$'), DeletePoll.as_view(), name='delete-poll'),
+    url(r'^poll/(?P<poll_id>\d+)/delete/$', DeletePoll.as_view(),
+        name=DELETE_POLL),
         
-        url(_(r'^(?P<poll_id>\d+)/edit/$'), EditPoll, name='edit-poll'),
+    url(r'^(?P<voting_id>\d+)/delete/$', DeleteVoting.as_view(),
+        name=DELETE_VOTING),
         
-        url(_(r'^(?P<pk>\d+)/$'), DetailView.as_view(model = Poll, template_name ='voting/poll_detail.html'), name='view-poll'),
-        url(_(r'^(?P<poll_id>\d+)/vote/$'), 'vote'),
+    url(_(r'^poll/(?P<pk>\d+)/$'), ViewPoll.as_view(), name=VIEW_POLL),
 
-        url(_(r'^addvoting/$'), AddVoting.as_view(), name='add-voting'),
+    url(_(r'^poll/(?P<pk>\d+)/results/$'), ViewPollResults.as_view(),
+        name=VIEW_RESULT),
 
-        url(_(r'^(?P<voting_id>\d+)/deletevoting/$'), DeleteVoting.as_view(), name='delete-voting'),
+    url(r'^(?P<voting_id>\d+)/$', ViewVoting.as_view(), name=VIEW_VOTING),
 
-        url(_(r'^(?P<voting_id>\d+)/editvoting/$'), EditVoting.as_view(), name='edit-voting'),
+    url(r'^vote/poll/(?P<poll_id>\d+)/$', 'polls.vote_poll', name=VOTE_POLL),
 
-        url(r'^(?P<voting_id>\d+)', ViewVoting.as_view(), name='view-voting'),
+    url(r'^vote/voting/$', 'voting.vote_voting', name=VOTE_VOTING),
+
+    url(r'^vote/validate/(?P<token>\w+)/$', 'voting.validate_voting',
+        name=VALIDATE_VOTE),
 )
 
 

@@ -20,9 +20,9 @@ Apache 2
 nginx + uWSGI
 -------------
 
-.. note:: The installation through uwsgi works for other servers, not just nginx,
-          since it's uWSGI who executes the e-cidadania instance while the server
-          just serves the static content.
+.. note:: The installation through uwsgi works for other servers, not just
+          nginx, since it's uWSGI who executes the e-cidadania instance while
+          the server just serves the static content.
 
 .. note:: This section is still on development.
 

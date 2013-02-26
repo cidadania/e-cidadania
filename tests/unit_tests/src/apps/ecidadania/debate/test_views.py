@@ -69,8 +69,8 @@ class ListDebatesViewsTest(ECDTestCase):
     def testViewDebate(self):
         """Tests ViewDebate view.
         """
-        url = self.getURL('view-debate',(), {'debate_id': self.user_debate.id,
-                                             'space_url': self.user_space.url})
+        url = self.getURL('view-debate',(), {'debate_id': self.foo_debate.id,
+                                             'space_url': self.foo_space.url})
         response = self.get(url)
         self.assertResponseOK(response)
         context = response.context[0].dicts[0]
@@ -84,6 +84,6 @@ class ListDebatesViewsTest(ECDTestCase):
         self.assertEqual(len(context['rows']), 1)
         
         url = self.getURL('view-debate',(), {'debate_id': 5,
-                                             'space_url': self.user_space.url})
+                                             'space_url': self.foo_space.url})
         response = self.get(url)
         self.assertResponseNotFound(response)

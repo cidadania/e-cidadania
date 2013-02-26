@@ -1,71 +1,117 @@
-Instalación
-===========
+Installation
+============
 
-A instalación de e-cidadania é moi simple e realízase da mesma maneira que
-calquera outra plataforma django estándar.
+e-cidadania installation is very simple and is done almost in the same as any
+other django platforms.
 
-Descargar a plataforma
-----------------------
+Downloading platform
+--------------------
 
-.. note:: A sección de descargas da web oficial aínda non está dispoñible.
+Official download page
+``````````````````````
 
-Existen numerosas formas de descargar e-cidadania. A máis sinxela de todas é
-ir á sección `descargas <http://ecidadania.org/downloads>`_ da web e baixarse
-a última versión estable ou de desenvolvemento, listas para utilizar.
+.. note:: The download section in the official website is not available yet.
 
-Versión estable
-...............
+The are several ways to download e-cidadania. The most simple of them is going to
+the `downloads <http://ecidadania.org/downloads>`_ page in the website and download
+the latest stable or development versions, ready to use.
 
-Podes encontrar a última versión estable na páxina de descargas de ecidadania.org::
+GitHub packages
+```````````````
 
-    http://ecidadania.org/downloads
+Other way of downloading it is through the Github downloads page, which
+autogenerates a .zip and .tar.gz files based on the repository tags. You can
+find it in::
 
+    https://github.com/cidadania/e-cidadania/tags
 
-Versión de desenvolvemento
-..........................
+From repository
+```````````````
 
-A versión de desenvolvemento está dispoñible dende varios sitios. Utilizamos `GIT <http://git-scm.com/>`_
-como sistema de control de versións, así que terás que instalalo no teu ordenador.
+See :ref:`dev-version`
 
-    **Gitorious:** *(repositorio oficial)*::
+Stable version
+``````````````
+
+You can find the latest stable version in the download page in ecidadania.org::
+
+    http://ecidadania.org/en/downloads
+
+.. _dev-version:
+
+Development version
+```````````````````
+
+Development version is available through various places. We use `GIT <http://git-scm.com/>`_
+as version control system, so you will have to install it in your computer.
+
+    **GitHub** *(official repository)*::
+
+        git clone git://github.com/cidadania/e-cidadania.git
+
+    **Gitorious:** *(secondary repository)*::
 
         git clone git://gitorious.org/e-cidadania/mainline.git
 
-    **GitHub** *(repositorio secundario)*::
-
-        git clone git://github.com/oscarcp/e-cidadania.git
-
-    **Repo.or.cz** *(espello oficial)*::
+    **Repo.or.cz** *(official mirror)*::
 
         git clone git://repo.or.cz/e_cidadania.git
 
-Requisitos
+Installing
 ----------
 
-- Python 2.5 o superior
-- Apache, nginx, ou outro servidor web con soporte CGI
-- FastCGI, CGI, Passenger ou outro CGI
+The installation process for e-cidadania is quite simple.
 
-**Dependencias**
+Requirements
+````````````
+- Apache, nginx, or any other web server with CGI suppport
+- FastCGI, CGI, Passenger or other CGI.
 
-- django 1.3
+**Dependencies**
+
+- Python 2.7.x
+- django 1.4.x
 - PIL *(Python Imaging Library)*
-- python-datetime *(versión 1.5)*
+- python-datetime *(version 1.5)*
 - django-tagging
-- django-wysiwyg
-- django-grappelli (para a administración)
+- django-grappelli
 - feedparser
+- pyyaml
 
-
-Instalar dependencias
----------------------
-
-Podes instalar todas as dependencias automáticamente con este comando:
-
-::
+You can install all the required dependencies automatically with this command::
 
     # pip install -r requirements.txt
 
-Se non dispós do programa *pip* tamén podes instalar as dependencias a través
-do programa *easy_install*.
+Most of the requirements are automatically installed this way, but there are
+some packages that need to be installed via the system packages, for example:
 
+* PIL
+
+.. warning:: There are reported errors for people that tried to install PIL from
+             pip instead from the official system package. The problem is due to
+             the lack of some features of PIL needed in e-cidadania.
+
+Platform
+````````
+There isn't a proper installation process in e-cidadania, you just have to copy
+the files to you preferred installation directory.
+
+If you're going to make tests or develop e-cidadania, it is better that you
+follow the instructions on how to build the development environment: :doc:`../dev/environment`
+
+If you are going to use it in production, or you just want to give e-cidadania
+a try follow this steps:
+
+.. note:: e-cidadania comes preconfigured for a development environment. You
+          will have to set the DEBUG flag to **False** in
+          *src/e_cidadania/settings/__init__.py*
+::
+
+    $ ./manage.py syncdb # This will create all the database objects
+    $ ./manage.py collectstatic # This will copy all the static content to *static/*
+    $ ./manage.py runserver
+
+This last command will execute the development server in the port 8000 of your
+machine, so you just need to type **localhost:8000" inside a web browser.
+
+Now you can continue to :doc:`configuration`

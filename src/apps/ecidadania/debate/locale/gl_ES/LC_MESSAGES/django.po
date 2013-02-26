@@ -3,35 +3,36 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Oscar Carballal <oscar.carballal@cidadania.coop>, 2012.
 # Oscar Carballal <oscar@cidadania.coop>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-28 11:27+0200\n"
-"PO-Revision-Date: 2012-05-24 08:16+0000\n"
+"POT-Creation-Date: 2013-01-08 11:54+0100\n"
+"PO-Revision-Date: 2012-12-17 12:08+0000\n"
 "Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
-"Language-Team: Galician (Spain) (http://www.transifex.net/projects/p/"
+"Language-Team: Galician (Spain) (http://www.transifex.com/projects/p/"
 "ecidadania/language/gl_ES/)\n"
 "Language: gl_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: models.py:42 models.py:107
+#: models.py:42 models.py:111
 msgid "Title"
 msgstr "Título"
 
-#: models.py:43 templates/debate/debate_view.html:119
+#: models.py:43
 msgid "Description"
 msgstr "Descrición"
 
 #: models.py:44
 msgid "Theme"
-msgstr ""
+msgstr "Asunto"
 
-#: models.py:47 models.py:110
+#: models.py:47 models.py:114
 msgid "Date created"
 msgstr "Data de creación"
 
@@ -47,42 +48,21 @@ msgstr "Data de comezo"
 msgid "End date"
 msgstr "Data de fin"
 
-#: models.py:76 models.py:89
+#: models.py:80 models.py:93
 msgid "Criteria"
 msgstr "Criterio"
 
-#: models.py:108
+#: models.py:112
 msgid "Message"
 msgstr "Mensaxe"
 
-#: models.py:113
+#: models.py:117
 msgid "Last modification time"
 msgstr "Hora da última modificación"
 
-#: urls.py:35
-msgid "^add/"
-msgstr "^add/"
-
-#: urls.py:37
-msgid "^update_position/"
-msgstr "^update_position/"
-
-#: urls.py:39
-msgid "^update_note/"
-msgstr "^update_note/"
-
-#: urls.py:41
-msgid "^create_note/"
-msgstr "^create_note/"
-
-#: urls.py:43
-msgid "^delete_note/"
-msgstr "^delete_note/"
-
 #: templates/debate/debate_add.html:14 templates/debate/debate_add.html:41
-#, fuzzy
 msgid "Edit debate"
-msgstr "Ver debate"
+msgstr "Editar debate"
 
 #: templates/debate/debate_add.html:16 templates/debate/debate_add.html:43
 #: templates/debate/debate_add_simple.html:4
@@ -90,9 +70,8 @@ msgid "Create new debate"
 msgstr "Crear novo debate"
 
 #: templates/debate/debate_add.html:47
-#, fuzzy
 msgid "How to create a debate"
-msgstr "Crear un novo debate"
+msgstr "Cómo crear un debate"
 
 #: templates/debate/debate_add.html:50
 msgid ""
@@ -103,10 +82,14 @@ msgid ""
 "                    For the rest of the fields, just follow their respective "
 "instructions."
 msgstr ""
+"Para crear un debate debes encher os campos cos criterios necesarios para o "
+"mesmo. Nesta documentación temos un debate de exemplo que podes seguir para "
+"crear o teu. Para os demáis campos, tan só tes que seguir as respectivas "
+"instruccións."
 
 #: templates/debate/debate_add.html:56
 msgid "Close"
-msgstr ""
+msgstr "Pechar"
 
 #: templates/debate/debate_add.html:64
 msgid "Remove column"
@@ -124,29 +107,30 @@ msgstr "Eliminar fila"
 msgid "Add row"
 msgstr "Engadir fila"
 
-#: templates/debate/debate_add.html:105 templates/debate/debate_view.html:149
+#: templates/debate/debate_add.html:111 templates/debate/debate_view.html:106
 msgid "Add new note"
 msgstr "Engadir nova nota"
 
-#: templates/debate/debate_add.html:106
+#: templates/debate/debate_add.html:112
 msgid "Change color"
-msgstr ""
+msgstr "Cambiar cor"
 
-#: templates/debate/debate_add.html:110
+#: templates/debate/debate_add.html:116
 #: templates/debate/debate_add_simple.html:60
 msgid "Other debate data"
 msgstr "Outros datos do debate"
 
-#: templates/debate/debate_add.html:215
-#: templates/debate/debate_add_simple.html:120
-#: templates/debate/debate_view.html:133
-msgid "Save"
-msgstr "Gardar"
-
-#: templates/debate/debate_add.html:216
+#: templates/debate/debate_add.html:221
 #: templates/debate/debate_add_simple.html:121
+#: templates/debate/debate_view.html:140
 msgid "Cancel"
 msgstr "Cancelar"
+
+#: templates/debate/debate_add.html:222
+#: templates/debate/debate_add_simple.html:120
+#: templates/debate/debate_view.html:141
+msgid "Save"
+msgstr "Gardar"
 
 #: templates/debate/debate_list.html:7
 msgid "Debates in "
@@ -207,7 +191,7 @@ msgstr "Descrición:"
 
 #: templates/debate/debate_view.html:26
 msgid "Theme:"
-msgstr ""
+msgstr "Asunto:"
 
 #: templates/debate/debate_view.html:31
 msgid "Start date:"
@@ -222,38 +206,41 @@ msgid "End date:"
 msgstr "Data de remate:"
 
 #: templates/debate/debate_view.html:78
-msgid "Delete note"
-msgstr "Borrar unha nota"
-
-#: templates/debate/debate_view.html:82
 msgid "View"
 msgstr "Ver"
 
-#: templates/debate/debate_view.html:84
+#: templates/debate/debate_view.html:81
+msgid "Delete note"
+msgstr "Borrar unha nota"
+
+#: templates/debate/debate_view.html:85
 msgid "Edit"
 msgstr "Editar"
 
-#: templates/debate/debate_view.html:103
+#: templates/debate/debate_view.html:91
+msgid "comments"
+msgstr "comentarios"
+
+#: templates/debate/debate_view.html:112
 msgid "Edit note"
 msgstr "Editar nota"
 
-#: templates/debate/debate_view.html:109
-msgid "Note title"
-msgstr "Título da nota"
-
-#: templates/debate/debate_view.html:113
+#: templates/debate/debate_view.html:120
 msgid "100 characters"
 msgstr "100 caracteres"
 
-#: templates/debate/debate_view.html:124
-msgid "Long description of the note"
-msgstr ""
+#: templates/debate/debate_view.html:152
+msgid "Author:"
+msgstr "Autor:"
 
-#~ msgid "View note"
-#~ msgstr "Ver a nota"
+#: templates/debate/debate_view.html:158
+msgid "Comment"
+msgstr "Comentario"
 
-#~ msgid "Scope"
-#~ msgstr "Ámbito"
+#: templates/debate/debate_view.html:162
+msgid "Submit"
+msgstr "Enviar"
 
-#~ msgid "Scope:"
-#~ msgstr "Ámbito:"
+#: templates/debate/debate_view.html:163
+msgid "Preview"
+msgstr "Previsualizar"

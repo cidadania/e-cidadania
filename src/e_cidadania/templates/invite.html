@@ -17,7 +17,7 @@ application with txt files and that's efficiency.
             <a href="https://www.facebook.com/sharer.php?u={{ uri }}&t=Invitation to e-cidadania" target="_blank"><img src="{{ STATIC_URL }}/img/facebook.png" width="50" height="50"/></a><a href="https://twitter.com/share?text=Come to e-cidadania&url={{ uri }}" target="_blank"><img src="{{ STATIC_URL }}/img/twitter.png" width="50" height="50"/></a><a href="https://plusone.google.com/_/+1/confirm?hl=en&url={{ uri }}" target="_blank"><img src="{{ STATIC_URL }}/img/googleplus.jpg" width="50" height="50"/></a><br /><br />
             
             {% if user.is_authenticated %}
-            <form action="/invite/" method="post">{% csrf_token %}
+            <form action="{% url 'invite' %}" method="post">{% csrf_token %}
                 <label><h4>{% trans "Invite via E-mail" %}</h4></label>
                 <input name="email_addr" id="email_addr" type="text" class="span3" placeholder="{% trans 'Write the e-mail adresses here' %}">
                 <p class="help-block">{% trans "If you want to invite more than one person, you will have to write their adresses separated by commas. Example: this@that.com, foo@bar.net, black@white.org" %}</p><br />

@@ -9,14 +9,54 @@
         <div class="span12">
             <h3>{% trans "Spaces list" %}</h3>
             
-            {% for space in object_list %}
-                <div id="spaceitem">
-                    <p class="spacetitle"><a href="{{ space.get_absolute_url }}">{{ space.name }}</a></p>
-                    <p class="spacedesc">{{ space.description|removetags:"p"|safe }}</p>
+            <ul class="nav nav-tabs">
+                {% if not request.user.is_anonymous %}
+                    <li class="active">
+                        <a href="#mine" data-toggle="tab">{% trans "My spaces" %}</a>
+                    </li>
+                {% endif %}
+                <li {% if request.user.is_anonymous %}class="active"{% endif %}>
+                    <a href="#all" data-toggle="tab">{% trans "All spaces" %}</a>
+                </li>
+                <li>
+                    <a href="#public" data-toggle="tab">{% trans "Public spaces" %}</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                {% if not request.user.is_anonymous %}
+                    <div class="tab-pane active" id="mine">
+                        {% for space in object_list %}
+                            <div id="spaceitem">
+                                <p class="spacetitle"><a href="{{ space.get_absolute_url }}">{{ space.name }}</a></p>
+                                <p class="spacedesc">{{ space.description|removetags:"p"|safe }}</p>
+                            </div>
+                        {% empty %}
+                            <p>{% trans "There are no public spaces or spaces you are registered to" %}.</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="tab-pane {% if request.user.is_anonymous %}active{% endif %}" id="all">
+                    {% for space in all_spaces %}
+                        <div id="spaceitem">
+                            <p class="spacetitle"><a href="{{ space.get_absolute_url }}">{{ space.name }}</a></p>
+                            <p class="spacedesc">{{ space.description|removetags:"p"|safe }}</p>
+                        </div>
+                    {% empty %}
+                        <p>{% trans "There are no spaces." %}</p>
+                    {% endfor %}
                 </div>
-            {% empty %}
-                <p>{% trans "There are no public spaces or spaces you are registered to" %}.</p>
-            {% endfor %}
+                <div class="tab-pane" id="public">
+                    {% for space in public_spaces %}
+                        <div id="spaceitem">
+                            <p class="spacetitle"><a href="{{ space.get_absolute_url }}">{{ space.name }}</a></p>
+                            <p class="spacedesc">{{ space.description|removetags:"p"|safe }}</p>
+                        </div>
+                    {% empty %}
+                        <p>{% trans "There are no public spaces." %}</p>
+                    {% endfor %}
+                </div>
+            </div>
             
             <hr />
             {% if is_paginated %}

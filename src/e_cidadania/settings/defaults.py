@@ -27,8 +27,8 @@ Plase refer to the 'configuration' section of the documentation for guidance.
 import os
 
 # e-cidadania version and current status
-__version__ = "0.1.5"
-__status__ = "RC 1"
+__version__ = "0.1.8"
+__status__ = "beta"
 
 # Get the current working directory so we can fill automatically other variables.
 cwd = os.path.dirname(os.path.realpath(__file__)).strip('settings')
@@ -44,7 +44,12 @@ LANGUAGES = (
     ('es_ES', 'Español'),
     ('en_GB', 'English'),
     ('gl_ES', 'Galego'),
-    ('fr_FR', 'Français')
+    ('fr_FR', 'Français'),
+    ('mk_MK', 'Makedonski')
+)
+
+LOCALE_PATHS = (
+    cwd + '/templates/locale',
 )
 
 SITE_ID = 1
@@ -60,8 +65,8 @@ MEDIA_ROOT = cwd + '/uploads/'
 MEDIA_URL = '/uploads/'
 STATIC_ROOT = cwd + '/static/'
 #print "Static root: %s" % STATIC_ROOT
-STATIC_URL = '/static'
-ADMIN_MEDIA_PREFIX = STATIC_URL + '/grappelli/'
+STATIC_URL = '/static/'
+ADMIN_MEDIA_PREFIX = STATIC_URL
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -71,6 +76,11 @@ STATICFILES_FINDERS = (
 
 STATICFILES_DIRS = (
     (cwd + '/static_files/'),
+)
+
+FILE_UPLOAD_HANDLERS = (
+    "django.core.files.uploadhandler.MemoryFileUploadHandler",
+    "django.core.files.uploadhandler.TemporaryFileUploadHandler",
 )
 
 # Make this unique, and don't share it with anybody.
@@ -115,22 +125,13 @@ TEMPLATE_DIRS = (
     (cwd + '/templates'),
 )
 
-# The administration panel link is hardcoded because we can't handle other
-# way of doing it without messing with grappelli or django-admin. The extra HTML
-# tags bring the title a dropdown menu functionality'
-GRAPPELLI_ADMIN_TITLE = "<li class='user-options-container collapse closed'> \
-<a href='javascript://' class='user-options-handler collapse-handler'> \
-e-cidadania %s</a><ul class='user-options'><li><a href='/' \
-style='padding:10px;'>Back to site</a></li></ul></li>" % (__version__)
-GRAPPELLI_ADMIN_URL = '/admin'
-GRAPPELLI_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
-
 # We separate the applications so we can manage them through scripts
 # Please do not touch this unless you know very well what you're doing
 
 DJANGO_APPS = (
     # This list is from the builtin applications in django that are used in
     # e-cidadania
+    'core.prismriver',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -138,8 +139,6 @@ DJANGO_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.comments',
-    'grappelli.dashboard',
-    'grappelli',
     'django.contrib.admin',
     'django.contrib.comments',
 )
@@ -167,15 +166,6 @@ ECIDADANIA_MODULES = (
     'apps.ecidadania.cal',
     'extras.custom_stuff',
     'apps.ecidadania.voting',
-)
-
-#Defining user roles
-
-USER_ROLES = (
-    'space_admin',
-    'space_moderator',
-    'user',
-    'anonymous'
 )
 
 # A sample logging configuration. The only tangible logging
@@ -206,10 +196,6 @@ LOGGING = {
         },
     }
 }
-
-# SELECT ENVIROMENT
-# Tell django what environment you will run. Options: development, production. 
-# Default: development
 
 # Combine all the apps in the django variable INSTALLED_APPS
 INSTALLED_APPS = DJANGO_APPS + THIRDPARTY_APPS + ECIDADANIA_MODULES

@@ -1,0 +1,11 @@
+{% load i18n %}
+
+{% trans "Someone sent you an invitation to join e-cidadania!" %}
+{% blocktrans %}
+You have been invited to join e-cidadania, an e-democracy platform for citizen participation. More clearly, it's for direct democracy in every one of its shapes, from 99% movement, 15M to official participative budgets. The message that was sent to you follows:
+{% endblocktrans %}
+
+{{ msg }}
+{% trans "Join e-cidadania today in http://ecidadania.org" %}
+
+{% trans "If you have any questions dont hesitate and send us a mail to support@ecidadania.org." %}

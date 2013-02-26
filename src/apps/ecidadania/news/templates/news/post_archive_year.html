@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% blocktrans with y=year %}
+        Archive for {{ y }}
+    {% endblocktrans %}
+{% endblock %}
+
+{% block logo %}
+    {% if get_place %}
+        <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
+    {% else %}
+        <a href="/"><img src="{{ STATIC_URL }}/assets/logos/index.png" /></a>
+    {% endif %}
+{% endblock %}
+
+{% block banner %}
+    {% if get_place %}
+        <img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />
+    {% else %}
+        <img src="{{ STATIC_URL }}/assets/banners/index.png"/>
+    {% endif %}
+{% endblock %}
+
+{% block space %}
+    {% if get_place %}
+        <a class="brand" href="{{ get_place.get_absolute_url }}">{{ get_place.name }}</a>
+    {% else %}
+        <a class="brand" href="{% url 'site-index' %}">e-cidadania</a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="span12">
+            <h4>{% blocktrans with y=year%}
+                    Archive for {{ y }}
+                {% endblocktrans %}
+            </h4>
+            {% for post in object_list %}
+                <div class="listitem">
+                    <div class="listdate">{{ post.pub_date|date:"l d" }}</div>
+                    <div class="listtitle"><a href="{{ post.id }}">{{ post.title }}</a></div>
+                </div>
+                <div class="clear"></div>
+            {% empty %}
+                <p>{% trans "There are no posts in this space." %}</p>
+            {% endfor %}
+            
+            {% if is_paginated %}
+                <div class="pagination">
+                    <span class="page-links">
+                        {% if page_obj.has_previous %}
+                            <a href="{% url 'post-archive' get_place.url %}?page={{ page_obj.previous_page_number }}">&laquo; {% trans "previous" %} | </a>
+                        {% endif %}
+                        <span class="page-current">
+                            {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a href="{% url 'post-archive' get_place.url %}?page={{ page_obj.next_page_number }}"> | {% trans "next" %} &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+            {% endif %}
+           
+            <hr />
+            <a href="{{ get_place.get_absolute_url }}" class="btn small">&laquo; {% trans "Go back" %}</a>
+        </div>
+    </div>
+
+{% endblock %}
+

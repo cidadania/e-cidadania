@@ -1,22 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+# Translators:
+# Oscar Carballal <oscar@cidadania.coop>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: e-cidadania\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-28 11:27+0200\n"
-"PO-Revision-Date: 2012-01-05 10:52\n"
-"Last-Translator:   <a@a.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-01-08 11:54+0100\n"
+"PO-Revision-Date: 2012-02-14 16:21+0000\n"
+"Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
+"Language-Team: Spanish (Spain) (http://www.transifex.com/projects/p/"
+"ecidadania/language/es_ES/)\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Translated-Using: django-rosetta 0.6.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: templates/cal/calendar.html:4 templates/cal/calendar.html.py:16
 msgid "Calendar"
@@ -40,7 +41,7 @@ msgstr "Error del calendario"
 
 #: templates/cal/error.html:10
 msgid "You entered and incorrect month or year. Please correct it."
-msgstr "Has introducido un mes o año incorrectos. Por favor corrígelos."
+msgstr "Has introducido un mes o año incorrecto. Por favor corrígelo."
 
 #: templates/cal/error.html:11
 msgid "You can go"
@@ -48,7 +49,7 @@ msgstr "Puedes ir"
 
 #: templates/cal/error.html:11
 msgid "back to home"
-msgstr "de vuelta al inicio"
+msgstr "a la página principal"
 
 #: templates/cal/error.html:11
 msgid "or"
@@ -56,4 +57,4 @@ msgstr "o"
 
 #: templates/cal/error.html:11
 msgid "back to your profile"
-msgstr "a tu perfil"
+msgstr "de vuelta a tu perfil"

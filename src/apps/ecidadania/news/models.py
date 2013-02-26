@@ -30,9 +30,9 @@ class Post(models.Model):
     """
     Model of a news post.
     """
-    post_title = models.CharField(_('Title'), max_length=200,
+    title = models.CharField(_('Title'), max_length=200,
     help_text=_('Max: 200 characters'))
-    post_message = models.TextField(_('Text'))
+    description = models.TextField(_('Description'))
     pub_date = models.DateTimeField(_('Date'), auto_now_add=True)
     post_lastup = models.DateTimeField(_('Last update'), auto_now=True)
     author = models.ForeignKey(User, verbose_name=_('Author'), blank=True,
@@ -48,7 +48,7 @@ class Post(models.Model):
     views = models.IntegerField(_('Views'), blank=True, null=True)
 
     def __unicode__(self):
-        return self.post_title
+        return self.title
 
     def comment_count(self):
         ct = ContentType.objects.get_for_model(Post)

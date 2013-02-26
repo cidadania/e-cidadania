@@ -10,12 +10,28 @@
     <a class="brand" href="{{ get_place.get_absolute_url }}">{{ get_place.name }}</a>
 {% endblock %}
 
+{% block extrajs %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jqueryui-datepicker-{{ LANGUAGE_CODE }}.js"></script>
+    <script type="text/javascript">
+        $.datepicker.setDefaults({
+            onSelect: function(dateText) {
+                var date = $(this).datepicker("getDate");
+                var month = date.getMonth() + 1;
+                var year = date.getFullYear();
+                window.location = "calendar/" + year + "/" + month + "/";
+            }
+        });
+        $( "#datepicker" ).datepicker( $.datepicker.regional[ "{{ LANGUAGE_CODE }}" ] );
+    </script>
+{% endblock %}
+
 {% block content %}
 
     <div class="row">
         <div class="span12">
             <ul class="nav nav-tabs">
-                <li class="e"><a href="#overview" data-toggle="tab">{% trans "Overview" %}</a></li>
+                <li class="e"><a href="#overview" da
+                    ta-toggle="tab">{% trans "Overview" %}</a></li>
                 {% if get_place.mod_news %}
                     <li><a href="#news" data-toggle="tab">{% trans "News" %}</a></li>
                 {% endif %}
@@ -39,35 +55,37 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Administration" %} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             {% if perms.news.add_post %}
-                                <li><a href="{% url 'add-post' get_place.url %}">
-                                    <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new post' %}" title="{% trans 'Add new post' %}"/>{% trans 'Add new post' %}
+                                <li><a href="{% url 'add-post' get_place.url %}" title="{% trans 'Add new post' %}">
+                                    <i class="icon-plus" style="font-size:16px;"></i> {% trans 'Add new post' %}
                                 </a></li>
                             {% endif %}
+                            <li class="divider"></li>
                             {% if perms.spaces.change_space %}
-                                <li><a href="{% url 'edit-space' get_place.url %}">
-                                    <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit space' %}" title="{% trans 'Edit space' %}"/>{% trans 'Edit space' %}
+                                <li><a href="{% url 'edit-space' get_place.url %}" title="{% trans 'Edit space' %}">
+                                    <i class="icon-edit" style="font-size:16px;"></i> {% trans 'Edit space' %}
                                 </a></li>
-                                <li><a href="{% url 'edit-roles' get_place.url %}">
-                                    <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit user roles' %}" title="{% trans 'Edit user roles' %}"/>{% trans 'Edit user roles' %}
+                                <li><a href="{% url 'edit-roles' get_place.url %}" title="{% trans 'Edit user roles' %}">
+                                    <i class="icon-edit" style="font-size:16px;"></i> {% trans 'Edit user roles' %}
                                 </a></li>
-                                <li><a href="{% url 'add_fields' get_place.url %}">
-                                    <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add form field' %}" title="{% trans 'Add Form field'%}"/>{% trans 'Add form fields '%}
+                                {% if perms.spaces.delete_space %}
+                                <li><a href="{% url 'delete-space' get_place.url %}" title="{% trans 'Delete space' %}">
+                                    <i class="icon-trash" style="font-size:16px;"></i> {% trans 'Delete space' %}
                                 </a></li>
-                                <li><a href="{% url 'delete_fields' get_place.url %}">
-                                    <img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete form field' %}" title="{% trans 'Delete form field'%}"/>{% trans 'Delete form field '%}
+                                {% endif %}
+                                <li class="divider"></li>
+                                <li><a href="{% url 'add_fields' get_place.url %}" title="{% trans 'Add form field'%}">
+                                    <i class="icon-plus" style="font-size:16px;"></i> {% trans 'Add form fields '%}
                                 </a></li>
-
-                            {% endif %}
-                        
-                            
-                            {% if perms.spaces.delete_space %}
-                                <li><a href="{% url 'delete-space' get_place.url %}">
-                                    <img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete space' %}" title="{% trans 'Delete space' %}"/>{% trans 'Delete space' %}
+                                <li><a href="{% url 'delete_fields' get_place.url %}" title="{% trans 'Delete form field'%}">
+                                    <i class="icon-trash" style="font-size:16px;"></i> {% trans 'Delete form field '%}
                                 </a></li>
                             {% endif %}
                         </ul>
                     </li>
                 {% endif %}
+                <li class="pull-left">
+                    <a href="{% url 'space-feed' get_place.url %}"><i class="icon-rss" style="font-size:16px;"></i> RSS</a>
+                </li>
                 </ul>
                 <div id="my-tab-content" class="tab-content">
                 <div class="tab-pane active" id="overview">
@@ -77,7 +95,18 @@
                                 <p><strong>{% trans "Description:" %}</strong> {{ get_place.description|removetags:'p'|safe }}</p>
                             {% endif %}
                             <p><strong>{% trans "Current status:" %}</strong> Not implemented</p>
-                            <p><strong>{% trans "Participants:" %}</strong> {{ get_place.users.count }}</p>
+                            <p><strong><a href="#myModal" role="button" data-toggle="modal">{% trans "Participants:" %}</a></strong> {{ get_place.users.count|add:get_place.admins.count|add:get_place.mods.count }}</p>
+                            <div class="modal hide fade" id="myModal">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                                    <h3>{% trans "Participants for" %} {{ get_place.name }}</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <p>{% trans "Administrators:" %} {{ get_place.admins.count }}</p>
+                                    <p>{% trans "Moderators:" %} {{ get_place.mods.count }}</p>
+                                    <p>{% trans "Users:" %} {{ get_place.users.count }}</p>
+                                </div>
+                            </div>
                             <hr />
                             <h4>{% trans "Recent activity" %}</h4>
                             
@@ -85,7 +114,7 @@
                                 <h6>{% trans "News"%}</h6>
                                 <ul class="unstyled">
                                     {% for news in publication|slice:":3" %}
-                                        <li><a href="{% url 'profile_public' news.author %}">{{ news.author }}</a> {% trans "posted" %} <a href="{{ news.get_absolute_url }}">{{ news.post_title }}</a> {% trans "on" %} {{ news.pub_date|date:"d F Y" }}</li>
+                                        <li><a href="{% url 'profile_public' news.author %}">{{ news.author }}</a> {% trans "posted" %} <a href="{{ news.get_absolute_url }}">{{ news.title }}</a> {% trans "on" %} {{ news.pub_date|date:"d F Y" }}</li>
                                     {% empty %}
                                         <li>{% trans "Nothing published yet." %}</li>
                                     {% endfor %}
@@ -171,55 +200,66 @@
                 <div class="tab-pane" id="voting">
                     <div class="row">
                         <div class="span8">
-                            <h4>Polls</h4>
-                            {% for poll in polls %}
-                                <h4 class="posttitle"><a href="{% url 'view-poll' get_place.url poll.id %}">{{ poll.question }}</a>
-                                    {% if user_is_admin %}
-                                       {% if perms.voting.change_poll %}
-                                            <a href="{% url 'edit-poll' get_place.url poll.id %}">
-                                                <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/>
-                                            </a>
+                            <h4>{% trans "Polls" %}</h4>
+                            <ul class="unstyled">
+                                {% for poll in polls %}
+                                    <li><a href="{% url 'view-poll' get_place.url poll.id %}">{{ poll.question }}</a>
+                                        {% if user_is_admin %}
+                                            {% if perms.voting.change_poll %}
+                                                <a href="{% url 'edit-poll' get_place.url poll.id %}" title="{% trans 'Edit' %}">
+                                                    <i class="icon-edit" style="font-size:16px;"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if perms.voting.delete_poll %}
+                                                <a href="{% url 'delete-poll' get_place.url poll.id %}" title="{% trans 'Delete' %}">
+                                                    <i class="icon-trash" style="font-size:16px;"></i>
+                                                </a>
+                                            {% endif %}
                                         {% endif %}
-                                        {% if perms.voting.delete_poll %}
-                                            <a href="{% url 'delete-poll' get_place.url poll.id %}">
-                                                <img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/>
-                                            </a>
-                                        {% endif %}
-                                    {% endif %}                             
-                                </h4>
-                            {% endfor %}
-                            <h4>Voting</h4>
-                            {% for voting in votings %}
-                                <h4 class="posttitle"><a href="{% url 'view-voting' get_place.url voting.id %}">{{ voting.title }}</a>
+                                        <a href="{% url 'view-result' get_place.url poll.id %}" title="{% trans 'Results' %}">
+                                            <i class="icon-tasks" style="font-size:16px;"></i>
+                                        </a>
+                                    </li>
+                                {% empty %}
+                                    <li>{% trans "There are no polls at this moment." %}</li>
+                                {% endfor %}
+                            </ul>
+
+                            <h4>{% trans "Voting" %}</h4>
+                            <ul class="unstyled">
+                                {% for voting in votings %}    
+                                    <li><a href="{% url 'view-voting' get_place.url voting.id %}">{{ voting.title }}</a></li>
                                     {% if user_is_admin %}
                                        {% if perms.voting.change_voting %}
-                                            <a href="{% url 'edit-voting' get_place.url voting.id %}">
-                                                <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/>
+                                            <a href="{% url 'edit-voting' get_place.url voting.id %}" title="{% trans 'Edit' %}">
+                                                <i class="icon-edit" style="font-size:16px;"></i>
                                             </a>
                                         {% endif %}
                                         {% if perms.voting.delete_voting %}
-                                            <a href="{% url 'delete-voting' get_place.url voting.id %}">
-                                                <img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/>
+                                            <a href="{% url 'delete-voting' get_place.url voting.id %}" title="{% trans 'Delete' %}">
+                                                <i class="icon-trash" style="font-size:16px;"></i>
                                             </a>
                                         {% endif %}
-                                    {% endif %}                             
-                                </h4>
-                            {% endfor %}
+                                    {% endif %} 
+                                {% empty %}
+                                    <li>{% trans "There are no votings at this moment." %}</li>
+                                {% endfor %}
+                            </ul>
                         </div>
                         <div class="span4 space-sidebar">
                             {% if user_is_admin %}
                                 <h4>{% trans "Administration" %}</h4>
                                 {% if perms.voting.add_poll %}
                                     <ul class="unstyled">
-                                        <li><a href="{% url 'add-poll' get_place.url %}">
-                                            <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new poll' %}" title="{% trans 'Add new poll' %}"/>{% trans 'Add new poll' %}
+                                        <li><i class="icon-plus" style="font-size:16px;"></i> <a href="{% url 'add-poll' get_place.url %}" title="{% trans 'Add new poll' %}">
+                                        {% trans 'Add new poll' %}
                                         </a></li>
                                     </ul>
                                 {% endif %}
                                 {% if perms.voting.add_voting %}
                                     <ul class="unstyled">
-                                        <li><a href="{% url 'add-voting' get_place.url %}">
-                                            <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new voting process' %}" title="{% trans 'Add new voting process' %}"/>{% trans 'Add new voting process' %}
+                                        <li><i class="icon-plus" style="font-size:16px;"></i> <a href="{% url 'add-voting' get_place.url %}" title="{% trans 'Add new voting process' %}">
+                                        {% trans 'Add new voting process' %}
                                         </a></li>
                                     </ul>
                                 {% endif %}
@@ -227,7 +267,7 @@
                             <ul class="unstyled">
                                 <h4>{% trans "Actions" %}</h4>
                                 <li><a href="{% url 'list-polls' get_place.url %}">{% trans "List polls" %}</a></li>
-                                <li><a href="{% url 'list-polls' get_place.url %}">{% trans "List voting" %}</a></li>
+                                <li><a href="{% url 'list-votings' get_place.url %}">{% trans "List voting" %}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -242,29 +282,28 @@
                 </div>
                 {% endif %}
                 
-                
                 {% if get_place.mod_news %}
                 <div class="tab-pane" id="news">
                     <div class="row">
                         <div class="span8">
                             {% for news in publication %}
-                                <h2 class="posttitle"><a href="{{ news.get_absolute_url }}">{{ news.post_title }}</a>
+                                <h3 class="posttitle"><a href="{{ news.get_absolute_url }}">{{ news.title }}</a>
                                     {% if user_is_admin %}
                                         {% if perms.news.change_post %}
-                                            <a href="{% url 'edit-post' get_place.url news.id %}">
-                                                <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/>
+                                            <a href="{% url 'edit-post' get_place.url news.id %}" title="{% trans 'Edit post' %}">
+                                                <i class="icon-edit" style="font-size:16px;"></i>
                                             </a>
                                         {% endif %}
                                         {% if perms.news.delete_post %}
-                                            <a href="{% url 'delete-post' get_place.url news.id %}">
-                                                <img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/>
+                                            <a href="{% url 'delete-post' get_place.url news.id %}" title="{% trans 'Delete post' %}">
+                                                <i class="icon-trash" style="font-size:16px;"></i>
                                             </a>
                                         {% endif %}
                                     {% endif %}
                                 </h2>
                                 {% get_comment_count for news as comment_count %}
-                                <p class="postinfo">{% trans "Written by" %} {{ news.author }} {% trans "on" %} {{ news.pub_date }} | {{ news.views }} {% trans "views" %} | <a href="{{ news.get_absolute_url }}">{{ comment_count }} {% trans "comments" %}</a></p>
-                                {{ news.post_message|safe }}
+                                <p class="postinfo">{% trans "Written by" %} {{ news.author }} {% trans "on" %} {{ news.pub_date }} | {% if news.views %}{{ news.views }} {% trans "views" %} |{% endif %} <a href="{{ news.get_absolute_url }}">{{ comment_count }} {% trans "comments" %}</a></p>
+                                {{ news.description|safe }}
                                 <div style="margin-bottom:30px;"></div>
                             {% empty %}
                                 <ul class="unstyled">
@@ -277,8 +316,8 @@
                                 {% if perms.news.add_post %}
                                     <h4>{% trans "Administration" %}</h4>
                                     <ul class="unstyled">
-                                        <li><a href="{% url 'add-post' get_place.url %}">
-                                            <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new post' %}" title="{% trans 'Add new post' %}"/>{% trans 'Add new post' %}
+                                        <li><a href="{% url 'add-post' get_place.url %}" title="{% trans 'Add new post' %}">
+                                            <i class="icon-plus" style="font-size:16px;"></i> {% trans 'Add new post' %}
                                         </a></li>
                                     </ul>
                                 {% endif %}
@@ -286,7 +325,7 @@
                             <h4>{% trans "Most viewed" %}</h4>
                                 {% for p in mostviewed %}
                                     <ul class="unstyled">
-                                        <li><a href="{% url 'view-post' get_place.url p.id %}">{{ p.post_title }}</a></li>
+                                        <li><a href="{% url 'view-post' get_place.url p.id %}">{{ p.title }}</a></li>
                                     </ul>
                                 {% endfor %}
                             <h4>{% trans "Most commented" %}</h4>
@@ -312,7 +351,13 @@
                             <ul class="unstyled">
                                 {% for debate in debates %}
                                     {% if debate.is_active %}
-                                        <li><a href="{{ debate.get_absolute_url }}">{{ debate.title }}</a></li>
+                                        <li><a href="{{ debate.get_absolute_url }}">{{ debate.title }}</a>
+                                            <a href="{% url 'edit-debate' get_place.url debate.id %}" title="{% trans 'Edit debate' %}">
+                                            <i class="icon-edit" style="font-size:16px;"></i></a>
+                                            {% comment %}
+                                            <a href="{% url 'delete-debate' get_place.url debate.id %}" title="{% trans 'Delete debate' %}">
+                                            <i class="icon-trash" style="font-size:16px;"></i></a>
+                                            {% endcomment %}
                                     {% endif %}
                                 {% empty %}
                                     <li>{% trans "No debates started." %}</li>
@@ -334,19 +379,19 @@
                                 <h4>{% trans "Administration" %}</h4>
                                 <ul class="unstyled">
                                     {% if perms.debate.add_debate %}
-                                        <li><a href="{% url 'add-debate' get_place.url %}">
-                                            <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add' %}" title="{% trans 'Add' %}"/>{% trans "Add debate" %}
+                                        <li><a href="{% url 'add-debate' get_place.url %}" title="{% trans 'Add debate' %}">
+                                            <i class="icon-plus" style="font-size:16px;"></i> {% trans "Add debate" %}
                                         </a></li>
                                     {% endif %}
                                     {% comment %}
                                     {% if perms.debate.change_debate %}
-                                        <li><a href="{% url 'edit-debate' get_place.url debate.id %}">
-                                            <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/>
+                                        <li><a href="{% url 'edit-debate' get_place.url debate.id %}" title="{% trans 'Edit debate' %}">
+                                            <i class="icon-edit" style="font-size:16px;"></i> {% trans 'Edit debate' %}
                                         </a></li>
                                     {% endif %}
                                     {% if perms.debate.delete_debate %}
-                                        <li><a href="{% url 'delete-debate' get_place.url %}">
-                                            <img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/>
+                                        <li><a href="{% url 'delete-debate' get_place.url %}" title="{% trans 'Delete debate' %}">
+                                            <i class="icon-trash" style="font-size:16px;"></i>
                                         </a></li>
                                     {% endif %}
                                     {% endcomment %}
@@ -370,7 +415,21 @@
                             <ul class="unstyled">
                                 {% for proposal in proposals %}
                                     {% if not proposal.merged %}
-                                        <li><a href="{{ proposal.get_absolute_url }}">{{ proposal.title }}</a> {% trans "by" %} {{ proposal.author }} {% trans "on" %} {{ proposal.proposalset }} {% trans "at" %} {{ proposal.pub_date|date:"d F Y" }}</li>
+                                        <li><a href="{{ proposal.get_absolute_url }}">{{ proposal.title }}</a>
+                                            {% trans "by" %} {{ proposal.author }} {% if proposal.proposalset %}
+                                            {% trans "on" %} <a href="{{ proposal.proposalset.get_absolute_url }}">{{ proposal.proposalset }}</a> {% endif %}
+                                            {% trans "at" %} {{ proposal.pub_date|date:"d F Y" }}
+                                            {% if perms.proposals.change_proposal %}
+                                                <a href="{% url 'edit-proposal' get_place.url proposal.id %}" title="{% trans 'Edit proposal' %}">
+                                                    <i class="icon-edit" style="font-size:16px;"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if perms.debate.delete_debate %}
+                                                <a href="{% url 'delete-proposal' get_place.url proposal.id %}" title="{% trans 'Delete proposal' %}">
+                                                    <i class="icon-trash" style="font-size:16px;"></i>
+                                                </a>
+                                            {% endif %}
+                                            </li>
                                     {% endif %}        
                                 {% empty %}
                                     <li>{% trans "No proposals available." %}</li>
@@ -388,7 +447,7 @@
                             <ul class="unstyled">
                                 {% for proposal in proposals %}
                                     {% if proposal.merged  %}
-                                        <li><a href="{{ proposal.get_absolute_url}}">{{ proposal.title }}</a> {% trans "by" %} {{ proposal.author }} {% trans "on"%} {{ proposalset }} {% trans "at" %} {{ proposal.pub_date|date:"d F Y"}}</li>
+                                        <li><a href="{{ proposal.get_absolute_url}}">{{ proposal.title }}</a> {% trans "by" %} {{ proposal.author }} {% trans "on" %} <a href="{{ proposal.proposalset.get_absolute_url }}">{{ proposalset }}</a> {% trans "at" %} {{ proposal.pub_date|date:"d F Y"}}</li>
                                     {% endif %}
                                 {% empty %}
                                         <li>{% trans "No merged proposals" %}</li>
@@ -403,8 +462,8 @@
                                 <ul class="unstyled">
                                     {% if perms.proposalsets.add_proposalset %}
                                         <li>
-                                            <a href="{% url 'add-proposalset' get_place.url %}">
-                                                <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new proposal' %}" title="{% trans 'Add new proposal' %}"/>{% trans "Add proposal set" %}
+                                            <a href="{% url 'add-proposalset' get_place.url %}" title="{% trans 'Add proposal set' %}">
+                                                <i class="icon-plus" style="font-size:16px;"></i> {% trans "Add proposal set" %}
                                             </a>
                                         </li>
                                     {% endif %}
@@ -412,17 +471,17 @@
                                 <ul class="unstyled">
                                     {% if perms.proposals.add_proposal %}
                                         <li>
-                                            <a href="{% url 'select_set' get_place.url %}">
-                                                <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new post' %}" title="{% trans 'Add new post' %}"/>{% trans "Add proposal" %}
+                                            <a href="{% url 'select_set' get_place.url %}" title="{% trans 'Add new proposal' %}">
+                                                <i class="icon-plus" style="font-size:16px;"></i> {% trans 'Add new proposal' %}
                                             </a>
                                         </li>
                                     {% endif %}
                                 </ul>
-                                 <ul class="unstyled">
+                                <ul class="unstyled">
                                     {% if perms.proposals.add_proposalset %}
                                         <li>
-                                            <a href="{% url 'merge_proposal' get_place.url %}">
-                                                <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Merge proposal' %}" title="{% trans 'Merge Proposal' %}"/>{% trans "Create Merged Proposal" %}
+                                            <a href="{% url 'merge_proposal' get_place.url %}" title="{% trans 'Merge proposal' %}">
+                                                <i class="icon-plus" style="font-size:16px;"></i> {% trans "Create merged proposal" %}
                                             </a>
                                         </li>
                                     {% endif %}
@@ -446,18 +505,18 @@
                                 {% for doc in documents %}
                                     <li><a href="{{ doc.docfile.url }}">{{ doc.title }} ({{ doc.get_file_ext }}, {{ doc.get_file_size }})</a>
                                     {% if perms.spaces.change_document %}
-                                        <a href="{% url 'edit-document' get_place.url doc.id %}">
-                                            <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/>
+                                        <a href="{% url 'edit-document' get_place.url doc.id %}" title="{% trans 'Edit document' %}">
+                                            <i class="icon-edit" style="font-size:16px;"></i>
                                         </a>
                                     {% endif %}
                                     {% if perms.spaces.delete_document %}
-                                        <a href="{% url 'delete-document' get_place.url doc.id %}">
-                                            <img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/>
+                                        <a href="{% url 'delete-document' get_place.url doc.id %}" title="{% trans 'Delete document' %}">
+                                            <i class="icon-trash" style="font-size:16px;"></i>
                                         </a>
                                     {% endif %}
                                     </li>
                                 {% empty %}
-                                    <li>{% trans "No documents available." %}</li>
+                                    <li>{% trans "No documents or files available." %}</li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -466,8 +525,8 @@
                                 <h4>{% trans "Administration" %}</h4>
                                 <ul class="unstyled">
                                     {% if perms.spaces.add_document %}
-                                        <li><a href="{% url 'add-document' get_place.url %}">
-                                                <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new post' %}" title="{% trans 'Add new post' %}"/>{% trans "Add documents"%}
+                                        <li><a href="{% url 'add-document' get_place.url %}" title="{% trans 'Add new document' %}">
+                                                <i class="icon-plus" style="font-size:16px;"></i> {% trans "Add documents"%}
                                             </a>
                                         </li>
                                     {% endif %}
@@ -485,52 +544,35 @@
                 <div class="tab-pane" id="events">
                     <div class="row">
                         <div class="span8">
-                            <script type="text/javascript" src="{{ STATIC_URL }}/js/jqueryui-datepicker-{{ LANGUAGE_CODE }}.js"></script>
-                            <script type="text/javascript">
-                                {% comment %}
-                                    This code make thw calendar inhibit the onSelect function
-                                    on load it returns the error:
-                                    Uncaught TypeError: Property 'datepicker' of object function (a,b){return new e.fn.init(a,b,h)} is not a function (anonymous function)
-
-                                $.datepicker($.datepicker.regional['{{ LANGUAGE_CODE }}']);  
-                                $('#datepicker').datepicker($.extend({},
-                                     $.datepicker.regional[ '{{ LANGUAGE_CODE }}' ], {
-                                     onSelect: function(dateText) {
-                                         var month = dateText.split("/")[0];
-                                         var year = dateText.split("/")[2];
-                                         window.location = "calendar/" + year + "/" + month + "/";
-                                     }
-                                }));
-
-                                
-                                $('#datepicker').datepicker({
-                                     onSelect: function(dateText) {
-                                         var month = dateText.split("/")[0];
-                                         var year = dateText.split("/")[2];
-                                         window.location = "calendar/" + year + "/" + month + "/";
-                                     }
-                                });
-                                {% endcomment %} 
-		                        $.datepicker.setDefaults(
-		                            { onSelect: function(dateText) {
-                                        var date = $(this).datepicker("getDate");
-                                        var month = date.getMonth() + 1;
-                                        var year = date.getFullYear();
-                                        window.location = "calendar/" + year + "/" + month + "/";
-                                      }
-                                    }
-                                );
-		                        $( "#datepicker" ).datepicker( $.datepicker.regional[ "{{ LANGUAGE_CODE }}" ] );
-                            </script>
-                            <div id="datepicker"></div>
+                            <h4>{% trans "Next events" %}</h4>
+                            <ul class="unstyled">
+                                {% for e in event %}
+                                    {% if not e.is_due %}
+                                        <li><a href="{% url 'view-event' get_place.url e.id %}">{{ e.title }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                            <h4>{% trans "Past events" %}</h4>
+                            <ul class="unstyled">
+                                {% for e in event %}
+                                    {% if e.is_due %}
+                                        <li><a href="{% url 'view-event' get_place.url e.id %}">{{ e.title }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
                         </div>
                         <div class="span4">
+                            <div class="alert fade in">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                {% trans "<strong>Hey!</strong> You can click on a day to see a bigger calendar with the events." %}
+                            </div>
+                            <div id="datepicker"></div>
                             {% if user_is_admin %}
                                 <h4>{% trans "Administration" %}</h4>
                                 <ul class="unstyled">
                                     {% if perms.spaces.add_event %}
-                                        <li><a href="{% url 'add-event' get_place.url %}">
-                                            <img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add new event' %}" title="{% trans 'Add new event' %}"/>{% trans "Add event"%}
+                                        <li><a href="{% url 'add-event' get_place.url %}" title="{% trans 'Add new event' %}">
+                                            <i class="icon-plus" style="font-size:16px;"></i> {% trans "Add event"%}
                                         </a></li>
                                     {% endif %}
                                 </ul>
@@ -621,8 +663,4 @@
     {% for p in page %}
         <a href="/{{ p.uri }}" title="{{ p.name }}">{{ p.name }}</a><br /> |
     {% endfor %}
-{% endblock %}
-
-{% block extrainfo %}
-    <p>{% trans "Space created by:" %} {{ get_place.author }} {% trans "on" %} {{ get_place.date|date:"j/m/Y G:i"}}</p>
 {% endblock %}

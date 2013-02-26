@@ -2,16 +2,12 @@
 {% load i18n %}
 {% load wysiwyg %}
 
-{% comment %}
-This is a form to create a new poll. It uses poll_board.js file to add new choices dynamically.
-{% endcomment %}
-
 {% block title %}
       {% if form.title.value %}
-        {% trans "Edit voting process" %} {{ form.title.value }}
-          {% else %}
-          {% trans "Create new voting process" %}
-          {% endif %}
+          {% trans "Edit voting process" %} {{ form.title.value }}
+      {% else %}
+      {% trans "Create new voting process" %}
+      {% endif %}
 {% endblock %}
 
 
@@ -61,7 +57,7 @@ This is a form to create a new poll. It uses poll_board.js file to add new choic
             {% endif %}
 
             <div class="control-group {% if form.title.errors %}error{% endif%}">
-                <label>{{ form.title.label }}</label>
+                <label class="control-label">{{ form.title.label }}</label>
                 <div class="controls">
                     <div class="input-append">
                         {{ form.title }}
@@ -78,9 +74,27 @@ This is a form to create a new poll. It uses poll_board.js file to add new choic
                     {% endif %}
                 </div>
             </div>
+            <div class="control-group {% if form.description.errors %}error{% endif%}">
+                <label class="control-label">{{ form.description.label }}</label>
+                <div class="controls">
+                    <div class="input-append">
+                        {{ form.description }}
+                        {% if form.description.help_text %}
+                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.description.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {% endif %}
+                    </div>
+                    {% if form.description.errors %}
+                    <p class="help-block">
+                        {% for error in form.description.errors %}
+                        {{ error|escape }}
+                        {% endfor %}
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
 
             <div class="control-group {% if form.proposalsets.errors %}error{% endif%}">
-                <label>{{ form.proposalsets.label }}</label>
+                <label class="control-label">{{ form.proposalsets.label }}</label>
                 <div class="controls">
                     <div class="input-append">
                         {{ form.proposalsets }}
@@ -98,7 +112,7 @@ This is a form to create a new poll. It uses poll_board.js file to add new choic
                 </div>
             </div>
             <div class="control-group {% if form.proposals.errors %}error{% endif%}">
-                <label>{{ form.proposals.label }}</label>
+                <label class="control-label">{{ form.proposals.label }}</label>
                 <div class="controls">
                     <div class="input-append">
                         {{ form.proposals }}
@@ -116,10 +130,14 @@ This is a form to create a new poll. It uses poll_board.js file to add new choic
                 </div>
             </div>
             <div class="control-group {% if form.start_date.errors %}error{% endif%}">
-                <label>{{ form.start_date.label }}</label>
+                <label class="control-label">{{ form.start_date.label }}</label>
                 <div class="controls">
                     <div class="input-append">
-                        <input type="text" name="start_date" id="datepicker-start" class="hasDatePicker">
+                        {% if form.title.value %}
+                        {{ form.start_date }}
+                        {% else %}
+                        <input type="text" name="start_date" id="datepicker-start" class="hasDatePicker notranslate" />
+                        {% endif %}
                         {% if form.start_date.help_text %}
                         <span class="add-on"><a href="#" rel="tooltip" title="{{ form.start_date.help_text }}"><i class="icon-question-sign"></i></a></span>
                         {% endif %}
@@ -134,10 +152,10 @@ This is a form to create a new poll. It uses poll_board.js file to add new choic
                 </div>
             </div>
             <div class="control-group {% if form.end_date.errors %}error{% endif%}">
-                <label>{{ form.end_date.label }}</label>
+                <label class="control-label">{{ form.end_date.label }}</label>
                 <div class="controls">
                     <div class="input-append">
-                        <input type="text" name="end_date" id="datepicker-end" class="hasDatePicker">
+                        <input type="text" name="end_date" id="datepicker-end" class="hasDatePicker notranslate">
                         {% if form.end_date.help_text %}
                         <span class="add-on"><a href="#" rel="tooltip" title="{{ form.end_date.help_text }}"><i class="icon-question-sign"></i></a></span>
                         {% endif %}
@@ -157,7 +175,7 @@ This is a form to create a new poll. It uses poll_board.js file to add new choic
             <h3>{% trans "Staff members options" %}</h3>
 
             <div class="control-group {% if form.author.errors %}error{% endif%}">
-                <label>{{ form.author.label }}</label>
+                <label class="control-label">{{ form.author.label }}</label>
                 <div class="controls">
                     <div class="input-prepend">
                         {{ form.author }}
@@ -176,7 +194,7 @@ This is a form to create a new poll. It uses poll_board.js file to add new choic
             </div>
 
             <div class="control-group {% if form.space.errors %}error{% endif%}">
-                <label>{{ form.space.label }}</label>
+                <label class="control-label">{{ form.space.label }}</label>
                 <div class="controls">
                     <div class="input-prepend">
                         {{ form.space }}

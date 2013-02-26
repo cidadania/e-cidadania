@@ -5,11 +5,11 @@
 <p>Type the message to send to this users: {{ people }}</p>
 <p>Please take in mind that the mass mailing system takes some time before completing. Don't reload the page or click anything. When the action has been finished you will be redirected to the admninsitration</p>
 
-<form action="" method="post">
+<form action="" method="post">{% csrf_token %}
 
-    <input type="text" name="massmail_subject">
+    <input type="text" name="massmail_subject" />
     <textarea rows="10" cold="40" id="message">Write your message here</textarea>
-    <input type="submit" name="send" value="Send mail" />
+    <input type="submit" name="sendmail" value="Send mail" />
 </form>
 
 {% endblock %}

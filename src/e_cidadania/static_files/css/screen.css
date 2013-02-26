@@ -9,29 +9,11 @@
 
 /* HTML TAGS DEFINITION */
 
-.add-row.btn.primary.small {
-  visibility:hidden;
-}
-
-.poll_info {
-  height: 30px;
-}
-
-.poll_detail {
-  margin-top: 10px;
-  margin-left: 50px;
-}
-.poll_question {
-  color: #006DCC;
-}
-.votes {
-  visibility:hidden;
-}
 body {
 	background: #FAFAFA;
 	padding: 0;
 	margin: 0;
-	font-family: Verdana, "Lucida Sans", Arial;
+	font-family: 'Duru Sans', Verdana, "Lucida Sans", Arial;
 	font-size: 12px;
 	color: #000;
 	cursor: default;
@@ -43,6 +25,11 @@ a {
 
 img {
 	border: none;
+}
+
+textarea {
+    width: 510px;
+    margin: 10px;
 }
 /* END HTML TAGS DEFINITION */
 
@@ -70,10 +57,12 @@ hr { /* This hr replaces the bootstrap one */
     color: #F00;
 }
 
-@font-face {
-    font-family: "SansationRegular";
-    src: url('http://www.fontsforweb.com/public/fonts/424/SansationRegular.eot');
-    src: local("Sansation"), url('http://www.fontsforweb.com/public/fonts/424/SansationRegular.ttf') format("truetype");
+.nounderline:hover {
+    text-decoration: none;
+}
+
+.popover {
+    color: #222;
 }
 
 #logo {
@@ -94,21 +83,40 @@ hr { /* This hr replaces the bootstrap one */
     margin-top: 45px;
 }
 
-/*.content {*/
-/*    min-height: 500px;*/
-/*}*/
-
-footer {
-    background: #EEE;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #DDD;
-    margin-bottom: 15px;
-    border-top: 1px solid #DDD;
-    padding-top: 10px;
-    margin-top: 20px;
+.mainfooter {
+    position: fixed;
+    bottom: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    margin: auto;
+    color: #EEE;
+    background: #000;
+    opacity: 0.8;
+    border: none;
+    font-size: 10px;
 }
 
+.mainfooter a {
+    text-decoration: none;
+}
+
+.centered {
+    height: 400px;
+    position: absolute;
+    top: 20%;
+    margin-top: -200px;
+}
 /* END COMMON CUSTOMIZATIONS */
+
+/* BOOTSTRAP OVERRIDES */
+.modal {
+    width: 700px;
+    height: 500px;
+    margin: -250px 0 0 -350px;
+    overflow: auto;
+}
+/* END BOOTSTRAP OVERRIDES */
 
 /* MAIN INDEX */
 .introtitle {
@@ -165,6 +173,7 @@ footer {
 }
 
 .postinfo {
+    margin-top: -10px;
     padding-top: 5px;
     padding-bottom: 5px;
     border-bottom: 1px solid #DDD;
@@ -461,7 +470,7 @@ td.filled ul li a {
 .specialmargin {
     width: 90%;
     padding: 1% 4%;
-    background: #444;
+    background: #222;
     border-top: 1px solid #999;
     border-bottom: 1px solid #999;
     padding: 40px 4.52%;
@@ -473,11 +482,13 @@ td.filled ul li a {
 }
 
 .note #view-note a {
-    color: #FFF;
+    color: #000;
+    padding: 0px 5px 0px 5px;
 }
 
 .note #edit-note a {
-    color: #FFF;
+    color: #000;
+    padding: 0px 5px 0px 5px;
 }
 
 #debate td, th {
@@ -498,26 +509,29 @@ tbody td.criteria-title, tbody th.criteria-title {
 
 .handler {
     float: left;
-    height: 10px;
+    height: 18px;
     width: 110px;
-    background-color: #867794;
+    background-color: rgba(255, 255, 255, 0.6);
+    /*background-color: #867794;*/
     margin: -5px 0px 0px -5px;
 }
 
-.deletenote {
-    float: right;
-    background: #F00;
-    border: 1px solid #666;
-    height: 8px;
-    width: 8px;
-    line-height: 6px;
+.deletenote a {
+    text-decoration: none;
+    color: #F00;
+    padding: 0px 5px 0px 5px;
+}
+
+.deletenote a:hover {
+    text-decoration: none;
+    color: #F00;
 }
 
 .note, .note-alpha {
     background-color: #dbdbfb; /*#b9a6cf; /*url('../assets/note.png');*/
     font-size: 0.8em;
     width: 100px;
-    height: 70px;
+    height: 100px;
     float: left;
     margin: 5px;
     padding: 5px;
@@ -677,3 +691,42 @@ table {
     display:none;
 }
 /* END DEBATE */
+
+/* VOTES AND POLLS */
+.add-row.btn.primary.small {
+  visibility:hidden;
+}
+
+.poll_info {
+  height: 30px;
+}
+
+.poll_detail {
+  margin-top: 10px;
+  margin-left: 50px;
+}
+.poll_question {
+  color: #006DCC;
+}
+.votes {
+  visibility:hidden;
+}
+
+/* Empty class for jqueryui-datepicker translate fix */
+
+.notranslate{
+}
+
+/*^END VOTES AND POLLS */
+
+/************************************************
+ PATCH FOR FONT-AWESOME WITH BOOTSTRAP 2.2.1
+**************************************************/
+
+[class^="icon-"], [class*=" icon-"]{
+    background:none;
+  }
+
+
+.icon-white, .nav-pills > .active > a > [class^="icon-"], .nav-pills > .active     > a > [class*=" icon-"], .nav-list > .active > a > [class^="icon-"], .nav-lis    t > .active > a > [class*=" icon-"], .navbar-inverse .nav > .active > a > [cla    ss^="icon-"], .navbar-inverse .nav > .active > a > [class*=" icon-"], .dropdow    n-menu > li > a:hover > [class^="icon-"], .dropdown-menu > li > a:hover > [cla    ss*=" icon-"], .dropdown-menu > .active > a > [class^="icon-"], .dropdown-menu     > .active > a > [class*=" icon-"], .dropdown-submenu:hover > a > [class^="ico    n-"], .dropdown-submenu:hover > a > [class*=" icon-"] {background:none;}
+

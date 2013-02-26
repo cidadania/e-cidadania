@@ -26,10 +26,10 @@ urlpatterns = patterns('apps.ecidadania.staticpages.views',
 
     url(r'^$', ViewPage.as_view(), name='view-page'),
 
-    url(_(r'^edit/'), EditPage.as_view(), name='edit-page'),
+    url(r'^edit/', EditPage.as_view(), name='edit-page'),
     
-    url(_(r'^delete/'), DeletePage.as_view(), name='delete-page'),
+    url(r'^delete/', DeletePage.as_view(), name='delete-page'),
     
-    url(_(r'^add/'), 'add_page', name='add-page')
+    url(r'^add/', 'add_page', name='add-page')
 )
 

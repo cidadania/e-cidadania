@@ -17,6 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
 
+from datetime import datetime
+
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -25,20 +27,7 @@ from django.contrib.sites.models import Site
 
 from core.spaces.file_validation import ContentTypeRestrictedFileField
 from fields import StdImageField
-
-ALLOWED_CONTENT_TYPES = [
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
-    'application/vnd.openxmlformats-officedocument.presentationml.template',
-    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    'application/pdf',
-    'application/msword',
-    'application/vnd.oasis.opendocument.text',
-    'application/vnd.oasis.opendocument.presentation',
-    'application/vnd.oasis.opendocument.spreadsheet',
-    'application/vnd.openofficeorg.extension',
-]
+from allowed_types import ALLOWED_CONTENT_TYPES
 
 
 class Space(models.Model):
@@ -176,6 +165,7 @@ class Document(models.Model):
     def get_absolute_url(self):
         return '/spaces/%s/docs/%s' % (self.space.url, self.id)
 
+
 class Event(models.Model):
 
     """
@@ -197,6 +187,12 @@ class Event(models.Model):
     description = models.TextField(_('Description'), blank=True, null=True)
     location = models.TextField(_('Location'), blank=True, null=True)
     
+    def is_due(self):
+        if self.pub_date < datetime.now():
+            return True
+        else:
+            return False
+
     class Meta:
         ordering = ['event_date']
         verbose_name = _('Event')
@@ -214,6 +210,7 @@ class Event(models.Model):
         return ('view-event', (), {
             'space_url': self.space.url,
             'event_id': str(self.id)})
+
 
 class Intent(models.Model):
 

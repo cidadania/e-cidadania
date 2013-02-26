@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-28 11:27+0200\n"
+"POT-Creation-Date: 2013-01-08 11:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,44 +19,48 @@ msgstr ""
 
 #: static/js/debate_board.js:12
 msgid "Write here your title"
-msgstr "Escribe aquí o título"
+msgstr ""
 
 #: static/js/debate_board.js:13
 msgid "Write here your message"
-msgstr "Escribe aquí a mensaxe"
+msgstr ""
 
 #: static/js/debate_board.js:14
 msgid "Edit"
-msgstr "Editar"
+msgstr ""
 
 #: static/js/debate_board.js:15
 msgid "View"
-msgstr "Ver"
+msgstr ""
 
 #: static/js/debate_board.js:16
 msgid "There has been an error."
-msgstr "Houbo un erro."
+msgstr ""
 
 #: static/js/debate_board.js:17
 msgid "Couldn't create note."
-msgstr "Non se puido crear a nota."
+msgstr ""
 
 #: static/js/debate_board.js:18
 msgid "Couldn't get note data."
-msgstr "Non se puido coller os datos da nota."
+msgstr ""
 
 #: static/js/debate_board.js:19
 msgid "Couldn't save note."
-msgstr "Non se pudo gardar a nota."
+msgstr ""
 
 #: static/js/debate_board.js:20
 msgid "Couldn't save note position."
-msgstr "Non se puido gardar a posición da nota."
+msgstr ""
 
 #: static/js/debate_board.js:21
 msgid "Couldn't delete note."
-msgstr "Non se puido eliminar a nota."
+msgstr ""
 
 #: static/js/debate_board.js:22
 msgid "Are you sure?"
-msgstr "Está seguro?"
+msgstr ""
+
+#: static/js/debate_board.js:23
+msgid "Comment"
+msgstr ""

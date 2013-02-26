@@ -1,0 +1,65 @@
+{% extends "admin/base_site.html" %}
+{% load admin_static admin_list i18n %}
+
+{% block extrastyle %}{{ block.super }}
+    <link rel="stylesheet" type="text/css"
+          href="{% static "admin/css/dashboard.css" %}"/>
+
+    {% if not media.js %}
+        <script type="text/javascript" src="{% static "admin/js/core.js" %} "></script>
+        <script type="text/javascript" src="{% static "admin/js/jquery.min.js" %}"></script>
+        <script type="text/javascript" src="{% static "admin/js/jquery.init.js" %}"></script>
+    {% endif %}
+
+{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+
+    <div id="content-main">
+
+        {% if app_list %}
+            {% for app in app_list %}
+                <div class="module">
+                    <table summary="
+                            {% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
+                        <caption>
+                            <a href="{{ app.app_url }}" class="section">
+                                {% blocktrans with app.name as name %}{{ name }} {% endblocktrans %}</a></caption>
+                        {% for model in app.models %}
+                            <tr>
+                                {% if model.perms.change %}
+                                    <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+                                {% else %}
+                                    <th scope="row">{{ model.name }}</th>
+                                {% endif %}
+
+                                {% if model.perms.add %}
+                                    <td><a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a></td>
+                                {% else %}
+                                    <td>&nbsp;</td>
+                                {% endif %}
+
+                                {% if model.perms.change %}
+                                    <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
+                                {% else %}
+                                    <td>&nbsp;</td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>{% trans "You don't have permission to edit anything." %}</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

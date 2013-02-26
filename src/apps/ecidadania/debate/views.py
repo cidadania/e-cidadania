@@ -24,41 +24,35 @@ These are the views that control the debates.
 import json
 import datetime
 
-# Generic class-based views
 from django.views.generic.base import TemplateView, RedirectView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-
-# Decorators. the first is a wrapper to convert function-based decorators
-# to method decorators that can be put in subclass methods.
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required, permission_required
-
-# Response types
-from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.shortcuts import render_to_response, get_object_or_404, redirect
-
-# Some extras
 from django.contrib.auth.models import User, Group
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.comments import *
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.comments.forms import CommentForm
+from django.utils.decorators import method_decorator
+from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.serializers.json import DjangoJSONEncoder
+from django.core.urlresolvers import reverse
+from django.db import connection
+from django.forms.models import modelformset_factory, inlineformset_factory
 
-# Application models
+from apps.ecidadania.debate import url_names as urln
 from apps.ecidadania.debate.models import Debate, Note, Row, Column
 from apps.ecidadania.debate.forms import DebateForm, UpdateNoteForm, \
     NoteForm, RowForm, ColumnForm, UpdateNotePosition
 from core.spaces.models import Space
-
+from core.permissions import has_space_permission, has_all_permissions, \
+    has_operation_permission
 from helpers.cache import get_or_insert_object_in_cache
-
-from django.contrib.comments import *
-from django.contrib.contenttypes.models import ContentType
-from django.core.serializers.json import DjangoJSONEncoder
-from django.contrib.comments.forms import CommentForm
-from django.db import connection
 
 
 @permission_required('debate.add_debate')
@@ -75,25 +69,16 @@ def add_new_debate(request, space_url):
     """
     place = get_object_or_404(Space, url=space_url)
 
-    if request.user in place.admins.all() or request.user.is_staff or request.user.is_superuser:
+    if has_space_permission(request.user, place, allow=['admins']) \
+    or has_all_permissions(request.user):
 
-        # Define FormSets
-        # This class is used to make empty formset forms required
-        # See http://stackoverflow.com/questions/2406537/django-formsets-make-first-required/4951032#4951032
-        class RequiredFormSet(BaseFormSet):
-            """
-            """
-            def __init__(self, *args, **kwargs):
-                super(RequiredFormSet, self).__init__(*args, **kwargs)
-                for form in self.forms:
-                    form.empty_permitted = False
-
-        RowFormSet = formset_factory(RowForm, max_num=10, formset=RequiredFormSet, can_delete=True)
-        ColumnFormSet = formset_factory(ColumnForm, max_num=10, formset=RequiredFormSet, can_delete=True)
+        RowFormSet = inlineformset_factory(Debate, Row, extra=1)
+        ColumnFormSet = inlineformset_factory(Debate, Column, extra=1)
 
         debate_form = DebateForm(request.POST or None)
         row_formset = RowFormSet(request.POST or None, prefix="rowform")
         column_formset = ColumnFormSet(request.POST or None, prefix="colform")
+
 
         # Get the last PK and add 1 to get the current PK
         try:
@@ -102,38 +87,92 @@ def add_new_debate(request, space_url):
         except ObjectDoesNotExist:
             current_debate_id = 1
 
-        if request.user.has_perm('debate_add') or request.user.is_staff:
-            if request.method == 'POST':
-                if debate_form.is_valid() and row_formset.is_valid() and column_formset.is_valid():
-                    debate_form_uncommited = debate_form.save(commit=False)
-                    debate_form_uncommited.space = place
-                    debate_form_uncommited.author = request.user
+        if request.method == 'POST':
+            if debate_form.is_valid() and row_formset.is_valid() \
+            and column_formset.is_valid():
+                debate_form_uncommited = debate_form.save(commit=False)
+                debate_form_uncommited.space = place
+                debate_form_uncommited.author = request.user
 
-                    saved_debate = debate_form_uncommited.save()
-                    debate_instance = get_object_or_404(Debate, pk=current_debate_id)
+                saved_debate = debate_form_uncommited.save()
+                debate_instance = get_object_or_404(Debate,
+                    pk=current_debate_id)
+                
+                row = row_formset.save(commit=False)
+                for form in row:
+                    form.debate = debate_instance
+                    form.save()
+                
+                column = column_formset.save(commit=False)
+                for form in column:
+                    form.debate = debate_instance
+                    form.save()
 
-                    for form in row_formset.forms:
-                        row = form.save(commit=False)
-                        row.debate = debate_instance
-                        row.save()
+                return HttpResponseRedirect(reverse(urln.DEBATE_VIEW,
+                    kwargs={'space_url': space_url,
+                            'debate_id': str(debate_form_uncommited.id)}))
 
-                    for form in column_formset.forms:
-                        column = form.save(commit=False)
-                        column.debate = debate_instance
-                        column.save()
+        return render_to_response('debate/debate_add.html',
+                              {'form': debate_form,
+                               'rowform': row_formset,
+                               'colform': column_formset,
+                               'get_place': place,
+                               'debateid': current_debate_id},
+                              context_instance=RequestContext(request))
+    return render_to_response('not_allowed.html',
+                              context_instance=RequestContext(request))
 
-                    return redirect('/spaces/' + space_url + '/debate/' + str(debate_form_uncommited.id))
-            return render_to_response('debate/debate_add.html',
+@permission_required('debate.change_debate')
+def edit_debate(request, space_url, debate_id):
+
+
+    place = get_object_or_404(Space, url=space_url)
+
+    if has_operation_permission(request.user, place, 'debate.change_debate', \
+        allow=['admins', 'mods']):
+
+        RowFormSet = inlineformset_factory(Debate, Row, extra=1)
+        ColumnFormSet = inlineformset_factory(Debate, Column, extra=1)
+
+        instance = Debate.objects.get(pk=debate_id)
+        debate_form = DebateForm(request.POST or None, instance=instance)
+        row_formset = RowFormSet(request.POST or None, instance=instance, prefix="rowform")
+        column_formset = ColumnFormSet(request.POST or None, instance=instance, prefix="colform")
+
+        if request.method == 'POST':
+            if debate_form.is_valid() and row_formset.is_valid() \
+            and column_formset.is_valid():
+                debate_form_uncommited = debate_form.save(commit=False)
+                debate_form_uncommited.space = place
+                debate_form_uncommited.author = request.user
+
+                saved_debate = debate_form_uncommited.save()
+                debate_instance = get_object_or_404(Debate,
+                    pk=debate_id)
+                        
+                row = row_formset.save(commit=False)
+                for form in row:
+                    form.debate = instance
+                    form.save()
+
+                    column = column_formset.save(commit=False)
+                    for form in column:
+                        form.debate = instance
+                        form.save()
+
+                return HttpResponseRedirect(reverse(urln.DEBATE_VIEW,
+                    kwargs={'space_url': space_url,
+                            'debate_id': str(debate_form_uncommited.id)}))
+
+        return render_to_response('debate/debate_add.html',
                                   {'form': debate_form,
                                    'rowform': row_formset,
                                    'colform': column_formset,
                                    'get_place': place,
-                                   'debateid': current_debate_id},
+                                   'debateid': pk},
                                   context_instance=RequestContext(request))
     return render_to_response('not_allowed.html',
                               context_instance=RequestContext(request))
-
-
 def get_debates(request):
 
     """
@@ -146,11 +185,11 @@ def get_debates(request):
 def create_note(request, space_url):
 
     """
-    This function creates a new note inside the debate board. It receives the order
-    from the createNote() AJAX function. To create the note first we create the note
-    in the DB, and if successful we return some of its parameters to the debate
-    board for the user. In case the petition had errors, we return the error message
-    that will be shown by jsnotify.
+    This function creates a new note inside the debate board. It receives the
+    order from the createNote() AJAX function. To create the note first we
+    create the note in the DB, and if successful we return some of its
+    parameters to the debate board for the user. In case the petition had
+    errors, we return the error message that will be shown by jsnotify.
 
     .. versionadded:: 0.1.5
     """
@@ -161,19 +200,21 @@ def create_note(request, space_url):
             note_form_uncommited = note_form.save(commit=False)
             note_form_uncommited.author = request.user
             note_form_uncommited.debate = get_object_or_404(Debate,
-                                                            pk=request.POST['debateid'])
+                pk=request.POST['debateid'])
             note_form_uncommited.title = request.POST['title']
             note_form_uncommited.message = request.POST['message']
             note_form_uncommited.column = get_object_or_404(Column,
-                                                            pk=request.POST['column'])
-            note_form_uncommited.row = get_object_or_404(Row, pk=request.POST['row'])
+                pk=request.POST['column'])
+            note_form_uncommited.row = get_object_or_404(Row,
+                pk=request.POST['row'])
             note_form_uncommited.save()
 
             response_data = {}
             response_data['id'] = note_form_uncommited.id
             response_data['message'] = note_form_uncommited.message
             response_data['title'] = note_form_uncommited.title
-            return HttpResponse(json.dumps(response_data), mimetype="application/json")
+            return HttpResponse(json.dumps(response_data),
+                                mimetype="application/json")
 
         else:
             msg = "The note form didn't validate. This fields gave errors: " \
@@ -188,22 +229,29 @@ def update_note(request, space_url):
 
     """
     Updated the current note with the POST data. UpdateNoteForm is an incomplete
-    form that doesn't handle some properties, only the important for the note editing.
+    form that doesn't handle some properties, only the important for the note
+    editing.
     """
 
     if request.method == "GET" and request.is_ajax:
         note = get_object_or_404(Note, pk=request.GET['noteid'])
         ctype = ContentType.objects.get_for_model(Note)
-        latest_comments = Comment.objects.filter(is_public=True, is_removed=False, content_type=ctype, object_pk=note.id).order_by('-submit_date')[:5]
+        latest_comments = Comment.objects.filter(is_public=True,
+            is_removed=False, content_type=ctype, object_pk=note.id) \
+            .order_by('-submit_date')[:5]
         form = CommentForm(target_object = note)
 
         response_data = {}
         response_data['title'] = note.title
         response_data['message'] = note.message
-        response_data['comments'] = [ {'username': c.user.username, 'comment': c.comment, 'submit_date': c.submit_date} for c in latest_comments]
+        response_data['author'] = { 'name': note.author.username }
+        response_data['comments'] = [ {'username': c.user.username,
+            'comment': c.comment,
+            'submit_date': c.submit_date} for c in latest_comments]
         response_data["form_html"] = form.as_p()
 
-        return HttpResponse(json.dumps(response_data, cls=DjangoJSONEncoder), mimetype="application/json")
+        return HttpResponse(json.dumps(response_data, cls=DjangoJSONEncoder),
+                            mimetype="application/json")
 
     if request.method == "POST" and request.is_ajax:
         note = get_object_or_404(Note, pk=request.POST['noteid'])
@@ -227,9 +275,9 @@ def update_note(request, space_url):
 def update_position(request, space_url):
 
     """
-    This view saves the new note position in the debate board. Instead of reloading
-    all the note form with all the data, we use the partial form "UpdateNotePosition"
-    which only handles the column and row of the note.
+    This view saves the new note position in the debate board. Instead of
+    reloading all the note form with all the data, we use the partial form
+    "UpdateNotePosition" which only handles the column and row of the note.
     """
     note = get_object_or_404(Note, pk=request.POST['noteid'])
     position_form = UpdateNotePosition(request.POST or None, instance=note)
@@ -238,8 +286,10 @@ def update_position(request, space_url):
         if request.user == note.author or request.user.is_staff:
             if position_form.is_valid():
                 position_form_uncommited = position_form.save(commit=False)
-                position_form_uncommited.column = get_object_or_404(Column, pk=request.POST['column'])
-                position_form_uncommited.row = get_object_or_404(Row, pk=request.POST['row'])
+                position_form_uncommited.column = get_object_or_404(Column,
+                                                pk=request.POST['column'])
+                position_form_uncommited.row = get_object_or_404(Row,
+                                                pk=request.POST['row'])
                 position_form_uncommited.save()
                 msg = "The note has been updated."
             else:
@@ -257,12 +307,12 @@ def delete_note(request, space_url):
     """
     note = get_object_or_404(Note, pk=request.POST['noteid'])
 
-    if note.author == request.user or request.user.is_staff:
+    if note.author == request.user or has_all_permissions(request.user):
         ctype = ContentType.objects.get_for_model(Note)
         all_comments = Comment.objects.filter(is_public=True,
                 is_removed=False, content_type=ctype,
                 object_pk=note.id).all()
-        for i in range(note.comment_count):
+        for i in range(len(all_comments)):
             all_comments[i].delete()
         note.delete()
         return HttpResponse("The note has been deleted.")
@@ -285,15 +335,17 @@ class ViewDebate(DetailView):
         debate = get_or_insert_object_in_cache(Debate, key, pk=key)
         
         # Check debate dates
-        if datetime.date.today() >= debate.end_date or datetime.date.today() <  debate.start_date:
+        if datetime.date.today() >= debate.end_date \
+        or datetime.date.today() <  debate.start_date:
             self.template_name = 'debate/debate_outdated.html'
+            return debate
+            # We can't return none, if we do, the platform cannot show
+            # the start and end dates and the title
             #return Debate.objects.none()
         
         return debate
 
     def get_context_data(self, **kwargs):
-        """
-        """
         context = super(ViewDebate, self).get_context_data(**kwargs)
         columns = Column.objects.filter(debate=self.kwargs['debate_id'])
         rows = Row.objects.filter(debate=self.kwargs['debate_id'])

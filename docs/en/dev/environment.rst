@@ -4,12 +4,6 @@ Creating the environment
 For the people wanting to develop e-cidadania, we recommend to setup a new
 environment using buildout.
 
-We assume you this this steps:
-
- * Clone the repository (or download a copy of a stable release)
- * Install all the required dependencies in *requierements.txt*
-
-If you didn't, please take a look to :doc:`../docs/installation`
 Steps
 -----
 

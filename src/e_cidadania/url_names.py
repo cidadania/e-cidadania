@@ -37,4 +37,4 @@ VIEW_SITE_POST = 'view-site-post'
 
 SITE_FEED = 'site-feed'
 
-
+EXPLORE = 'explore'

@@ -1,26 +1,32 @@
 e-cidadania
 ===========
 
-Current version: 0.1.5 RC1
+Current version: 0.1.8 beta
 
-e-cidadania is a project to develop an open source application for citizen participation, usable by associations, companies and administrations.
+e-cidadania is a project to develop an open source application for citizen
+participation, which can be used for debates, proposals, trusted voting,
+usable by associations, companies and administrations.
 
-The e-cidadania objective is to maintain the platform as easy as possible while improving in the user interface to be easier to use as possible.
+The e-cidadania objective is to provide a way to make a full participation
+process on internet, or even use it as a complement to in person participative
+processes.
 
 Installation
 ------------
 
-Since e-cidadania 0.1.5 RC1 e-cidadania includes an automated buildout system.
-If you want to install it to do testing or development you should see
+Since e-cidadania 0.1.5 we include an automated buildout system. If you want to
+install it to do testing or development you should see
 `these instructions <https://github.com/cidadania/e-cidadania/blob/gsoc2012/docs/en/dev/environment.rst>`_
 
-If you don't want to create an isolated development environment,
+If you don't want to create an isolated development environment:
+
 * Download the source code from git, or from the official webpage.
-* You need to install the python packages specified in requirements.txt for e-cidadania, you can do it with pip::
+* You need to install the python packages specified in requirements.txt for
+  e-cidadania, you can do it with pip::
 
     sudo pip install -r requirements.txt
 
-* Configure setting.py to you desire.
+* Configure *src/e_cidadania/settings/production.py to you desire.
 * Generate the database with::
 
     python manage.py syncdb

@@ -1,0 +1,44 @@
+{% load admin_static %}
+{% if custom %}
+    {% for app in apps %}
+        {% if app.enabled %}
+            <div class="side_app side_selected">
+            <img src="{% static "admin/img/app_icon/" %}{{ app.icon }}">
+            <a class="app_title" href="javascript:void(0)"> {{ app.name }}</a>
+            <ul style="">
+        {% else %}
+            <div class="side_app">
+
+            <img src="{% static "admin/img/app_icon/" %}{{ app.icon }}">
+            <a class="app_title" href="javascript:void(0)"> {{ app.name }}</a>
+            <ul style="display:none">
+        {% endif %}
+
+    {% for model in app.models %}
+
+        <li><a href="/admin/{{ model.admin_url }}">{{ model.name }}</a></li>
+    {% endfor %}
+    </ul>
+    </div>
+    {% endfor %}
+{% else %}
+{% for app in apps %}
+    {% if app.enabled %}
+        <div class="side_app side_selected">
+        <img src="{% static "admin/img/app_icon/" %}{{ app.icon }}">
+        <a class="app_title" href="javascript:void(0)"> {{ app.name }}</a>
+
+        <ul style="">
+    {% else %}
+        <div class="side_app">
+        <img src="{% static "admin/img/app_icon/" %}{{ app.icon }}">
+        <a class="app_title" href="javascript:void(0)"> {{ app.name }}</a>
+        <ul style="display:none">
+    {% endif %}
+{% for model in app.models %}
+    <li><a href="/admin/{{ model.admin_url }}">{{ model.name }}</a></li>
+{% endfor %}
+</ul>
+</div>
+{% endfor %}
+{% endif %}

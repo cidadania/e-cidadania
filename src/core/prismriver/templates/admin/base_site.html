@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+{% load admin_static %}
+
+{% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
+
+{% block branding %}
+    <div id="side_logo">
+        <img src="{% static "admin/img/custom/logo.png" %}">
+    </div>
+    <h1 style="display:none" id="site-name">{% trans 'Django administration' %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

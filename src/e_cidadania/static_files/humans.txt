@@ -1,0 +1,48 @@
+/* TEAM */
+
+Lead developer: Oscar Carballal Prego.
+Contact: oscar@oscarcp.com
+Twitter: @pizte
+Location: Santiago de Compostela, Spain
+
+Developer: Tamara Atanasoska
+Twitter: @TAtanasoska
+Location: Skopje, Macedonia (FYROM) 
+
+Developer: Hugo Des LongChamps
+Twitter: @hugodes
+Location: Paris, France
+
+Developer: Bithin A.
+Twitter: @bithin2007
+Location: India
+
+Developer: Praveen Kumar
+Location: India
+
+Developer: Santiago Munín
+Location: A Coruña, Spain
+
+Developer: María José Montes Díaz
+
+
+Developer: Felipe Vieira
+
+Tyrant Optimizer Bastard: Ilgrim
+
+UI designer: Ana Ristevska
+
+
+/* THANKS */
+
+GL translators: Trasno Association
+Site: http://trasno.org
+
+
+/* SITE */
+
+Last update: 2013/01/23
+Languages: Spanish, Galician, English, Macedonian, Hindi, Chinese, French, Portuguese (Brazil), Dutch.
+Standards: HTML5, CSS3, JavaScript
+Components: Modernizr, jQuery, etc.     
+Software: Vim, Sublime Text 2, PyCharm IDE, GNOME, lots of epic battle hours against bug trolls in front of the terminal...

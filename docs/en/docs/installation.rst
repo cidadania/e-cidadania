@@ -10,11 +10,9 @@ Downloading platform
 Official download page
 ``````````````````````
 
-.. note:: The download section in the official website is not available yet.
-
-The are several ways to download e-cidadania. The most simple of them is going to
-the `downloads <http://ecidadania.org/downloads>`_ page in the website and download
-the latest stable or development versions, ready to use.
+The are several ways to download e-cidadania. The most simple of them is going
+to the `downloads <http://ecidadania.net/en/download/>`_ page in the website
+and download the latest stable or development versions, ready to use.
 
 GitHub packages
 ```````````````
@@ -35,7 +33,7 @@ Stable version
 
 You can find the latest stable version in the download page in ecidadania.org::
 
-    http://ecidadania.org/en/downloads
+    http://ecidadania.net/en/downloads
 
 .. _dev-version:
 
@@ -60,12 +58,14 @@ as version control system, so you will have to install it in your computer.
 Installing
 ----------
 
+.. warning:: Since e-cidadania 0.1.5 we included an automated buildout system. If you are going to develop in e-cidadania you should take a look to the :doc:`../dev/environment`.
+
 The installation process for e-cidadania is quite simple.
 
 Requirements
 ````````````
 - Apache, nginx, or any other web server with CGI suppport
-- FastCGI, CGI, Passenger or other CGI.
+- FastCGI, uWSGI, Passenger or other CGI.
 
 **Dependencies**
 
@@ -95,9 +95,6 @@ Platform
 ````````
 There isn't a proper installation process in e-cidadania, you just have to copy
 the files to you preferred installation directory.
-
-If you're going to make tests or develop e-cidadania, it is better that you
-follow the instructions on how to build the development environment: :doc:`../dev/environment`
 
 If you are going to use it in production, or you just want to give e-cidadania
 a try follow this steps:

@@ -19,7 +19,9 @@
 
 from django.forms import ModelForm
 from django.forms.models import modelformset_factory
+
 from apps.ecidadania.voting.models import *
+from apps.ecidadania.proposals.models import Proposal, ProposalSet
 
 
 class PollForm(ModelForm):
@@ -34,7 +36,24 @@ class PollForm(ModelForm):
 ChoiceFormSet = modelformset_factory(Choice, exclude=('poll'), extra=5)
 
 class VotingForm(ModelForm):
-        """
-        """
-        class Meta:
-            model = Voting
+
+    """
+    """
+    class Meta:
+        model = Voting
+
+    # This override of the init method allows us to filter the list of
+    # elements in proposalsets and proposals
+    def __init__(self, current_space, **kwargs):
+        super(VotingForm, self).__init__(**kwargs)
+        self.fields['proposalsets'].queryset = ProposalSet.objects.filter(
+            space = current_space)
+        self.fields['proposals'].queryset = Proposal.objects.filter(
+            space = current_space)
+
+class VoteForm(ModelForm):
+
+    """
+    """
+    class Meta:
+        model = ConfirmVote

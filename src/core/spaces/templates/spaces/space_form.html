@@ -56,7 +56,7 @@ tempalte shows the help_text automatically if found in the data models.
                 {% endif %}
 
                 <div class="control-group {% if form.name.errors %}error{% endif%}">
-                    <label>{{ form.name.label }}</label>
+                    <label class="control-label">{{ form.name.label }}</label>
                     <div class="controls">
                         <div class="input-append">
                             {{ form.name }}
@@ -75,7 +75,7 @@ tempalte shows the help_text automatically if found in the data models.
                 </div>
 
                 <div class="control-group {% if form.url.errors %}error{% endif%}">
-                    <label>{{ form.url.label }}</label>
+                    <label class="control-label">{{ form.url.label }}</label>
                     <div class="controls">
                         <div class="input-append">
                             {{ form.url }}
@@ -94,7 +94,7 @@ tempalte shows the help_text automatically if found in the data models.
                 </div>
 
                 <div class="control-group {% if form.description.errors %}error{% endif%}">
-                    <label>{{ form.description.label }}</label>
+                    <label class="control-label">{{ form.description.label }}</label>
                     <div class="controls">
                         <div class="input-prepend">
                             {{ form.description }}
@@ -114,7 +114,7 @@ tempalte shows the help_text automatically if found in the data models.
                 </div>
 
                 <div class="control-group {% if form.logo.errors %}error{% endif%}">
-                    <label>{{ form.logo.label }}
+                    <label class="control-label">{{ form.logo.label }}
                         {% if form.logo.help_text %}
                             <span class="add-on"><a href="#" rel="tooltip" title="{{ form.logo.help_text }}"><i class="icon-question-sign"></i></a></span>
                         {% endif %}
@@ -141,7 +141,7 @@ tempalte shows the help_text automatically if found in the data models.
                 </div>
 
                 <div class="control-group {% if form.banner.errors %}error{% endif%}">
-                    <label>{{ form.banner.label }}
+                    <label class="control-label">{{ form.banner.label }}
                         {% if form.banner.help_text %}
                             <span class="add-on"><a href="#" rel="tooltip" title="{{ form.banner.help_text }}"><i class="icon-question-sign"></i></a></span>
                         {% endif %}
@@ -168,7 +168,7 @@ tempalte shows the help_text automatically if found in the data models.
                 </div>
 
                 <div class="control-group {% if form.admins.errors %}error{% endif%}">
-                    <label>{{ form.admins.label }}</label>
+                    <label class="control-label">{{ form.admins.label }}</label>
                     <div class="controls">
                         <div class="input-prepend">
                             {{ form.admins }}
@@ -187,7 +187,7 @@ tempalte shows the help_text automatically if found in the data models.
                 </div>
             
                 <div class="control-group {% if form.mods.errors %}error{% endif%}">
-                    <label>{{ form.mods.label }}</label>
+                    <label class="control-label">{{ form.mods.label }}</label>
                     <div class="controls">
                         <div class="input-prepend">
                             {{ form.mods }}
@@ -206,7 +206,7 @@ tempalte shows the help_text automatically if found in the data models.
                 </div>
                 
                 <div class="control-group {% if form.users.errors %}error{% endif%}">
-                    <label>{{ form.users.label }}</label>
+                    <label class="control-label">{{ form.users.label }}</label>
                     <div class="controls">
                         <div class="input-prepend">
                             {{ form.users }}
@@ -225,7 +225,7 @@ tempalte shows the help_text automatically if found in the data models.
                 </div>
 
                 <div class="control-group {% if form.public.errors %}error{% endif%}">
-                    <label class="control-label">{{ form.public.label }}
+                    <label class="control-label" class="control-label">{{ form.public.label }}
                         {% if form.public.help_text %}
                             <span class="add-on"><a href="#" rel="tooltip" title="{{ form.public.help_text }}"><i class="icon-question-sign"></i></a></span>
                         {% endif %}
@@ -271,7 +271,7 @@ tempalte shows the help_text automatically if found in the data models.
                 {% for entity in entityformset %}
                     {{ entity.id }}
                     <div class="control-group {% if entity.name.errors %}error{% endif%}">
-                        <label>{{ entity.name.label }}</label>
+                        <label class="control-label">{{ entity.name.label }}</label>
                         <div class="controls">
                             {{ entity.name }}
                             {% if entity.name.errors %}
@@ -285,7 +285,7 @@ tempalte shows the help_text automatically if found in the data models.
                     </div>
 
                     <div class="control-group {% if entity.website.errors %}error{% endif%}">
-                        <label>{{ entity.website.label }}</label>
+                        <label class="control-label">{{ entity.website.label }}</label>
                         <div class="controls">
                             {{ entity.website }}
                             {% if entity.website.errors %}
@@ -299,7 +299,7 @@ tempalte shows the help_text automatically if found in the data models.
                     </div>
 
                     <div class="control-group {% if entity.logo.errors %}error{% endif%}">
-                        <label>{{ entity.logo.label }}</label>
+                        <label class="control-label">{{ entity.logo.label }}</label>
                         <div class="controls">
                             {{ entity.logo }}
                             {% if entity.logo.errors %}

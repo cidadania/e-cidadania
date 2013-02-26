@@ -1,0 +1,113 @@
+{% load prismriver_tags %}{% load admin_static %}{% load url from future %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css"
+          href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}"/>
+    {% block extrastyle %}{% endblock %}
+    <!--[if lte IE 7]>
+        <link rel="stylesheet" type="text/css" href="{% block stylesheet_ie %}{% static "admin/css/ie.css" %}{% endblock %}" />
+    <![endif]-->
+    {% if LANGUAGE_BIDI %}
+        <link rel="stylesheet" type="text/css"
+              href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}"/>{% endif %}
+    <script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";</script>
+    {% block extrahead %}{% endblock %}
+    <script type="text/javascript" src="{% static "admin/js/sidebar.js" %}"></script>
+    {% block blockbots %}
+        <meta name="robots" content="NONE,NOARCHIVE"/>{% endblock %}
+
+</head>
+{% load i18n %}
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+
+
+{% if not is_popup %}
+    <!-- Container -->
+    <div id="sidebar">
+    {% block branding %}{% endblock %}
+    {% if user.is_active and user.is_staff %}
+        <div id="user-tools">
+            {% trans 'Welcome,' %}
+            <strong>{% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}</strong><br/>
+            {% block userlinks %}
+                {% url 'django-admindocs-docroot' as docsroot %}
+                {% if docsroot %}
+                    <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> |
+                {% endif %}
+                {% url 'admin:password_change' as password_change_url %}
+                {% if password_change_url %}
+                    <a href="{{ password_change_url }}">
+                {% else %}
+                    <a href="{{ root_path }}password_change/">
+                {% endif %}
+            {% trans 'Change password' %}</a> /
+                {% url 'admin:logout' as logout_url %}
+                {% if logout_url %}
+                    <a href="{{ logout_url }}">
+                {% else %}
+                    <a href="{{ root_path }}logout/">
+                {% endif %}
+            {% trans 'Log out' %}</a>
+            {% endblock %}
+        </div>
+    {% endif %}
+    {{ request|get_apps }}
+    {% if side_last_actions == True %}
+        {% include "admin/recent_actions.html" %}
+    {% endif %}
+    {% block sidebar %}{% endblock %}
+    {% block nav-global %}{% endblock %}
+{% endif %}
+</div>
+<div id="container">
+
+    {% if not is_popup %}
+        <!-- Header -->
+        <div id="header">
+            <p id="togglesidebar" style="float:left; padding: 0 8px">
+                <a href="javascript:void()" onclick="javascript:django.jQuery('body').toggleClass('nosidebar');">
+                    <img src="{% static "admin/img/admin/sidebar.gif" %}">
+                </a>
+            </p>
+
+            {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+
+        </div>
+        <!-- END Header -->
+        {% block breadcrumbs %}
+            <div class="breadcrumbs"><a href="/">{% trans 'Home' %}</a>{% if title %} &rsaquo; {{ title }}{% endif %}
+            </div>
+        {% endblock %}
+    {% endif %}
+
+    {% if messages %}
+        <ul class="messagelist">{% for message in messages %}
+            <li
+                    {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Content -->
+    <div id="content" class="{% block coltype %}colM{% endblock %}">
+        {% block pretitle %}{% endblock %}
+
+        {% block content %}
+            {% block object-tools %}{% endblock %}
+            {{ content }}
+        {% endblock %}
+
+        <br class="clear"/>
+    </div>
+    <!-- END Content -->
+
+    {% block footer %}
+        <div id="footer"></div>
+    {% endblock %}
+</div>
+<!-- END Container -->
+
+</body>
+</html>

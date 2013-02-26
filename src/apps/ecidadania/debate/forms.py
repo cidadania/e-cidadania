@@ -41,18 +41,8 @@ class DebateForm(ModelForm):
             'title': TextInput(attrs={'class': 'medium'}),
         }
 
-class RowForm(ModelForm):
-
-    """
-    """
-    class Meta:
-        model = Row
-
-class ColumnForm(ModelForm):
-    """
-    """
-    class Meta:
-        model = Column
+RowForm = modelformset_factory(Row, exclude=('debate'))
+ColumnForm = modelformset_factory(Column, exclude=('debate'))
 
 class NoteForm(ModelForm):
 

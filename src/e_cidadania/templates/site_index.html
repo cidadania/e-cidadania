@@ -2,187 +2,90 @@
 {% load i18n %}
 {% load cache %}
 
-{% get_current_language as LANGUAGE_CODE %}
-
-{% cache cache_timeout index_cache_block_1 LANGUAGE_CODE %}
 {% block title %}{% trans "e-cidadania" %}{% endblock %}
 
 {% block logo %}{% endblock %}
 {% block banner %}{% endblock %}
-{% block space %}
-    <a class="brand" href="{% url 'site-index' %}">e-cidadania {% if debug_mode %}<span style="font-size:0.5em;color:#F00;">debug mode v{{ version }} {{ status }}</span>{% endif %}</a>
+
+{% block extrajs %}
+    <style type="text/css">
+        body {
+            background: url("{{ STATIC_URL }}/assets/background.jpg");
+        }
+    </style>
 {% endblock %}
-{% endcache %}
-
-{% with user.is_anonymous as user_is_anonymous %}
-
-{% cache cache_timeout index_cache_block_2 LANGUAGE_CODE  user_is_anonymous %}
 {% block content %}
 
-<div class="row" style="margin-top: -80px;">
-    <div class="span6">
-        <p style="font-size: 2em;line-height:30px;font-weight:bold;color:#333;">The best way to carry your participative democracy in any field: politics,
-            associations, citizen groups...</p>
-        <h3 class="lead">e-cidadania provides a free service for making participative democracy
-            through debates, proposals, voting systems... with automated reports of
-            the process, file repositositories, RSS feeds...</h3>
-        {% if user_is_anonymous %}
-        <div style="margin-left:60px;">
-            <a href="{% url 'signup' %}" class="btn btn-success btn-large">{% trans "Sign up <i>-it's free!-</i>" %}</a> {% trans "or" %} <a href="{% url 'login' %}" class="btn btn-primary btn-large">{% trans "Log in" %}</a>
-        </div>
-        {% endif %}
-    </div>
-    <div class="span4" style="float:right;">
-        <img src="{{ STATIC_URL }}/assets/logos/index_big.png" />
-    </div>
-</div>
+    <div class="row centered" style="margin-top: 80px;">
 
-{% endblock %}
-{% endcache %}
+        <div class="span7" style="background:#000000;opacity:0.8;color:#EEEEEE;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;">
+            <div style="padding:25px;">
+                <p>{% trans "Would you like the debates and decisions to be more inclusive? Well done and integrative proposals where participation is always a nice and enriching experience? We too, that's why we created e-cidadania." %}</p>
 
-{% endwith %}
-
-{% block freewidth %}
-
-{% cache cache_timeout index_cache_block_3 LANGUAGE_CODE %}
-<div class="indexblock one">
-    <div class="row indexrow">
-        <p style="font-size: 2em;line-height:30px;font-weight: bold;color:#FEFEFE;">{% trans "Features" %}</p>
-
-        <div class="span4" style="color:#FEFEFE; text-align: justify;">
-            <h3 style="color:#FEFEFE;">{% trans "Advanced Debate System" %}</h3>
-            <p>{% blocktrans %}A new kind of debating system, based on a two-dimensional grid.
-            This feature will help the people to organize thier ideas and also to get conclusions for the debate.
-            The usual threaded debate systems are very unconclusive and ineffective. Let's start
-            getting conclusions!{% endblocktrans %}</p>
-        </div>
-
-        <div class="span4" style="color:#FEFEFE; text-align: justify;">
-            <h3 style="color:#FEFEFE;">{% trans "Automated Reports" %}</h3>
-            <p>{% blocktrans %}After every participative process, e-cidadania will generate an automatic
-            report based on all the data gathered during the process. After it's generated it will
-            be available for all participants of the process.{% endblocktrans %}</p>
-        </div>
-
-        <div class="span4" style="color:#FEFEFE; text-align: justify;">
-            <h3 style="color:#FEFEFE;">{% trans "Proposals and Voting" %}</h3>
-            <p>{% blocktrans %}e-cidadania provides a way to do a complete participative process, from
-            the debates, passing by proposals system, a secure voting system, and you can start your
-            process at any point. e-cidadania will manage to follow it.{% endblocktrans %}</p>
-        </div>
-
-    </div>
-</div>
-{% endcache %}
-
-<div class="indexblock two">
-    <div class="row indexrow">
-
-        <div class="span4">
-            <h3>{% trans "Recent processes"%}</h3><br />
-            <ul class="unstyled">
-                {% for space in spaces %}
-                    <li><a href="{{ space.get_absolute_url }}" rel="popover"
-                           data-content="{{ space.description|removetags:'p'|safe }}"
-                           data-original-title="{{ space.name }}">{{ space.name }}</a>
-                        {% if space.public %}
-                            <span class="label label-success">{% trans "Public" %}</span>
-                        {% else %}
-                            <span class="label label-important">{% trans "Private" %}</span>
-                        {% endif %}
-                    </li>
-                {% empty %}
-                    <li>{% trans "There are no spaces." %}</li>
-                {% endfor %}
-                <script>
-                    $(function () {
-                        $("a[rel=popover]").popover({
-                            offset: 10
+                <h5>{% trans "Latest participative processes" %}</h5>
+                <ul class="unstyled">
+                    {% for space in spaces %}
+                        <li><a href="{{ space.get_absolute_url }}" rel="popover"
+                               data-content="{{ space.description|removetags:'p'|safe }}"
+                               data-title="{{ space.name }}" data-trigger="hover">{{ space.name }}</a>
+                            {% if space.public %}
+                                <span class="label label-success">{% trans "Public" %}</span>
+                            {% else %}
+                                <span class="label label-important">{% trans "Private" %}</span>
+                            {% endif %}
+                        </li>
+                    {% empty %}
+                        <li>{% trans "There are no processes." %}</li>
+                    {% endfor %}
+                    <script>
+                        $(function () {
+                            $("a[rel=popover]").popover({
+                                offset: 10,
+                                trigger: 'hover'
+                            })
                         })
-                    })
-                </script>
-                <br />
-                <li>&raquo;<a href="{% url 'list-spaces' %}">{% trans "View all the spaces" %}</a></li>
-            </ul>
+                    </script>
+                    <br />
+                    <li>&raquo;<a href="{% url 'list-spaces' %}">{% trans "View all the processes" %}</a></li>
+                </ul>
+            </div>
         </div>
 
-        <div class="span4">
-            <h3>{% trans "Recent news" %} <a href="/rss/"><img src="{{ STATIC_URL }}/assets/icons/rss16.png" alt="Feed RSS"/></a></h3>
-            <ul class="unstyled">
-                {% for post in publication %}
-                    <li><a href="{{ post.get_absolute_url }}">{{ post.post_title }}</a></li>
-                {% empty %}
-                    <p>{% trans "No public news." %}</p>
-                {% endfor %}
-            </ul>
-        </div>
-
-        <div class="span4">
-            <h3>{% trans "Most active" %}</h3>
-            <p>List of most active spaces within e-cidadania. Not implemented yet.</p>
-        </div>
-    </div>
-</div>
-
-{% cache cache_timeout index_cache_block_4 LANGUAGE_CODE %}
-<div class="indexblock three">
-    <div class="row indexrow">
-        <div class="span12">
-            <h4>{% trans "Share" %}</h4>
-            <!-- Facebook -->
-            <div id="fb-root"></div>
-            <script>(function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {return;}
-                    js = d.createElement(s); js.id = id;
-                    js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
-                    fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));
-            </script>
-            <div style="float:left;" class="fb-like" data-href="http://ecidadania.org" data-send="false" data-layout="box_count" data-width="85" data-show-faces="false"></div>
-            <!-- End Facebook -->                
+        <div class="span3 offset1">
             
-            <!-- Google Plus -->
-            <g:plusone size="tall" href="http://ecidadania.org"></g:plusone>
-            <script type="text/javascript">
-                window.___gcfg = {lang: '{{ LANGUAGE_CODE }}'};
-                (function() {
-                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                    po.src = 'https://apis.google.com/js/plusone.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                })();
-            </script>
-            <!-- End Google Plus -->
-                
-            <!-- LinkedIn -->
-            <script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>
-            <script type="IN/Share" data-url="http://ecidadania.org" data-counter="top"></script>
-            <!-- End LinkedIn -->
-                
-            <!-- Identi.ca -->
-            <div id="identishare" style="vertical-align: bottom;"></div>
-            <script type="text/javascript" src="http://www.tildehash.com/identishare.php?style2&title='e-cidadania open source e-democracy platform'" defer="defer"></script>
-            <!-- End Identi.ca -->
+            {% if not user.is_authenticated %}
+            <div class="row">
+                <div class="span3 well">
+                    <form action="{% url 'login' %}?next={% url 'profile_overview' %}" method="POST">{% csrf_token %}
+                        <input id="id_username" name="username" type="text" placeholder="Username">
+                        <div class="input-append">
+                            <input id="id_password" name="password" class="span2" type="password" id="inputPassword" placeholder="Password"><button class="btn btn-success" type="submit">{% trans "Sign in" %}</button>
+                        </div>
+                    </form>
+                    <div style="font-size:0.8em;">
+                        <a href="#">{% trans "Forgot your password?" %}</a> | 
+                        <a href="{% url 'invite' %}">{% trans "Invite someone!" %}</a>
+                    </div>
+                </div>
+            </div>
 
-            <!-- Twitter -->
-            <a href="https://twitter.com/ecidadaniafloss" class="twitter-share-button" date-url="http://ecidadania.org" data-counturl="http://ecidadania.org" data-count="vertical" data-lang="{{ LANGUAGE_CODE }}">{% trans "Tweet" %}</a>
-            <script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
-            <!-- End Twitter -->
-                
-            <!-- Tuenti -->
-            <script type="text/javascript" src="http://widgets.tuenti.com/widgets.js"></script>
-            <a href="http://www.tuenti.com/share" class="tuenti-share-button" icon-style="light" share-url="http://ecidadania.org"></a>
-            <!-- End Tuenti -->
+            <div class="row">
+                <div class="span3 well">
+                    <h6 style="margin-top:-10px;">{% trans "First time here? Register!" %}</h6>
+                    <form action="{% url 'signup' %}" method="POST">{% csrf_token %}
+                        <input type="text" id="id_username" name="username" placeholder="Username">
+                        <input type="text" id="id_email" name="email" placeholder="E-Mail">
+                        <input type="password" id="id_password1" name="password1" placeholder="Password">
+                        <div class="input-append">
+                            <input class="span2" type="password" id="id_password2" name="password2" placeholder="Repeat password"><button class="btn btn-primary" type="submit">{% trans "Register" %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+
         </div>
+
     </div>
-</div>
-{% endcache %}
-    
-{% endblock %}
 
-{% block footer %}
-    {% for p in page %}
-        <a href="/{{ p.uri }}" title="{{ p.name }}">{{ p.name }}</a><br /> |
-    {% endfor %}
 {% endblock %}
-

@@ -1,0 +1,355 @@
+@import "widgets.css";
+
+.form-row {
+    border-bottom: 1px solid #EEEEEE;
+    font-size: 11px;
+    overflow: hidden;
+    padding: 8px 12px;
+}
+
+.form-row img, .form-row input {
+    vertical-align: middle;
+}
+
+form .form-row p {
+    font-size: 11px;
+    padding-left: 0;
+}
+
+form h4 {
+    border: medium none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+label {
+    color: #666666;
+    font-size: 12px;
+    font-weight: normal !important;
+}
+
+.required label, label.required {
+    color: #333333 !important;
+    font-weight: bold !important;
+}
+
+form ul.radiolist li {
+    list-style-type: none;
+}
+
+form ul.radiolist label {
+    display: inline;
+    float: none;
+}
+
+form ul.inline {
+    margin-left: 0;
+    padding: 0;
+}
+
+form ul.inline li {
+    float: left;
+    padding-right: 7px;
+}
+
+.aligned label {
+    display: block;
+    float: left;
+    padding: 3px 10px 0 0;
+    width: 8em;
+}
+
+.aligned ul label {
+    display: inline;
+    float: none;
+    width: auto;
+}
+
+.colMS .aligned .vLargeTextField, .colMS .aligned .vXMLLargeTextField {
+    width: 350px;
+}
+
+form .aligned p, form .aligned ul {
+    margin-left: 7em;
+    padding-left: 30px;
+}
+
+form .aligned table p {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+form .aligned p.help {
+    padding-left: 38px;
+}
+
+.aligned .vCheckboxLabel {
+    display: inline;
+    float: none !important;
+    padding-left: 4px;
+}
+
+.colM .aligned .vLargeTextField, .colM .aligned .vXMLLargeTextField {
+    width: 610px;
+}
+
+.checkbox-row p.help {
+    margin-left: 0;
+    padding-left: 0 !important;
+}
+
+fieldset .field-box {
+    float: left;
+    margin-right: 20px;
+}
+
+.wide label {
+    width: 15em !important;
+}
+
+form .wide p {
+    margin-left: 15em;
+}
+
+form .wide p.help {
+    padding-left: 38px;
+}
+
+.colM fieldset.wide .vLargeTextField, .colM fieldset.wide .vXMLLargeTextField {
+    width: 450px;
+}
+
+fieldset.collapsed * {
+    display: none;
+}
+
+fieldset.collapsed h2, fieldset.collapsed {
+    display: block !important;
+}
+
+fieldset.collapsed h2 {
+    background-image: url("../img/admin/nav-bg.gif");
+    background-position: left bottom;
+    color: #999999;
+}
+
+fieldset.collapsed .collapse-toggle {
+    background: none repeat scroll 0 0 transparent;
+    display: inline !important;
+}
+
+fieldset.monospace textarea {
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+}
+
+.submit-row {
+    margin: 5px 0;
+    overflow: hidden;
+    padding: 5px 7px;
+    text-align: right;
+}
+
+.submit-row input {
+    margin: 0 0 0 5px;
+}
+
+.submit-row p {
+    margin: 0.3em;
+}
+
+.submit-row p.deletelink-box {
+    float: left;
+    margin-top: 8px !important;
+}
+
+.submit-row .deletelink {
+    background: url("../img/admin/icon_deletelink.gif") no-repeat scroll 0 50% transparent;
+    padding-bottom: 2px;
+    padding-left: 20px;
+    padding-top: 2px;
+}
+
+.vSelectMultipleField {
+    vertical-align: top !important;
+}
+
+.vCheckboxField {
+    border: medium none;
+}
+
+.vDateField, .vTimeField {
+    margin-right: 2px;
+}
+
+.vURLField {
+    width: 30em;
+}
+
+.vLargeTextField, .vXMLLargeTextField {
+    width: 48em;
+}
+
+.flatpages-flatpage #id_content {
+    height: 40.2em;
+}
+
+.module table .vPositiveSmallIntegerField {
+    width: 2.2em;
+}
+
+.vTextField {
+    max-width: 20em;
+    min-width: 10em;
+    width: 90%;
+}
+
+.vIntegerField {
+    width: 5em;
+}
+
+.vForeignKeyRawIdAdminField {
+    width: 5em;
+}
+
+.inline-group {
+    border: 1px solid #CCCCCC;
+    margin: 10px 0;
+    padding: 0;
+}
+
+.inline-group .aligned label {
+    width: 8em;
+}
+
+.inline-related {
+    position: relative;
+}
+
+.inline-related h3 {
+    background: url("../img/admin/nav-bg.gif") repeat-x scroll left top #E1E1E1;
+    border-bottom: 1px solid #DDDDDD;
+    color: #666666;
+    font-size: 11px;
+    margin: 0;
+    padding: 3px 5px;
+}
+
+.inline-related h3 span.delete {
+    float: right;
+}
+
+.inline-related h3 span.delete label {
+    font-size: 11px;
+    margin-left: 2px;
+}
+
+.inline-related fieldset {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: medium none;
+    margin: 0;
+}
+
+.inline-related fieldset.module h3 {
+    background: none repeat scroll 0 0 #BBCCDD;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 0;
+    padding: 2px 5px 3px;
+    text-align: left;
+}
+
+.inline-group .tabular fieldset.module {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #DDDDDD;
+    border-style: none none solid;
+    border-width: medium medium 1px;
+}
+
+.inline-related.tabular fieldset.module table {
+    width: 100%;
+}
+
+.last-related fieldset {
+    border: medium none;
+}
+
+.inline-group .tabular tr.has_original td {
+    padding-top: 2em;
+}
+
+.inline-group .tabular tr td.original {
+    padding: 2px 0 0;
+    width: 0;
+}
+
+.inline-group .tabular th.original {
+    padding: 0;
+    width: 0;
+}
+
+.inline-group .tabular td.original p {
+    color: #666666;
+    font-size: 9px;
+    font-weight: bold;
+    height: 1.1em;
+    left: 0;
+    overflow: hidden;
+    padding: 2px 7px;
+    position: absolute;
+}
+
+.inline-group ul.tools {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+.inline-group ul.tools li {
+    display: inline;
+    padding: 0 5px;
+}
+
+.inline-group div.add-row, .inline-group .tabular tr.add-row td {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-bottom: 1px solid #DDDDDD;
+    color: #666666;
+    padding: 3px 5px;
+}
+
+.inline-group .tabular tr.add-row td {
+    border-bottom: medium none;
+    padding: 4px 5px 3px;
+}
+
+.inline-group ul.tools a.add, .inline-group div.add-row a, .inline-group .tabular tr.add-row td a {
+    background: url("../img/admin/icon_addlink.gif") no-repeat scroll 0 50% transparent;
+    outline: 0 none;
+    padding-bottom: 1px;
+    padding-left: 20px;
+    padding-top: 1px;
+}
+
+.empty-form {
+    display: none;
+}
+
+.selector-filter label {
+    line-height: 2em;
+}
+
+html body.extflatpages-flatpage div#container div#content.colM div#content-main form#flatpage_form div div#flatpagesettings_set-group.inline-group div.tabular fieldset.module table tbody tr#flatpagesettings_set-0.dynamic-flatpagesettings_set td.options textarea#id_flatpagesettings_set-0-options.vLargeTextField {
+}
+
+.inline-group textarea {
+    width: 33em;
+}
+
+.original p {
+    margin-left: 5px !important;
+    margin-top: 2px !important;
+}

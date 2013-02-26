@@ -20,6 +20,10 @@ var errorSave = gettext("Couldn't save note.");
 var errorSavePos = gettext("Couldn't save note position.");
 var errorDelete = gettext("Couldn't delete note.");
 var confirmDelete = gettext('Are you sure?');
+var comment = gettext('Comment');
+var view = gettext('View');
+var edit = gettext('Edit');
+var remove = gettext('Delete note');
 
 /*
     NOTE FUNCTIONS
@@ -66,10 +70,12 @@ function createNote() {
 
     request.done(function (note) {
         var newNote = $("#sortable-dispatcher").append("<div id='" + note.id + "' style='display:hidden;' class='note mine'>" +
-            "<div class='handler'><div class='deletenote hidden'>" + "<a href='#' onclick='deleteNote(this)'" +
-            " id='deletenote'>x</a></div></div><p class='note-text'>" + note.title + "</p>" +
-            "<span id='view-note' class='label hidden'><a href='#' onclick='viewNote(this)' data-toggle='modal' data-target='#view-current-note'>" + viewString + "</a></span>" +
-            "<span id='edit-note' class='label hidden'><a href='#' onclick='editNote(this)' data-toggle='modal' data-target='#edit-current-note'>" + editString + "</a></span></div>");
+            "<div class='handler'><span id='view-note' style='float:left;'>" +
+            "<a href='#' class='nounderline' onclick='viewNote(this)' data-toggle='modal' data-target='#view-current-note' title='" + view + "'><i class='icon-eye-open' style='font-size:12px;''></i></a>" +
+            "</span><div class='deletenote' style='float:right;'><a href='#' onclick='deleteNote(this)' id='deletenote' title='" + remove + "'><i class='icon-remove' style='font-size:12px;'></i></a></div>" +
+            "<span id='edit-note' style='float:right;'>" +
+            "<a href='#'' class='nounderline' onclick='editNote(this)' data-toggle='modal' data-target='#edit-current-note' title='" + edit + "'><i class='icon-pencil' style='font-size:12px;'></i></a>" +
+            "</span></div><p class='note-text'>" + note.title + "</p>");
         newNote.show("slow");
         showControls();
     });
@@ -91,7 +97,7 @@ function viewNote(obj) {
         a modal dialog, after that it checks the note in the server and returns
         it's data, prepopulating the fields.
     */
-    var noteID = $(obj).parent().parent().attr('id');
+    var noteID = $(obj).parents('.note').attr('id');
 
     var request = $.ajax({
         url: "../update_note/",
@@ -101,22 +107,23 @@ function viewNote(obj) {
     request.done(function(note) {
         $('h3#view-note-title').text(note.title);
         $('p#view-note-desc').html(note.message);
+        $('span#view-note-author').text(note.author.name);
 
         var html = '';
-        var comment_count = "<h5 class='note-comment-title'>Comments (" + note.comments.length + ")";
-for(var i=0; i<note.comments.length; i++) {
+        var comment_count = "<h5 class='note-comment-title'>" + comment + " (" + note.comments.length + ")</h5>";
+        for(var i=0; i<note.comments.length; i++) {
             var item = note.comments[i];
-        html += "<div class='comment-bubble' id='comment" + i +"'>" + "<p id='username' class='viewer'>"+ item.username + "</p>";
-        html += "<p id='date' class='viewer-date'>"+ item.submit_date +"</p>";
-        html += "<p id='comments" + i + "' class='viewer-comment'>" + item.comment +"</p><img src='/static/img/images/arrow-2.png' width='20' height='21'></div>";
-}
+            html += "<div class='comment-bubble' id='comment" + i +"'>" + "<p id='username' class='viewer'>"+ item.username + "</p>";
+            html += "<p id='date' class='viewer-date'>"+ item.submit_date +"</p>";
+            html += "<p id='comments" + i + "' class='viewer-comment'>" + item.comment +"</p><img src='/static/img/arrow-2.png' width='20' height='21'></div>";
+        }
         $('div#comments').html(html);
         $('span#num-comments').html(comment_count);
         $('form#form_comments div.kopce').html(note.form_html);
    });
 
     request.fail(function (jqXHR, textStatus) {
-        $('#edit-current-note').modal('hide');
+        $('#view-current-note').modal('hide');
         $('#jsnotify').notify("create", {
             title: errorGetNote,
             text: errorMsg + textStatus,
@@ -131,7 +138,7 @@ function editNote(obj) {
         a modal dialog, after that it checks the note in the server and returns
         it's data, prepopulating the fields.
     */
-    var noteID = $(obj).parent().parent().attr('id');
+    var noteID = $(obj).parents('.note').attr('id');
 
     var request = $.ajax({
         url: "../update_note/",
@@ -144,6 +151,7 @@ function editNote(obj) {
         // If for some reason the WYSIHTML5 editor fails, it will fallback
         // into a simple textarea that gets shown
         $("textarea#id_note_message").val(note.message);
+        $("#last-edited-note").text(noteID);
     });
 
     request.fail(function (jqXHR, textStatus) {

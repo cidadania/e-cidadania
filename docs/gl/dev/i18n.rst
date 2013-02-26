@@ -1,56 +1,65 @@
-Traducións
-==========
+Translations
+============
 
-Para as traducións utilizamos dúas ferramentas:
+The translation for the e-cidadania platform can be done in two ways:
 
-- django-rosetta
+- `Transifex <http://transifex.net>`_
 - gettext
 
-Ambas formas de traducir son sinxelas grazas ao *middleware* de django.
+Both ways of translating are simple thanks to the Django *middleware*, a couple
+scripts and the transifex-client software.
 
-En vez de facer un ficheiro de tradución global, decidimos manter un
-ficheiro de tradución para cada aplicación, de esa forma aínda que se cambien os
-módulos, as traducións manteranse.
+Instead of making one global translation file, we decided to keep one
+translation file for every application, this way even if the modules change
+the translations will keep intact.
 
+Translating with Transifex
+--------------------------
 
-Traducindo con rosetta
-----------------------
+To make translations with transifex you will need to have an account. After that
+you can visit the e-cidadania project page
+`here <https://www.transifex.net/projects/p/ecidadania/>`_.
 
-Para realizar traducións con rosetta necesitarás unha cuenta no sistema e estar
-no grupo **"tradutores"**. Unha vez consigas iso, o demais é simple.
+After that you will need to sign up for a language team, and the administrator
+will have to approve it.
 
-Tan só tes que acceder á `URL de tradución`_ e o primeiro que verás será
-unha lista cos idiomas dispoñibles para traducir.
+Here is what you will see:
 
-.. _URL de tradución: http://ecidadania.org/rosetta
+*image here*
 
-.. image:: ../../images/rosetta1.png
-    :align: center
+You will have to select a language and after that, the component that you want
+to translate. We split the components like the modules of e-cidadania, to
+maintain the application integrity.
 
-Fai clic no compoñente que queiras traducir e empeza (a tradución realízase
-dende o inglés aos demais idiomas). Se te atascas nalgún momento podes
-utilizar a opción "Suxerencia", que fará unha petición a Google Translate e poñerá
-a tradución máis oportuna.
+Once you finished you don't have to do anything, just keep updating the
+translations until the string freeze period (usually 15 days before the release)
 
-.. warning:: Nunca confíes no resultado do botón "Suxerir". En moitas ocasións
-             equivocarase.
+.. note:: Section incomplete.
 
-Traducindo con gettext
-----------------------
+Translating with gettext
+------------------------
 
-Gettext é unha ferramenta ben coñecida por todos os tradutores arredor do
-mundo xa que é un estándar. Grazas ao *middleware* de django, o traballo será
-mínimo, só teremos que editar os arquivos .po que hai no código fonte.
+Gettext is a well known tool by all the translators around the world. Its a standard.
+Thanks to the django *middleware* our work will be minimum, we only have to edit
+the .po files in the source files.
 
 .. image:: ../../images/gettext1.png
     :align: center
 
-Os ficheiros soen encontrarse nun directorio chamado **locale** dentro do módulo.
-Nel poderás encontrar directorios cos códigos de país (es_ES, en_GB, gl_ES, etc.)
-e dentro deles os ficheros .PO e .MO.
+Instead of making one global translation, we decided to keep a translation file
+for every module, that way the translations will keep even if the modules are moved.
 
-Para traducir, debes editar o ficheiro .PO que é un ficheiro de texto plano.
-Os ficheros .MO son a versión compilada do .PO para que o ordenador poida
-entendelos.
+The location of the strings is usually a directory called **locale** inside the
+module. Inside it, you can find directories with the country code (en, es, us,
+gl, fr, etc.) and inside this one, the PO and MO files.
 
-.. warning:: Establecer un fluxo de traballo para os tradutores e explicalo.
+To translate, you must edit the PO file, which is a plain text file.
+
+The MO file is the compiled version of the translation so the machine can read it
+to use it.
+
+Once you edited the .po, you have to send a pull request to the repository, and
+that's all.
+
+.. warning:: Stablish a workflow for translators and explain it here.
+

@@ -3,21 +3,22 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Carlos Neira Cortizas <carlos.neira.cortizas@gmail.com>, 2012.
 # Oscar Carballal <oscar@cidadania.coop>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-28 11:27+0200\n"
-"PO-Revision-Date: 2012-02-29 08:53+0000\n"
-"Last-Translator: Oscar Carballal <oscar@cidadania.coop>\n"
-"Language-Team: Galician (Spain) (http://www.transifex.net/projects/p/"
+"POT-Creation-Date: 2013-01-08 11:54+0100\n"
+"PO-Revision-Date: 2012-04-20 23:11+0000\n"
+"Last-Translator: Carlos Neira Cortizas <carlos.neira.cortizas@gmail.com>\n"
+"Language-Team: Galician (Spain) (http://www.transifex.com/projects/p/"
 "ecidadania/language/gl_ES/)\n"
 "Language: gl_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: templates/cal/calendar.html:4 templates/cal/calendar.html.py:16
 msgid "Calendar"
@@ -37,15 +38,15 @@ msgstr "Volver"
 
 #: templates/cal/error.html:4 templates/cal/error.html.py:9
 msgid "Calendar error"
-msgstr "Erro do calendario"
+msgstr "Erro no calendario"
 
 #: templates/cal/error.html:10
 msgid "You entered and incorrect month or year. Please correct it."
-msgstr "Escribiches un ano ou un mes incorrectos. Corríxeo, por favor."
+msgstr "Introduciu un ano ou un mes incorrecto. Por favor corríxao"
 
 #: templates/cal/error.html:11
 msgid "You can go"
-msgstr "Podes ir"
+msgstr "Pode ir"
 
 #: templates/cal/error.html:11
 msgid "back to home"
@@ -57,4 +58,4 @@ msgstr "ou"
 
 #: templates/cal/error.html:11
 msgid "back to your profile"
-msgstr "de volta ao teu perfil"
+msgstr "de volta ao seu perfil"

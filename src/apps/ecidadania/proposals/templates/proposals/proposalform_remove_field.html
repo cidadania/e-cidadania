@@ -38,7 +38,7 @@ This template shows the help_text automatically if found in the data models.
             {% endif %}
 
         <div class="control-group {% if form.proposalset.errors %}error{% endif %}">
-            <label>{{ form.proposalset.label }}</label>
+            <label class="control-label">{{ form.proposalset.label }}</label>
             <div class="controls">
                 <div class="input-append" id="prop_set">
                     {{ form.proposalset }}
@@ -57,7 +57,7 @@ This template shows the help_text automatically if found in the data models.
         </div>
 
         <div class="control-group {% if form.field_name.errors %}error{% endif %}">
-            <label>{{ form.field_name.label }}</label>
+            <label class="control-label">{{ form.field_name.label }}</label>
             <div class="controls">
                 <div class="input-prepend">
                     {{ form.field_name }}

@@ -1,0 +1,407 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-08 11:55+0100\n"
+"PO-Revision-Date: 2012-12-17 12:09+0000\n"
+"Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
+"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/"
+"ecidadania/language/mk_MK/)\n"
+"Language: mk_MK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
+
+#: templates/404.html:9
+msgid "Nooo...!"
+msgstr ""
+
+#: templates/404.html:11
+msgid "The page you're looking for does not exist."
+msgstr ""
+
+#: templates/404.html:12
+msgid "May it be abstract?"
+msgstr ""
+
+#: templates/500.html:10
+msgid "This wasn't supposed to happen! What did you do!?"
+msgstr ""
+
+#: templates/500.html:11
+msgid ""
+"We will send the spaguetti squad to repair this. Meanwhile you can go back "
+"to the index."
+msgstr ""
+
+#: templates/explore.html:9
+msgid "Recent processes"
+msgstr ""
+
+#: templates/explore.html:15 templates/explore.html.py:28
+#: templates/explore.html:41
+msgid "There are no recent spaces."
+msgstr ""
+
+#: templates/explore.html:20
+msgid "Public processes"
+msgstr ""
+
+#: templates/explore.html:33
+msgid "Private processes"
+msgstr ""
+
+#: templates/explore.html:49
+msgid "Latest news from public processes"
+msgstr ""
+
+#: templates/explore.html:54
+msgid "There are no posts."
+msgstr ""
+
+#: templates/explore.html:59
+msgid "What we say in twitter"
+msgstr ""
+
+#: templates/invite.html:9 templates/invite_done.html:4
+msgid "Invite your friends to e-cidadania"
+msgstr ""
+
+#: templates/invite.html:15 templates/invite_done.html:10
+msgid "Invite your friends"
+msgstr ""
+
+#: templates/invite.html:21
+msgid "Invite via E-mail"
+msgstr ""
+
+#: templates/invite.html:22
+msgid "Write the e-mail adresses here"
+msgstr ""
+
+#: templates/invite.html:23
+msgid ""
+"If you want to invite more than one person, you will have to write their "
+"adresses separated by commas. Example: this@that.com, foo@bar.net, "
+"black@white.org"
+msgstr ""
+
+#: templates/invite.html:24
+msgid ""
+"Hi!, I would like you to join e-cidadania, the participative democracy "
+"platform for citizens."
+msgstr ""
+
+#: templates/invite.html:25
+msgid ""
+"You can write here whatever text you want for your invitation, or leave it "
+"by default."
+msgstr ""
+
+#: templates/invite.html:26
+msgid "Submit"
+msgstr ""
+
+#: templates/invite.html:31
+msgid ""
+"To send invitations via e-mail you have to be <a href='/accounts/"
+"login/'>logged in</a>."
+msgstr ""
+
+#: templates/invite_done.html:11
+msgid "The email(s) have been sent"
+msgstr ""
+
+#: templates/invite_done.html:12
+msgid "Go to index"
+msgstr ""
+
+#: templates/menu.html:3
+msgid "Explore"
+msgstr ""
+
+#: templates/menu.html:4
+msgid "Blog"
+msgstr ""
+
+#: templates/menu.html:5
+msgid "Help"
+msgstr ""
+
+#: templates/menu.html:10
+msgid "Login"
+msgstr ""
+
+#: templates/menu.html:11
+msgid "Sign up"
+msgstr ""
+
+#: templates/menu.html:15
+msgid "Language"
+msgstr ""
+
+#: templates/menu.html:35
+msgid "My profile"
+msgstr ""
+
+#: templates/menu.html:47
+msgid "Administration"
+msgstr ""
+
+#: templates/menu.html:48
+msgid "Add news"
+msgstr ""
+
+#: templates/menu.html:52
+msgid "Create new space"
+msgstr ""
+
+#: templates/menu.html:54
+msgid "Edit profile"
+msgstr ""
+
+#: templates/menu.html:56
+msgid "Logout"
+msgstr ""
+
+#: templates/not_allowed.html:4
+msgid "Not allowed"
+msgstr ""
+
+#: templates/not_allowed.html:10
+msgid "You are not allowed to access here."
+msgstr ""
+
+#: templates/not_allowed.html:13
+msgid "I want to participate"
+msgstr ""
+
+#: templates/not_allowed.html:15 templates/space_intent.html:12
+msgid ""
+"You can go <a href='/'>back to home</a> or <a href='/accounts/'>back to your "
+"profile</a>"
+msgstr ""
+
+#: templates/site_index.html:5
+msgid "e-cidadania"
+msgstr ""
+
+#: templates/site_index.html:23
+msgid ""
+"Would you like the debates and decisions to be more inclusive? Well done and "
+"integrative proposals where participation is always a nice and enriching "
+"experience? We too, that's why we created e-cidadania."
+msgstr ""
+
+#: templates/site_index.html:25
+msgid "Latest participative processes"
+msgstr ""
+
+#: templates/site_index.html:32
+msgid "Public"
+msgstr ""
+
+#: templates/site_index.html:34
+msgid "Private"
+msgstr ""
+
+#: templates/site_index.html:38
+msgid "There are no processes."
+msgstr ""
+
+#: templates/site_index.html:49
+msgid "View all the processes"
+msgstr ""
+
+#: templates/site_index.html:62
+msgid "Sign in"
+msgstr ""
+
+#: templates/site_index.html:66
+msgid "Forgot your password?"
+msgstr ""
+
+#: templates/site_index.html:67
+msgid "Invite someone!"
+msgstr ""
+
+#: templates/site_index.html:74
+msgid "First time here? Register!"
+msgstr ""
+
+#: templates/site_index.html:80
+msgid "Register"
+msgstr ""
+
+#: templates/space_intent.html:4
+msgid "Participate"
+msgstr ""
+
+#: templates/space_intent.html:11
+msgid ""
+"If the administrator approves your request, you will be notified by email"
+msgstr ""
+
+#: templates/comments/approve.html:4
+msgid "Approve a comment"
+msgstr ""
+
+#: templates/comments/approve.html:7
+msgid "Really make this comment public?"
+msgstr ""
+
+#: templates/comments/approve.html:12
+msgid "Approve"
+msgstr ""
+
+#: templates/comments/approved.html:4
+msgid "Thanks for approving"
+msgstr ""
+
+#: templates/comments/approved.html:7 templates/comments/deleted.html:7
+#: templates/comments/flagged.html:7
+msgid ""
+"Thanks for taking the time to improve the quality of discussion on our site"
+msgstr ""
+
+#: templates/comments/delete.html:4
+msgid "Remove a comment"
+msgstr ""
+
+#: templates/comments/delete.html:7
+msgid "Really remove this comment?"
+msgstr ""
+
+#: templates/comments/delete.html:12
+msgid "Remove"
+msgstr ""
+
+#: templates/comments/deleted.html:4
+msgid "Thanks for removing"
+msgstr ""
+
+#: templates/comments/flag.html:4
+msgid "Flag this comment"
+msgstr ""
+
+#: templates/comments/flag.html:7
+msgid "Really flag this comment?"
+msgstr ""
+
+#: templates/comments/flag.html:12
+msgid "Flag"
+msgstr ""
+
+#: templates/comments/flagged.html:4
+msgid "Thanks for flagging"
+msgstr ""
+
+#: templates/comments/form.html:2
+msgid "Leave a comment"
+msgstr ""
+
+#: templates/comments/form.html:19 templates/comments/form.html.py:49
+#: templates/comments/preview.html:34
+msgid "Post"
+msgstr ""
+
+#: templates/comments/form.html:20 templates/comments/form.html.py:50
+#: templates/comments/preview.html:35
+msgid "Preview"
+msgstr ""
+
+#: templates/comments/list.html:3
+msgid "Comments"
+msgstr ""
+
+#: templates/comments/list.html:7
+msgid "said"
+msgstr ""
+
+#: templates/comments/posted.html:4
+msgid "Thanks for commenting"
+msgstr ""
+
+#: templates/comments/posted.html:7
+msgid "Thank you for your comment"
+msgstr ""
+
+#: templates/comments/posted.html:10 templates/comments/posted.html.py:12
+msgid "Go back"
+msgstr ""
+
+#: templates/comments/preview.html:4 templates/comments/preview.html.py:17
+msgid "Preview your comment"
+msgstr ""
+
+#: templates/comments/preview.html:15
+msgid "Please correct the error below"
+msgid_plural "Please correct the errors below"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/comments/preview.html:20
+msgid "and"
+msgstr ""
+
+#: templates/comments/preview.html:20
+msgid "Post your comment"
+msgstr ""
+
+#: templates/comments/preview.html:20
+msgid "or make changes"
+msgstr ""
+
+#: templates/invite/invite.html:132
+msgid "Like"
+msgstr ""
+
+#: templates/invite/invite.html:138
+msgid "Tweet"
+msgstr ""
+
+#: templates/invite/invite.html:163
+msgid "Connect with me on e-cidadania!"
+msgstr ""
+
+#: templates/invite/invite.html:187 templates/invite/invite_plain.txt:3
+msgid "Someone sent you an invitation to join e-cidadania!"
+msgstr ""
+
+#: templates/invite/invite.html:190
+#, python-format
+msgid ""
+"\n"
+"                                        <a href=\"http://ecidadania.org\">e-"
+"cidadania</a> is an e-democracy platform for citizen participation. More "
+"clearly, it's for direct democracy in every one if its shapes,\n"
+"                                        from 99%% movement, 15M to official "
+"participative budgets. The message that was sent to you follows:\n"
+"                                        "
+msgstr ""
+
+#: templates/invite/invite_plain.txt:4
+#, python-format
+msgid ""
+"\n"
+"You have been invited to join e-cidadania, an e-democracy platform for "
+"citizen participation. More clearly, it's for direct democracy in every one "
+"of its shapes, from 99%% movement, 15M to official participative budgets. "
+"The message that was sent to you follows:\n"
+msgstr ""
+
+#: templates/invite/invite_plain.txt:9
+msgid "Join e-cidadania today in http://ecidadania.org"
+msgstr ""
+
+#: templates/invite/invite_plain.txt:11
+msgid ""
+"If you have any questions dont hesitate and send us a mail to "
+"support@ecidadania.org."
+msgstr ""

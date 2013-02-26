@@ -27,13 +27,13 @@ class PostAdmin(admin.ModelAdmin):
     """
     Administration view for news.
     """
-    list_display = ('post_title', 'pub_date', 'post_lastup', 'author',
+    list_display = ('title', 'pub_date', 'post_lastup', 'author',
                     'space', 'pub_index')
-    search_fields = ('post_title', 'author', 'space', 'pub_index')
+    search_fields = ('title', 'author', 'space', 'pub_index')
 
     fieldsets = [
         (None, {'fields':
-            ['post_title', 'post_message']}),
+            ['title', 'description']}),
         (_('Other data'), {'fields':
             ['space', 'pub_index']})
     ]

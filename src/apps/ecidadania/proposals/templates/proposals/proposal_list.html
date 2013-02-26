@@ -15,7 +15,7 @@
                     {% if perms.proposals.add_proposal %}
                         <div id="tools">
                             <a href="{% url 'select_set' get_place.url %}"><img src="{{ STATIC_URL }}/assets/icons/add16.png" alt="{% trans 'Add proposal' %}" title="{% trans 'Add proposal' %}"/></a> 
-                            {% if perms.proposals.edit_proposal %}
+                            {% if perms.proposals.change_proposal %}
                                 <a href="{% url 'edit-proposal' get_place.url p.id %}"><img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/></a> 
                             {% endif %}
                             {% if perms.proposals.delete_proposal %}
@@ -34,7 +34,7 @@
                         <div class="title"><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></div>
                         <div class="message">{{ p.message|truncatewords:12 }}</div>
                         {% get_comment_count for p as comment_count %}
-                        <div class="creator">{% trans "proposed by " %} <a href="{% url 'profile_public' p.author %}">{{ p.author }}</a> {% trans " at " %} {{ p.pub_date|date:"j/m/Y G:i" }} | <a href="{{ p.get_absolute_url }}">{{ comment_count }} {% trans "comments" %}</a></div>
+                        <div class="creator">{% trans "proposed by " %} <a href="{% url 'profile_public' p.author %}">{{ p.author }}</a> {% if p.proposalset %}{% trans " on " %} <a href="{{ p.proposalset.get_absolute_url }}">{{ p.proposalset }}</a> {% endif %}|{% trans " at " %} {{ p.pub_date|date:"j/m/Y G:i" }} <a href="{{ p.get_absolute_url }}">{{ comment_count }} {% trans "comments" %}</a></div>
                     </div>
                     {% comment %}
                         The following div is to make the wrapper to wrap everything.
@@ -46,7 +46,7 @@
             {% endfor %}
     
             <hr />
-            <a href="/" class="btn small">&laquo; {% trans "Go back" %}</a>
+            <a href="{% url 'space-index' get_place.url %}" class="btn small">&laquo; {% trans "Go back" %}</a>
   
             {% if is_paginated %}
                 <div class="pagination">
@@ -65,7 +65,6 @@
             {% endif %}
         </div>
         <div class="span4">
-            <h4>Empty space!</h4>
         </div>
     </div>
 

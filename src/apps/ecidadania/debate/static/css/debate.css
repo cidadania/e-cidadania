@@ -1,5 +1,78 @@
-#debate {
-    width: 90%;
-    height: 500px;
-    border: 1px solid #000;
+#comments {
+    margin: 10px 0 40px;
+}
+div#note-comment > *, div#note-comment p label {
+  color: #FFFFFF !important;
+}
+div#note-comment #id_comment {
+  margin-top: -200px;
+  width: 93%;
+}
+div.comment-bubble {
+    background-color: #FFFFFF;
+    background-image: -moz-linear-gradient(center bottom , #F0F0F0 2%, #FFFFFF 48%, #FFFFFF 78%);
+    border: 1px solid #DDDDDD;
+    margin-bottom: 23px;
+    padding: 14px;
+    text-align: justify;
+}
+
+p.viewer {
+    font-family: 'Open Sans Condensed',sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+
+p.viewer-date {
+    color: #805DB2;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+p.viewer-comment {
+    font-style: italic;
+}
+
+div.comment-bubble > img {
+    bottom: -12px;
+    float: right;
+    position: relative;
+}
+
+.modal-footer:after {
+    clear: both;
+}
+.modal-footer:before, .modal-footer:after {
+    content: "";
+    display: table;
+}
+.modal-footer:before, .modal-footer:after {
+    content: "";
+    display: table;
+}
+.modal-footer {
+    background-color: #F5F5F5;
+    border-radius: 6px 6px 6px 6px;
+    border-top: 1px solid #DDDDDD;
+    box-shadow: 0 1px 0 #FFFFFF inset;
+    margin-bottom: 0;
+    padding: 14px 15px 15px;
+}
+
+.modal-footer h5 {
+    color: #15B283;
+    margin-bottom: 10px;
+    text-transform: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+ 
+div#note-comment #id_name, div#note-comment #id_email, div#note-comment #id_url, div#note-comment #id_honeypot {
+    visibility: hidden;
 }

@@ -3,9 +3,8 @@
 {% load wysiwyg %}
 
 {% block title %}
-{% trans "Results" %}{{ poll.question }}
+    {% trans "Results" %}{{ poll.question }}
 {% endblock %}
-
 
 {% block logo %}
     {% if get_place %}
@@ -22,6 +21,7 @@
         <img src="{{ STATIC_URL }}/assets/banners/index.png" />
     {% endif %}
 {% endblock %}
+
 {% block space %}
     {% if get_place %}
         <a class="brand" href="{{ get_place.get_absolute_url }}">{{ get_place.name }}</a>
@@ -29,14 +29,16 @@
         <a class="brand" href="{% url 'site-index' %}">e-cidadania</a>
     {% endif %}
 {% endblock %}
-{% block content %}
-<h1>{{ poll.question }}</h1>
 
-<ul>
-    {% for choice in poll.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} {% trans "vote" %}{{ choice.votes|pluralize }}</li>
+{% block content %}
+    <h1>{{ poll.question }}</h1>
+
+    <ul>
+        {% for choice in poll.choice_set.all %}
+            <li>{{ choice.choice_text }} -- {{ choice.votes.count }} {% trans "vote" %}{{ choice.votes|pluralize }}</li>
         {% endfor %}
     </ul>
 
-    <a href="{% url 'list-polls' get_place.url %}">Vote again?</a>
+    <hr />
+    <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">&laquo; {% trans "Go back" %}</a>
 {% endblock %}

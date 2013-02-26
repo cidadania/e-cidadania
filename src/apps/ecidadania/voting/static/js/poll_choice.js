@@ -12,11 +12,7 @@ function addChoice() {
     var formCount = parseInt($('#id_choiceform-TOTAL_FORMS').val());
 
     if (criteriacount >= 10) return false;
-<<<<<<< HEAD
-    $('#' + tableID + ' tr:first').append("<th id='poll-vcriteria" + (criteriacount) +"' class='criteria-vtitle'><input id='id_choiceform-" + (criteriacount+1) +"-choice_text' name='choiceform-" + (criteriacount) + "-choice_text' type='text' maxlength='200'></th>");
-=======
     $('#' + tableID + ' tr:first').append("<th id='poll-vcriteria" + (criteriacount) +"' class='criteria-vtitle'><input id='id_form-" + (criteriacount+1) +"-choice_text' name='form-" + (criteriacount) + "-choice_text' type='text' maxlength='200'></th>");
->>>>>>> 3b3ac388b7a57e17a6e718f847c0cef55dbd788d
     $('#' + tableID + ' tbody tr').each(function(){
         //var tdlength = $('#' + tableID + ' td').length;
         tdlength += 1;

@@ -37,7 +37,7 @@
                 {% endifchanged %}
                 <div class="listitem">
                     <div class="listdate">{{ poll.pub_date|date:"l d" }}</div>
-                    <div class="listtitle"><a href="../{{ poll.id }}">{{ poll.question }}</a></div>
+                    <div class="listtitle"><a href="{% url 'view-poll' get_place.url poll.id %}">{{ poll.question }}</a></div>
                 </div>
                 <div class="clear"></div>
             {% empty %}

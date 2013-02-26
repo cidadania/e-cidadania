@@ -33,6 +33,8 @@ automatically if found in the data models.
             $('#ajaxform thead tr').formset();
             $('#ajaxform tbody tr').formset();
         })
+        $( "#datepicker-start" ).datepicker( $.datepicker.regional[ "{{ LANGUAGE_CODE }}" ] );
+        $( "#datepicker-end" ).datepicker( $.datepicker.regional[ "{{ LANGUAGE_CODE }}" ] );
     </script>
 {% endblock %}
 
@@ -81,6 +83,9 @@ automatically if found in the data models.
                     {{ colform.management_form }}
                     <th id="corner" class="corner-criteria"></th>
                     {% for col in colform.forms %}
+                     {% if form.title.value %}
+                        {{ col.id }}
+                     {% endif %}
                         <th id="debate-vcriteria{{ debate_id }}" class="criteria-vtitle">
                             {{ col.criteria }}
                         </th>
@@ -90,6 +95,9 @@ automatically if found in the data models.
                 <tbody id="debate-body">
                 {{ rowform.management_form }}
                 {% for row in rowform.forms %}
+                     {% if form.title.value %}
+                        {{ row.id }}
+                     {% endif %}
                 <tr>
                     <td id="debate-hcriteria" class="criteria-htitle">
                         <div id="debate-ttitle">
@@ -116,7 +124,7 @@ automatically if found in the data models.
             {% endif %}
 
             <div class="control-group {% if form.title.errors %}error{% endif %}">
-                <label>{{ form.title.label }}</label>
+                <label class="control-label">{{ form.title.label }}</label>
                 <div class="controls">
                     <div class="input-append">
                         {{ form.title }}
@@ -135,7 +143,7 @@ automatically if found in the data models.
             </div>
 
             <div class="control-group {% if form.theme.errors %}error{% endif %}">
-                <label>{{ form.theme.label }}</label>
+                <label class="control-label">{{ form.theme.label }}</label>
                 <div class="controls">
                     <div class="input-append">
                         {{ form.theme }}
@@ -154,10 +162,10 @@ automatically if found in the data models.
             </div>
 
             <div class="control-group {% if form.start_date.errors %}error{% endif %}">
-                <label>{{ form.start_date.label }}</label>
+                <label class="control-label">{{ form.start_date.label }}</label>
                 <div class="controls">
                     <div class="input-append">
-                        <input type="text" name="start_date" id="datepicker-start" class="hasDatePicker">
+                        <input type="text" name="start_date" id="datepicker-start" class="hasDatePicker notranslate">
                         {% if form.start_date.help_text %}
                             <span class="add-on"><a href="#" rel="tooltip" title="{{ form.start_date.help_text }}"><i class="icon-question-sign"></i></a></span>
                         {% endif %}
@@ -173,10 +181,10 @@ automatically if found in the data models.
             </div>
 
             <div class="control-group {% if form.end_date.errors %}error{% endif %}">
-                <label>{{ form.end_date.label }}</label>
+                <label class="control-label">{{ form.end_date.label }}</label>
                 <div class="controls">
                     <div class="input-append">
-                        <input type="text" name="end_date" id="datepicker-end" class="hasDatePicker">
+                        <input type="text" name="end_date" id="datepicker-end" class="hasDatePicker notranslate">
                         {% if form.end_date.help_text %}
                             <span class="add-on"><a href="#" rel="tooltip" title="{{ form.end_date.help_text }}"><i class="icon-question-sign"></i></a></span>
                         {% endif %}
@@ -192,7 +200,7 @@ automatically if found in the data models.
             </div>
 
             <div class="control-group {% if form.description.errors %}error{% endif %}">
-                <label>{{ form.description.label }}</label>
+                <label class="control-label">{{ form.description.label }}</label>
                 <div class="controls">
                     <div class="input-prepend">
                         {{ form.description }}

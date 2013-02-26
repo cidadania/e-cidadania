@@ -1,10 +1,9 @@
-Guía de estilo
-==============
+Style guide
+===========
 
-A guía de estilo establece unha serie de normas a seguir cando se programa en
-e-cidadania. Estas normas son *inquebrantables*. A guía de estilo segue moi
-preto o documento `PEP8`_, con algunhas excepcións que veñen da guía de
-estilo interna de `Pocoo`_.
+The style guide establish a series of rules to follow when coding in e-cidadania.
+These rules are unbreakable. The style guide follows closely the `PEP8`_ document,
+with some exceptions provided from the internal style guide at `Pocoo`_.
 
 .. _PEP8: http://www.python.org/dev/peps/pep-0008
 .. _Pocoo: http://www.pocoo.org//internal/styleguide/
@@ -13,12 +12,11 @@ Python
 ------
 
 **Imports**
-    Todos os imports deben estar situados na cabeceira do arquivo, por debaixo
-    do comentario de cabeceira. Os imports de módulos python deben preceder a todos
-    os demais, e as librarías externas ou módulos de terceiras partes deben preceder
-    aos das aplicacións.
+    Every import must be situated in the file header, below to the comment header.
+    The python imports must precede any others, and the external librearies or
+    third party modules must precede the application ones.
 
-    *Exemplo*::
+    *Example*::
 
         import os
         import sys
@@ -27,22 +25,20 @@ Python
 
         from myapp.module import function
 
-**Ancho de liña (columnas)**
-    O código debe ser sempre de 80 columnas de ancho, permítese un par de columnas
-    extra en casos de necesidade.
+**Line width (columns)**
+    The code must be always 80 columns wide except on templates.
 
-**Declaracións longas**
-    Se unha liña de código non cabe en 80 columnas, intenta reducilo declarando
-    variables previamente. Se aínda non encaixa, podes dividir as liñas da
-    seguinte forma:
+**Long declarations**
+    If a code line does not fit in 80 columns, try to reduce it declaring variables
+    previously. If it still can not fit, you can divide the lines this way:
 
-    *Sentencias con paréntese*::
+    *Parentheses*::
 
         website = models.URLField(_('Website'), verify_exists=True,
                                   max_length=200, null=True, blank=True,
                                   help_text=_('The URL will be checked'))
 
-    *Declaracións*::
+    *Declararations*::
 
         this_is_a_very_long(function_call, 'with many parameters') \
             .that_returns_an_object_with_an_attribute
@@ -51,7 +47,7 @@ Python
                      .order_by(MyModel.name.desc()) \
                      .limit(10)
 
-    *Listas, tuplas e diccionarios*::
+    *Lists, tuples and dictionariess*::
 
         items = [
             'this is the first', 'set of items', 'with more items',
@@ -64,16 +60,15 @@ Python
             ('another': thing),
         }
 
-**Sangría**
-    A sangría debe ser **sempre** de 4 espazos por nivel. Non se permite o
-    uso de tabulacións para sangrar.
+**Indentation**
+    Indentation must be *always* 4 spaces per level, no exceptions. You can not
+    use tabs for indenting.
 
-**Liñas en branco**
-    Cada función e clase debe estar separado por dúas liñas en branco. O
-    código dentro dunha clase ou método debe estar separado por unha liña en
-    branco.
+**Blank lines**
+    Every classes and method must be separated by two blank lines. The code
+    inside a class or method by one blank line.
 
-    *Exemplo*::
+    *Example*::
 
         class ListDocs(ListView):
             ----blank line----
@@ -105,47 +100,45 @@ Python
 HTML
 ----
 
-**Columnas**
-    O código HTML non ten límite de columnas, pero debe estar sangrado de forma
-    que se poida localizar rapidamente cada elemento no documento. O estilo
-    de sangrado precede ao resultado interpretado no navegador.
+**Columns**
+    HTML code does not have a column limit, but it must be indented in a way we
+    can locate easily every element inside the document. The indentation preceeds
+    rendered results in application.
 
-**Sangría**
-    O código X/HTML debe estar sangrado con 4 espazos por nivel igual que
-    o código python, sen excepcións.
-    
-    .. note:: Poida que haxa código antigo que siga a anterior norma de sangría
-              que establecía dous espazos por nivel. Se ves algún arquivo así
-              agradeceríamos que nos enviases un parche para solucionalo.
+**Indentation**
+    The X/HTML code must be indented with four spaces like python code, no exceptions.
+
+    .. note:: There may be some old code that follows the old indentation
+              rule (2 spaces per level). If you see it we would be glad to
+              receive a path to solve it.
 
 CSS
 ---
 
-**Sangría**
-    A sangría é de 4 espazos, igual que no código python.
+**Indentation**
+    Indentation will be 4 spaces, always, like Python code.
 
-    *Exemplo*::
+    *Example*::
 
         body {
             background: #FAFAFA;
-	        padding: 0;
-	        margin: 0;
-	        font-family: Verdana, "Lucida Sans", Arial;
-	        font-size: 1em;
-	        color: #000;
-	        cursor: default;
+	          padding: 0;
+	          margin: 0;
+	          font-family: Verdana, "Lucida Sans", Arial;
+	          font-size: 1em;
+	          color: #000;
+	          cursor: default;
         }
 
-**Cores**
-    As cores deben ser escritos sempre en hexadecimal. Permítese utilizar
-    abreviaturas de tres díxitos.
+**Colors**
+    Colors must be always written in hexadecimal. You are allowed to use three digits
+    abbreviations.
 
-**Tamaño de fonte**
-    O tamaño de fonte debe estar especificado sempre en **em's** salvo que
-    sexa un requisito da presentación.
+**Font size**
+    Font size must be declared in **em's** except for presentation requirement.
 
 
 JavaScript
 ----------
 
-Ao código javascript aplícanselle as mesmas normas que ao código python.
+The JavaScript code follows the same rules from the python code.

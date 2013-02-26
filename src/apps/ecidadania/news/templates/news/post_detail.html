@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load comments %}
 
-{% block title %}{{ news.post_title }}{% endblock %}
+{% block title %}{{ news.title }}{% endblock %}
 {% block logo %}
     {% if get_place %}
         <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
@@ -29,8 +29,8 @@
 
     <div class="row">
         <div class="span8">
-            <h2 class="posttitle"><a href="{{ news.get_absolute_url }}">{{ news.post_title }}</a>
-                {% if perms.news.edit_post %}
+            <h2 class="posttitle"><a href="{{ news.get_absolute_url }}">{{ news.title }}</a>
+                {% if perms.news.change_post %}
                     <a href="{% url 'edit-post' get_place.url news.id %}">
                         <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/>
                     </a>
@@ -43,7 +43,7 @@
             </h2>
             {% get_comment_count for news as comment_count %}
             <p class="postinfo">{% trans "Written by" %} {{ news.author }} {% trans "on" %} {{ news.pub_date }} | <a href="{{ news.get_absolute_url }}">{{ comment_count }} {% trans "comments" %}</a></p>
-            {{ news.post_message|safe }}
+            {{ news.description|safe }}
             <div style="margin-bottom:30px;"></div>
 
             <p>{% render_comment_list for news %}</p>

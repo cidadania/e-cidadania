@@ -60,18 +60,18 @@ automatically if found in the data models.
                 {% endfor %}
             {% endif %}
 
-            <div class="control-group {% if form.post_title.errors %}error{% endif%}">
-                <label>{{ form.post_title.label }}</label>
+            <div class="control-group {% if form.title.errors %}error{% endif%}">
+                <label class="control-label">{{ form.title.label }}</label>
                 <div class="controls">
                     <div class="input-append">
-                        {{ form.post_title }}
-                        {% if form.post_title.help_text %}
-                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.post_title.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {{ form.title }}
+                        {% if form.title.help_text %}
+                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.title.help_text }}"><i class="icon-question-sign"></i></a></span>
                         {% endif %}
                     </div>
-                    {% if form.post_title.errors %}
+                    {% if form.title.errors %}
                     <p class="help-block">
-                        {% for error in form.post_title.errors %}
+                        {% for error in form.title.errors %}
                         {{ error|escape }}
                         {% endfor %}
                     </p>
@@ -79,19 +79,19 @@ automatically if found in the data models.
                 </div>
             </div>
 
-            <div class="control-group {% if form.post_message.errors %}error{% endif%}">
-                <label>{{ form.post_message.label }}</label>
+            <div class="control-group {% if form.description.errors %}error{% endif%}">
+                <label class="control-label">{{ form.description.label }}</label>
                 <div class="controls">
                     <div class="input-prepend">
-                        {{ form.post_message }}
-                        {% wysiwyg_editor "id_post_message" %}
-                        {% if form.post_message.help_text %}
-                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.post_message.help_text }}"><i class="icon-question-sign"></i></a></span>
+                        {{ form.description }}
+                        {% wysiwyg_editor "id_description" %}
+                        {% if form.description.help_text %}
+                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.description.help_text }}"><i class="icon-question-sign"></i></a></span>
                         {% endif %}
                     </div>
-                    {% if form.post_message.errors %}
+                    {% if form.description.errors %}
                     <p class="help-block">
-                        {% for error in form.post_message.errors %}
+                        {% for error in form.description.errors %}
                         {{ error|escape }}
                         {% endfor %}
                     </p>
@@ -100,7 +100,7 @@ automatically if found in the data models.
             </div>
 
             <div class="control-group {% if form.post_tags.errors %}error{% endif%}">
-                <label>{{ form.post_tags.label }}</label>
+                <label class="control-label">{{ form.post_tags.label }}</label>
                 <div class="controls">
                     <div class="input-append">
                         {{ form.post_tags }}
@@ -130,7 +130,7 @@ automatically if found in the data models.
                     {% endif %}
                 </label>
                 <div class="controls">
-                    <label class="checkbox">
+                    <label class="control-label checkbox">
                         {{ form.pub_index }}
                     </label>
                     {% if form.pub_index.errors %}
@@ -144,13 +144,13 @@ automatically if found in the data models.
             </div>
 
             <div class="control-group {% if form.author.errors %}error{% endif%}">
-                <label>{{ form.author.label }}</label>
+                <label class="control-label">{{ form.author.label }}</label>
                 <div class="controls">
                     <div class="input-prepend">
-                        {{ form.author }}
                         {% if form.author.help_text %}
                             <span class="add-on"><a href="#" rel="tooltip" title="{{ form.author.help_text }}"><i class="icon-question-sign"></i></a></span>
                         {% endif %}
+                        {{ form.author }}
                     </div>
                     {% if form.author.errors %}
                         <p class="help-block">
@@ -163,13 +163,13 @@ automatically if found in the data models.
             </div>
 
             <div class="control-group {% if form.space.errors %}error{% endif%}">
-                <label>{{ form.space.label }}</label>
+                <label class="control-label">{{ form.space.label }}</label>
                 <div class="controls">
                     <div class="input-prepend">
-                        {{ form.space }}
                         {% if form.space.help_text %}
                             <span class="add-on"><a href="#" rel="tooltip" title="{{ form.space.help_text }}"><i class="icon-question-sign"></i></a></span>
                         {% endif %}
+                        {{ form.space }}
                     </div>
                     {% if form.space.errors %}
                         <p class="help-block">

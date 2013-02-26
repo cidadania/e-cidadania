@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load cache %}
+
+{% block content %}
+
+<div class="row">
+    <div class="span3 well">
+        <h4>{% trans "Recent processes" %}</h4>
+        <ul class="unstyled">
+            {% for s in latest_spaces %}
+                <li class="nostyle"><a href="{{ s.get_absolute_url }}">{{ s.name }}</a><br>
+                    {{ s.description }}</li>
+            {% empty %}
+                <li class="nostyle">{% trans "There are no recent spaces." %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="span4 well">
+        <h4>{% trans "Public processes" %}</h4>
+        <ul class="unstyled">
+            {% for s in spaces %}
+                {% if s.public %}
+                    <li class="nostyle"><a href="{{ s.get_absolute_url }}">{{ s.name }}</a><br>
+                    {{ s.description }}</li>
+                {% endif %}
+            {% empty %}
+                <li class="nostyle">{% trans "There are no recent spaces." %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="span3 well">
+        <h4>{% trans "Private processes" %}</h4>
+        <ul class="unstyled">
+            {% for s in spaces %}
+                {% if not s.public %}
+                    <li class="nostyle"><a href="{{ s.get_absolute_url }}">{{ s.name }}</a><br>
+                    {{ s.description }}</li>
+                {% endif %}
+            {% empty %}
+                <li class="nostyle">{% trans "There are no recent spaces." %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span5 well">
+        <h4>{% trans "Latest news from public processes" %}</h4>
+        <ul class="unstyled">
+            {% for p in news %}
+                <li class="nostyle"><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></li>
+            {% empty %}
+                <li class="nostyle">{% trans "There are no posts." %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="offset1 span5 well">
+        <h4>{% trans "What we say in twitter" %}<h4>
+            <a class="twitter-timeline" href="https://twitter.com/ecidadaniafloss" data-widget-id="288588360325402624">Tweets por @ecidadaniafloss</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+    </div>
+</div>
+{% endblock %}

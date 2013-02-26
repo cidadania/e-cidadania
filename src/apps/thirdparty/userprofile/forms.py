@@ -1,6 +1,7 @@
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ImproperlyConfigured
+from django.core.validators import email_re
 from django.db import models
 from django.utils.translation import ugettext as _
 from django.conf import settings
@@ -83,9 +84,28 @@ class AvatarCropForm(forms.Form):
 class RegistrationForm(forms.Form):
 
     username = forms.CharField(max_length=255, min_length = 3, label=_("Username"))
-    email = forms.EmailField(required=False, label=_("E-mail address"))
-    password1 = forms.CharField(widget=forms.PasswordInput, label=_("Password"))
-    password2 = forms.CharField(widget=forms.PasswordInput, label=_("Password (again)"))
+    email = forms.EmailField(required=True, label=_("E-mail address"))
+    password1 = forms.CharField(widget=forms.PasswordInput,
+        label=_("Password"))
+    password2 = forms.CharField(widget=forms.PasswordInput,
+        label=_("Password (again)"))
+
+    def clean_email(self):
+        """
+        Verify that the email exists
+        """
+        email = self.cleaned_data['email']
+        if not email:
+            raise forms.ValidationError(_("E-mail address cannot be blank"))
+        try:
+                User.objects.get(email=email)
+                raise forms.ValidationError(_("That e-mail is already used."))
+        except User.DoesNotExist:
+            try:
+                EmailValidation.objects.get(email=email)
+                raise forms.ValidationError(_("That e-mail is already being confirmed."))
+            except EmailValidation.DoesNotExist:
+                return email
 
     def clean_username(self):
         """
@@ -108,25 +128,6 @@ class RegistrationForm(forms.Form):
             return self.cleaned_data
         else:
             raise forms.ValidationError(_("The passwords inserted are different."))
-
-    def clean_email(self):
-        """
-        Verify that the email exists
-        """
-        email = self.cleaned_data.get("email")
-
-        if not email:
-            raise forms.ValidationError(_("E-mail address cannot be blank"))
-
-        try:
-            User.objects.get(email=email)
-            raise forms.ValidationError(_("That e-mail is already used."))
-        except User.DoesNotExist:
-            try:
-                EmailValidation.objects.get(email=email)
-                raise forms.ValidationError(_("That e-mail is already being confirmed."))
-            except EmailValidation.DoesNotExist:
-                return email
 
 class EmailValidationForm(forms.Form):
     email = forms.EmailField()

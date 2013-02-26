@@ -38,7 +38,7 @@ def index_view(request):
 
     """
     Main view for the index page. It's separated from the urls.py file
-    because using directo_to_template in urls.py doesn't refresh the content
+    because using direct_to_template in urls.py doesn't refresh the content
     (it's loaded only once).
     """
     pub = Post.objects.filter(pub_index=True).order_by('-pub_date')
@@ -54,13 +54,13 @@ def index_view(request):
         'version': settings.__version__,
         'status': settings.__status__,
         'debug_mode': settings.DEBUG,
-        'cache_timeout': 500,
+        #'cache_timeout': 500,
     }
 
     if request.user.is_anonymous():
-        messages.info(request, _("Hi! It seems that it's your first time here. \
-            Maybe you want to <a href=\"/accounts/register\">register</a> \
-            or <a href=\"/accounts/login/\">login</a> if you have an account."))
+        messages.info(request, _("Hi! It seems that it's your first time \
+        here. Maybe you want to <a href=\"/accounts/register\">register</a> \
+        or <a href=\"/accounts/login/\">login</a> if you have an account."))
     return render_to_response('site_index.html', extra_context,
                               context_instance=RequestContext(request))
 
@@ -86,7 +86,7 @@ class IndexEntriesFeed(Feed):
         return Post.objects.all().order_by('-pub_date')[:10]
 
     def item_title(self, item):
-        return item.post_title
+        return item.title
 
     def item_description(self, item):
-        return item.post_message
+        return item.description

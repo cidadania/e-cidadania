@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-08 11:54+0100\n"
+"PO-Revision-Date: 2011-12-20 20:16+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/"
+"ecidadania/language/mk_MK/)\n"
+"Language: mk_MK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
+
+#: templates/cal/calendar.html:4 templates/cal/calendar.html.py:16
+msgid "Calendar"
+msgstr ""
+
+#: templates/cal/calendar.html:21
+msgid "Previous month"
+msgstr ""
+
+#: templates/cal/calendar.html:22
+msgid "Next month"
+msgstr ""
+
+#: templates/cal/calendar.html:23
+msgid "Go back"
+msgstr ""
+
+#: templates/cal/error.html:4 templates/cal/error.html.py:9
+msgid "Calendar error"
+msgstr ""
+
+#: templates/cal/error.html:10
+msgid "You entered and incorrect month or year. Please correct it."
+msgstr ""
+
+#: templates/cal/error.html:11
+msgid "You can go"
+msgstr ""
+
+#: templates/cal/error.html:11
+msgid "back to home"
+msgstr ""
+
+#: templates/cal/error.html:11
+msgid "or"
+msgstr ""
+
+#: templates/cal/error.html:11
+msgid "back to your profile"
+msgstr ""

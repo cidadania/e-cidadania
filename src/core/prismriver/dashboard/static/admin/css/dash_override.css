@@ -1,0 +1,81 @@
+.language_button {
+    -moz-border-bottom-colors: none !important;
+    -moz-border-image: none !important;
+    -moz-border-left-colors: none !important;
+    -moz-border-right-colors: none !important;
+    -moz-border-top-colors: none !important;
+    background: none repeat scroll 0 0 #EEEEEE !important;
+    border-color: #AAAAAA !important;
+    border-radius: 5px 5px 0 0 !important;
+    border-style: solid solid none !important;
+    border-width: 1px 1px medium !important;
+    font-size: 11px;
+    font-weight: normal;
+    height: 26px;
+    margin-left: 2px;
+    margin-top: 10px;
+}
+
+#lang_tab_content h2.header {
+    background: none repeat scroll 0 0 #444444;
+    margin-top: 1px;
+}
+
+.language_button.selected {
+    background: none repeat scroll 0 0 #444444 !important;
+    border: 1px solid #444444 !important;
+    color: white;
+}
+
+.language_button.selected {
+}
+
+.language_button:hover {
+    cursor: pointer;
+    text-decoration: underline !important;
+}
+
+#page_form_lang_tabs {
+    margin-left: 10px;
+}
+
+.language_button.selected:hover {
+    text-decoration: none !important;
+}
+
+.plugged_app {
+    background: none repeat scroll 0 0 #F5F5F5;
+    border: 1px solid #CCCCCC;
+    float: left;
+    margin: 7px;
+    min-height: 90px;
+    width: 165px;
+    padding: 5px;
+    text-align: left;
+}
+
+.plugged_app .app_title img {
+    padding-bottom: 5px;
+    vertical-align: middle;
+}
+
+.plugged_app .app_title {
+    font-size: 14px;
+}
+
+.plugged_app .description {
+    color: #777777;
+    font-size: 11px;
+    font-style: italic;
+    width: 130px;
+}
+
+.plugged_app li {
+    list-style: circle;
+}
+
+.plugged_app ul {
+    color: #5B80B2;
+    padding-left: 25px;
+}
+

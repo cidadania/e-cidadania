@@ -20,9 +20,12 @@
 from django.contrib import admin
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.contrib.auth.models import User
+from django.core.mail import send_mail, send_mass_mail
+from django.template import RequestContext
 
+from e_cidadania import settings
 from apps.ecidadania.accounts.models import UserProfile
 
 class ProfileAdmin(admin.ModelAdmin):
@@ -31,7 +34,7 @@ class ProfileAdmin(admin.ModelAdmin):
     This is a minimal view for Django administration interface. It shows the
     user and the website.
     """
-    list_display = ('user', 'website')
+    list_display = ('user', 'firstname', 'surname', 'country', 'website')
     actions = ['mass_mail']
     
     def mass_mail(self, request, queryset):
@@ -41,15 +44,16 @@ class ProfileAdmin(admin.ModelAdmin):
         """
         #selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
         # ct = ContentType.objects.get_for_model(queryset.model)
-        if request.method == "POST":
+        if 'sendmail' in request.POST:
             for obj in queryset:
                 get_user = get_object_or_404(User, id=obj.id)
-                send.mail(request.POST['massmail_subject'], request.POST['message'], 'noreply@ecidadania.org', [get_user.email])
+                send_mail(request.POST['massmail_subject'], request.POST['message'], settings.DEFAULT_FROM_EMAIL, [get_user.email])
             return HttpResponseRedirect(request.get_full_path())
         
         selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
         ct = ContentType.objects.get_for_model(queryset.model)
-        return render_to_response('/mail/massmail.html', { 'people': selected })
+        return render_to_response('mail/massmail.html', { 'people': selected },
+                                context_instance=RequestContext(request))
     mass_mail.short_description = 'Send a global mail to the selected users'
     
 admin.site.register(UserProfile, ProfileAdmin)

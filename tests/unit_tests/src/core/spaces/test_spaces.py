@@ -33,112 +33,96 @@ class ViewSpaceIndexTest(ECDTestCase):
     
     def setUp(self):
         super(ViewSpaceIndexTest, self).init()
-    
-    def testUserAccess(self):
+        self.private_space = self.foo_space
+        self.private_space_url = self.getURL(url_names.SPACE_INDEX,
+                                        kwargs={'space_url': self.private_space.url})
+        self.public_space = self.bar_space
+        self.public_space_url = self.getURL(url_names.SPACE_INDEX,
+                                            kwargs={'space_url': self.public_space.url})
+                                        
+    def testAnonymousUserCanNotAccessPrivateSpace(self):
         """
-        Tests if only the allowed user can access the space index page.
-        """
-        #Not a public space
-        self.admin_space.public = False
-        self.admin_space.save()
-        
-        url = self.getURL(url_names.SPACE_INDEX,
-                          kwargs={'space_url': self.admin_space.url})
-        response = self.get(url)
+        Tests if anonymous user can not access the space index page.
+        """        
+        response = self.get(self.private_space_url)
         self.assertResponseOK(response)
         self.assertContains(response, "You're an anonymous user.")
-        #print self.printResponse(response)
-        
+    
+    def testUnregisteredUserCanNotAccessPrivateSpace(self):
+        """Tests if an unregistered user can not access the space index.
+        """
+        #Create and login a user who is not registered to the space
         user = self.login("test_user", "test_password")
         self.assertFalse(user.is_staff)
         self.assertFalse(user.is_superuser)
         self.assertFalse(user.is_anonymous())
-        self.assertFalse(user in self.admin_space.users.all())
-        self.assertFalse(user in self.admin_space.mods.all())
-        self.assertFalse(user in self.admin_space.admins.all())
-        response = self.get(url)
+        self.assertFalse(user in self.private_space.users.all())
+        self.assertFalse(user in self.private_space.mods.all())
+        self.assertFalse(user in self.private_space.admins.all())
+        response = self.get(self.private_space_url)
         self.assertResponseOK(response)
         self.assertContains(response, "You're not registered to this             space.")
-        
         self.logout()
-        
-        url = self.getURL(url_names.SPACE_INDEX,
-                          kwargs={'space_url': self.user_space.url})
-        self.assertTrue(self.user_space.public)
-        response = self.get(url)      
-        #print self.printResponse(response)
-        self.assertResponseOK(response)
-        self.assertContains(response, "Hello anonymous user.")
    
-    def testAStaffCanAccessAPublicSpace(self):
-        """Tests if a user who is a staff can access a public space.
-        """
-        user = self.login("test_user", "test_password")
-        #self.logout()     
-        user.public = False
-        user.is_staff = True
-        user.save()
-        self.assertTrue(self.isLoggedIn(user))
-        self.assertTrue(user.is_staff)
-        self.assertFalse(user.public)
-        url = self.getURL(url_names.SPACE_INDEX, 
-                          kwargs={'space_url': self.user_space.url})
-        response = self.get(url)
+    def testSpaceAdminCanAccessThePrivateSpace(self):
+        """Tests if the space admin can access the space index.
+        """     
+        space_admin = self.login('foo_admin', 'foo_admin_password')
+        self.assertTrue(self.isLoggedIn(space_admin))
+        
+        response = self.get(self.private_space_url)
         self.assertResponseOK(response)
-        self.assertContains(response, "Hello anonymous user.")
+        self.assertTemplateNotUsed(response, 'not_allowed.html')
+        self.logout()
     
-    def testAdminCanAccessAPublicSpace(self):
-        """Tests if an admin can access a public space.
-        """   
-        admin = self.login("some_admin", "pass")
-        #self.logout()
-        url = self.getURL(url_names.SPACE_INDEX, 
-                          kwargs={'space_url': self.user_space.url})
-        self.assertTrue(self.admin.is_superuser)
-        self.assertTrue(self.user_space.public)
-        
-        response = self.get(url)
+    def testSpaceModCanAccessThePrivateSpace(self):
+        """Tests if the space mod can access the space index.
+        """
+        space_mod = self.login('foo_mod', 'foo_mod_password')
+        self.assertTrue(self.isLoggedIn(space_mod))
+        response = self.get(self.private_space_url)
         self.assertResponseOK(response)
-        self.assertContains(response, "Hello anonymous user.")
-
-
-        
-class TestCreateSpace(ECDTestCase):
-    """
-    Tests if a space can be created successfully.
-    """       
+        self.assertTemplateNotUsed(response, 'not_allowed.html')
+        self.logout()
     
-    def setUp(self):
+    def testSpaceUserCanAccessTheSpace(self):
+        """Tests if the space user can access the space index.
         """
-        Do some necessary setup before every test run.
-        """        
-        self.init()
+        space_user =  self.login('foo_user', 'foo_user_password')
+        self.assertTrue(self.isLoggedIn(space_user))
+        response = self.get(self.private_space_url)
+        self.assertResponseOK(response)
+        self.assertTemplateNotUsed(response, 'not_allowed.html')
+        self.logout()
     
-    def testAnAdminCanAccessTheSpaceCreationPage(self):
+    def testOtherUsersCanNotAccessThePrivateSpace(self):
+        """Test if other users who are not registered to the space can not
+        access the space.
         """
-        Tests if an admin can access the page to create a space.
-        """
-        #Log in an admin.
-        admin = self.login(self.admin_username, self.admin_password)
+        other_user = self.login('bar_admin', 'bar_admin_password')
+        self.assertTrue(self.isLoggedIn(other_user))
+        self.assertFalse(other_user in self.private_space.admins.all())
+        response = self.get(self.private_space_url)
+        self.assertResponseOK(response)
+        self.assertTemplateUsed(response, 'not_allowed.html')
         
-        #Check if the admin is logged in and is a superuser.
+  
+    def testAdminAccessToAPublicSpace(self):
+        """Tests if an admin for one space can access a public space.
+        """
+        admin = self.login('foo_admin', 'foo_admin_password')
         self.assertTrue(self.isLoggedIn(admin))
-        self.assertTrue(admin.is_superuser)
-        
-        #Get the URL for creating space.
-        url = self.getURL(url_names.CREATE_SPACE)
-        
-        #Make a GET request to the above url.
-        response = self.get(url)
-        
-        #Check if the response was OK.
+        self.assertFalse(admin in self.public_space.admins.all())
+        response = self.get(self.public_space_url)
         self.assertResponseOK(response)
-        
-        #Check if the correct template was used to render the response.
-        self.assertTemplateUsed(response, 'spaces/space_form.html')
-        
-        #Check if the response was for a GET request.
-        self.assertEqual(response.request['REQUEST_METHOD'], 'GET')
+        self.assertTemplateNotUsed(response, 'not_allowed.html')
+
+    def testAnonymousUserCanAcessAPublicSpace(self):
+        """Tests if an anonymous user can access a public space.
+        """
+        response = self.get(self.public_space_url)
+        self.assertResponseOK(response)
+        self.assertTemplateNotUsed(response, 'not_allowed.html')
     
 
 class DeleteSpaceTest(ECDTestCase):
@@ -153,7 +137,7 @@ class DeleteSpaceTest(ECDTestCase):
         """
         Tests if a general user is prohibited from deleting the space.
         """
-        space = self.admin_space
+        space = self.bar_space
         general_user = self.login('test_user', 'test_password')
         url = self.getURL(url_names.DELETE_SPACE, kwargs={'space_url': space.url})
         response = self.get(url)
@@ -164,7 +148,7 @@ class DeleteSpaceTest(ECDTestCase):
         """
         Tests if a correct admin can delete a space.
         """
-        space =self.admin_space
+        space =self.bar_space
         user = self.create_super_user("other_admin", "other_password",
                                       logged_in=True)
         self.assertTrue(self.isLoggedIn(user))
@@ -174,15 +158,14 @@ class DeleteSpaceTest(ECDTestCase):
         self.assertResponseOK(response)
         self.assertTemplateUsed(response, 'not_allowed.html')
         
-        #logout the present super user because the space does not belong to it
+        #logout the present user because the space does not belong to it
         self.logout()
-        admin = self.login(self.admin_username, self.admin_password)
+        admin = self.login('bar_admin', 'bar_admin_password')
         self.assertTrue(self.isLoggedIn(admin))
         self.assertTrue(admin in space.admins.all())
         response = self.get(url)
-        self.assertResponseOK(response)
+        self.assertResponseRedirect(response)
         self.assertTemplateNotUsed(response, 'not_allowed.html')
-
 
 class ListSpacesTest(ECDTestCase):
     """
@@ -191,15 +174,9 @@ class ListSpacesTest(ECDTestCase):
     
     def setUp(self):
         self.init()
-        
-        #We have two public spaces namely self.user_space and self.admin_space.
-        #We create one more private space and test if this is not listed for
-        #a user who does not own this space.
-        space_properties = {'author': self.admin, 'public': False, 
-                            'name': 'foo_space', 'url': 'foo_space_url',}
-        self.private_space = self.seed(Space, properties=space_properties)
-        self.assertFalse(self.private_space.public)
-        
+        #We have a public space as well as a private space.
+        self.private_space = self.foo_space
+        self.public_space = self.bar_space
         self.url = self.getURL(url_names.LIST_SPACES)
                
     def testOnlyPublicSpacesAreListedForAnonymousUser(self):
@@ -210,21 +187,23 @@ class ListSpacesTest(ECDTestCase):
         response = self.get(self.url)
         self.assertResponseOK(response)
         spaces_returned = response.context[0].dicts[0]['space_list']
-        self.assertEqual(len(spaces_returned), 2)
-        self.assertTrue(self.user_space in spaces_returned)
-        self.assertTrue(self.admin_space in spaces_returned)
+        self.assertEqual(len(spaces_returned), 1)
+        self.assertTrue(self.public_space in spaces_returned)
         self.assertTrue(self.private_space not in spaces_returned)
     
     def testAllSpacesAreReturnedForALoggedInUser(self):
         """
         Tests if both the public and private spaces are returned for a logged
-        in user.
-        """    
+        in user who is registered for both the spaces.
         
-        admin = self.login(self.admin_username, self.admin_password)
+        We make self.bar_admin to be a user for self.foo_space which is a
+        private space.
+        """    
+        self.foo_space.users.add(self.bar_admin)
+        self.login('bar_admin', 'bar_admin_password')
         response = self.get(self.url)
         spaces_returned = response.context[0].dicts[0]['spaces_list']
-        self.assertEqual(len(spaces_returned), 3)
-        self.assertTrue(self.user_space in spaces_returned)
-        self.assertTrue(self.admin_space in spaces_returned)
-        self.assertTrue(self.private_space in spaces_returned)        
+        self.assertEqual(len(spaces_returned), 2)
+        self.assertTrue(self.foo_space in spaces_returned)
+        self.assertTrue(self.bar_space in spaces_returned)   
+

@@ -48,7 +48,7 @@ automatically if found in the data models.
             {% endif %}
 
             <div class="control-group {% if form.name.errors %}error{% endif %}">
-                <label>{{ form.name.label }}</label>
+                <label class="control-label">{{ form.name.label }}</label>
                 <div class="controls">
                     <div class="input-append">
                         {{ form.name }}
@@ -67,7 +67,7 @@ automatically if found in the data models.
             </div>
 
             <div class="control-group {% if form.debate.errors %}error{% endif %}">
-                <label>{{ form.debate.label }}</label>
+                <label class="control-label">{{ form.debate.label }}</label>
                 <div class="controls">
                     <div class="input-prepend">
                         {{ form.debate }}
@@ -84,8 +84,6 @@ automatically if found in the data models.
                     {% endif %}
                 </div>
             </div>
-
-
             <hr />
             <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">&laquo; {% trans "Go back" %}</a>
             <input class="btn btn-small btn-primary" type="submit" value="{% trans 'Create' %}" />

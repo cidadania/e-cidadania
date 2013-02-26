@@ -51,15 +51,18 @@ OPTIONAL_FIELDS = (
     ('longitude', _('Longitude'))
 )
 
-
 class BaseProposalAbstractModel(models.Model):
 
     """
-    Abstract base class for titles and descriptions (dummy models)
+    Integrated generic relation into the proposal module, which will allow
+    the proposal module to be related to any other module in e-cidadania. 
+
+    .. versionadded:: 0.1.5b
+    
+    :automatically filled fields: contype_type, object_pk
+
     """
-    content_type = models.ForeignKey(ContentType,
-            verbose_name=_('content_type'),
-            related_name="content_type_set_for_%(class)s", null=True, blank=True)
+
     content_type = models.ForeignKey(ContentType, null=True, blank=True)
     object_pk = models.TextField(_('object ID'), null=True)
     content_object = generic.GenericForeignKey(ct_field="content_type", fk_field="object_pk")
@@ -71,8 +74,8 @@ class BaseProposalAbstractModel(models.Model):
 class Category(BaseProposalAbstractModel):
 
     """
-    Dummy class for proposal categories. Inherits directly from :class:`BaseClass`
-    without adding any fields.
+    Dummy class for proposal categories. Inherits directly from
+    :class:`BaseClass` without adding any fields.
     """
     pass
 
@@ -81,7 +84,8 @@ class ProposalSet(models.Model):
 
     """
     ProposalSet date model. This will contain a group of proposal
-    which will be created after the debate using the debate note after it is finished.
+    which will be created after the debate using the debate note after it is
+    finished.
 
     .. addedversion:: 0.1.5b
 
@@ -92,12 +96,19 @@ class ProposalSet(models.Model):
 
     name = models.CharField(_('Name'), max_length=200, unique=True,
                             help_text = _('Max: 200 characters'))
+    # ptype = models.CharField(_('Ponderation'), choices=PONDERATIONS,
+    #     max_length=20, help_text=_('Ponderation types:<br><strong>Users: \
+    #     </strong>Users give support votes to the proposal, and that votes \
+    #     are added to the final voting.<br><strong>Fixed:</strong>Fixed \
+    #     ponderations are stablished by the process managers. It\'s a \
+    #     porcentual puntuation. That means that percetange is calculated \
+    #     after the voting and added to the final voting.<br><strong>None: \
+    #     </strong> No ponderation is applied to the final voting.'))
     space = models.ForeignKey(Space, blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, blank=True, null=True)
     debate = models.ForeignKey(Debate, blank=True, null=True,
-                               help_text = _('Select the debate associated \
-                               with this proposal set'))
+        help_text = _('Select the debate associated with this proposal set'))
 
     def __unicode__(self):
         return self.name
@@ -129,44 +140,40 @@ class Proposal(BaseProposalAbstractModel):
     :admin fields (auto): Closed_by
     :extra permissions: proposal_view
 
-    :const:`CLOSE_REASONS` for :class:Proposal data model is hardcoded with four
-    values, which will fit most of the requirements.
+    :const:`CLOSE_REASONS` for :class:Proposal data model is hardcoded with four values, which will fit most of the requirements.
     """
     code = models.CharField(_('Code'), max_length=50, blank=True,
-                            null=True)
+        null=True)
     title = models.CharField(_('Title'), max_length=100, unique=True,
-                             help_text = _('Max: 200 characters'))
+        help_text = _('Max: 200 characters'))
     proposalset = models.ForeignKey(ProposalSet, related_name='proposal_in',
-                                    blank=True, null=True,
-                                    help_text=_('Proposal set in which the \
-                                    proposal resides'))
+        blank=True, null=True, help_text=_('Proposal set in which the \
+        proposal resides'))
     description = models.TextField(_('Description'), max_length=300)
     space = models.ForeignKey(Space, blank=True, null=True)
     author = models.ForeignKey(User, related_name='proposal_authors',
-                               blank=True, null=True, 
-                               help_text = _('Change the user that will figure \
-                               as the author'))
-    #debatelink = models.ForeignKey()
-    tags = TagField(help_text = _('Insert here relevant words related with the \
-                                proposal'))
+        blank=True, null=True, help_text = _('Change the user that will \
+        figure as the author'))
+    tags = TagField(help_text = _('Insert here relevant words related with \
+        the proposal'))
     latitude = models.DecimalField(_('Latitude'), blank=True, null=True,
-                                   max_digits=8, decimal_places=6, 
-                                   help_text =_('Specify it in decimal'))
+        max_digits=17, decimal_places=15, help_text =_('Specify it in decimal'))
     longitude = models.DecimalField(_('Longitude'), blank=True, null=True,
-                                    max_digits=8, decimal_places=6, 
-                                    help_text =_('Specify it in decimal'))
+        max_digits=17, decimal_places=15, help_text =_('Specify it in decimal'))
     closed = models.NullBooleanField(default=False, blank=True)
     closed_by = models.ForeignKey(User, blank=True, null=True,
-                                  related_name='proposal_closed_by')
+        related_name='proposal_closed_by')
     close_reason = models.SmallIntegerField(choices=CLOSE_REASONS, null=True,
-                                            blank=True)
+        blank=True)
     merged = models.NullBooleanField(default=False, blank=True, null=True)
-    merged_proposals = models.ManyToManyField('self', blank=True, null=True, help_text = \
-                                                _("select proposals from the list"))
+    merged_proposals = models.ManyToManyField('self', blank=True, null=True,
+        help_text = _("Select proposals from the list"))
 
     anon_allowed = models.NullBooleanField(default=False, blank=True)
-    support_votes = models.ManyToManyField(User, verbose_name=_('Votes from'),
-                                            null=True, blank=True)
+    support_votes = models.ManyToManyField(User, null=True, blank=True,
+        verbose_name=_('Support votes from'), related_name='support_votes')
+    votes = models.ManyToManyField(User, verbose_name=_('Votes from'),
+        null=True, blank=True, related_name='voting_votes')
     refurbished = models.NullBooleanField(default=False, blank=True)
     budget = models.IntegerField(blank=True, null=True)
 
@@ -193,22 +200,24 @@ class Proposal(BaseProposalAbstractModel):
             'space_url': self.space.url,
             'prop_id': str(self.id)})
 
+
 class ProposalField(models.Model):
     
     """
-    Proposal Fields data model. This will store details of addition form fields which can be 
-    optionally added the proposal form which is residing in a particular proposal set.
+    Proposal Fields data model. This will store details of addition form
+    fields which can be optionally added the proposal form which is residing
+    in a particular proposal set.
 
     user filled fields: proposalset, field_name
-    const:`OPTIONAL_FIELD` for class:ProposalField is hardcoded with three field values, more \
-            field can be added as need.
+    const:`OPTIONAL_FIELD` for class:ProposalField is hardcoded with three
+    field values, more fields can be added as need.
 
     """
 
-    proposalset= models.ForeignKey(ProposalSet, help_text= _('Customizing proposal \
-                                    form for a proposal set'), unique=False)
-    field_name = models.CharField(max_length=100, choices=OPTIONAL_FIELDS,help_text \
-                                    = _('Additional field that needed to added to the proposal form'))
+    proposalset= models.ForeignKey(ProposalSet, help_text= _('Customizing \
+        proposal form for a proposal set'), unique=False)
+    field_name = models.CharField(max_length=100, choices=OPTIONAL_FIELDS,help_text = _('Additional field that needed to added to the proposal \
+        form'))
 
     def __unicode__(self):
         return self.field_name

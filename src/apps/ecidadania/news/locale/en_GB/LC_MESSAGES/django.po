@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-28 11:27+0200\n"
+"POT-Creation-Date: 2013-01-08 11:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgid "Max: 200 characters"
 msgstr ""
 
 #: models.py:35
-msgid "Text"
+msgid "Description"
 msgstr ""
 
 #: models.py:36
@@ -74,45 +74,81 @@ msgid ""
 "the post"
 msgstr ""
 
-#: urls.py:28
-msgid "^add/$"
-msgstr ""
-
-#: urls.py:30
-msgid "^(?P<post_id>\\d+)/delete/$"
-msgstr ""
-
-#: urls.py:32
-msgid "^(?P<post_id>\\d+)/edit/$"
+#: models.py:48
+msgid "Views"
 msgstr ""
 
 #: templates/news/news_list.html:4
 msgid "News list"
 msgstr ""
 
-#: templates/news/news_list.html:33
+#: templates/news/news_list.html:33 templates/news/post_archive.html:4
+#: templates/news/post_archive.html:33
 msgid "News archive"
 msgstr ""
 
-#: templates/news/news_list.html:44
+#: templates/news/news_list.html:44 templates/news/post_archive.html:44
+#: templates/news/post_archive_month.html:49
+#: templates/news/post_archive_year.html:49
 msgid "There are no posts in this space."
 msgstr ""
 
-#: templates/news/news_list.html:51
+#: templates/news/news_list.html:51 templates/news/post_archive.html:51
+#: templates/news/post_archive_month.html:56
+#: templates/news/post_archive_year.html:56
 msgid "previous"
 msgstr ""
 
-#: templates/news/news_list.html:54
+#: templates/news/news_list.html:54 templates/news/post_archive.html:54
+#: templates/news/post_archive_month.html:59
+#: templates/news/post_archive_year.html:59
 msgid "of"
 msgstr ""
 
-#: templates/news/news_list.html:57
+#: templates/news/news_list.html:57 templates/news/post_archive.html:57
+#: templates/news/post_archive_month.html:62
+#: templates/news/post_archive_year.html:62
 msgid "next"
 msgstr ""
 
-#: templates/news/news_list.html:64 templates/news/post_confirm_delete.html:37
-#: templates/news/post_form.html:180
+#: templates/news/news_list.html:64 templates/news/post_archive.html:64
+#: templates/news/post_archive_month.html:69
+#: templates/news/post_archive_year.html:69
+#: templates/news/post_confirm_delete.html:37
+#: templates/news/post_form.html:186
 msgid "Go back"
+msgstr ""
+
+#: templates/news/post_archive_month.html:5
+#, python-format
+msgid ""
+"\n"
+"        Archive for %(m)s %(y)s\n"
+"    "
+msgstr ""
+
+#: templates/news/post_archive_month.html:38
+#, python-format
+msgid ""
+"\n"
+"                    Archive for %(m)s %(y)s\n"
+"                "
+msgstr ""
+
+#: templates/news/post_archive_year.html:5
+#, python-format
+msgid ""
+"\n"
+"        Archive for %(y)s\n"
+"    "
+msgstr ""
+
+#: templates/news/post_archive_year.html:38
+#, python-format
+msgid ""
+"\n"
+"                    Archive for %(y)s\n"
+"                "
 msgstr ""
 
 #: templates/news/post_confirm_delete.html:4
@@ -161,18 +197,18 @@ msgstr ""
 msgid "Share this post"
 msgstr ""
 
-#: templates/news/post_form.html:14 templates/news/post_form.html.py:44
+#: templates/news/post_form.html:14 templates/news/post_form.html.py:50
 msgid "Edit post"
 msgstr ""
 
-#: templates/news/post_form.html:16 templates/news/post_form.html.py:46
+#: templates/news/post_form.html:16 templates/news/post_form.html.py:52
 msgid "Create new post"
 msgstr ""
 
-#: templates/news/post_form.html:118
+#: templates/news/post_form.html:124
 msgid "Staff members options"
 msgstr ""
 
-#: templates/news/post_form.html:181
+#: templates/news/post_form.html:187
 msgid "Publish"
 msgstr ""

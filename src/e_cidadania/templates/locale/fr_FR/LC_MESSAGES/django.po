@@ -1,196 +1,93 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+# Translators:
+#   <hugo.deslongchamps@googlemail.com>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: e-cidadania\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-28 11:27+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-01-08 11:55+0100\n"
+"PO-Revision-Date: 2012-12-17 12:09+0000\n"
+"Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/ecidadania/"
+"language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: dashboard.py:68
-msgid "Users"
-msgstr ""
-
-#: dashboard.py:78
-msgid "Applications"
-msgstr ""
-
-#: dashboard.py:87
-msgid "Latest News"
-msgstr ""
-
-#: dashboard.py:95
-msgid "Media Management"
-msgstr ""
-
-#: dashboard.py:99
-msgid "FileBrowser"
-msgstr ""
-
-#: dashboard.py:108
-msgid "e-cidadania Support"
-msgstr ""
-
-#: dashboard.py:112
-msgid "Documentation"
-msgstr ""
-
-#: dashboard.py:117
-msgid "Wiki"
-msgstr ""
-
-#: dashboard.py:122
-msgid "Translations"
-msgstr ""
-
-#: dashboard.py:130
-msgid "Thirdparty Support"
-msgstr ""
-
-#: dashboard.py:134
-msgid "Django Documentation"
-msgstr ""
-
-#: dashboard.py:139
-msgid "Grappelli Documentation"
-msgstr ""
-
-#: dashboard.py:144
-msgid "python-dateutil Documentation"
-msgstr ""
-
-#: dashboard.py:153
-msgid "e-cidadania source code"
-msgstr ""
-
-#: dashboard.py:157
-msgid "GitHub"
-msgstr ""
-
-#: dashboard.py:162
-msgid "Gitorious"
-msgstr ""
-
-#: dashboard.py:167
-msgid "Repo.or.vz (Mirror)"
-msgstr ""
-
-#: dashboard.py:176
-msgid "Recent Actions"
-msgstr ""
-
-#: urls.py:62
-msgid "^accounts/"
-msgstr ""
-
-#: urls.py:65
-msgid "^spaces/"
-msgstr ""
-
-#: urls.py:68
-msgid "^invite/"
-msgstr ""
-
-#: urls.py:71
-msgid "^news/$"
-msgstr ""
-
-#: urls.py:73
-msgid "^news/add/$"
-msgstr ""
-
-#: urls.py:75
-msgid "^news/(?P<post_id>\\w+)/delete/$"
-msgstr ""
-
-#: urls.py:78
-msgid "^news/(?P<post_id>\\w+)/edit/$"
-msgstr ""
-
-#: urls.py:81
-msgid "^news/(?P<post_id>\\w+)/$"
-msgstr ""
-
-#: urls.py:90
-msgid "^comments/"
-msgstr ""
-
-#: urls.py:97
-msgid "role/"
-msgstr ""
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: templates/404.html:9
 msgid "Nooo...!"
-msgstr ""
+msgstr "Noonn...!"
 
 #: templates/404.html:11
 msgid "The page you're looking for does not exist."
-msgstr ""
+msgstr "La page que vous recherchez n'existe pas"
 
 #: templates/404.html:12
 msgid "May it be abstract?"
-msgstr ""
+msgstr "Ça peut être abstrait"
 
 #: templates/500.html:10
 msgid "This wasn't supposed to happen! What did you do!?"
-msgstr ""
+msgstr "Cela n'aurais pas du arriver! Qu'avez vous fait!?"
 
 #: templates/500.html:11
 msgid ""
 "We will send the spaguetti squad to repair this. Meanwhile you can go back "
 "to the index."
 msgstr ""
+"On va envoyer un régiment de spagetti pour réparer tout ça. En attendant, "
+"vous pouvez retourner à l'indexe."
 
-#: templates/base.html:105
-msgid "Pages"
+#: templates/explore.html:9
+msgid "Recent processes"
 msgstr ""
 
-#: templates/base.html:115
-msgid "Help"
+#: templates/explore.html:15 templates/explore.html.py:28
+#: templates/explore.html:41
+#, fuzzy
+msgid "There are no recent spaces."
+msgstr "Créer un nouvel espace"
+
+#: templates/explore.html:20
+msgid "Public processes"
 msgstr ""
 
-#: templates/base.html:116
-msgid "Mailing lists"
+#: templates/explore.html:33
+msgid "Private processes"
 msgstr ""
 
-#: templates/base.html:117
-msgid "Issues"
+#: templates/explore.html:49
+msgid "Latest news from public processes"
 msgstr ""
 
-#: templates/base.html:118
-msgid "E-mail"
+#: templates/explore.html:54
+msgid "There are no posts."
 msgstr ""
 
-#: templates/base.html:119 templates/invite.html:15
-#: templates/invite_done.html:10
-msgid "Invite your friends"
-msgstr ""
-
-#: templates/base.html:131
-msgid "created by"
+#: templates/explore.html:59
+msgid "What we say in twitter"
 msgstr ""
 
 #: templates/invite.html:9 templates/invite_done.html:4
 msgid "Invite your friends to e-cidadania"
-msgstr ""
+msgstr "Invitez vos amis sur e-cidadania"
+
+#: templates/invite.html:15 templates/invite_done.html:10
+msgid "Invite your friends"
+msgstr "Invitez vos amis"
 
 #: templates/invite.html:21
 msgid "Invite via E-mail"
-msgstr ""
+msgstr "Inviter par E-mail"
 
 #: templates/invite.html:22
 msgid "Write the e-mail adresses here"
-msgstr ""
+msgstr "Rentrez l'adresse E-mail ici"
 
 #: templates/invite.html:23
 msgid ""
@@ -198,316 +95,332 @@ msgid ""
 "adresses separated by commas. Example: this@that.com, foo@bar.net, "
 "black@white.org"
 msgstr ""
+"Si vous désirez inviter plus qu'une personne, séparer les adresse mail par "
+"des virgules. Exemple: this@that.com, foo@bar.net, black@white.org"
 
 #: templates/invite.html:24
 msgid ""
 "Hi!, I would like you to join e-cidadania, the participative democracy "
 "platform for citizens."
 msgstr ""
+"Salut!, J'aimerais que tu rejoignes e-cidadania, la plate-forme de "
+"démocratie participative pour les citoyens."
 
 #: templates/invite.html:25
 msgid ""
 "You can write here whatever text you want for your invitation, or leave it "
 "by default."
 msgstr ""
+"Vous pouvez écrire ici tout le texte que vous voulez pour votre inviation, "
+"ou laisser le texte par défaut."
 
 #: templates/invite.html:26
 msgid "Submit"
-msgstr ""
+msgstr "Soumettre"
 
 #: templates/invite.html:31
 msgid ""
 "To send invitations via e-mail you have to be <a href='/accounts/"
 "login/'>logged in</a>."
 msgstr ""
+"<a href='/accounts/login/'>Enregistrez vous</a> pour envoyer des invitations."
 
 #: templates/invite_done.html:11
 msgid "The email(s) have been sent"
-msgstr ""
+msgstr "E-mail(s) envoyé(s)"
 
 #: templates/invite_done.html:12
 msgid "Go to index"
-msgstr ""
+msgstr "Aller à l'indexe"
 
 #: templates/menu.html:3
-msgid "Home"
+msgid "Explore"
+msgstr ""
+
+#: templates/menu.html:4
+msgid "Blog"
 msgstr ""
 
 #: templates/menu.html:5
+msgid "Help"
+msgstr ""
+
+#: templates/menu.html:10
 msgid "Login"
-msgstr ""
+msgstr "Identification"
 
-#: templates/menu.html:6
+#: templates/menu.html:11
 msgid "Sign up"
-msgstr ""
+msgstr "Enregistrement"
 
-#: templates/menu.html:13
+#: templates/menu.html:15
 msgid "Language"
-msgstr ""
+msgstr "Langue"
 
-#: templates/menu.html:33
-msgid "Profile"
-msgstr ""
-
-#: templates/menu.html:45
-msgid "Administration"
-msgstr ""
-
-#: templates/menu.html:46
-msgid "Create new space"
+#: templates/menu.html:35
+msgid "My profile"
 msgstr ""
 
 #: templates/menu.html:47
-msgid "Add news"
-msgstr ""
+msgid "Administration"
+msgstr "Administration"
 
 #: templates/menu.html:48
-msgid "Manage User Roles"
-msgstr ""
+msgid "Add news"
+msgstr "Ajouter des nouvelles"
 
-#: templates/menu.html:51
+#: templates/menu.html:52
+msgid "Create new space"
+msgstr "Créer un nouvel espace"
+
+#: templates/menu.html:54
 msgid "Edit profile"
-msgstr ""
+msgstr "Editer le profil"
 
-#: templates/menu.html:53
+#: templates/menu.html:56
 msgid "Logout"
-msgstr ""
+msgstr "Déconnexion"
 
 #: templates/not_allowed.html:4
 msgid "Not allowed"
-msgstr ""
+msgstr "Non-autorisé"
 
 #: templates/not_allowed.html:10
 msgid "You are not allowed to access here."
-msgstr ""
+msgstr "Vous n'avez pas le droit d'acceder à cette page"
 
 #: templates/not_allowed.html:13
 msgid "I want to participate"
-msgstr ""
+msgstr "Je veux participer"
 
 #: templates/not_allowed.html:15 templates/space_intent.html:12
 msgid ""
 "You can go <a href='/'>back to home</a> or <a href='/accounts/'>back to your "
 "profile</a>"
 msgstr ""
+"Vous pouvez revenir <a href='/'>à l'accueil </a> or <a href='/accounts/'>sur "
+"votre profil</a>"
 
-#: templates/site_index.html:4
+#: templates/site_index.html:5
 msgid "e-cidadania"
-msgstr ""
+msgstr "e-cidadania"
 
 #: templates/site_index.html:23
-msgid "Sign up <i>-it's free!-</i>"
+msgid ""
+"Would you like the debates and decisions to be more inclusive? Well done and "
+"integrative proposals where participation is always a nice and enriching "
+"experience? We too, that's why we created e-cidadania."
 msgstr ""
 
-#: templates/site_index.html:23
-msgid "or"
+#: templates/site_index.html:25
+msgid "Latest participative processes"
 msgstr ""
 
-#: templates/site_index.html:23
-msgid "Log in"
-msgstr ""
+#: templates/site_index.html:32
+msgid "Public"
+msgstr "Publique"
+
+#: templates/site_index.html:34
+msgid "Private"
+msgstr "Privé"
 
 #: templates/site_index.html:38
-msgid "Features"
-msgstr ""
-
-#: templates/site_index.html:41
-msgid "Advanced debate system"
-msgstr ""
-
-#: templates/site_index.html:42
-msgid ""
-"A new kind of debating system, based on a two-dimensional grid.\n"
-"            This will allow people to organize the ideas and also get "
-"conclusions for the debate.\n"
-"            The usual threaded debate systems are very unconclusive and "
-"innefective. Let's start\n"
-"            getting conclusions!"
+msgid "There are no processes."
 msgstr ""
 
 #: templates/site_index.html:49
-msgid "Automated reports"
+msgid "View all the processes"
 msgstr ""
 
-#: templates/site_index.html:50
-msgid ""
-"After every participative process, e-cidadania will generate an automatic\n"
-"            report based on all the data gathered during the process. After "
-"it's generated it will\n"
-"            be available for all participants of the process."
+#: templates/site_index.html:62
+msgid "Sign in"
 msgstr ""
 
-#: templates/site_index.html:56
-msgid "Proposals and voting"
+#: templates/site_index.html:66
+msgid "Forgot your password?"
 msgstr ""
 
-#: templates/site_index.html:57
-msgid ""
-"e-cidadania provides a way to do a complete participative process, from\n"
-"            the debates, passing by proposals system, a secure voting "
-"system, and you can start your\n"
-"            process at any point. e-cidadania will manage to follow it."
+#: templates/site_index.html:67
+msgid "Invite someone!"
 msgstr ""
 
-#: templates/site_index.html:69
-msgid "Recent processes"
+#: templates/site_index.html:74
+msgid "First time here? Register!"
 msgstr ""
 
-#: templates/site_index.html:76
-msgid "Public"
-msgstr ""
-
-#: templates/site_index.html:78
-msgid "Private"
-msgstr ""
-
-#: templates/site_index.html:82
-msgid "There are no spaces."
-msgstr ""
-
-#: templates/site_index.html:92
-msgid "View all the spaces"
-msgstr ""
-
-#: templates/site_index.html:97
-msgid "Recent news"
-msgstr ""
-
-#: templates/site_index.html:102
-msgid "No public news."
-msgstr ""
-
-#: templates/site_index.html:108
-msgid "Most active"
-msgstr ""
-
-#: templates/site_index.html:117
-msgid "Share"
-msgstr ""
-
-#: templates/site_index.html:154
-msgid "Tweet"
-msgstr ""
+#: templates/site_index.html:80
+msgid "Register"
+msgstr "Enregistrez-vous"
 
 #: templates/space_intent.html:4
 msgid "Participate"
-msgstr ""
+msgstr "Participer"
 
 #: templates/space_intent.html:11
 msgid ""
 "If the administrator approves your request, you will be notified by email"
 msgstr ""
-
-#: templates/validate_intent.html:4
-msgid "Validate participation"
-msgstr ""
+"Si l'administrateur approuve votre demande, vous serrez notifié par E-mail"
 
 #: templates/comments/approve.html:4
 msgid "Approve a comment"
-msgstr ""
+msgstr "Approuver un commentaire"
 
 #: templates/comments/approve.html:7
 msgid "Really make this comment public?"
-msgstr ""
+msgstr "Êtes vous sur de vouloir rendre ce commentaire publique"
 
 #: templates/comments/approve.html:12
 msgid "Approve"
-msgstr ""
+msgstr "Approuver"
 
 #: templates/comments/approved.html:4
 msgid "Thanks for approving"
-msgstr ""
+msgstr "Merci d'avoir approuvé"
 
 #: templates/comments/approved.html:7 templates/comments/deleted.html:7
 #: templates/comments/flagged.html:7
 msgid ""
 "Thanks for taking the time to improve the quality of discussion on our site"
 msgstr ""
+"Merci d'avoir pris le temps d'améliorer la qualité de la discussion sur "
+"notre site"
 
 #: templates/comments/delete.html:4
 msgid "Remove a comment"
-msgstr ""
+msgstr "Enlever un commentaire"
 
 #: templates/comments/delete.html:7
 msgid "Really remove this comment?"
-msgstr ""
+msgstr "Voulez vous vraiment supprimer ce commentaire?"
 
 #: templates/comments/delete.html:12
 msgid "Remove"
-msgstr ""
+msgstr "Supprimer"
 
 #: templates/comments/deleted.html:4
 msgid "Thanks for removing"
-msgstr ""
+msgstr "Merci d'avoir supprimé"
 
 #: templates/comments/flag.html:4
 msgid "Flag this comment"
-msgstr ""
+msgstr "Signaler ce commentaire"
 
 #: templates/comments/flag.html:7
 msgid "Really flag this comment?"
-msgstr ""
+msgstr "Voulez vous vraiment signaler ce commentaire?"
 
 #: templates/comments/flag.html:12
 msgid "Flag"
-msgstr ""
+msgstr "Signaler"
 
 #: templates/comments/flagged.html:4
 msgid "Thanks for flagging"
-msgstr ""
+msgstr "Merci d'avoir signalé"
 
 #: templates/comments/form.html:2
 msgid "Leave a comment"
-msgstr ""
+msgstr "Laisser un commentaire"
 
 #: templates/comments/form.html:19 templates/comments/form.html.py:49
 #: templates/comments/preview.html:34
 msgid "Post"
-msgstr ""
+msgstr "Envoyer"
 
 #: templates/comments/form.html:20 templates/comments/form.html.py:50
 #: templates/comments/preview.html:35
 msgid "Preview"
-msgstr ""
+msgstr "Aperçu"
 
 #: templates/comments/list.html:3
 msgid "Comments"
-msgstr ""
+msgstr "Commentaires"
 
 #: templates/comments/list.html:7
 msgid "said"
-msgstr ""
+msgstr "a dit"
 
 #: templates/comments/posted.html:4
 msgid "Thanks for commenting"
-msgstr ""
+msgstr "Merci d'avoir commenté"
 
 #: templates/comments/posted.html:7
 msgid "Thank you for your comment"
-msgstr ""
+msgstr "Merci de votre commentaire"
 
 #: templates/comments/posted.html:10 templates/comments/posted.html.py:12
 msgid "Go back"
-msgstr ""
+msgstr "Retourner en arrière"
 
 #: templates/comments/preview.html:4 templates/comments/preview.html.py:17
 msgid "Preview your comment"
-msgstr ""
+msgstr "Aperçu votre commentaire"
 
 #: templates/comments/preview.html:15
 msgid "Please correct the error below"
 msgid_plural "Please correct the errors below"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Veuillez corriger l'erreur ici-bas"
+msgstr[1] "Veuillez corriger les erreurs ici-bas"
 
 #: templates/comments/preview.html:20
 msgid "and"
-msgstr ""
+msgstr "et"
 
 #: templates/comments/preview.html:20
 msgid "Post your comment"
-msgstr ""
+msgstr "Envoyer votre commentaire"
 
 #: templates/comments/preview.html:20
 msgid "or make changes"
+msgstr "ou faire des changement"
+
+#: templates/invite/invite.html:132
+msgid "Like"
 msgstr ""
+
+#: templates/invite/invite.html:138
+msgid "Tweet"
+msgstr "Tweet"
+
+#: templates/invite/invite.html:163
+msgid "Connect with me on e-cidadania!"
+msgstr ""
+
+#: templates/invite/invite.html:187 templates/invite/invite_plain.txt:3
+msgid "Someone sent you an invitation to join e-cidadania!"
+msgstr ""
+
+#: templates/invite/invite.html:190
+#, python-format
+msgid ""
+"\n"
+"                                        <a href=\"http://ecidadania.org\">e-"
+"cidadania</a> is an e-democracy platform for citizen participation. More "
+"clearly, it's for direct democracy in every one if its shapes,\n"
+"                                        from 99%% movement, 15M to official "
+"participative budgets. The message that was sent to you follows:\n"
+"                                        "
+msgstr ""
+
+#: templates/invite/invite_plain.txt:4
+#, python-format
+msgid ""
+"\n"
+"You have been invited to join e-cidadania, an e-democracy platform for "
+"citizen participation. More clearly, it's for direct democracy in every one "
+"of its shapes, from 99%% movement, 15M to official participative budgets. "
+"The message that was sent to you follows:\n"
+msgstr ""
+
+#: templates/invite/invite_plain.txt:9
+msgid "Join e-cidadania today in http://ecidadania.org"
+msgstr ""
+
+#: templates/invite/invite_plain.txt:11
+msgid ""
+"If you have any questions dont hesitate and send us a mail to "
+"support@ecidadania.org."
+msgstr ""
+
+#~ msgid "Home"
+#~ msgstr "Accueil"

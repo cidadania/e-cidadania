@@ -9,9 +9,9 @@
     <div class="row">
         <div class="span12">
          {% if user.is_authenticated %}
-             <p> You are already logged in as <strong>{{ user.username }}</strong> </p>
+             <p>{% trans "You are already logged in as" %} <strong>{{ user.username }}</strong> </p>
          {% else %}
-            <form action="" method="post" accept-charset="utf-8">
+            <form class="form-horizontal" action="" method="post" accept-charset="utf-8">
                 {% csrf_token %}
                 <h4>{% trans "User registration" %}</h4>
 
@@ -21,67 +21,79 @@
                     {% endfor %}
                 {% endif %}
 
-                <div class="clearfix {% if form.username.errors %}error{% endif%}">
-                    <label for="prependedInput">{% trans "Username" %}</label>
-                    <div class="input">
+                <div class="control-group {% if form.username.errors %}error{% endif %}">
+                    <label class="control-label">{% trans "Username" %}</label>
+                    <div class="controls">
+                        <div class="input-append">
                             {{ form.username }}
-                        <span class="help-inline">
-                            {% if form.username.errors %}
+                            {% if form.username.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.username.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.username.errors %}
+                            <p class="help-block">
                                 {% for error in form.username.errors %}
                                     {{ error|escape }}
-                                {% endfor %}
-                            {% else %}
-                                {{ form.username.help_text }}
-                            {% endif %}
-                        </span>
+                                {% endfor%}
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
 
-                <div class="clearfix {% if form.email.errors %}error{% endif%}">
-                    <label for="prependedInput">{% trans "E-mail" %}</label>
-                    <div class="input">
-                        {{ form.email }}
-                        <span class="help-inline">
-                            {% if form.email.errors %}
+                <div class="control-group {% if form.email.errors %}error{% endif %}">
+                    <label class="control-label">{% trans "E-Mail" %}</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            {{ form.email }}
+                            {% if form.email.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.email.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.email.errors %}
+                            <p class="help-block">
                                 {% for error in form.email.errors %}
                                     {{ error|escape }}
-                                {% endfor %}
-                            {% else %}
-                                {{ form.email.help_text }}
-                            {% endif %}
-                        </span>
+                                {% endfor%}
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
 
-                <div class="clearfix {% if form.password1.errors %}error{% endif%}">
-                    <label for="prependedInput">{% trans "Password" %}</label>
-                    <div class="input">
-                        {{ form.password1 }}
-                        <span class="help-inline">
-                            {% if form.password1.errors %}
+                <div class="control-group {% if form.password1.errors %}error{% endif %}">
+                    <label class="control-label">{% trans "Password" %}</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            {{ form.password1 }}
+                            {% if form.password1.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.password1.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.password1.errors %}
+                            <p class="help-block">
                                 {% for error in form.password1.errors %}
                                     {{ error|escape }}
-                                {% endfor %}
-                            {% else %}
-                                {{ form.password1.help_text }}
-                            {% endif %}
-                        </span>
+                                {% endfor%}
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
 
-                <div class="clearfix {% if form.password2.errors %}error{% endif%}">
-                    <label for="prependedInput">{% trans "Password (again)" %}</label>
-                    <div class="input">
-                        {{ form.password2 }}
-                        <span class="help-inline">
-                            {% if form.password2.errors %}
+                <div class="control-group {% if form.password2.errors %}error{% endif %}">
+                    <label class="control-label">{% trans "Password (again)" %}</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            {{ form.password2 }}
+                            {% if form.password2.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.password2.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.password2.errors %}
+                            <p class="help-block">
                                 {% for error in form.password2.errors %}
                                     {{ error|escape }}
-                                {% endfor %}
-                            {% else %}
-                                {{ form.password2.help_text }}
-                            {% endif %}
-                        </span>
+                                {% endfor%}
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
 

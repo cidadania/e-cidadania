@@ -12,6 +12,8 @@
 	<p class="success large">
 		{% trans "Your new avatar has been saved successfully" %}.
 	</p>
+  <hr>
+  <a href="{% url 'profile_overview' %}" class="btn btn-danger btn-small">&laquo; {% trans "Go back" %}</a>
 {% endblock %}
 
 {% block content-related %}

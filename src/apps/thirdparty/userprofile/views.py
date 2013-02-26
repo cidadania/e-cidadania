@@ -71,6 +71,8 @@ if not os.path.isfile(DEFAULT_AVATAR):
     import shutil
     image = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                          "generic.jpg")
+    print image
+    print DEFAULT_AVATAR
     shutil.copy(image, DEFAULT_AVATAR)
 
 GOOGLE_MAPS_API_KEY = hasattr(settings, "GOOGLE_MAPS_API_KEY") and \
@@ -344,11 +346,12 @@ def register(request):
             newuser.email = form.cleaned_data.get('email')
             EmailValidation.objects.add(user=newuser, email=newuser.email)
             newuser.save()
-
+            
             # Add the user to the space administrators group
-            u_group = Group.objects.get(name='Space administrators')
-            u_group.user_set.add(newuser)
-        return HttpResponseRedirect('%scomplete/' % request.path_info)
+            u_group = Group.objects.get(name="Space administrators")
+            newuser.groups.add(u_group)
+
+            return HttpResponseRedirect('%scomplete/' % request.path_info)
     else:
         form = RegistrationForm()
 

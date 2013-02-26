@@ -1,41 +1,38 @@
-Contas de usuario
-=================
+User accounts
+=============
 
-O módulo de contas de usuario baséase no módulo *auth* de django e na
-aplicación *django-userprofile* creada por James Bennet.
+The user account system in e-cidadania is abased on the django *auth* module and
+in django-userprofile, created by James Bennet.
 
-Pode que para algunha instalación concreta de e-cidadania se precisen outros datos
-do usuario que non teñan que ver co modelo de datos que trae e-cidadania por
-defecto. Nese caso, pódense modificar os campos do perfil de usuario.
+It might be that for other installations of e-cidadania you need other user
+data instead of the provided by the e-cidadania default installation. In
+that case you can modify the data model of the user.
 
-O fichero que contén o modelo de datos do perfil atópase en
-`apps/accounts/models.py`. Todos os campos poden ser modificados salvo os de
-idade e espazos.
+The file containing the data model for the user profile is found in
+`apps/accounts/models.py`. All the fields can be replaced except `age` and
+`spaces`.
 
-.. note:: Recorda que tras modificar o modelo de datos da túa instalación deberás
-          reconstruír a base de datos. Recomendamos que instales algunha aplicación
-          para migración de esquemas de bases de datos como *django-evolution*
+.. note:: Remember, after modifying the data model you will need to rebuild
+          your database. We encourage you to have some application for
+          database schema migration like *django-evolution*
 
-Os usuarios constan de dúas partes. Por unha está a conta de usuario creada
-polo módulo *auth* de django e por outra está o obxecto *profile* que contén
-todos os datos do perfil.
+Users are spearated in two parts. One of them is the django user account
+created by the *auth* module and the other is the *profile* object
+containing all the profile data for the user.
 
-Os usuarios poden crearse sen o seu respectivo perfil, pero unha vez que se intente
-crear un perfil haberá que enchelo enteiro e quedará asociado ao seu usuario de
-por vida.
+Users can be created without profile, but once you try to create a profile
+you will have to fill it and it will be linked to the user.
 
-Perfís públicos
+Public profiles
 ---------------
 
-Os usuarios contan cunha parte pública do seu perfil, que mostrará os datos
-que eles elixan facer públicos.
+Users have a public zone in their profiles, which will show the data they
+want to show.
 
-Os datos que elixan facerse públicos serán visibles para calquera persoa que
-visite o perfil. Sexa usuario da plataforma ou non.
+The public data will be visible to anyone visiting the profile, platform
+user or not.
 
-.. note:: Ten coidado coa información que amosas na rede.
+.. note:: Be careful with the personal data you show on the net.
 
-.. warning:: Actualmente os datos do perfil público non son configurables polos
-             usuarios. Espérase cambiar isto en e-cidadania 0.1.5.
-             
-
+.. warning:: Currently the data on the public profile is not configurable by
+             the users. This is expected to change in e-cidadania 0.1.5.

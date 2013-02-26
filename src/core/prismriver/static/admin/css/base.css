@@ -1,0 +1,836 @@
+body {
+    background: url("../img/custom/bg_aside.png") repeat-y scroll -26px 0 transparent;
+    color: #333333;
+    font-family: "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    font-size: 12px;
+    margin: 0 0 0 188px;
+    min-width: 960px;
+    padding: 0;
+}
+
+body.popup {
+    background: none repeat scroll 0 0 white;
+    margin-left: 0;
+    min-width: 100%;
+}
+
+a:link, a:visited {
+    color: #5B80B2;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #003366;
+}
+
+a img {
+    border: medium none;
+}
+
+a.section:link, a.section:visited {
+    color: #333333;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+p, ol, ul, dl {
+    margin: 0.2em 0 0.8em;
+}
+
+p {
+    line-height: 140%;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: bold;
+}
+
+h1 {
+    color: #666666;
+    font-size: 18px;
+    margin: 0 0 0.2em;
+    padding: 0 6px 0 0;
+}
+
+h2 {
+    font-size: 16px;
+    margin: 1em 0 0.5em;
+}
+
+h2.subhead {
+    font-weight: normal;
+    margin-top: 0;
+}
+
+h3 {
+    color: #666666;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0.8em 0 0.3em;
+}
+
+h4 {
+    font-size: 12px;
+    margin: 1em 0 0.8em;
+    padding-bottom: 3px;
+}
+
+h5 {
+    color: #666666;
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin: 1.5em 0 0.5em;
+    text-transform: uppercase;
+}
+
+ul li {
+    list-style-type: square;
+    padding: 1px 0;
+}
+
+ul.plainlist {
+    margin-left: 0 !important;
+}
+
+ul.plainlist li {
+    list-style-type: none;
+}
+
+li ul {
+    margin-bottom: 0;
+}
+
+li, dt, dd {
+    font-size: 11px;
+    line-height: 14px;
+}
+
+dt {
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+dd {
+    margin-left: 0;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+}
+
+blockquote {
+    border-left: 5px solid #DDDDDD;
+    color: #777777;
+    font-size: 11px;
+    margin-left: 2px;
+    padding-left: 10px;
+}
+
+code, pre {
+    background: inherit;
+    color: #666666;
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+    font-size: 11px;
+}
+
+pre.literal-block {
+    background: none repeat scroll 0 0 #EEEEEE;
+    margin: 10px;
+    padding: 6px 8px;
+}
+
+code strong {
+    color: #993300;
+}
+
+hr {
+    background-color: #EEEEEE;
+    border: medium none;
+    clear: both;
+    color: #EEEEEE;
+    font-size: 1px;
+    height: 1px;
+    line-height: 1px;
+    margin: 0;
+    padding: 0;
+}
+
+.small {
+    font-size: 11px;
+}
+
+.tiny {
+    font-size: 10px;
+}
+
+p.tiny {
+    margin-top: -2px;
+}
+
+.mini {
+    font-size: 9px;
+}
+
+p.mini {
+    margin-top: -3px;
+}
+
+.help, p.help {
+    color: #999999;
+    font-size: 10px !important;
+}
+
+p img, h1 img, h2 img, h3 img, h4 img, td img {
+    vertical-align: middle;
+}
+
+.quiet, a.quiet:link, a.quiet:visited {
+    color: #999999 !important;
+    font-weight: normal !important;
+}
+
+.quiet strong {
+    font-weight: bold !important;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+.clear {
+    clear: both;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.example {
+    background: none repeat scroll 0 0 #EFEFEF;
+    margin: 10px 0;
+    padding: 5px 10px;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+table {
+    border-collapse: collapse;
+    border-color: #CCCCCC;
+}
+
+td, th {
+    font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+    font-size: 11px;
+    line-height: 13px;
+    padding: 5px;
+    vertical-align: top;
+}
+
+th {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+}
+
+thead th, tfoot td {
+    background: none repeat scroll 0 0 #FAFAFA;
+    border-bottom: 1px solid #DDDDDD;
+    border-left: 1px solid #DDDDDD;
+    color: #666666;
+    font-size: 11px;
+    padding: 2px 5px;
+}
+
+tfoot td {
+    border-bottom: medium none;
+    border-top: 1px solid #DDDDDD;
+}
+
+thead th:first-child, tfoot td:first-child {
+    border-left: medium none !important;
+}
+
+thead th.optional {
+    font-weight: normal !important;
+}
+
+fieldset table {
+    border-right: 1px solid #EEEEEE;
+}
+
+tr.row-label td {
+    border-bottom: medium none;
+    color: #666666;
+    font-size: 9px;
+    margin-top: -1px;
+    padding-bottom: 0;
+    padding-top: 2px;
+}
+
+tr.alt {
+    background: none repeat scroll 0 0 #F6F6F6;
+}
+
+.row1 {
+    background: none repeat scroll 0 0 #F5F5F5;
+}
+
+.row2 {
+    background: none repeat scroll 0 0 white;
+}
+
+thead th a:link, thead th a:visited {
+    color: #666666;
+    display: block;
+}
+
+table thead th.sorted {
+    background-position: left bottom !important;
+}
+
+table thead th.sorted a {
+    padding-right: 13px;
+}
+
+table thead th.ascending a {
+    background: url("../img/admin/arrow-up.gif") no-repeat scroll right 0.4em transparent;
+}
+
+table thead th.descending a {
+    background: url("../img/admin/arrow-down.gif") no-repeat scroll right 0.4em transparent;
+}
+
+table.orderable tbody tr td:hover {
+    cursor: move;
+}
+
+table.orderable tbody tr td:first-child {
+    background-image: url("../img/admin/nav-bg-grabber.gif");
+    background-repeat: repeat-y;
+    padding-left: 14px;
+}
+
+table.orderable-initalized .order-cell, body > tr > td.order-cell {
+    display: none;
+}
+
+input, textarea, select, .form-row p {
+    border-radius: 3px 3px 3px 3px;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 2px 0;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+textarea {
+    vertical-align: top !important;
+}
+
+input[type="text"], input[type="password"], textarea, select, .vTextField {
+    border: 1px solid #CCCCCC;
+}
+
+.button, input[type="submit"], input[type="button"], .submit-row input {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #AAAAAA;
+    border-radius: 5px 5px 5px 5px;
+    color: #555555;
+    padding: 6px 9px;
+}
+
+.popup .button, .popup input[type="submit"], .popup input[type="button"], .popup .submit-row input {
+    float: right;
+    margin-right: 10px;
+}
+
+.button:active, input[type="submit"]:active, input[type="button"]:active {
+    background-image: url("../img/admin/nav-bg-reverse.gif");
+    background-position: center top;
+}
+
+.button[disabled], input[type="submit"][disabled], input[type="button"][disabled] {
+    background-image: url("../img/admin/nav-bg.gif");
+    background-position: center bottom;
+    opacity: 0.4;
+}
+
+.button.default, input.default[type="submit"], .submit-row input.default {
+    background: none repeat scroll 0 0 #333333;
+    border: 1px solid #000000;
+    color: white;
+    float: right;
+    font-weight: bold;
+}
+
+.button.default:active, input.default[type="submit"]:active {
+    background-image: url("../img/admin/default-bg-reverse.gif");
+    background-position: center top;
+}
+
+.button.default[disabled], input.default[type="submit"][disabled], input.default[type="button"][disabled] {
+    background-image: url("../img/admin/default-bg.gif");
+    background-position: center bottom;
+    opacity: 0.4;
+}
+
+.module {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 white;
+    border-color: #CCCCCC;
+    border-style: solid none;
+    border-width: 1px medium;
+    margin-bottom: 5px;
+}
+
+.module p, .module ul, .module h3, .module h4, .module dl, .module pre {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.module blockquote {
+    margin-left: 12px;
+}
+
+.module ul, .module ol {
+    margin-left: 1.5em;
+}
+
+.module h3 {
+    margin-top: 0.6em;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-bottom: 1px solid #CCCCCC;
+    color: #666666;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 0;
+    padding: 6px 5px;
+    text-align: left;
+}
+
+.module table {
+    border-collapse: collapse;
+}
+
+ul.messagelist {
+    margin: 0;
+    padding: 0 0 5px;
+}
+
+ul.messagelist li {
+    background: url("../img/admin/icon_success.gif") no-repeat scroll 5px 0.3em #FFFFCC;
+    border-bottom: 1px solid #DDDDDD;
+    color: #666666;
+    display: block;
+    font-size: 12px;
+    margin: 0 0 3px;
+    padding: 4px 5px 4px 25px;
+}
+
+ul.messagelist li.warning {
+    background-image: url("../img/admin/icon_alert.gif");
+}
+
+ul.messagelist li.error {
+    background-image: url("../img/admin/icon_error.gif");
+}
+
+.errornote {
+    background: url("../img/admin/icon_error.gif") no-repeat scroll 5px 0.3em #FFFFCC;
+    border: 1px solid red;
+    color: red;
+    display: block;
+    font-size: 12px !important;
+    margin: 0 0 3px;
+    padding: 4px 5px 4px 25px;
+}
+
+ul.errorlist {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.errorlist li {
+    background: url("../img/admin/icon_alert.gif") no-repeat scroll 5px 0.3em red;
+    border: 1px solid red;
+    color: white;
+    display: block;
+    font-size: 12px !important;
+    margin: 0 0 3px;
+    padding: 4px 5px 4px 25px;
+}
+
+.errorlist li a {
+    color: white;
+    text-decoration: underline;
+}
+
+td ul.errorlist {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+td ul.errorlist li {
+    margin: 0 !important;
+}
+
+.errors {
+    background: none repeat scroll 0 0 #FFFFCC;
+}
+
+.errors input, .errors select, .errors textarea {
+    border: 1px solid red;
+}
+
+div.system-message {
+    background: none repeat scroll 0 0 #FFFFCC;
+    font-size: 0.8em;
+    margin: 10px;
+    padding: 6px 8px;
+}
+
+div.system-message p.system-message-title {
+    background: url("../img/admin/icon_error.gif") no-repeat scroll 5px 0.3em #FFFFCC;
+    color: red;
+    margin: 0;
+    padding: 4px 5px 4px 25px;
+}
+
+.description {
+    font-size: 12px;
+    padding: 5px 0 0 12px;
+}
+
+div.breadcrumbs {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-bottom: 1px solid #CCCCCC;
+    border-top: 1px solid #CCCCCC;
+    color: #999999;
+    font-size: 11px;
+    padding: 2px 8px 3px;
+    text-align: left;
+}
+
+.addlink {
+    background: url("../img/admin/icon_addlink.png") no-repeat scroll 0 0.2em transparent;
+    padding-bottom: 2px;
+    padding-left: 12px;
+}
+
+.changelink {
+    background: url("../img/admin/icon_changelink.png") no-repeat scroll 0 0.2em transparent;
+    padding-left: 12px;
+}
+
+.deletelink {
+    background: url("../img/admin/icon_deletelink.png") no-repeat scroll 0 0.25em transparent;
+    padding-left: 12px;
+}
+
+a.deletelink:link, a.deletelink:visited {
+    color: #CC3434;
+}
+
+a.deletelink:hover {
+    color: #993333;
+}
+
+.object-tools {
+    float: right;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    padding-left: 0;
+    position: absolute;
+    right: 0;
+    top: 3px;
+}
+
+.form-row .object-tools {
+    float: none;
+    height: 2em;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-left: 3.5em;
+}
+
+.object-tools li {
+    display: block;
+    float: left;
+    height: 16px;
+    padding: 0;
+}
+
+.object-tools li:hover {
+}
+
+.object-tools a:link, .object-tools a:visited {
+    background: none repeat scroll 0 0 #434343;
+    color: white;
+    display: block;
+    float: left;
+    font-size: 12px;
+    height: 14px;
+    padding: 3px 10px;
+}
+
+.object-tools a:hover, .object-tools li:hover a {
+    text-decoration: underline;
+}
+
+.object-tools a.viewsitelink, .object-tools a.golink {
+}
+
+.object-tools a.viewsitelink:hover, .object-tools a.golink:hover {
+}
+
+.object-tools a.addlink {
+    padding-right: 28px;
+}
+
+.object-tools a.addlink:hover {
+}
+
+table#change-history {
+    width: 100%;
+}
+
+table#change-history tbody th {
+    width: 16em;
+}
+
+#container {
+    display: block;
+    min-width: 744px;
+    position: relative;
+    width: 100%;
+}
+
+#content {
+    margin: -1px 0 10px;
+}
+
+#header {
+    width: 100%;
+}
+
+#content-main {
+    float: left;
+    width: 100%;
+}
+
+#content-related {
+    width: 100%;
+}
+
+#footer {
+    clear: both;
+    padding: 10px;
+}
+
+.colMS {
+    margin-right: 20em !important;
+}
+
+.colSM {
+    margin-left: 20em !important;
+}
+
+.colSM #content-related {
+    float: left;
+    margin-left: -19em;
+    margin-right: 0;
+}
+
+.colSM #content-main {
+    float: right;
+}
+
+.popup .colM {
+    width: 100%;
+}
+
+.subcol {
+    float: left;
+    margin-right: 15px;
+    width: 46%;
+}
+
+.dashboard #content {
+    width: 100%;
+}
+
+#header {
+    background: none repeat scroll 0 0 #434343;
+    color: #FFFFFF;
+    height: 28px;
+    overflow: hidden;
+}
+
+#header a:link, #header a:visited {
+    color: white;
+}
+
+#header a:hover {
+    text-decoration: underline;
+}
+
+#branding h1 {
+    color: #F4F379;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 8px 0;
+    padding: 0 10px;
+}
+
+#branding h2 {
+    color: #FFFFCC;
+    font-size: 14px;
+    font-weight: normal;
+    margin: -8px 0 8px;
+    padding: 0 10px;
+}
+
+#user-tools {
+    border-bottom: 1px solid #D0D0D0;
+    font-size: 11px;
+    padding: 1.2em 10px;
+    right: 0;
+    text-align: center;
+    top: 0;
+}
+
+#content-related h3 {
+    color: #666666;
+    display: none;
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+#content-related h4 {
+    font-size: 11px;
+}
+
+#content-related .module h2 {
+    background: url("../img/admin/nav-bg.gif") repeat-x scroll left bottom #EEEEEE;
+    color: #666666;
+}
+
+#sidebar {
+    left: 0;
+    position: absolute;
+    top: 15px;
+    width: 188px;
+}
+
+#side_logo {
+    padding-left: 2px;
+    text-align: center;
+}
+
+#header h1 {
+    color: white;
+    font-family: verdana, arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    margin-left: 15px;
+    margin-top: 4px;
+}
+
+#recent-actions-module {
+    background: none repeat scroll 0 0 transparent;
+    border-left: medium none;
+    border-right: medium none;
+    border-top: medium none;
+    text-align: right;
+}
+
+.inline-related td, .inline-related th {
+    border-bottom: 1px solid #CCCCCC;
+}
+
+#recent-actions-module h2 {
+    background: none repeat scroll 0 0 transparent !important;
+    border: medium none !important;
+    font-size: 13px;
+    text-align: right;
+}
+
+.side_app img {
+    vertical-align: text-bottom;
+}
+
+.side_app ul {
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-top: 5px;
+}
+
+.side_app {
+    border-bottom: 1px solid #CCCCCC;
+    color: #666666;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-top: 11px;
+    text-align: right;
+}
+
+.side_app li {
+    font-weight: normal;
+    list-style: none outside none !important;
+}
+
+.side_selected {
+    background: url("../img/custom/bg_aside_selected.png") repeat-y scroll -26px 0 transparent;
+}
+
+#content-main form div p {
+    margin-left: 10px;
+    margin-top: 12px;
+}
+
+.side_app li a {
+    font-size: 12px;
+    line-height: 1.4em;
+}
+
+body.nosidebar #sidebar {
+    display: none;
+}
+
+.login #togglesidebar {
+    display: none;
+}
+
+body.nosidebar {
+    background: none repeat scroll 0 0 white;
+    margin-left: 0;
+}
+

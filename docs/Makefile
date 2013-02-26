@@ -19,14 +19,14 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees/$(LANG) $(PAPEROPT_$(PAPER)) $(SPHINXO
 SPHINX_DEPENDENCIES = en/Makefile
 
 #%/Makefile : en/Makefile
-#	$(PYTHON) -c "import shutil; shutil.copyfile('$<, '$@')"
+#   $(PYTHON) -c "import shutil; shutil.copyfile('$<, '$@')"
 
 # Take in mind that the english is the last to build. This is for readthedocs.org
 # to get the english docs instead of spanish or galician.
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of the supported formats by e-cidadania:"
-	@echo
+	@echo   
 	@echo "  html         Make the HTML version of the documentation"
 	@echo "  latex        Make the LaTeX version of the documentation"
 	@echo "  latexpdf     Create the PDF version of the documentation using pdflatex"
@@ -36,10 +36,10 @@ help:
 	@echo
 
 html: $(SPHINX_DEPENDENCIES)
+	cd en && make html LANG=en
 	cd es && make html LANG=es
 	cd gl && make html LANG=gl
-	cd en && make html LANG=en
-
+	
 latex: $(SPHINX_DEPENDENCIES)
 	cd gl && make latex LANG=gl
 	cd es && make latex LANG=es
@@ -47,8 +47,8 @@ latex: $(SPHINX_DEPENDENCIES)
 
 latexpdf: $(SPHINX_DEPENDENCIES)
 	cd es && make latexpdf LANG=es
-    #cd gl && make latexpdf LANG=gl
 	cd en && make latexpdf LANG=en
+	cd gl && make latexpdf LANG=gl
 
 clean:
 	rm -rf $(BUILDDIR) 

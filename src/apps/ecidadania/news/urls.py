@@ -22,15 +22,18 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from apps.ecidadania.news.views import DeletePost, ViewPost, AddPost, EditPost
+from apps.ecidadania.news.url_names import *
+
 
 urlpatterns = patterns('apps.ecidadania.news.views',
     
-    url(_(r'^add/$'), AddPost.as_view(), name='add-post'),
+    url(r'^add/$', AddPost.as_view(), name=POST_ADD),
     
-    url(_(r'^(?P<post_id>\d+)/delete/$'), DeletePost.as_view(), name='delete-post'),
+    url(r'^(?P<post_id>\d+)/delete/$', DeletePost.as_view(),
+        name=POST_DELETE),
     
-    url(_(r'^(?P<post_id>\d+)/edit/$'), EditPost.as_view(), name='edit-post'),
+    url(r'^(?P<post_id>\d+)/edit/$', EditPost.as_view(), name=POST_EDIT),
     
-    url(r'^(?P<post_id>\d+)', ViewPost.as_view(), name='view-post'),
+    url(r'^(?P<post_id>\d+)', ViewPost.as_view(), name=POST_VIEW),
 
 )

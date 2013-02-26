@@ -76,7 +76,7 @@ class EditPage(UpdateView):
 #        context['get_place'] = get_object_or_404(Space, url=self.kwargs['space_name'])
 #        return context
         
-    @method_decorator(permission_required('staticpages.edit_staticpage'))
+    @method_decorator(permission_required('staticpages.change_staticpage'))
     def dispatch(self, *args, **kwargs):
         return super(EditPage, self).dispatch(*args, **kwargs)
         

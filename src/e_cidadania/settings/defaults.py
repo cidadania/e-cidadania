@@ -38,6 +38,8 @@ cwd = os.path.dirname(os.path.realpath(__file__)).strip('settings')
 AUTH_PROFILE_MODULE = "accounts.UserProfile"
 ACCOUNT_ACTIVATION_DAYS = 2
 LOGIN_REDIRECT_URL = '/accounts/'
+ANONYMOUS_USER_ID = -1
+GUARDIAN_RENDER_403 = True
 
 # Languages for the platform.
 LANGUAGES = (
@@ -120,6 +122,11 @@ MIDDLEWARE_CLASSES = (
     #'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # this is default
+    'guardian.backends.ObjectPermissionBackend',
+)
+
 ROOT_URLCONF = 'e_cidadania.urls'
 APPEND_SLASH = True
 
@@ -154,6 +161,7 @@ THIRDPARTY_APPS = (
     'apps.thirdparty.smart_selects',
     'apps.thirdparty.userprofile',
     'apps.thirdparty.tagging',
+    'guardian',
 )
 
 ECIDADANIA_MODULES = (

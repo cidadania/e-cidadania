@@ -30,8 +30,6 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic import FormView
 from django.template import RequestContext
-from django.views.generic.create_update import create_object
-from django.views.generic.create_update import update_object
 from django.contrib.auth.models import User
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.forms.models import modelformset_factory, inlineformset_factory

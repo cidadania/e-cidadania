@@ -10,34 +10,31 @@
 /* HTML TAGS DEFINITION */
 
 body {
-	background: #FAFAFA;
-	padding: 0;
-	margin: 0;
-	font-family: 'Duru Sans', Verdana, "Lucida Sans", Arial;
-	font-size: 12px;
-	color: #000;
-	cursor: default;
+    background: #FAFAFA;
+    font-family: 'Duru Sans', Verdana, "Lucida Sans", Arial;
+    font-size: 12px;
+    color: #000;
 }
 
 a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 img {
-	border: none;
+    border: none;
 }
 
 textarea {
     width: 510px;
     margin: 10px;
 }
-/* END HTML TAGS DEFINITION */
 
-/* COMMON CUSTOMIZATIONS */
 hr { /* This hr replaces the bootstrap one */
     border-bottom: 1px solid #DDD;
 }
+/* END HTML TAGS DEFINITION */
 
+/* COMMON CUSTOMIZATIONS */
 .hidden {
     display: none;
 }
@@ -119,12 +116,12 @@ hr { /* This hr replaces the bootstrap one */
 /* END COMMON CUSTOMIZATIONS */
 
 /* BOOTSTRAP OVERRIDES */
-.modal {
+/*.modal {
     width: 700px;
     height: 500px;
     margin: -250px 0 0 -350px;
     overflow: auto;
-}
+}*/
 /* END BOOTSTRAP OVERRIDES */
 
 /* MAIN INDEX */
@@ -501,11 +498,11 @@ td.filled ul li a {
 }
 
 #debate td, th {
-  	border-width: 1px;
-	border-spacing: 0px;
-	border-style: inset;
-	border-color: #CCC;
-	border-collapse: collapse;
+    border-width: 1px;
+    border-spacing: 0px;
+    border-style: inset;
+    border-color: #CCC;
+    border-collapse: collapse;
 }
 
 tbody td {

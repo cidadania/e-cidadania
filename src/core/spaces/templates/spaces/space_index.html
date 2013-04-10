@@ -49,8 +49,11 @@
                 {% if get_place.mod_voting %}
                     <li><a href="#voting" data-toggle="tab">{% trans "Voting" %}</a></li>
                 {% endif %}
+                <li class="pull-right">
+                    <a href="{% url 'space-feed' get_place.url %}"><i class="icon-rss" style="font-size:16px;"></i> RSS</a>
+                </li>
                 {% if user_is_admin %}
-                    <li class="dropdown">
+                    <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Administration" %} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             {% if perms.news.add_post %}
@@ -82,9 +85,6 @@
                         </ul>
                     </li>
                 {% endif %}
-                <li class="pull-left">
-                    <a href="{% url 'space-feed' get_place.url %}"><i class="icon-rss" style="font-size:16px;"></i> RSS</a>
-                </li>
                 </ul>
                 <div id="my-tab-content" class="tab-content">
                 <div class="tab-pane active" id="overview">

@@ -29,7 +29,6 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic import FormView
-from django.views.generic.create_update import update_object
 from django.views.decorators.http import require_POST
 from django.db.models import Count
 from django.db.models import F

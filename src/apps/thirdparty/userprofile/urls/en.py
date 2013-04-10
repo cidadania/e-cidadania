@@ -1,5 +1,5 @@
 from django.conf.urls import *
-from django.views.generic.simple import direct_to_template
+from django.views.generic import TemplateView
 from apps.thirdparty.userprofile.views import *
 from django.conf import settings
 
@@ -9,23 +9,19 @@ urlpatterns = patterns('',
 
     url(r'^edit/location/$', location, name='profile_edit_location'),
 
-    url(r'^edit/location/done/$', direct_to_template,
-        {'extra_context': {'section': 'location'},
-        'template': 'userprofile/profile/location_done.html'},
-        name='profile_edit_location_done'),
+    url(r'^edit/location/done/$', TemplateView.as_view(template_name="userprofile/profile/location_done.html"),
+        {'extra_context': {'section': 'location'}}, name='profile_edit_location_done'),
 
     url(r'^edit/personal/$', personal, name='profile_edit_personal'),
 
-    url(r'^edit/personal/done/$', direct_to_template,
-        {'extra_context': {'section': 'personal'},
-        'template': 'userprofile/profile/personal_done.html'},
+    url(r'^edit/personal/done/$', TemplateView.as_view(template_name="userprofile/profile/personal_done.html"),
+        {'extra_context': {'section': 'personal'}},
         name='profile_edit_personal_done'),
 
     url(r'^delete/$', delete, name='profile_delete'),
 
-    url(r'^delete/done/$', direct_to_template,
-        {'extra_context': {'section': 'delete'},
-        'template': 'userprofile/profile/delete_done.html'},
+    url(r'^delete/done/$', TemplateView.as_view(template_name="userprofile/profile/delete_done.html"),
+        {'extra_context': {'section': 'delete'}},
         name='profile_delete_done'),
 
     url(r'^getcountry_info/(?P<lat>[0-9\.\-]+)/(?P<lng>[0-9\.\-]+)/$',
@@ -44,16 +40,12 @@ urlpatterns = patterns('',
     url(r'^edit/avatar/crop/$', avatarcrop,
         name='profile_avatar_crop'),
 
-    url(r'^edit/avatar/crop/done/$', direct_to_template,
-        {'extra_context': {'section': 'avatar'},
-        'template': 'userprofile/avatar/done.html'},
-        name='profile_avatar_crop_done'),
+    url(r'^edit/avatar/crop/done/$', TemplateView.as_view(template_name="userprofile/avatar/done.html"), {'extra_context': {'section': 'avatar'}}, name='profile_avatar_crop_done'),
 
     # Account utilities
     url(r'^email/validation/$', email_validation, name='email_validation'),
 
-    url(r'^email/validation/processed/$', direct_to_template,
-        {'template': 'userprofile/account/email_validation_processed.html'},
+    url(r'^email/validation/processed/$', TemplateView.as_view(template_name="userprofile/account/email_validation_processed.html"),
         name='email_validation_processed'),
 
     url(r'^email/validation/(?P<key>.{70})/$', email_validation_process,
@@ -63,8 +55,7 @@ urlpatterns = patterns('',
         name='email_validation_reset'),
 
     url(r'^email/validation/reset/(?P<action>done|failed)/$',
-        direct_to_template,
-        {'template': 'userprofile/account/email_validation_reset_response.html'},
+        TemplateView.as_view(template_name="userprofile/account/email_validation_reset_response.html"),
         name='email_validation_reset_response'),
 
     url(r'^password/reset/$', 'django.contrib.auth.views.password_reset',
@@ -109,13 +100,9 @@ urlpatterns = patterns('',
     # Registration
     url(r'^register/$', register, name='signup'),
 
-    url(r'^register/validate/$', direct_to_template,
-        {'template': 'userprofile/account/validate.html'},
-        name='signup_validate'),
+    url(r'^register/validate/$', TemplateView.as_view(template_name="userprofile/account/validate.html"), name='signup_validate'),
 
-    url(r'^register/complete/$', direct_to_template,
-        {'template': 'userprofile/account/registration_done.html'},
-        name='signup_complete'),
+    url(r'^register/complete/$', TemplateView.as_view(template_name="userprofile/account/registration_done.html"), name='signup_complete'),
 
     # Users public profile
     url(r'^(?P<username>.+)/$', public, name='profile_public'),

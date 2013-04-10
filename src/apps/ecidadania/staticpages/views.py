@@ -30,10 +30,6 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required, permission_required
-from django.views.generic.list_detail import object_list, object_detail
-from django.views.generic.create_update import create_object, update_object
-from django.views.generic.create_update import delete_object
-
 from apps.ecidadania.staticpages.models import StaticPage
 
 

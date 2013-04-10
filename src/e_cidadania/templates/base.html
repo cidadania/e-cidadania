@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load cache %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xml:lang="es-ES">
+<!DOCTYPE html">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}">
     <head>
         <title>{% block title %}{% endblock %}</title>
         <!-- Load CSS -->
@@ -31,24 +31,6 @@
         {% endblock %}
     </head>
     <body>
-
-        <div id="browser" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">{% trans "Your browser is too old" %}</h3>
-            </div>
-            <div class="modal-body">
-                <p>{% blocktrans %}
-                    You can continue navigation under your risk, but it appears that your browser is too old for the
-                    features we use in e-cidadania. Please consider updating your browser or downloading a new one
-                    like Chrome, Opera, Safari or Firefox.
-                {% endblocktrans %}
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
-        </div>
 
         {# {% get_current_language as LANGUAGE_CODE %} #}
     
@@ -82,7 +64,7 @@
         {% endif %}
     
         <div class="container">
-            <div>
+            <div style="margin-top:40px;">
                 <div class="row">
                     <div class="span12">
                         {% block header %}

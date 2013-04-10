@@ -26,7 +26,7 @@ from e_cidadania.settings.defaults import *
 # EMAIL_PORT= 25
 # EMAIL_HOST_USER= ""
 # EMAIL_HOST_PASSWORD= ""
-# DEFAULT_FROM_EMAIL = ""
+DEFAULT_FROM_EMAIL = ""
 # EMAIL_USE_TLS = True
 
 # Time and zone configuration

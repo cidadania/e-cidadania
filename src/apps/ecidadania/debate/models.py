@@ -25,10 +25,12 @@ import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from django.core.exceptions import ValidationError
 
 from apps.thirdparty.tagging.fields import TagField
 from apps.thirdparty.tagging.models import Tag
 from core.spaces.models import Space
+
 
 class Debate(models.Model):
 
@@ -70,6 +72,11 @@ class Debate(models.Model):
             'space_url': self.space.url,
             'debate_id': str(self.id)})
 
+    def clean(self):
+        if self.start_date > self.end_date:
+            raise ValidationError('The start date can not be after the end date.')
+
+
 class Column(models.Model):
     """
     Debate column object. The debate table is done mixing columns and rows. The column
@@ -82,6 +89,7 @@ class Column(models.Model):
 
     def __unicode__(self):
         return self.criteria
+
 
 class Row(models.Model):
     """

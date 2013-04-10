@@ -44,8 +44,8 @@ def add_page(request, slug):
     This function goes into the administration
     """
     pass
-    
-    
+
+
 class ViewPage(DetailView):
 
     """
@@ -53,11 +53,11 @@ class ViewPage(DetailView):
     """
     context_object_name = 'staticpage'
     template_name = 'staticpages/staticpages_index.html'
-    
+
     def get_object(self):
         self.page = get_object_or_404(StaticPage, uri=self.kwargs['slug'])
         return self.page
-        
+
 
 class EditPage(UpdateView):
 
@@ -70,17 +70,17 @@ class EditPage(UpdateView):
     def get_object(self):
         self.page = get_object_or_404(StaticPage, uri=self.kwargs['slug'])
         return self.page
-        
+
 #    def get_context_data(self, **kwargs):
 #        context = super(EditPage, self).get_context_data(**kwargs)
 #        context['get_place'] = get_object_or_404(Space, url=self.kwargs['space_name'])
 #        return context
-        
+
     @method_decorator(permission_required('staticpages.change_staticpage'))
     def dispatch(self, *args, **kwargs):
         return super(EditPage, self).dispatch(*args, **kwargs)
-        
-                       
+
+
 class DeletePage(DeleteView):
 
     """
@@ -88,9 +88,8 @@ class DeletePage(DeleteView):
     sucess_url = '/'
 
     def get_object(self):
-        return get_object_or_404(StaticPage, uri = self.kwargs['slug'])
-           
+        return get_object_or_404(StaticPage, uri=self.kwargs['slug'])
+
     @method_decorator(permission_required('staticpages.delete_staticpage'))
     def dispatch(self, *args, **kwargs):
         return super(DeletePage, self).dispatch(*args, **kwargs)
-        

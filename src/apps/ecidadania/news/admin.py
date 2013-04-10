@@ -22,6 +22,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from apps.ecidadania.news.models import Post
 
+
 class PostAdmin(admin.ModelAdmin):
 
     """

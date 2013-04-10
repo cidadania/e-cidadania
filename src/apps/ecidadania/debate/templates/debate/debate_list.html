@@ -15,6 +15,15 @@
             {% for debate in object_list %}
                 <div id="spaceitem">
                     <h6 class="spacetitle"><a href="{{ debate.get_absolute_url }}">{{ debate.title }}</a></h6>
+		    <div id="tools">
+			{% if perms.debate.change_debate %}
+			<a href="{% url 'edit-debate' get_place.url debate.id %}"><img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/></a>
+			{% endif %}
+			{% if perms.debate.delete_debate %}
+			<a href="{% url 'delete-debate' get_place.url debate.id %}"><img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/></a>
+			{% endif %}
+		    </div>
+
                     <p class="spacedesc">{{ debate.description|removetags:"p"|safe }}</p>
                 </div>
             {% empty %}

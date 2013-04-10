@@ -17,17 +17,25 @@
 # You should have received a copy of the GNU General Public License
 # along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
 
-#Import all the settings.defaults settings
+# Import all the settings.defaults settings
 from e_cidadania.settings.defaults import *
 
 # Registration mail settings. Please use a different mail server and account
 # during development than in production.
-#EMAIL_HOST = ""
-#EMAIL_PORT= 25
-#EMAIL_HOST_USER= ""
-#EMAIL_HOST_PASSWORD= ""
-#DEFAULT_FROM_EMAIL = ""
-#EMAIL_USE_TLS = True
+# EMAIL_HOST = ""
+# EMAIL_PORT= 25
+# EMAIL_HOST_USER= ""
+# EMAIL_HOST_PASSWORD= ""
+# DEFAULT_FROM_EMAIL = ""
+# EMAIL_USE_TLS = True
+EMAIL_HOST = "mail.ecidadania.org"
+EMAIL_PORT= 25
+EMAIL_HOST_USER="info@ecidadania.org"
+EMAIL_HOST_PASSWORD="MbNu?@HWfBRvKhr"
+DEFAULT_FROM_EMAIL = "info@ecidadania.org"
+SERVER_EMAIL = "info@ecidadania.org"
+EMAIL_USE_TLS = True
+
 
 # Time and zone configuration
 TIME_ZONE = 'Europe/London'
@@ -61,16 +69,17 @@ DATABASES = {
 
 # Debug toolbar settings. By default is commented, if you want to activate it,
 # you will have to install django-debug toolbar and uncomment all this section.
-#INTERNAL_IPS = ('127.0.0.1',)
-#MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-#ECIDADANIA_MODULES += ('debug_toolbar',)
+# INTERNAL_IPS = ('127.0.0.1',)
+# MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+# ECIDADANIA_MODULES += ('debug_toolbar',)
 
 TEST_APPS = (
     # Apps which form a part of the testing framework of e-cidadania.
     'django_nose',
 )
 
-# Override django's default test runner to use Nose test runner instead.            
+# Override django's default test runner to use Nose test runner instead.
+
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = ['tests.unit_tests', '-s', '--cov-report', 'term-missing']
 

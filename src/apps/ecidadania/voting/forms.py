@@ -35,6 +35,7 @@ class PollForm(ModelForm):
 
 ChoiceFormSet = modelformset_factory(Choice, exclude=('poll'), extra=5)
 
+
 class VotingForm(ModelForm):
 
     """
@@ -47,9 +48,10 @@ class VotingForm(ModelForm):
     def __init__(self, current_space, **kwargs):
         super(VotingForm, self).__init__(**kwargs)
         self.fields['proposalsets'].queryset = ProposalSet.objects.filter(
-            space = current_space)
+            space=current_space)
         self.fields['proposals'].queryset = Proposal.objects.filter(
-            space = current_space)
+            space=current_space)
+
 
 class VoteForm(ModelForm):
 

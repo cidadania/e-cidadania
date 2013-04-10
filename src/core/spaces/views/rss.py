@@ -34,13 +34,13 @@ from core.spaces.models import Space, Event
 
 class HTTPAuthFeed(Feed):
     basic_auth_realm = 'e-cidadania'
-    
+
     def __call__(self, request, *args, **kwargs):
         # HTTP auth check inspired by http://djangosnippets.org/snippets/243/
         if request.user.is_authenticated():
             # already logged in
             return super(HTTPAuthFeed, self).__call__(request, *args, **kwargs)
-    
+
         # check HTTP auth credentials
         if 'HTTP_AUTHORIZATION' in request.META:
             auth = request.META['HTTP_AUTHORIZATION'].split()
@@ -55,7 +55,7 @@ class HTTPAuthFeed(Feed):
                             request.user = user
                             return super(HTTPAuthFeed, self).__call__(request,
                                 *args, **kwargs)
-        
+
         # missing auth header or failed authentication results in 401
         response = HttpResponse()
         response.status_code = 401
@@ -79,7 +79,7 @@ class SpaceFeed(HTTPAuthFeed):
 
     def link(self, obj):
         return obj.get_absolute_url()
-    
+
     def description(self, obj):
         return _("All the recent activity in %s ") % obj.name
 
@@ -97,5 +97,5 @@ class SpaceFeed(HTTPAuthFeed):
 
     def item_description(self, item):
         return item.description
-        
+
         return sorted(results, key=lambda x: x.pub_date, reverse=True)

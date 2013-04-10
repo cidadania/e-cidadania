@@ -139,7 +139,7 @@ class DeleteSpaceTest(ECDTestCase):
         """
         space = self.bar_space
         general_user = self.login('test_user', 'test_password')
-        url = self.getURL(url_names.DELETE_SPACE, kwargs={'space_url': space.url})
+        url = self.getURL(url_names.SPACE_DELETE, kwargs={'space_url': space.url})
         response = self.get(url)
         self.assertResponseRedirect(response)
         self.assertEqual(url, response.request['PATH_INFO'])
@@ -153,7 +153,7 @@ class DeleteSpaceTest(ECDTestCase):
                                       logged_in=True)
         self.assertTrue(self.isLoggedIn(user))
         
-        url = self.getURL(url_names.DELETE_SPACE, kwargs={'space_url': space.url})
+        url = self.getURL(url_names.SPACE_DELETE, kwargs={'space_url': space.url})
         response = self.get(url)
         self.assertResponseOK(response)
         self.assertTemplateUsed(response, 'not_allowed.html')
@@ -177,7 +177,7 @@ class ListSpacesTest(ECDTestCase):
         #We have a public space as well as a private space.
         self.private_space = self.foo_space
         self.public_space = self.bar_space
-        self.url = self.getURL(url_names.LIST_SPACES)
+        self.url = self.getURL(url_names.SPACE_LIST)
                
     def testOnlyPublicSpacesAreListedForAnonymousUser(self):
         """
@@ -202,8 +202,120 @@ class ListSpacesTest(ECDTestCase):
         self.foo_space.users.add(self.bar_admin)
         self.login('bar_admin', 'bar_admin_password')
         response = self.get(self.url)
-        spaces_returned = response.context[0].dicts[0]['spaces_list']
+        spaces_returned = response.context[0].dicts[0]['space_list']
         self.assertEqual(len(spaces_returned), 2)
         self.assertTrue(self.foo_space in spaces_returned)
         self.assertTrue(self.bar_space in spaces_returned)   
 
+class EditRoleTest(ECDTestCase):
+    """
+        Tests if only admin can edit roles of people
+    """	
+
+    def setUp(self):
+        self.init()
+        self.private_space = self.foo_space
+        self.public_space = self.bar_space
+
+    def testSuperuserCanAccessPrivateView(self):
+        space=self.private_space
+        self.root=self.create_super_user(logged_in=True)
+        self.assertTrue(self.isLoggedIn(self.root))
+        url = self.getURL('edit-roles', kwargs={'space_url': space.url})
+        response = self.get(url,follow=True)
+        self.assertResponseOK(response)
+        self.assertContains(response,"Please select the         users that will be administrators")
+        self.logout()
+
+    def testSuperuserCanAccessPrivateView(self):
+        space=self.public_space
+        self.root=self.create_super_user(logged_in=True)
+        self.assertTrue(self.isLoggedIn(self.root))
+        url = self.getURL('edit-roles', kwargs={'space_url': space.url})
+        response = self.get(url,follow=True)
+        self.assertResponseOK(response)
+        self.assertContains(response,"Please select the         users that will be administrators")
+        self.logout()
+
+    def testAdminCannotAccessPrivateView(self):
+        space = self.private_space
+        self.login('foo_admin', 'foo_admin_password')
+        self.assertTrue(self.isLoggedIn(self.foo_admin))
+        url = self.getURL('edit-roles', kwargs={'space_url': space.url})
+        response=self.get(url,follow=True)
+        self.assertResponseOK(response)
+        self.assertContains(response, "you don't have permissions for accessing to some area.")
+        self.logout()
+
+    def testAdminCannotAccessPublicView(self):
+        space = self.public_space
+        self.login('bar_admin', 'bar_admin_password')
+        self.assertTrue(self.isLoggedIn(self.bar_admin))
+        url = self.getURL('edit-roles', kwargs={'space_url': space.url})
+        response=self.get(url,follow=True)
+        self.assertResponseOK(response)
+        self.assertContains(response, "you don't have permissions for accessing to some area.")
+        self.logout()
+
+    def testModCannotAccessPrivateView(self):
+        space = self.private_space
+        self.login('foo_mod', 'foo_mod_password')
+        self.assertTrue(self.isLoggedIn(self.foo_mod))
+        url = self.getURL('edit-roles', kwargs={'space_url': space.url})
+        response=self.get(url,follow=True)
+        self.assertResponseOK(response)
+        self.assertContains(response, "you don't have permissions for accessing to some area.")
+        self.logout()
+
+    def testModCannotAccessPublicView(self):
+        space = self.public_space
+        self.login('bar_mod', 'bar_mod_password')
+        self.assertTrue(self.isLoggedIn(self.bar_mod))
+        url = self.getURL('edit-roles', kwargs={'space_url': space.url})
+        response=self.get(url,follow=True)
+        self.assertResponseOK(response)
+        self.assertContains(response, "you don't have permissions for accessing to some area.")
+        self.logout()
+
+
+    def testUserCannotAccessPrivateView(self):
+        space = self.private_space
+        self.login('foo_user', 'foo_user_password')
+        self.assertTrue(self.isLoggedIn(self.foo_user))
+        url=self.getURL('edit-roles', kwargs={'space_url': space.url})
+        response=self.get(url,follow=True)
+        self.assertResponseOK(response)
+        self.assertContains(response, "you don't have permissions for accessing to some area.")
+        self.logout()
+
+    def testUserCannotAccessPublicView(self):
+        space = self.public_space
+        self.login('bar_user', 'bar_user_password')
+        self.assertTrue(self.isLoggedIn(self.bar_user))
+        url = self.getURL('edit-roles',kwargs={'space_url': space.url})
+        response=self.get(url,follow=True)
+        self.assertResponseOK(response)
+        self.assertContains(response, "you don't have permissions for accessing to some area.")
+        self.logout()
+	
+    def testOtherUserCannotAccessPrivateView(self):
+        space = self.private_space
+        self.unreg_user = self.create_user('unreg_user', 'unreg_password')
+        self.login('unreg_user', 'unreg_password')
+        self.assertTrue(self.isLoggedIn(self.unreg_user))
+        url = self.getURL('edit-roles', kwargs={'space_url': space.url})
+        response=self.get(url,follow=True)
+        self.assertResponseOK(response)
+        self.assertContains(response, "you don't have permissions for accessing to some area.")
+        self.logout()
+
+    def testOtherUserCannotAccessPublicView(self):
+        space = self.public_space
+        self.unreg_user = self.create_user('unreg_user', 'unreg_password')
+        self.login('unreg_user', 'unreg_password')
+        self.assertTrue(self.isLoggedIn(self.unreg_user))
+        url = self.getURL('edit-roles', kwargs={'space_url': space.url})
+        response=self.get(url,follow=True)
+        self.assertResponseOK(response)
+        self.assertContains(response, "you don't have permissions for accessing to some area.")
+        self.logout()

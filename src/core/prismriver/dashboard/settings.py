@@ -6,17 +6,16 @@ if hasattr(settings, 'APP_MENU'):
     APP_MENU = settings.APP_MENU
 else:
     APP_MENU = [
-            {"name": "Users and Settings",
+        {"name": "Users and Settings",
              "items": ["auth", "prismriver", "sites"],
              "icon": "users.png",
              "big_icon": "users_big.png",
-             "description": "Manage everything about the users here",
-             },
-              ]
+             "description": "Manage everything about the users here"},
+    ]
 
-#Plugin choices
+# Plugin choices
 if hasattr(settings, 'HOMESCREEN_PLUGIN_CHOICES'):
     HOMESCREEN_PLUGIN_CHOICES = settings.HOMESCREEN_PLUGIN_CHOICES
 else:
     HOMESCREEN_PLUGIN_CHOICES = (('prismriver.dashboard.plugins.dashplugins.AppList', 'App list'),
-        )
+                                 )

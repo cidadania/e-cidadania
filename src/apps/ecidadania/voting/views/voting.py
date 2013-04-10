@@ -71,7 +71,7 @@ class AddVoting(FormView):
         """
         space = get_object_or_404(Space, url=self.kwargs['space_url'])
         kwargs = super(AddVoting, self).get_form_kwargs()
-        kwargs['current_space'] = space 
+        kwargs['current_space'] = space
         return kwargs
 
     def get_success_url(self):
@@ -89,7 +89,6 @@ class AddVoting(FormView):
             return super(AddVoting, self).form_valid(form)
         else:
             template_name = 'not_allowed.html'
-
 
     def get_context_data(self, **kwargs):
         context = super(AddVoting, self).get_context_data(**kwargs)
@@ -123,10 +122,6 @@ class ViewVoting(DetailView):
         all_proposals = Proposal.objects.all()
         proposalsets = voting.proposalsets.all()
         proposals = voting.proposals.all()
-        print "proposalsets: %s" % proposalsets
-        print "proposals: %s" % proposals
-        print "all_proposals: %s" % all_proposals
-        print "prop inside set: %s" % Proposal.objects.filter(proposalset=proposalsets)
         context['proposalsets'] = proposalsets
         context['proposals'] = proposals
         context['all_proposals'] = all_proposals
@@ -189,6 +184,7 @@ class DeleteVoting(DeleteView):
         context['get_place'] = self.space
         return context
 
+
 class ListVotings(ListView):
 
     """
@@ -229,8 +225,7 @@ def vote_voting(request, space_url):
     space = get_object_or_404(Space, url=space_url)
     voteform = VoteForm(request.POST)
 
-    if has_operation_permission(request.user, space,'voting.change_voting', allow=['admins', 'mods',
-        'users']):
+    if has_operation_permission(request.user, space, 'voting.change_voting', allow=['admins', 'mods', 'users']):
         if request.method == 'POST' and voteform.is_valid():
             # Generate the objetct
             token = hashlib.md5("%s%s%s" % (request.user, space,
@@ -244,7 +239,7 @@ def vote_voting(request, space_url):
             # Send the email to the user. Get URL, get user mail, send mail.
             space_absolute_url = space.get_absolute_url()
             full_url = ''.join(['http://', get_current_site(request).domain,
-                        space_absolute_url, 'vote/validate/', token])
+                        space_absolute_url, 'voting/vote/validate/', token])
             user_email = request.user.email
             subject = _("Validate your vote")
             body = _("You voted recently on a process in our platform, please validate your vote following this link: %s") % full_url
@@ -256,7 +251,8 @@ def vote_voting(request, space_url):
         return HttpResponse("Error P02: Couldn't emit the vote. You're not \
             allowed.")
 
-def validate_voting(request, token):
+
+def validate_voting(request, space_url, token):
 
     """
     Validate the votes done in a votation process. This function checks if the
@@ -265,7 +261,6 @@ def validate_voting(request, token):
     error page.
     """
     space = get_object_or_404(Space, url=space_url)
-    voting = get_object_or_404(Voting, pk=voting_id)
     try:
         token = ConfirmVote.object.get(token=token)
     except:

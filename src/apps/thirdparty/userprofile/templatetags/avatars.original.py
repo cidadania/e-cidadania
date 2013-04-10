@@ -1,6 +1,6 @@
 # coding=UTF-8
 from django.template import Library, Node, Template, TemplateSyntaxError, \
-                            Variable
+    Variable
 from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext as u_
 from django.contrib.auth.models import User
@@ -15,6 +15,7 @@ from os import path, makedirs
 from shutil import copy
 
 register = Library()
+
 
 class ResizedThumbnailNode(Node):
     def __init__(self, size, username=None):
@@ -63,8 +64,8 @@ class ResizedThumbnailNode(Node):
         default = False
         try:
             file_root = path.join(settings.MEDIA_ROOT,
-                profile.avatar[:profile.avatar.rindex('/')+1])
-            file_name = profile.avatar[profile.avatar.rindex('/')+1:]
+                profile.avatar[:profile.avatar.rindex('/') +1])
+            file_name = profile.avatar[profile.avatar.rindex('/') +1:]
         except:
             file_root = _settings.AVATARS_DIR
             if profile is not None and profile.avatar:
@@ -89,9 +90,9 @@ class ResizedThumbnailNode(Node):
             self.user = self.get_user(context)
         except Exception, e:
             print e
-            return '' # just die...
+            return ''  # just die...
         if self.size > _settings.DEFAULT_AVATAR_WIDTH:
-            return '' # unacceptable
+            return ''  # unacceptable
         profile = self.get_profile()
         if not profile:
             return ''
@@ -124,22 +125,23 @@ class ResizedThumbnailNode(Node):
             dest_path = path.join(dest_root, file_name)
         else:
             # Did my best...
-            return '' # fail silently
+            return ''  # fail silently
         orig_file.scale(self.size)
         if orig_file.write(dest_path):
             return self.as_url(dest_path)
         else:
             print '=== ERROR ==='
-            return '' # damn! Close but no cigar...
+            return ''  # damn! Close but no cigar...
+
 
 @register.tag('avatar')
 def Thumbnail(parser, token):
     bits = token.contents.split()
     username = None
     if len(bits) > 3:
-        raise TemplateSyntaxError, u_(u"You have to provide only the size as \
+        raise TemplateSyntaxError(u_(u"You have to provide only the size as \
             an integer (both sides will be equal) and optionally, the \
-            username.")
+            username."))
     elif len(bits) == 3:
         username = bits[2]
     elif len(bits) < 2:

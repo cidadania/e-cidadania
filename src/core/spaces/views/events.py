@@ -39,7 +39,7 @@ class AddEvent(FormView):
     """
     Returns an empty MeetingForm to create a new Meeting. Space and author
     fields are automatically filled with the request data.
-    
+
     :rtype: HTML Form
     :context: form, get_place
     """
@@ -58,15 +58,15 @@ class AddEvent(FormView):
         form_uncommited.save()
         form.save_m2m()
 
-        return super(AddEvent, self).form_valid(form) 
+        return super(AddEvent, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super(AddEvent, self).get_context_data(**kwargs)
-        place =  get_object_or_404(Space, url=self.kwargs['space_url'])
+        place = get_object_or_404(Space, url=self.kwargs['space_url'])
         context['get_place'] = place
         context['user_is_admin'] = (has_space_permission(self.request.user,
             place, allow=['admins', 'mods']) or has_all_permissions(
-            self.request.user)) 
+                self.request.user))
         return context
 
     @method_decorator(permission_required('spaces.add_event'))
@@ -75,10 +75,10 @@ class AddEvent(FormView):
 
 
 class ViewEvent(DetailView):
-    
+
     """
     View the content of a event.
-    
+
     :rtype: Object
     :context: event, get_place
     """
@@ -90,9 +90,9 @@ class ViewEvent(DetailView):
 
         if self.request.user.is_anonymous():
             self.template_name = 'not_allowed.html'
-            return get_object_or_404(Space, url = space_url)
+            return get_object_or_404(Space, url=space_url)
 
-        return get_object_or_404(Event, pk = self.kwargs['event_id'])
+        return get_object_or_404(Event, pk=self.kwargs['event_id'])
 
     def get_context_data(self, **kwargs):
         context = super(ViewEvent, self).get_context_data(**kwargs)
@@ -109,7 +109,7 @@ class EditEvent(UpdateView):
 
     """
     Returns a MeetingForm filled with the current Meeting data to be edited.
-    
+
     :rtype: HTML Form
     :context: event, get_place
     """
@@ -119,7 +119,7 @@ class EditEvent(UpdateView):
     def get_object(self):
         cur_event = get_object_or_404(Event, pk=self.kwargs['event_id'])
         return cur_event
-        
+
     def get_success_url(self):
         space = self.kwargs['space_url']
         return reverse(urln.SPACE_INDEX, kwargs={'space_url': space})
@@ -133,34 +133,34 @@ class EditEvent(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(EditEvent, self).get_context_data(**kwargs)
-        space =  get_object_or_404(Space, url=self.kwargs['space_url'])
+        space = get_object_or_404(Space, url=self.kwargs['space_url'])
         context['get_place'] = space
         context['user_is_admin'] = (has_space_permission(self.request.user,
             space, allow=['admins', 'mods']) or has_all_permissions(
-            self.request.user)) 
+                self.request.user))
         return context
-        
+
     @method_decorator(permission_required('spaces.change_event'))
     def dispatch(self, *args, **kwargs):
         return super(EditEvent, self).dispatch(*args, **kwargs)
-        
-      
+
+
 class DeleteEvent(DeleteView):
 
     """
     Returns a confirmation page before deleting the Meeting object.
-   
+
     :rtype: Confirmation
     :context: get_place
     """
 
     def get_object(self):
-        return get_object_or_404(Event, pk = self.kwargs['event_id'])
+        return get_object_or_404(Event, pk=self.kwargs['event_id'])
 
     def get_success_url(self):
         space = self.kwargs['space_url']
         return reverse(urln.SPACE_INDEX, kwargs={'space_url': space})
-   
+
     def get_context_data(self, **kwargs):
         context = super(DeleteEvent, self).get_context_data(**kwargs)
         context['get_place'] = get_object_or_404(Space,
@@ -176,7 +176,7 @@ class ListEvents(ListView):
 
     """
     List all the events attached to a space.
-    
+
     :rtype: Object list
     :context: event_list, get_place
     """
@@ -185,8 +185,7 @@ class ListEvents(ListView):
 
     def get_queryset(self):
         place = get_object_or_404(Space, url=self.kwargs['space_url'])
-        objects = Event.objects.all().filter(space=place.id).order_by\
-            ('event_date')
+        objects = Event.objects.all().filter(space=place.id).order_by('event_date')
         return objects
 
     def get_context_data(self, **kwargs):

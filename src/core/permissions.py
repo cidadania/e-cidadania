@@ -23,18 +23,20 @@ inside the spaces module and also some checks for the django auth
 system.
 """
 
+
 def has_operation_permission(user, space, object_permission, allow):
 
     """
     Checks if the user has all the required permissions to perform a operation.
     :user: User object
     :space: Space object
-    :object_permission: Specific operation permission 
+    :object_permission: Specific operation permission
     :allow: List of users to allow, can be: admins, mods or users
     """
-    return has_all_permissions(user) \
-    or (has_space_permission(user, space, allow) \
-    and user.has_perm(object_permission))
+    print "All permisssions: %s" % has_all_permissions(user)
+    print "Space permission: %s" % has_space_permission(user, space, allow)
+    print "has_perm: %s" % user.has_perm(object_permission)
+    return has_all_permissions(user) or (has_space_permission(user, space, allow) and user.has_perm(object_permission))
 
 
 def has_space_permission(user, space, allow=[]):
@@ -59,6 +61,7 @@ def has_space_permission(user, space, allow=[]):
             return True
         else:
             pass
+
 
 def has_all_permissions(user):
     return user.is_staff or user.is_superuser

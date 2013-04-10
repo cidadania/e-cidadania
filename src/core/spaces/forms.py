@@ -28,14 +28,15 @@ from django.forms.models import modelformset_factory
 
 from core.spaces.models import Space, Document, Event, Entity
 
+
 class SpaceForm(ModelForm):
-    
+
     """
     Returns a form to create or edit a space. SpaceForm inherits all the fields
     from the :class:`Space` data model.
-    
+
     :rtype: HTML Form
-    
+
     .. versionadded:: 0.1
     """
     class Meta:
@@ -63,18 +64,20 @@ class SpaceForm(ModelForm):
 # but will be usually attached to SpaceForm
 EntityFormSet = modelformset_factory(Entity, extra=3)
 
+
 class DocForm(ModelForm):
 
     """
     Returns a form to create or edit a space related document, based on the
     spaces.Document data model.
-    
+
     :rtype: HTML Form
-    
+
     .. versionadded:: 0.1
     """
     class Meta:
         model = Document
+
 
 class RoleForm(ModelForm):
 
@@ -98,9 +101,9 @@ class EventForm(ModelForm):
     """
     Returns a form to create or edit a space related meeting, based on the
     spaces.Meeting data model.
-    
+
     :rtype: HTML Form
-    
+
     .. versionadded:: 0.1
     """
     class Meta:

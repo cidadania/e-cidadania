@@ -32,7 +32,7 @@ from allowed_types import ALLOWED_CONTENT_TYPES
 
 class Space(models.Model):
 
-    """     
+    """
     Spaces model. This model stores a "space" or "place" also known as a
     participative process in reality. Every place has a minimum set of
     settings for customization.
@@ -53,14 +53,14 @@ class Space(models.Model):
     author = models.ForeignKey(User, blank=True, null=True,
         verbose_name=_('Space creator'), help_text=_('Select a user that \
         will be marked as creator of the space'))
-    logo = StdImageField(upload_to='spaces/logos', size=(100, 75, False), 
+    logo = StdImageField(upload_to='spaces/logos', size=(100, 75, False),
         help_text = _('Valid extensions are jpg, jpeg, png and gif'))
     banner = StdImageField(upload_to='spaces/banners', size=(500, 75, False),
         help_text = _('Valid extensions are jpg, jpeg, png and gif'))
     public = models.BooleanField(_('Public space'), help_text=_("This will \
         make the space visible to everyone, but registration will be \
         necessary to participate."))
-    #theme = models.CharField(_('Theme'), m)
+    # theme = models.CharField(_('Theme'), m)
     admins = models.ManyToManyField(User, related_name="space_admins", verbose_name=_('Administrators'), help_text=_('Please select the \
         users that will be administrators of this space'), blank=True,
         null=True)
@@ -86,13 +86,14 @@ class Space(models.Model):
         permissions = (
             ('view', 'Can view this space.'),
         )
+
     def __unicode__(self):
         return self.name
 
     @models.permalink
     def get_absolute_url(self):
         return ('space-index', (), {
-           'space_url': self.url})
+                'space_url': self.url})
 
 
 class Entity(models.Model):
@@ -105,9 +106,9 @@ class Entity(models.Model):
     website = models.CharField(_('Website'), max_length=100, null=True,
         blank=True)
     logo = models.ImageField(upload_to='spaces/logos', verbose_name=_('Logo'),
-        blank = True, null = True)
+        blank=True, null=True)
     space = models.ForeignKey(Space, blank=True, null=True)
-    
+
     class Meta:
         ordering = ['name']
         verbose_name = _('Entity')
@@ -116,7 +117,7 @@ class Entity(models.Model):
     def __unicode__(self):
         return self.name
 
-        
+
 class Document(models.Model):
 
     """
@@ -139,7 +140,7 @@ class Document(models.Model):
     author = models.ForeignKey(User, verbose_name=_('Author'), blank=True,
         null=True, help_text=_('Change the user that will figure as the \
         author'))
-    
+
     def get_file_ext(self):
         filename = self.docfile.name
         extension = filename.split('.')
@@ -152,13 +153,13 @@ class Document(models.Model):
             return str(round(self.docfile.size / 1024.0, 2)) + " KB"
         elif self.docfile.size >= 1048576:
             return str(round(self.docfile.size / 1024000.0, 2)) + " MB"
-        
+
     class Meta:
         ordering = ['pub_date']
         verbose_name = _('Document')
         verbose_name_plural = _('Documents')
         get_latest_by = 'pub_date'
-    
+
     # There is no 'view-document' view, so I'll leave the get_absolute_url
     # method without permalink. Remember that the document files are accesed
     # through the url() method in templates.
@@ -186,7 +187,11 @@ class Event(models.Model):
         help_text=_('Select the date where the event is celebrated.'))
     description = models.TextField(_('Description'), blank=True, null=True)
     location = models.TextField(_('Location'), blank=True, null=True)
-    
+    latitude = models.DecimalField(_('Latitude'), blank=True, null=True,
+        max_digits=17, decimal_places=15, help_text=_('Specify it in decimal'))
+    longitude = models.DecimalField(_('Longitude'), blank=True, null=True,
+        max_digits=17, decimal_places=15, help_text=_('Specify it in decimal'))
+
     def is_due(self):
         if self.pub_date < datetime.now():
             return True
@@ -204,7 +209,7 @@ class Event(models.Model):
 
     def __unicode__(self):
         return self.title
-    
+
     @models.permalink
     def get_absolute_url(self):
         return ('view-event', (), {
@@ -228,4 +233,3 @@ class Intent(models.Model):
     def get_approve_url(self):
         site = Site.objects.all()[0]
         return "http://%s%sintent/approve/%s" % (site.domain, self.space.get_absolute_url(), self.token)
-

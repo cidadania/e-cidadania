@@ -23,12 +23,13 @@ from django.contrib.localflavor.es.forms import ESProvinceSelect, ESRegionSelect
 
 from apps.ecidadania.accounts.models import UserProfile
 
+
 class Registration(RegistrationForm):
-    
+
     """
     """
     province = ESProvinceSelect()
     region = ESRegionSelect()
-    
+
     class Meta:
         model = UserProfile

@@ -1,0 +1,846 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Vishrut Mehta <vishrut.mehta009@gmail.com>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-13 09:31+0100\n"
+"PO-Revision-Date: 2013-03-11 09:54+0000\n"
+"Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
+"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/language/hi_IN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hi_IN\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: admin.py:66
+msgid "Appearance"
+msgstr "उपस्थिति"
+
+#: admin.py:69 templates/spaces/space_form.html:250
+msgid "Modules"
+msgstr "मॉड्यूल"
+
+#: admin.py:72
+msgid "Staff"
+msgstr "स्टाफ़"
+
+#: file_validation.py:53
+#, python-format
+msgid "Please keep filesize under %s."
+msgstr "कृपया %s के अन्तर्गत फ़ाइल आकार रखने."
+
+#: file_validation.py:55
+msgid "Filetype not supported."
+msgstr "फ़ाइल प्रकार समर्थित नहीं है"
+
+#: models.py:43 models.py:104
+msgid "Name"
+msgstr "नाम"
+
+#: models.py:44
+msgid "Max: 250 characters"
+msgstr "अधिकतम 250 वर्णों"
+
+#: models.py:45
+msgid "URL"
+msgstr "यूआरएल"
+
+#: models.py:48
+msgid ""
+"Valid characters are lowercase, digits and                      underscore. "
+"This will be the accesible URL"
+msgstr "वैध वर्ण लोअरकेस अंक, और अंडरस्कोर. यह accesible URL होगा"
+
+#: models.py:50 models.py:187
+msgid "Description"
+msgstr "विवरण"
+
+#: models.py:51
+msgid "Write here your description."
+msgstr "यहाँ अपने विवरण लिखें."
+
+#: models.py:52
+msgid "Date of creation"
+msgstr "सृजन की तिथि"
+
+#: models.py:54
+msgid "Space creator"
+msgstr "अंतरिक्ष निर्माता"
+
+#: models.py:54
+msgid "Select a user that         will be marked as creator of the space"
+msgstr "एक उपयोगकर्ता कि अंतरिक्ष के निर्माता के रूप में चिह्नित किया जाएगा का चयन करें"
+
+#: models.py:57 models.py:59
+msgid "Valid extensions are jpg, jpeg, png and gif"
+msgstr "मान्य एक्सटेंशन JPG, JPEG, GIF और PNG"
+
+#: models.py:60
+msgid "Public space"
+msgstr "सार्वजनिक स्थान"
+
+#: models.py:60
+msgid ""
+"This will         make the space visible to everyone, but registration will "
+"be         necessary to participate."
+msgstr "इस अंतरिक्ष हर किसी को दिखाई करना होगा, लेकिन पंजीकरण करने के लिए भाग लेने के लिए आवश्यक हो जाएगा"
+
+#: models.py:64
+msgid "Administrators"
+msgstr "व्यवस्थापकों के"
+
+#: models.py:64
+msgid ""
+"Please select the         users that will be administrators of this space"
+msgstr "उपयोगकर्ताओं है कि इस अंतरिक्ष के प्रशासकों होगा का चयन करें"
+
+#: models.py:68
+msgid "Moderators"
+msgstr "मध्यस्थ"
+
+#: models.py:68
+msgid "Please select the users         that will be moderators of this space."
+msgstr "उपयोगकर्ताओं है कि इस अंतरिक्ष के संचालकों को हो जाएगा का चयन करें."
+
+#: models.py:70 models.py:178
+msgid "Users"
+msgstr "उपयोगकर्ता"
+
+#: models.py:70
+msgid "Please select the users that         can participate on this space"
+msgstr "उपयोगकर्ताओं है कि इस स्थान पर भाग ले सकते हैं का चयन करें"
+
+#: models.py:74
+msgid "Debate"
+msgstr "बहस"
+
+#: models.py:75 templates/spaces/space_index.html:41
+#: templates/spaces/space_index.html:141
+msgid "Proposals"
+msgstr "प्रस्तावों"
+
+#: models.py:76 templates/spaces/space_index.html:35
+#: templates/spaces/space_index.html:113
+msgid "News"
+msgstr "समाचार"
+
+#: models.py:77
+msgid "Calendar"
+msgstr "कैलेंडर"
+
+#: models.py:78 models.py:159 templates/spaces/space_index.html:44
+msgid "Documents"
+msgstr "दस्तावेज़"
+
+#: models.py:79 templates/spaces/space_index.html:50
+#: templates/spaces/space_index.html:227
+msgid "Voting"
+msgstr "मतदान"
+
+#: models.py:83
+msgid "Space"
+msgstr "अंतरिक्ष"
+
+#: models.py:84
+msgid "Spaces"
+msgstr "रिक्त स्थान"
+
+#: models.py:105
+msgid "Website"
+msgstr "वेबसाइट"
+
+#: models.py:107
+msgid "Logo"
+msgstr "लोगो"
+
+#: models.py:113
+msgid "Entity"
+msgstr "सत्ता"
+
+#: models.py:114
+msgid "Entities"
+msgstr "संस्थाओं"
+
+#: models.py:128
+msgid "Document title"
+msgstr "दस्तावेज़ शीर्षक"
+
+#: models.py:129
+msgid "Max: 100 characters"
+msgstr "अधिकतम 100 अक्षरों"
+
+#: models.py:131
+msgid "Change the space to whom belongs this document"
+msgstr "किससे अंतरिक्ष बदलें इस कागज के अंतर्गत आता है"
+
+#: models.py:132
+msgid "File"
+msgstr "फ़ाइल"
+
+#: models.py:136
+msgid ""
+"Permitted file types: DOC, DOCX, PPT, ODT, ODF, ODP,             PDF, RST, "
+"TXT."
+msgstr "डॉक्टर, docx, ppt, odt, ODF, ODP, पीडीएफ, RST, TXT: फ़ाइल प्रकार की अनुमति है"
+
+#: models.py:139
+msgid "Author"
+msgstr "लेखक"
+
+#: models.py:140
+msgid "Change the user that will figure as the         author"
+msgstr "उपयोगकर्ता है कि लेखक के रूप में लगाना होगा बदलें"
+
+#: models.py:158
+msgid "Document"
+msgstr "दस्तावेज़"
+
+#: models.py:175
+msgid "Event name"
+msgstr "ईवेंट का नाम"
+
+#: models.py:179
+msgid "List of the users that will assist or assisted to the         event."
+msgstr "उपयोगकर्ताओं की सूची है कि सहायता या घटना के लिए सहायता प्रदान की जाएगी."
+
+#: models.py:182
+msgid "Created by"
+msgstr "द्वारा निर्मित"
+
+#: models.py:184
+msgid "Select the user that will be designated as author."
+msgstr "चुनें उपयोगकर्ता है कि लेखक के रूप में नामित किया जाएगा."
+
+#: models.py:185
+msgid "Event date"
+msgstr "इवेंट दिनांक"
+
+#: models.py:186
+msgid "Select the date where the event is celebrated."
+msgstr "तारीख का चयन करें घटना कहाँ मनाया जाता है"
+
+#: models.py:188
+msgid "Location"
+msgstr "स्थान"
+
+#: models.py:198
+msgid "Event"
+msgstr "घटना"
+
+#: models.py:199 templates/spaces/space_index.html:47
+#: templates/spaces/space_index.html:155
+msgid "Events"
+msgstr "घटनाक्रम "
+
+#: templates/spaces/document_confirm_delete.html:4
+#: templates/spaces/document_confirm_delete.html:16
+#: templates/spaces/space_index.html:514
+msgid "Delete document"
+msgstr "दस्तावेज़ हटाएँ"
+
+#: templates/spaces/document_confirm_delete.html:19
+msgid ""
+"Are you sure you want to delete this document? This action cannot be undone"
+msgstr "क्या आप सुनिश्चित करें कि आप इस दस्तावेज को हटाना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा सकता"
+
+#: templates/spaces/document_confirm_delete.html:22
+#: templates/spaces/document_form.html:122
+#: templates/spaces/document_list.html:41
+#: templates/spaces/event_confirm_delete.html:22
+#: templates/spaces/event_list.html:41
+#: templates/spaces/space_confirm_delete.html:21
+#: templates/spaces/space_list.html:77
+msgid "Go back"
+msgstr "वापस जाओ"
+
+#: templates/spaces/document_confirm_delete.html:23
+#: templates/spaces/event_confirm_delete.html:23
+#: templates/spaces/space_confirm_delete.html:22
+#: templates/spaces/space_index.html:213 templates/spaces/space_index.html:238
+msgid "Delete"
+msgstr "हटाना"
+
+#: templates/spaces/document_form.html:13
+#: templates/spaces/document_form.html:31
+#: templates/spaces/space_index.html:509
+msgid "Edit document"
+msgstr "दस्तावेज़ संपादित करें"
+
+#: templates/spaces/document_form.html:15
+msgid "Upload a new document"
+msgstr "एक नया दस्तावेज़ अपलोड करें"
+
+#: templates/spaces/document_form.html:33
+msgid "Upload new document"
+msgstr "नए दस्तावेज़ अपलोड करें"
+
+#: templates/spaces/document_form.html:82 templates/spaces/event_form.html:147
+msgid "Staff members options"
+msgstr "स्टाफ विकल्पों के सदस्यों"
+
+#: templates/spaces/document_form.html:123
+msgid "Upload"
+msgstr "अपलोड"
+
+#: templates/spaces/document_list.html:4
+#: templates/spaces/document_list.html:16
+msgid "Document list"
+msgstr "दस्तावेज़ सूची"
+
+#: templates/spaces/document_list.html:19
+msgid "published"
+msgstr "प्रकाशित "
+
+#: templates/spaces/document_list.html:21
+msgid "There are no documents in this space"
+msgstr "इस अंतरिक्ष में कोई दस्तावेज हैं "
+
+#: templates/spaces/document_list.html:29 templates/spaces/event_list.html:30
+#: templates/spaces/space_list.html:66
+msgid "previous"
+msgstr "पिछला"
+
+#: templates/spaces/document_list.html:32 templates/spaces/event_list.html:33
+#: templates/spaces/space_list.html:69
+msgid "of"
+msgstr "की"
+
+#: templates/spaces/document_list.html:35 templates/spaces/event_list.html:36
+#: templates/spaces/space_list.html:72
+msgid "next"
+msgstr "अगला"
+
+#: templates/spaces/event_confirm_delete.html:4
+#: templates/spaces/event_confirm_delete.html:16
+msgid "Delete event"
+msgstr "ईवेंट हटाएं"
+
+#: templates/spaces/event_confirm_delete.html:19
+msgid ""
+"Are you sure you want to delete this event? This action cannot be undone"
+msgstr "क्या आप सुनिश्चित करें कि आप इस घटना को हटाना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा सकता"
+
+#: templates/spaces/event_detail.html:4 templates/spaces/event_detail.html:16
+msgid "View event"
+msgstr "ईवेंट देखें"
+
+#: templates/spaces/event_detail.html:34
+msgid "Attendees"
+msgstr "सहभागी"
+
+#: templates/spaces/event_form.html:14 templates/spaces/event_form.html:32
+msgid "Edit event"
+msgstr "इवेंट संपादित करें"
+
+#: templates/spaces/event_form.html:16 templates/spaces/event_form.html:34
+msgid "Create a new event"
+msgstr "एक नई घटना बनाएं"
+
+#: templates/spaces/event_form.html:189 templates/spaces/space_form.html:318
+#: templates/spaces/user_groups.html:53
+msgid "Cancel"
+msgstr "रद्द करें"
+
+#: templates/spaces/event_form.html:190 templates/spaces/space_form.html:319
+msgid "Create"
+msgstr "बनाना"
+
+#: templates/spaces/event_list.html:4 templates/spaces/event_list.html:16
+msgid "Event list"
+msgstr "घटना की सूची"
+
+#: templates/spaces/event_list.html:20
+msgid "Published"
+msgstr "प्रकाशित "
+
+#: templates/spaces/event_list.html:22
+msgid "There are no events in this space"
+msgstr "इस अंतरिक्ष में कोई घटनाओं रहे हैं"
+
+#: templates/spaces/space_confirm_delete.html:4
+#: templates/spaces/space_confirm_delete.html:17
+#: templates/spaces/space_index.html:70 templates/spaces/space_index.html:71
+msgid "Delete space"
+msgstr "अंतरिक्ष हटाएँ "
+
+#: templates/spaces/space_confirm_delete.html:18
+msgid ""
+"Are you sure you want to delete this space? This action cannot be undone"
+msgstr "क्या आप सुनिश्चित करें कि आप इस अंतरिक्ष को नष्ट करना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा सकता "
+
+#: templates/spaces/space_form.html:14 templates/spaces/space_form.html:41
+#: templates/spaces/space_index.html:63 templates/spaces/space_index.html:64
+msgid "Edit space"
+msgstr "संपादित करें अंतरिक्ष "
+
+#: templates/spaces/space_form.html:16 templates/spaces/space_form.html:43
+msgid "Create a new space"
+msgstr "एक नए अंतरिक्ष बनाएँ "
+
+#: templates/spaces/space_form.html:263
+msgid "Entities participating"
+msgstr "भाग लेने संस्थाओं "
+
+#: templates/spaces/space_index.html:5
+msgid "Index"
+msgstr "अनुक्रमणिका "
+
+#: templates/spaces/space_index.html:33
+msgid "Overview"
+msgstr "अवलोकन"
+
+#: templates/spaces/space_index.html:38 templates/spaces/space_index.html:127
+msgid "Debates"
+msgstr "वाद - विवाद "
+
+#: templates/spaces/space_index.html:54 templates/spaces/space_index.html:250
+#: templates/spaces/space_index.html:316 templates/spaces/space_index.html:379
+#: templates/spaces/space_index.html:462 templates/spaces/space_index.html:526
+#: templates/spaces/space_index.html:572
+msgid "Administration"
+msgstr "प्रशासन"
+
+#: templates/spaces/space_index.html:57 templates/spaces/space_index.html:58
+#: templates/spaces/space_index.html:318 templates/spaces/space_index.html:319
+msgid "Add new post"
+msgstr "नई पोस्ट जोड़ें "
+
+#: templates/spaces/space_index.html:66 templates/spaces/space_index.html:67
+msgid "Edit user roles"
+msgstr "उपयोगकर्ता भूमिकाएँ संपादित करें"
+
+#: templates/spaces/space_index.html:75
+msgid "Add form field"
+msgstr "फॉर्म फील्ड जोड़ें"
+
+#: templates/spaces/space_index.html:76
+msgid "Add form fields "
+msgstr "प्रपत्र फ़ील्ड्स जोड़ें"
+
+#: templates/spaces/space_index.html:78
+msgid "Delete form field"
+msgstr "प्रपत्र फ़ील्ड हटाएँ"
+
+#: templates/spaces/space_index.html:79
+msgid "Delete form field "
+msgstr "प्रपत्र फ़ील्ड हटाएँ"
+
+#: templates/spaces/space_index.html:94
+msgid "Description:"
+msgstr "विवरण:"
+
+#: templates/spaces/space_index.html:96
+msgid "Current status:"
+msgstr "वर्तमान स्थिति: "
+
+#: templates/spaces/space_index.html:97
+msgid "Participants:"
+msgstr "प्रतिभागियों"
+
+#: templates/spaces/space_index.html:101
+msgid "Participants for"
+msgstr "के लिए प्रतिभागियों"
+
+#: templates/spaces/space_index.html:104
+msgid "Administrators:"
+msgstr "व्यवस्थापक:"
+
+#: templates/spaces/space_index.html:105
+msgid "Moderators:"
+msgstr "मध्यस्थ:"
+
+#: templates/spaces/space_index.html:106
+msgid "Users:"
+msgstr "उपयोगकर्ता:"
+
+#: templates/spaces/space_index.html:110
+msgid "Recent activity"
+msgstr "हाल की गतिविधि"
+
+#: templates/spaces/space_index.html:116
+msgid "posted"
+msgstr "तैनात "
+
+#: templates/spaces/space_index.html:116 templates/spaces/space_index.html:130
+#: templates/spaces/space_index.html:144 templates/spaces/space_index.html:158
+#: templates/spaces/space_index.html:171 templates/spaces/space_index.html:179
+#: templates/spaces/space_index.html:304 templates/spaces/space_index.html:421
+#: templates/spaces/space_index.html:451
+msgid "on"
+msgstr "पर"
+
+#: templates/spaces/space_index.html:118
+msgid "Nothing published yet."
+msgstr "अभी तक कुछ भी नहीं प्रकाशित."
+
+#: templates/spaces/space_index.html:121 templates/spaces/space_index.html:135
+#: templates/spaces/space_index.html:149
+msgid "more..."
+msgstr "ज्यादा ..."
+
+#: templates/spaces/space_index.html:130
+msgid "created debate"
+msgstr "बनाया बहस "
+
+#: templates/spaces/space_index.html:132 templates/spaces/space_index.html:363
+msgid "No debates started."
+msgstr "कोई बहस शुरू कर दिया. "
+
+#: templates/spaces/space_index.html:144
+msgid "proposed"
+msgstr "प्रस्तावित "
+
+#: templates/spaces/space_index.html:146 templates/spaces/space_index.html:436
+msgid "No proposals available."
+msgstr "उपलब्ध नहीं प्रस्तावों."
+
+#: templates/spaces/space_index.html:160 templates/spaces/space_index.html:173
+msgid "No events registered."
+msgstr "कोई इवेंट नहीं दर्ज की गई."
+
+#: templates/spaces/space_index.html:163 templates/spaces/space_index.html:583
+msgid "View all events"
+msgstr "सभी इवेंट देखें"
+
+#: templates/spaces/space_index.html:168 templates/spaces/space_index.html:202
+msgid "Polls"
+msgstr "पोल"
+
+#: templates/spaces/space_index.html:176
+msgid "Votings"
+msgstr "मतदान"
+
+#: templates/spaces/space_index.html:181
+msgid "There are no votings."
+msgstr "वहाँ कोई मतदान नहीं कर रहे हैं."
+
+#: templates/spaces/space_index.html:187 templates/spaces/space_index.html:548
+msgid "Next events"
+msgstr "अगला घटनाओं "
+
+#: templates/spaces/space_index.html:192
+msgid "There are no events."
+msgstr "वहाँ कोई घटनाओं रहे हैं."
+
+#: templates/spaces/space_index.html:208 templates/spaces/space_index.html:233
+msgid "Edit"
+msgstr "संपादित करें"
+
+#: templates/spaces/space_index.html:218
+msgid "Results"
+msgstr "परिणाम"
+
+#: templates/spaces/space_index.html:223
+msgid "There are no polls at this moment."
+msgstr "इस पल में कोई चुनाव कर रहे हैं."
+
+#: templates/spaces/space_index.html:244
+msgid "There are no votings at this moment."
+msgstr "इस पल में कोई मतदान कर रहे हैं."
+
+#: templates/spaces/space_index.html:253 templates/spaces/space_index.html:254
+msgid "Add new poll"
+msgstr "नया जनमत जोड़ें"
+
+#: templates/spaces/space_index.html:260 templates/spaces/space_index.html:261
+msgid "Add new voting process"
+msgstr "नया मतदान प्रक्रिया जोड़ें"
+
+#: templates/spaces/space_index.html:267 templates/spaces/space_index.html:401
+#: templates/spaces/space_index.html:491 templates/spaces/space_index.html:536
+#: templates/spaces/space_index.html:581
+msgid "Actions"
+msgstr "प्रक्रिया"
+
+#: templates/spaces/space_index.html:268
+msgid "List polls"
+msgstr "सूची चुनाव"
+
+#: templates/spaces/space_index.html:269
+msgid "List voting"
+msgstr "सूची मतदान"
+
+#: templates/spaces/space_index.html:292
+msgid "Edit post"
+msgstr "पोस्ट को संपादित करें"
+
+#: templates/spaces/space_index.html:297
+msgid "Delete post"
+msgstr "पोस्ट हटाएँ"
+
+#: templates/spaces/space_index.html:304
+msgid "Written by"
+msgstr "द्वारा लिखित"
+
+#: templates/spaces/space_index.html:304
+msgid "views"
+msgstr "दृष्टिकोण"
+
+#: templates/spaces/space_index.html:304
+msgid "comments"
+msgstr "टिप्पणी"
+
+#: templates/spaces/space_index.html:309
+msgid "There are no news for this space."
+msgstr "इस जगह के लिए कोई खबर नहीं हैं. "
+
+#: templates/spaces/space_index.html:324
+msgid "Most viewed"
+msgstr "सर्वाधिक देखे गए"
+
+#: templates/spaces/space_index.html:330 templates/spaces/space_index.html:457
+msgid "Most commented"
+msgstr "सबसे टिप्पणी "
+
+#: templates/spaces/space_index.html:336
+msgid "View monthly archive"
+msgstr "मासिक संग्रह "
+
+#: templates/spaces/space_index.html:338
+msgid "News archive"
+msgstr "समाचार संग्रह"
+
+#: templates/spaces/space_index.html:349
+msgid "Active debates"
+msgstr "सक्रिय बहस "
+
+#: templates/spaces/space_index.html:354
+msgid "Edit debate"
+msgstr "बहस संपादित करें"
+
+#: templates/spaces/space_index.html:366
+msgid "Closed debates"
+msgstr "बंद बहस "
+
+#: templates/spaces/space_index.html:373
+msgid "No debates closed yet."
+msgstr "अभी तक कोई बहस बंद कर दिया."
+
+#: templates/spaces/space_index.html:382 templates/spaces/space_index.html:383
+msgid "Add debate"
+msgstr "बहस जोड़ें "
+
+#: templates/spaces/space_index.html:403
+msgid "View all debates"
+msgstr "सभी बहस देखें "
+
+#: templates/spaces/space_index.html:415
+msgid "New proposals"
+msgstr "नए प्रस्तावों "
+
+#: templates/spaces/space_index.html:420 templates/spaces/space_index.html:442
+#: templates/spaces/space_index.html:451
+msgid "by"
+msgstr "द्वारा "
+
+#: templates/spaces/space_index.html:422 templates/spaces/space_index.html:442
+#: templates/spaces/space_index.html:451
+msgid "at"
+msgstr "में"
+
+#: templates/spaces/space_index.html:424
+msgid "Edit proposal"
+msgstr "प्रस्ताव संपादित करें"
+
+#: templates/spaces/space_index.html:429
+msgid "Delete proposal"
+msgstr "प्रस्ताव हटाएँ"
+
+#: templates/spaces/space_index.html:439
+msgid "New proposal sets"
+msgstr "नए प्रस्ताव सेट"
+
+#: templates/spaces/space_index.html:444
+msgid "No proposal sets available."
+msgstr "कोई प्रस्ताव सेट उपलब्ध है"
+
+#: templates/spaces/space_index.html:447
+msgid "Merged proposals"
+msgstr "विलय प्रस्तावों"
+
+#: templates/spaces/space_index.html:454
+msgid "No merged proposals"
+msgstr "कोई मर्ज किए गए प्रस्तावों"
+
+#: templates/spaces/space_index.html:458
+msgid "Highlighted proposals"
+msgstr "प्रकाश डाला प्रस्तावों "
+
+#: templates/spaces/space_index.html:466 templates/spaces/space_index.html:467
+msgid "Add proposal set"
+msgstr "प्रस्ताव सेट जोड़ें"
+
+#: templates/spaces/space_index.html:475 templates/spaces/space_index.html:476
+msgid "Add new proposal"
+msgstr "नए प्रस्ताव जोड़ें"
+
+#: templates/spaces/space_index.html:484
+msgid "Merge proposal"
+msgstr "प्रस्ताव मर्ज"
+
+#: templates/spaces/space_index.html:485
+msgid "Create merged proposal"
+msgstr "मर्ज किए गए प्रस्ताव बनाएँ"
+
+#: templates/spaces/space_index.html:493
+msgid "View all proposals"
+msgstr "सभी प्रस्तावों को देखें "
+
+#: templates/spaces/space_index.html:494
+msgid "View all proposal sets"
+msgstr "सभी प्रस्ताव सेट देखें"
+
+#: templates/spaces/space_index.html:520
+msgid "No documents or files available."
+msgstr "कोई दस्तावेज या उपलब्ध फाइलों."
+
+#: templates/spaces/space_index.html:529
+msgid "Add new document"
+msgstr "नया दस्तावेज़ जोड़ें"
+
+#: templates/spaces/space_index.html:530
+msgid "Add documents"
+msgstr "दस्तावेजों जोड़ें"
+
+#: templates/spaces/space_index.html:538
+msgid "View all documents"
+msgstr "सभी दस्तावेजों देखें "
+
+#: templates/spaces/space_index.html:556
+msgid "Past events"
+msgstr "अतीत की घटनाओं"
+
+#: templates/spaces/space_index.html:568
+msgid ""
+"<strong>Hey!</strong> You can click on a day to see a bigger calendar with "
+"the events."
+msgstr "<strong> अरे </ strong> आप एक दिन पर क्लिक करने के लिए घटनाओं के साथ एक बड़ा कैलेंडर देख सकते हैं."
+
+#: templates/spaces/space_index.html:575
+msgid "Add new event"
+msgstr "नई घटना जोड़ें"
+
+#: templates/spaces/space_index.html:576
+msgid "Add event"
+msgstr "घटना जोड़ें"
+
+#: templates/spaces/space_list.html:4 templates/spaces/space_list.html:10
+msgid "Spaces list"
+msgstr "रिक्तियों की सूची "
+
+#: templates/spaces/space_list.html:15
+msgid "My spaces"
+msgstr "मेरा रिक्त स्थान"
+
+#: templates/spaces/space_list.html:19
+msgid "All spaces"
+msgstr "सभी रिक्त स्थान"
+
+#: templates/spaces/space_list.html:22
+msgid "Public spaces"
+msgstr "सार्वजनिक स्थानों"
+
+#: templates/spaces/space_list.html:35
+msgid "There are no public spaces or spaces you are registered to"
+msgstr "वहाँ कोई सार्वजनिक स्थान या रिक्त स्थान के लिए पंजीकृत हैं"
+
+#: templates/spaces/space_list.html:46
+msgid "There are no spaces."
+msgstr "वहाँ कोई रिक्त स्थान हैं."
+
+#: templates/spaces/space_list.html:56
+msgid "There are no public spaces."
+msgstr "वहाँ कोई सार्वजनिक रिक्त स्थान हैं."
+
+#: templates/spaces/user_groups.html:6
+msgid "Edit roles"
+msgstr "भूमिकाओं संपादित करें"
+
+#: templates/spaces/user_groups.html:19
+msgid "Edit roles for"
+msgstr "के लिए भूमिकाओं संपादित करें"
+
+#: templates/spaces/user_groups.html:54
+msgid "Save"
+msgstr "बचाना"
+
+#: templates/spaces/validate_intent.html:4
+msgid "Validate participation"
+msgstr "भागीदारी को मान्य"
+
+#: templates/spaces/validate_intent.html:11
+#, python-format
+msgid "Authorize participation to user %(request_user)s"
+msgstr "उपयोगकर्ता %(request_user)s भागीदारी अधिकृत"
+
+#: templates/spaces/validate_intent.html:15
+msgid "Back to"
+msgstr "पीछे"
+
+#: views/intent.py:59
+msgid "Access has been already authorized"
+msgstr "पहुँच पहले से ही अधिकृत किया गया है"
+
+#: views/intent.py:66
+msgid "New participation request"
+msgstr "नई भागीदारी अनुरोध"
+
+#: views/intent.py:67
+msgid ""
+"User {0} wants to participate in space {1}.\n"
+"                 Please click on the link below to approve.\n"
+" {2}"
+msgstr "{0} उपयोगकर्ता अंतरिक्ष में भाग लेने चाहता है {1} ⏎ को स्वीकृत नीचे दिए गए लिंक पर क्लिक करें. ⏎ {2}"
+
+#: views/intent.py:70
+msgid "Your request is being processed."
+msgstr "आपका अनुरोध संसाधित किया जा रहा है."
+
+#: views/intent.py:89 views/intent.py:109
+msgid "The requested intent does not exist!"
+msgstr "अनुरोध मंशा नहीं मौजूद नहीं है"
+
+#: views/intent.py:104
+#, python-format
+msgid ""
+"The user has been authorized to participate                 in space \"%s\"."
+msgstr "उपयोगकर्ता के लिए अंतरिक्ष \"%s\" में भाग लेने के लिए अधिकृत किया गया है."
+
+#: views/intent.py:106
+msgid "Authorization successful"
+msgstr "सफल प्राधिकरण"
+
+#: views/rss.py:78
+#, python-format
+msgid "%s"
+msgstr "%s"
+
+#: views/rss.py:84
+#, python-format
+msgid "All the recent activity in %s "
+msgstr "%s में सभी हाल की गतिविधि "
+
+#: views/spaces.py:117
+msgid ""
+"Hello anonymous user. Remember                     that this space is public"
+" to view, but you must                     <a "
+"href=\"/accounts/register\">register</a> or                     <a "
+"href=\"/accounts/login\">login</a> to participate."
+msgstr "नमस्ते गुमनाम उपयोगकर्ता. याद रखें कि इस स्थान को देखने के सार्वजनिक है, लेकिन आप <a href=\"/accounts/register\"> चाहिए रजिस्टर </ a> या <a href=\"/accounts/login\"> लॉगिन </ a> के लिए भाग लेने के लिए."
+
+#: views/spaces.py:131
+msgid ""
+"You're an anonymous user. You must                 <a "
+"href=\"/accounts/register\">register</a> or                 <a "
+"href=\"/accounts/login\">login</a> to access here."
+msgstr "तुम एक गुमनाम उपयोगकर्ता हैं. <a href=\"/accounts/register\"> रजिस्टर </ a> या <a href=\"/accounts/login\"> लॉगिन </ a> यहाँ का उपयोग करना चाहिए"
+
+#: views/spaces.py:135
+msgid "You're not registered to this             space."
+msgstr "आप इस अंतरिक्ष के लिए पंजीकृत नहीं हैं."

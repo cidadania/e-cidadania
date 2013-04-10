@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Enrico Nicoletto <enrico.BR@gmx.co.uk>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-11 10:51+0100\n"
+"PO-Revision-Date: 2013-01-18 00:43+0000\n"
+"Last-Translator: Enrico Nicoletto <enrico.BR@gmx.co.uk>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/ecidadania/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: templates/cal/calendar.html:4 templates/cal/calendar.html.py:16
+msgid "Calendar"
+msgstr "Calendário"
+
+#: templates/cal/calendar.html:21
+msgid "Previous month"
+msgstr "Mês anterior"
+
+#: templates/cal/calendar.html:22
+msgid "Next month"
+msgstr "Próximo mês"
+
+#: templates/cal/calendar.html:23
+msgid "Go back"
+msgstr "Retornar"
+
+#: templates/cal/error.html:4 templates/cal/error.html.py:9
+msgid "Calendar error"
+msgstr "Erro do calendário"
+
+#: templates/cal/error.html:10
+msgid "You entered and incorrect month or year. Please correct it."
+msgstr "Você inseriu um mês ou ano incorretos. Por favor corrija isto."
+
+#: templates/cal/error.html:11
+msgid "You can go"
+msgstr "Você pode ir"
+
+#: templates/cal/error.html:11
+msgid "back to home"
+msgstr "de volta a página inicial"
+
+#: templates/cal/error.html:11
+msgid "or"
+msgstr "ou"
+
+#: templates/cal/error.html:11
+msgid "back to your profile"
+msgstr "de volta ao seu perfil"

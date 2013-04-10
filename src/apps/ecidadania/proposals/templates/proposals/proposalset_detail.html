@@ -53,7 +53,7 @@
                     {% endif %}
 
                     <div class="span1">
-                        <p style="line-height:30px;font-size:30px;margin-left:5px;">{{ p.support_votes__count }}</p>
+                        <p style="line-height:30px;font-size:30px;margin-left:5px;">{{ p.support_votes.count }}</p>
                         <button style="margin-left:-15px;" onclick="upvote({{ p.id }})" class="btn btn-small" {% if user in p.support_votes.all %}disabled="disabled"{% endif %}>{% trans "support" %}</button>
                     </div>
 

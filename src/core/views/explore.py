@@ -25,6 +25,7 @@ from django.template import RequestContext
 from core.spaces.models import Space
 from apps.ecidadania.news.models import Post
 
+
 def explore(request):
 
     """
@@ -38,7 +39,7 @@ def explore(request):
     news = Post.objects.filter(space__public=True).order_by('-pub_date')
 
     extra_context = {
-        'recent_spaces': recent_spaces, 
+        'recent_spaces': recent_spaces,
         'spaces': spaces,
         'news': news,
     }

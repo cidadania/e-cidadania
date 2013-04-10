@@ -1,196 +1,197 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
+# Translators:
+#   <tamara.atanasoska20@gmail.com>, 2013.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
 "POT-Creation-Date: 2013-01-08 11:55+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2013-01-16 14:04+0000\n"
+"Last-Translator: tamara <tamara.atanasoska20@gmail.com>\n"
+"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/ecidadania/language/mk_MK/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: mk_MK\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #: static/admin/js/SelectFilter2.js:47
 #, c-format
 msgid "Available %s"
-msgstr ""
+msgstr "Слободно %s"
 
 #: static/admin/js/SelectFilter2.js:54
 msgid "Filter"
-msgstr ""
+msgstr "Филтер"
 
 #: static/admin/js/SelectFilter2.js:61
 msgid "Choose all"
-msgstr ""
+msgstr "Изберете си сите"
 
 #: static/admin/js/SelectFilter2.js:67
 msgid "Add"
-msgstr ""
+msgstr "Додади"
 
 #: static/admin/js/SelectFilter2.js:69
 msgid "Remove"
-msgstr ""
+msgstr "Отстрани"
 
 #: static/admin/js/SelectFilter2.js:75
 #, c-format
 msgid "Chosen %s"
-msgstr ""
+msgstr "Избрано %s"
 
 #: static/admin/js/SelectFilter2.js:76
 msgid "Select your choice(s) and click "
-msgstr ""
+msgstr "Изберете ги вашите избори и кликнете"
 
 #: static/admin/js/SelectFilter2.js:81
 msgid "Clear all"
-msgstr ""
+msgstr "Исчисти ги сите"
 
 #: static/admin/js/actions.js:18 static/admin/js/actions.min.js:10
 msgid "%(sel)s of %(cnt)s selected"
 msgid_plural "%(sel)s of %(cnt)s selected"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(sel)s of %(cnt)s selected"
+msgstr[1] "%(sel)s of %(cnt)s selected"
 
 #: static/admin/js/actions.js:111 static/admin/js/actions.min.js:89
 msgid ""
 "You have unsaved changes on individual editable fields. If you run an "
 "action, your unsaved changes will be lost."
-msgstr ""
+msgstr "Имате незачувани промени. Ако извршите било каква акција, вашите промени ќе бидат изгубени."
 
 #: static/admin/js/actions.js:123 static/admin/js/actions.min.js:97
 msgid ""
 "You have selected an action, but you haven't saved your changes to "
 "individual fields yet. Please click OK to save. You'll need to re-run the "
 "action."
-msgstr ""
+msgstr "Избравте опција, не сте ги зачувале промените на индивидуалните полиња сеуште. Кликнете ОК за да зачувате. Ќе морате да ја повторите акцијата."
 
 #: static/admin/js/actions.js:125 static/admin/js/actions.min.js:97
 msgid ""
 "You have selected an action, and you haven't made any changes on individual "
 "fields. You're probably looking for the Go button rather than the Save "
 "button."
-msgstr ""
+msgstr "Избравте опција, а немате направено промени на индивидуалните полиња сеуште. Најверојатно го барате ОДИ копчети наместо ЗАЧУВАЈ копчето."
 
 #: static/admin/js/calendar.js:26 static/admin/js/dateparse.js:32
 msgid ""
-"January February March April May June July August September October November "
-"December"
-msgstr ""
+"January February March April May June July August September October November"
+" December"
+msgstr "Јануари Фебруари Март Април Мај Јуни Јули Август Септември Октомври Ноември Декември"
 
 #: static/admin/js/calendar.js:27
 msgid "S M T W T F S"
-msgstr ""
+msgstr "С П В С Ч П С"
 
 #: static/admin/js/collapse.js:9 static/admin/js/collapse.js.c:21
 #: static/admin/js/collapse.min.js:6 static/admin/js/collapse.min.js.c:14
 msgid "Show"
-msgstr ""
+msgstr "Покажи"
 
 #: static/admin/js/collapse.js:16 static/admin/js/collapse.min.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Скриј"
 
 #: static/admin/js/dateparse.js:33
 msgid "Sunday Monday Tuesday Wednesday Thursday Friday Saturday"
-msgstr ""
+msgstr "Недела Понеделник Вторник Среда Четврток Петок Сабота"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:49
 #: static/admin/js/admin/DateTimeShortcuts.js:85
 msgid "Now"
-msgstr ""
+msgstr "Сега"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:53
 msgid "Clock"
-msgstr ""
+msgstr "Час"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:81
 msgid "Choose a time"
-msgstr ""
+msgstr "Избери време"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:86
 msgid "Midnight"
-msgstr ""
+msgstr "Полноќ"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:87
 msgid "6 a.m."
-msgstr ""
+msgstr "6 "
 
 #: static/admin/js/admin/DateTimeShortcuts.js:88
 msgid "Noon"
-msgstr ""
+msgstr "Попладне"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:92
 #: static/admin/js/admin/DateTimeShortcuts.js:200
 msgid "Cancel"
-msgstr ""
+msgstr "Откажи"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:140
 #: static/admin/js/admin/DateTimeShortcuts.js:193
 msgid "Today"
-msgstr ""
+msgstr "Денес"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:144
 msgid "Calendar"
-msgstr ""
+msgstr "Календар"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:191
 msgid "Yesterday"
-msgstr ""
+msgstr "Вчера"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:195
 msgid "Tomorrow"
-msgstr ""
+msgstr "Утре"
 
 #: static/js/debate_board.js:12
 msgid "Write here your title"
-msgstr ""
+msgstr "Овде впишете го насловот"
 
 #: static/js/debate_board.js:13
 msgid "Write here your message"
-msgstr ""
+msgstr "Овде впишете ја пораката"
 
 #: static/js/debate_board.js:14
 msgid "Edit"
-msgstr ""
+msgstr "Измени"
 
 #: static/js/debate_board.js:15
 msgid "View"
-msgstr ""
+msgstr "Види"
 
 #: static/js/debate_board.js:16
 msgid "There has been an error."
-msgstr ""
+msgstr "Грешка."
 
 #: static/js/debate_board.js:17
 msgid "Couldn't create note."
-msgstr ""
+msgstr "Не може да се креира мислење."
 
 #: static/js/debate_board.js:18
 msgid "Couldn't get note data."
-msgstr ""
+msgstr "Не може да се повратат податоците од мислењето."
 
 #: static/js/debate_board.js:19
 msgid "Couldn't save note."
-msgstr ""
+msgstr "Не може да се зачува мислењето."
 
 #: static/js/debate_board.js:20
 msgid "Couldn't save note position."
-msgstr ""
+msgstr "Не може да се зачува позицијата на мислењето."
 
 #: static/js/debate_board.js:21
 msgid "Couldn't delete note."
-msgstr ""
+msgstr "Не може да се избрише мислењето."
 
 #: static/js/debate_board.js:22
 msgid "Are you sure?"
-msgstr ""
+msgstr "Дали сте стигурни?"
 
 #: static/js/debate_board.js:23
 msgid "Comment"
-msgstr ""
+msgstr "Коментар"

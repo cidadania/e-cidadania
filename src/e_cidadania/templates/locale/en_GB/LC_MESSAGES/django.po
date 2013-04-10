@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 11:54+0100\n"
+"POT-Creation-Date: 2013-03-13 09:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,6 +38,21 @@ msgstr ""
 msgid ""
 "We will send the spaguetti squad to repair this. Meanwhile you can go back "
 "to the index."
+msgstr ""
+
+#: templates/base.html:38
+msgid "Your browser is too old"
+msgstr ""
+
+#: templates/base.html:41
+msgid ""
+"\n"
+"                    You can continue navigation under your risk, but it "
+"appears that your browser is too old for the\n"
+"                    features we use in e-cidadania. Please consider updating "
+"your browser or downloading a new one\n"
+"                    like Chrome, Opera, Safari or Firefox.\n"
+"                "
 msgstr ""
 
 #: templates/explore.html:9

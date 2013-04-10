@@ -25,6 +25,7 @@ from apps.thirdparty.tagging.fields import TagField
 from apps.thirdparty.tagging.models import Tag
 from core.spaces.models import Space
 
+
 class Post(models.Model):
 
     """
@@ -36,7 +37,7 @@ class Post(models.Model):
     pub_date = models.DateTimeField(_('Date'), auto_now_add=True)
     post_lastup = models.DateTimeField(_('Last update'), auto_now=True)
     author = models.ForeignKey(User, verbose_name=_('Author'), blank=True,
-            null=True,help_text=_('Change the user that will figure as the \
+            null=True, help_text=_('Change the user that will figure as the \
                                   author'))
     pub_index = models.BooleanField(_('Publish in index'),
     help_text=_('This will publish the post in the main site page'))
@@ -53,14 +54,14 @@ class Post(models.Model):
     def comment_count(self):
         ct = ContentType.objects.get_for_model(Post)
         obj_pk = self.id
-        return Comment.objects.filter(content_type=ct,object_pk=obj_pk).count()
+        return Comment.objects.filter(content_type=ct, object_pk=obj_pk).count()
 
     def set_tags(self, tags):
         Tag.objects.update_tags(self, tags)
 
     def get_tags(self, tags):
         return Tag.objects.get_for_object(self)
-    
+
     @models.permalink
     def get_absolute_url(self):
         if self.space is not None:

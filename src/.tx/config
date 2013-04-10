@@ -7,6 +7,8 @@ source_lang = en_GB
 trans.es_ES = core/spaces/locale/es_ES/LC_MESSAGES/django.po
 trans.gl_ES = core/spaces/locale/gl_ES/LC_MESSAGES/django.po
 trans.mk_MK = core/spaces/locale/mk_MK/LC_MESSAGES/django.po
+trans.pt_BR = core/spaces/locale/pt_BR/LC_MESSAGES/django.po
+trans.hi_IN = core/spaces/locale/hi_IN/LC_MESSAGES/django.po
 trans.fr = core/spaces/locale/fr_FR/LC_MESSAGES/django.po
 
 [ecidadania.accounts]
@@ -15,6 +17,8 @@ source_lang = en_GB
 trans.es_ES = apps/ecidadania/accounts/locale/es_ES/LC_MESSAGES/django.po
 trans.gl_ES = apps/ecidadania/accounts/locale/gl_ES/LC_MESSAGES/django.po
 trans.mk_MK = apps/ecidadania/accounts/locale/mk_MK/LC_MESSAGES/django.po
+trans.pt_BR = apps/ecidadania/accounts/locale/pt_BR/LC_MESSAGES/django.po
+trans.hi_IN = apps/ecidadania/accounts/locale/hi_IN/LC_MESSAGES/django.po
 trans.fr = apps/ecidadania/accounts/locale/fr_FR/LC_MESSAGES/django.po
 
 [ecidadania.calendar]
@@ -23,6 +27,8 @@ source_lang = en_GB
 trans.es_ES = apps/ecidadania/cal/locale/es_ES/LC_MESSAGES/django.po
 trans.gl_ES = apps/ecidadania/cal/locale/gl_ES/LC_MESSAGES/django.po
 trans.mk_MK = apps/ecidadania/cal/locale/mk_MK/LC_MESSAGES/django.po
+trans.pt_BR = apps/ecidadania/cal/locale/pt_BR/LC_MESSAGES/django.po
+trans.hi_IN = apps/ecidadania/cal/locale/hi_IN/LC_MESSAGES/django.po
 trans.fr = apps/ecidadania/cal/locale/fr_FR/LC_MESSAGES/django.po
 
 [ecidadania.debate]
@@ -31,6 +37,8 @@ source_lang = en_GB
 trans.es_ES = apps/ecidadania/debate/locale/es_ES/LC_MESSAGES/django.po
 trans.gl_ES = apps/ecidadania/debate/locale/gl_ES/LC_MESSAGES/django.po
 trans.mk_MK = apps/ecidadania/debate/locale/mk_MK/LC_MESSAGES/django.po
+trans.pt_BR = apps/ecidadania/debate/locale/pt_BR/LC_MESSAGES/django.po
+trans.hi_IN = apps/ecidadania/debate/locale/hi_IN/LC_MESSAGES/django.po
 trans.fr = apps/ecidadania/debate/locale/fr_FR/LC_MESSAGES/django.po
 
 [ecidadania.news]
@@ -39,6 +47,8 @@ source_lang = en_GB
 trans.es_ES = apps/ecidadania/news/locale/es_ES/LC_MESSAGES/django.po
 trans.gl_ES = apps/ecidadania/news/locale/gl_ES/LC_MESSAGES/django.po
 trans.mk_MK = apps/ecidadania/news/locale/mk_MK/LC_MESSAGES/django.po
+trans.pt_BR = apps/ecidadania/news/locale/pt_BR/LC_MESSAGES/django.po
+trans.hi_IN = apps/ecidadania/news/locale/hi_IN/LC_MESSAGES/django.po
 trans.fr = apps/ecidadania/news/locale/fr_FR/LC_MESSAGES/django.po
 
 [ecidadania.proposals]
@@ -47,6 +57,8 @@ source_lang = en_GB
 trans.es_ES = apps/ecidadania/proposals/locale/es_ES/LC_MESSAGES/django.po
 trans.gl_ES = apps/ecidadania/proposals/locale/gl_ES/LC_MESSAGES/django.po
 trans.mk_MK = apps/ecidadania/proposals/locale/mk_MK/LC_MESSAGES/django.po
+trans.pt_BR = apps/ecidadania/proposals/locale/pt_BR/LC_MESSAGES/django.po
+trans.hi_IN = apps/ecidadania/proposals/locale/hi_IN/LC_MESSAGES/django.po
 trans.fr = apps/ecidadania/proposals/locale/fr_FR/LC_MESSAGES/django.po
 
 [ecidadania.staticpages]
@@ -55,6 +67,8 @@ source_lang = en_GB
 trans.es_ES = apps/ecidadania/staticpages/locale/es_ES/LC_MESSAGES/django.po
 trans.gl_ES = apps/ecidadania/staticpages/locale/gl_ES/LC_MESSAGES/django.po
 trans.mk_MK = apps/ecidadania/staticpages/locale/mk_MK/LC_MESSAGES/django.po
+trans.pt_BR = apps/ecidadania/staticpages/locale/pt_BR/LC_MESSAGES/django.po
+trans.hi_IN = apps/ecidadania/staticpages/locale/hi_IN/LC_MESSAGES/django.po
 trans.fr = apps/ecidadania/staticpages/locale/fr_FR/LC_MESSAGES/django.po
 
 [ecidadania.userprofile]
@@ -63,6 +77,8 @@ source_lang = en_GB
 trans.es_ES = apps/thirdparty/userprofile/locale/es_ES/LC_MESSAGES/django.po
 trans.gl_ES = apps/thirdparty/userprofile/locale/gl_ES/LC_MESSAGES/django.po
 trans.mk_MK = apps/thirdparty/userprofile/locale/mk_MK/LC_MESSAGES/django.po
+trans.pt_BR = apps/thirdparty/userprofile/locale/pt_BR/LC_MESSAGES/django.po
+trans.hi_IN = apps/thirdparty/userprofile/locale/hi_IN/LC_MESSAGES/django.po
 trans.fr = apps/thirdparty/userprofile/locale/fr_FR/LC_MESSAGES/django.po
 
 [ecidadania.core]
@@ -71,6 +87,8 @@ source_lang = en_GB
 trans.es_ES = e_cidadania/locale/es_ES/LC_MESSAGES/django.po
 trans.gl_ES = e_cidadania/locale/gl_ES/LC_MESSAGES/django.po
 trans.mk_MK = e_cidadania/locale/mk_MK/LC_MESSAGES/django.po
+trans.pt_BR = e_cidadania/locale/pt_BR/LC_MESSAGES/django.po
+trans.hi_IN = e_cidadania/locale/hi_IN/LC_MESSAGES/django.po
 trans.fr = e_cidadania/locale/fr_FR/LC_MESSAGES/django.po
 
 [ecidadania.voting]
@@ -79,6 +97,8 @@ source_lang = en_GB
 trans.es_ES = apps/ecidadania/voting/locale/es_ES/LC_MESSAGES/django.po
 trans.gl_ES = apps/ecidadania/voting/locale/gl_ES/LC_MESSAGES/django.po
 trans.mk_MK = apps/ecidadania/voting/locale/mk_MK/LC_MESSAGES/django.po
+trans.pt_BR = apps/ecidadania/voting/locale/pt_BR/LC_MESSAGES/django.po
+trans.hi_IN = apps/ecidadania/voting/locale/hi_IN/LC_MESSAGES/django.po
 trans.fr = apps/ecidadania/voting/locale/fr_FR/LC_MESSAGES/django.po
 
 [ecidadania.debate-javascript]
@@ -87,6 +107,8 @@ source_lang = en_GB
 trans.es_ES = apps/ecidadania/debate/locale/es_ES/LC_MESSAGES/djangojs.po
 trans.gl_ES = apps/ecidadania/debate/locale/gl_ES/LC_MESSAGES/djangojs.po
 trans.mk_MK = apps/ecidadania/debate/locale/mk_MK/LC_MESSAGES/djangojs.po
+trans.pt_BR = apps/ecidadania/debate/locale/pt_BR/LC_MESSAGES/djangojs.po
+trans.hi_IN = apps/ecidadania/debate/locale/hi_IN/LC_MESSAGES/djangojs.po
 trans.fr = apps/ecidadania/debate/locale/fr_FR/LC_MESSAGES/djangojs.po
 
 [ecidadania.core-javascript]
@@ -95,6 +117,8 @@ source_lang = en_GB
 trans.es_ES = e_cidadania/locale/es_ES/LC_MESSAGES/djangojs.po
 trans.gl_ES = e_cidadania/locale/gl_ES/LC_MESSAGES/djangojs.po
 trans.mk_MK = e_cidadania/locale/mk_MK/LC_MESSAGES/djangojs.po
+trans.pt_BR = e_cidadania/locale/pt_BR/LC_MESSAGES/djangojs.po
+trans.hi_IN = e_cidadania/locale/hi_IN/LC_MESSAGES/djangojs.po
 trans.fr = e_cidadania/locale/fr_FR/LC_MESSAGES/djangojs.po
 
 [ecidadania.proposals-javascript]
@@ -103,4 +127,6 @@ source_lang = en_GB
 trans.es_ES = apps/ecidadania/proposals/locale/es_ES/LC_MESSAGES/djangojs.po
 trans.gl_ES = apps/ecidadania/proposals/locale/gl_ES/LC_MESSAGES/djangojs.po
 trans.mk_MK = apps/ecidadania/proposals/locale/mk_MK/LC_MESSAGES/djangojs.po
+trans.pt_BR = apps/ecidadania/proposals/locale/pt_BR/LC_MESSAGES/djangojs.po
+trans.hi_IN = apps/ecidadania/proposals/locale/hi_IN/LC_MESSAGES/djangojs.po
 trans.fr = apps/ecidadania/proposals/locale/fr_FR/LC_MESSAGES/djangojs.po

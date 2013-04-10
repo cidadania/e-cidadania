@@ -6,6 +6,7 @@ GPLv3 ( http://www.gnu.org/licenses/gpl-3.0.html )
 """
 from os import path
 
+
 class Image:
     def __init__(self, filename):
         self.x, self.y = 0, 0
@@ -101,13 +102,14 @@ class Image:
         self.comment = comment
         self.actions.append('comment')
 
+
 class Dimension:
     def __init__(self, image):
         import commands
         if image.exists:
-            image.x = int(commands.getoutput('identify -format %%w %s' % \
+            image.x = int(commands.getoutput('identify -format %%w %s' %
                 image.filename))
-            image.y = int(commands.getoutput('identify -format %%h %s' % \
+            image.y = int(commands.getoutput('identify -format %%h %s' %
                 image.filename))
         else:
             image.x, image.y = 0, 0

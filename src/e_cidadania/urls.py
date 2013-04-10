@@ -25,7 +25,6 @@ from django.conf.urls import *
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.utils.translation import ugettext_lazy as _
 
 from core.views.index import IndexEntriesFeed
 from core.views.news import ListNews
@@ -48,7 +47,7 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('',
-    
+
     # Django administration
     (r'^admin/', include(admin.site.urls)),
 
@@ -60,16 +59,16 @@ urlpatterns += patterns('',
 
     # Spaces
     url(r'^spaces/', include('core.spaces.urls')),
-    
+
     # Invitations
     url(r'^invite/', 'core.views.invite.invite', name='invite'),
-    
+
     # Explore
     url(r'^explore/$', 'core.views.explore.explore', name='explore'),
-    
+
     # News (this view of news is only for the index)
     url(r'^news/$', ListNews.as_view(), name='list-site-news'),
-    
+
     url(r'^news/add/$', AddPost.as_view(), name='add-site-post'),
 
     url(r'^news/(?P<post_id>\w+)/delete/$', DeletePost.as_view(),
@@ -79,11 +78,11 @@ urlpatterns += patterns('',
                                           name='edit-site-post'),
 
     url(r'^news/(?P<post_id>\w+)/$', ViewPost.as_view(),
-                                     name='view-site-post'),
-    
+                                    name='view-site-post'),
+
     # RSS Feed for the index news ONLY
     url(r'^rss/$', IndexEntriesFeed(), name='site-feed'),
-    
+
     #(r'^api/', include('e_cidadania.apps.api.urls')),
 
     # This urls is for the django comments system
@@ -101,7 +100,7 @@ urlpatterns += patterns('',
     # WARNING: This URLs aren't supposed to be here, but apparently on development
     # they are needed
 
-    #This url is for comments
+    # This url is for comments
 
     url(r'^comments/', include('django.contrib.comments.urls')),
 )
@@ -113,4 +112,4 @@ if settings.DEBUG:
     urlpatterns += patterns('',
         url(r'^uploads/(?P<path>.*)$', 'django.views.static.serve',
             {'document_root': settings.MEDIA_ROOT}),
-        )
+    )

@@ -22,7 +22,6 @@ Proposal module URLs.
 """
 
 from django.conf.urls import *
-from django.utils.translation import ugettext_lazy as _
 
 from apps.ecidadania.proposals.views.common import ViewProposal, \
     support_proposal
@@ -41,7 +40,7 @@ urlpatterns = patterns('apps.ecidadania.proposals.views',
 
     url(r'^set/(?P<set_id>\w+)/$', ViewProposalSet.as_view(),
         name=PROPOSALSET_VIEW),
-    
+
     url(r'^set/(?P<set_id>\w+)/add/$', AddProposalInSet.as_view(),
         name=PROPOSAL_ADD_INSET),
 
@@ -49,38 +48,38 @@ urlpatterns = patterns('apps.ecidadania.proposals.views',
 
     url(r'^add/set/$', AddProposalSet.as_view(), name=PROPOSALSET_ADD),
 
-    url(r'^add/field/','proposalsets.add_proposal_field',
+    url(r'^add/field/', 'proposalsets.add_proposal_field',
         name=PROPOSALFIELD_ADD),
-    
-    url(r'^edit/(?P<prop_id>\w+)/', EditProposal.as_view(), 
+
+    url(r'^edit/(?P<prop_id>\w+)/', EditProposal.as_view(),
         name=PROPOSAL_EDIT),
 
-    url(r'^edit/set/(?P<p_set>\w+)/', EditProposalSet.as_view(), 
+    url(r'^edit/set/(?P<p_set>\w+)/', EditProposalSet.as_view(),
         name=PROPOSALSET_EDIT),
 
-    url(r'^delete/field/$','proposalsets.delete_proposal_field',
+    url(r'^delete/field/$', 'proposalsets.delete_proposal_field',
         name=PROPOSALFIELD_DELETE),
 
-    url(r'^delete/(?P<prop_id>\w+)/$', DeleteProposal.as_view(), 
+    url(r'^delete/(?P<prop_id>\w+)/$', DeleteProposal.as_view(),
         name=PROPOSAL_DELETE),
 
-    url(r'^delete/set/(?P<p_set>\w+)/$', DeleteProposalSet.as_view(), 
+    url(r'^delete/set/(?P<p_set>\w+)/$', DeleteProposalSet.as_view(),
         name=PROPOSALSET_DELETE),
 
-    url(r'^support/','common.support_proposal', name=PROPOSAL_VOTE),
+    url(r'^support/', 'common.support_proposal', name=PROPOSAL_VOTE),
 
-    url(r'^merge/(?P<set_id>\w+)/','proposals.merge_proposal',
+    url(r'^merge/(?P<set_id>\w+)/', 'proposals.merge_proposal',
         name=PROPOSAL_MERGED),
-    
-    url(r'^merge_proposals/','proposalsets.mergedproposal_to_set',
+
+    url(r'^merge_proposals/', 'proposalsets.mergedproposal_to_set',
         name=PROPOSAL_MERGEDTOSET),
- 
-    url(r'^select_set/','proposalsets.proposal_to_set', name=SELECT_SET),
+
+    url(r'^select_set/', 'proposalsets.proposal_to_set', name=SELECT_SET),
 
     url(r'^(?P<prop_id>\w+)/$', ViewProposal.as_view(), name=PROPOSAL_VIEW),
 
     url(r'^$', ListProposals.as_view(), name=PROPOSAL_LIST),
 
-    #url(_(r'^(?P<space_url>\w+)/vote/approve/(?P<token>\w+)/$'),
+    # url(_(r'^(?P<space_url>\w+)/vote/approve/(?P<token>\w+)/$'),
     #    ValidateVote.as_view(), name=VALIDATE_VOTE),
 )

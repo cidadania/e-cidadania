@@ -8,16 +8,18 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from apps.thirdparty.userprofile.models import EmailValidation
 from django.core.files.uploadedfile import SimpleUploadedFile
-import mimetypes, urllib
+import mimetypes
+import urllib
 
 if not settings.AUTH_PROFILE_MODULE:
     raise SiteProfileNotAvailable
 try:
     app_label, model_name = settings.AUTH_PROFILE_MODULE.split('.')
-    #app_label, model_name = settings.AUTH_PROFILE_MODULE.split('.')
+    # app_label, model_name = settings.AUTH_PROFILE_MODULE.split('.')
     Profile = models.get_model(app_label, model_name)
 except (ImportError, ImproperlyConfigured):
     raise SiteProfileNotAvailable
+
 
 class LocationForm(forms.ModelForm):
     """
@@ -29,6 +31,7 @@ class LocationForm(forms.ModelForm):
         fields = ('location', 'latitude', 'longitude', 'country', 'region',
                 'city', 'district')
 
+
 class ProfileForm(forms.ModelForm):
     """
     Profile Form. Composed by all the Profile model fields.
@@ -38,6 +41,7 @@ class ProfileForm(forms.ModelForm):
         exclude = ('date', 'location', 'latitude', 'longitude', 'country',
                    'region', 'city', 'district', 'user', 'public')
 
+
 class PublicFieldsForm(forms.ModelForm):
     """
     Public Fields of the Profile Form. Composed by all the Profile model fields.
@@ -45,6 +49,7 @@ class PublicFieldsForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ('date', 'user', 'public')
+
 
 class AvatarForm(forms.Form):
     """
@@ -55,7 +60,8 @@ class AvatarForm(forms.Form):
 
     def clean_url(self):
         url = self.cleaned_data.get('url')
-        if not url: return ''
+        if not url:
+            return ''
         filename, headers = urllib.urlretrieve(url)
         if not mimetypes.guess_all_extensions(headers.get('Content-Type')):
             raise forms.ValidationError(_('The file type is invalid: %s' % type))
@@ -65,6 +71,7 @@ class AvatarForm(forms.Form):
         if not (self.cleaned_data.get('photo') or self.cleaned_data.get('url')):
             raise forms.ValidationError(_('You must enter one of the options'))
         return self.cleaned_data
+
 
 class AvatarCropForm(forms.Form):
     """
@@ -81,9 +88,10 @@ class AvatarCropForm(forms.Form):
         else:
             return self.cleaned_data
 
+
 class RegistrationForm(forms.Form):
 
-    username = forms.CharField(max_length=255, min_length = 3, label=_("Username"))
+    username = forms.CharField(max_length=255, min_length=3, label=_("Username"))
     email = forms.EmailField(required=True, label=_("E-mail address"))
     password1 = forms.CharField(widget=forms.PasswordInput,
         label=_("Password"))
@@ -129,6 +137,7 @@ class RegistrationForm(forms.Form):
         else:
             raise forms.ValidationError(_("The passwords inserted are different."))
 
+
 class EmailValidationForm(forms.Form):
     email = forms.EmailField()
 
@@ -142,5 +151,6 @@ class EmailValidationForm(forms.Form):
 
         raise forms.ValidationError(_("That e-mail is already used."))
 
+
 class ChangeEmail(EmailValidationForm):
-    email2 = forms.EmailField(label=u'Type Email again') 
+    email2 = forms.EmailField(label=u'Type Email again')

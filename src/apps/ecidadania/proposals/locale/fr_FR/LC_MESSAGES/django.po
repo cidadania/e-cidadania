@@ -1,22 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
+#  <hugo.deslongchamps@googlemail.com>, 2013.
 #   <hugo.deslongchamps@googlemail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 11:54+0100\n"
-"PO-Revision-Date: 2012-12-17 12:08+0000\n"
-"Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/ecidadania/"
-"language/fr/)\n"
-"Language: fr\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-13 09:31+0100\n"
+"PO-Revision-Date: 2013-03-14 14:19+0000\n"
+"Last-Translator: hugodeslongchamps <hugo.deslongchamps@googlemail.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/ecidadania/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: admin.py:61
@@ -73,19 +73,19 @@ msgstr "Prénom"
 
 #: models.py:98 models.py:148
 msgid "Max: 200 characters"
-msgstr ""
+msgstr "Max: 200 caractères"
 
 #: models.py:111
 msgid "Select the debate associated with this proposal set"
-msgstr ""
+msgstr "Sélectionner le débat associé avec cet ensemble de propositions"
 
 #: models.py:117
 msgid "Proposal set"
-msgstr ""
+msgstr "Ensemble de prositions"
 
 #: models.py:118
 msgid "Proposal sets"
-msgstr ""
+msgstr "Ensembles de prpositions"
 
 #: models.py:145
 msgid "Code"
@@ -97,7 +97,7 @@ msgstr "Titre"
 
 #: models.py:150
 msgid "Proposal set in which the         proposal resides"
-msgstr ""
+msgstr "Ensemble de propositions dans lequel cette proposition appartient"
 
 #: models.py:152
 msgid "Description"
@@ -105,24 +105,23 @@ msgstr "Description"
 
 #: models.py:155
 msgid "Change the user that will         figure as the author"
-msgstr ""
+msgstr "Modifier l'utilisateur qui figurera comme l'auteur"
 
 #: models.py:157
 msgid "Insert here relevant words related with         the proposal"
-msgstr ""
+msgstr "Insérez ici des mots qui décrivent cette proposition"
 
 #: models.py:160 models.py:162
 msgid "Specify it in decimal"
-msgstr ""
+msgstr "Spécifiez-le en décimal"
 
 #: models.py:170
 msgid "Select proposals from the list"
-msgstr ""
+msgstr "Sélectionner les propositions dans cette liste"
 
 #: models.py:174
-#, fuzzy
 msgid "Support votes from"
-msgstr "Votes de"
+msgstr "Votes de soutient de"
 
 #: models.py:175
 msgid "Votes from"
@@ -138,40 +137,40 @@ msgstr "Propositions"
 
 #: models.py:217
 msgid "Customizing         proposal form for a proposal set"
-msgstr ""
+msgstr "Modifier le formulaire de proposition pour un ensemble de propositions"
 
 #: models.py:219
 msgid "Additional field that needed to added to the proposal         form"
-msgstr ""
+msgstr "Champ additionnel qui doit être ajouté au formulaire de la proposition"
 
 #: models.py:226
 msgid "ProposalField"
-msgstr ""
+msgstr "ChampdeProposition"
 
 #: models.py:227
 msgid "ProposalFields"
-msgstr ""
+msgstr "ChampsdeProposition"
 
 #: templates/proposals/mergedproposal_in_set.html:10
 #: templates/proposals/mergedproposal_in_set.html:30
 #: templates/proposals/proposalset_select_form.html:10
 #: templates/proposals/proposalset_select_form.html:30
 msgid "Select Proposal Set"
-msgstr ""
+msgstr "Sélectionner un Ensemble de Propositions"
 
 #: templates/proposals/mergedproposal_in_set.html:58
 #: templates/proposals/proposal_add_fields.html:92
 #: templates/proposals/proposal_confirm_delete.html:26
 #: templates/proposals/proposal_form.html:150
 #: templates/proposals/proposal_form_in_set.html:153
-#: templates/proposals/proposal_list.html:50
+#: templates/proposals/proposal_list.html:63
 #: templates/proposals/proposal_merged.html:156
 #: templates/proposals/proposalfield_remove_fields.html:78
 #: templates/proposals/proposalform_remove_field.html:82
 #: templates/proposals/proposalset_confirm_delete.html:26
-#: templates/proposals/proposalset_detail.html:50
+#: templates/proposals/proposalset_detail.html:78
 #: templates/proposals/proposalset_form.html:88
-#: templates/proposals/proposalset_list.html:51
+#: templates/proposals/proposalset_list.html:52
 #: templates/proposals/proposalset_select_form.html:61
 msgid "Go back"
 msgstr "Revenir en arriére"
@@ -185,15 +184,15 @@ msgstr "Créer"
 
 #: templates/proposals/proposal_add_fields.html:10
 msgid "Add form field to proposal form"
-msgstr ""
+msgstr "Ajouter un champ de formulaire au formulaire de la proposition"
 
 #: templates/proposals/proposal_add_fields.html:30
 msgid "Add field to proposal form"
-msgstr ""
+msgstr "Ajouter un champ au formulaire de la proposition"
 
 #: templates/proposals/proposal_add_fields.html:78
 msgid "Additional Fields for the Proposal form in this Proposal Set"
-msgstr ""
+msgstr "Champs Additionnels pour le formulaire de Proposition dans cet Ensemble de Propositions"
 
 #: templates/proposals/proposal_confirm_delete.html:4
 #: templates/proposals/proposal_confirm_delete.html:21
@@ -203,17 +202,14 @@ msgstr "Supprimer la proposition"
 #: templates/proposals/proposal_confirm_delete.html:23
 msgid ""
 "Are you sure you want to delete this proposal? This action cannot be undone."
-msgstr ""
-"Etes vous sûr de vouloir supprimer cette proposition? Cette action ne peut "
-"être défaite."
+msgstr "Etes vous sûr de vouloir supprimer cette proposition? Cette action ne peut être défaite."
 
 #: templates/proposals/proposal_confirm_delete.html:27
-#: templates/proposals/proposal_list.html:22
+#: templates/proposals/proposal_list.html:35
 #: templates/proposals/proposalfield_remove_fields.html:79
 #: templates/proposals/proposalform_remove_field.html:83
 #: templates/proposals/proposalset_confirm_delete.html:27
-#: templates/proposals/proposalset_detail.html:22
-#: templates/proposals/proposalset_list.html:35
+#: templates/proposals/proposalset_detail.html:50
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -222,20 +218,20 @@ msgid "View proposal"
 msgstr "Visioner la proposition"
 
 #: templates/proposals/proposal_detail.html:64
-#: templates/proposals/proposal_list.html:29
-#: templates/proposals/proposalset_detail.html:29
+#: templates/proposals/proposal_list.html:42
+#: templates/proposals/proposalset_detail.html:57
 msgid "support"
 msgstr "support"
 
 #: templates/proposals/proposal_detail.html:69
-#: templates/proposals/proposal_list.html:37
-#: templates/proposals/proposalset_detail.html:37
+#: templates/proposals/proposal_list.html:50
+#: templates/proposals/proposalset_detail.html:65
 msgid "proposed by "
 msgstr "Proposé par"
 
 #: templates/proposals/proposal_detail.html:69
-#: templates/proposals/proposal_list.html:37
-#: templates/proposals/proposalset_detail.html:37
+#: templates/proposals/proposal_list.html:50
+#: templates/proposals/proposalset_detail.html:65
 msgid " at "
 msgstr "à"
 
@@ -243,12 +239,11 @@ msgstr "à"
 #: templates/proposals/proposal_form.html:143
 #: templates/proposals/proposal_form_in_set.html:145
 msgid "Show map"
-msgstr ""
+msgstr "Montrer la carte"
 
 #: templates/proposals/proposal_detail.html:75
-#, fuzzy
 msgid "Merged Proposal"
-msgstr "Proposition"
+msgstr "Proposition Fusionnée"
 
 #: templates/proposals/proposal_form.html:14
 #: templates/proposals/proposal_form.html:43
@@ -269,7 +264,7 @@ msgstr "Ajouter une nouvelle proposition"
 #: templates/proposals/proposal_form.html:142
 #: templates/proposals/proposal_form_in_set.html:144
 msgid "If you want to add location information please click 'Show map'"
-msgstr ""
+msgstr "Si vous voulez ajouter des informations sur le lieu, cliquez sur \"Montrer la carte\""
 
 #: templates/proposals/proposal_form.html:151
 #: templates/proposals/proposal_form_in_set.html:154
@@ -281,62 +276,61 @@ msgstr "Publier"
 msgid "View proposals"
 msgstr "Voir les propositions"
 
-#: templates/proposals/proposal_list.html:17
-#: templates/proposals/proposalset_detail.html:17
+#: templates/proposals/proposal_list.html:30
+#: templates/proposals/proposalset_detail.html:45
 msgid "Add proposal"
 msgstr "Ajouter une proposition"
 
-#: templates/proposals/proposal_list.html:19
-#: templates/proposals/proposalset_detail.html:19
-#: templates/proposals/proposalset_list.html:32
+#: templates/proposals/proposal_list.html:32
+#: templates/proposals/proposalset_detail.html:47
 msgid "Edit"
 msgstr "Editer"
 
-#: templates/proposals/proposal_list.html:37
+#: templates/proposals/proposal_list.html:50
 msgid " on "
-msgstr ""
+msgstr "sur"
 
-#: templates/proposals/proposal_list.html:37
-#: templates/proposals/proposalset_detail.html:37
+#: templates/proposals/proposal_list.html:50
+#: templates/proposals/proposalset_detail.html:65
 msgid "comments"
 msgstr "commentaires"
 
-#: templates/proposals/proposal_list.html:46
+#: templates/proposals/proposal_list.html:59
 msgid "There are no proposals for this space"
 msgstr "Il n'y pas de propositions pour cet espace"
 
-#: templates/proposals/proposal_list.html:56
-#: templates/proposals/proposalset_detail.html:56
-#: templates/proposals/proposalset_list.html:57
+#: templates/proposals/proposal_list.html:69
+#: templates/proposals/proposalset_detail.html:84
+#: templates/proposals/proposalset_list.html:58
 msgid "previous"
 msgstr "précédent"
 
-#: templates/proposals/proposal_list.html:59
-#: templates/proposals/proposalset_detail.html:59
-#: templates/proposals/proposalset_list.html:60
+#: templates/proposals/proposal_list.html:72
+#: templates/proposals/proposalset_detail.html:87
+#: templates/proposals/proposalset_list.html:61
 msgid "of"
 msgstr "de"
 
-#: templates/proposals/proposal_list.html:62
-#: templates/proposals/proposalset_detail.html:62
-#: templates/proposals/proposalset_list.html:63
+#: templates/proposals/proposal_list.html:75
+#: templates/proposals/proposalset_detail.html:90
+#: templates/proposals/proposalset_list.html:64
 msgid "next"
 msgstr "suivant"
 
 #: templates/proposals/proposal_merged.html:16
 #: templates/proposals/proposal_merged.html:39
 msgid "Add new merged proposal"
-msgstr ""
+msgstr "Ajouter une nouvelle proposition fusionnée"
 
 #: templates/proposals/proposalfield_remove_fields.html:10
 #: templates/proposals/proposalform_remove_field.html:10
 #: templates/proposals/proposalform_remove_field.html:30
 msgid "Delete Proposal Form Field"
-msgstr ""
+msgstr "Supprimer le Champ du Formulaire de la Proposition"
 
 #: templates/proposals/proposalfield_remove_fields.html:30
 msgid "Delete Proposal Field"
-msgstr ""
+msgstr "Supprimer le Champ de la Proposition"
 
 #: templates/proposals/proposalset_confirm_delete.html:4
 #: templates/proposals/proposalset_confirm_delete.html:21
@@ -347,25 +341,24 @@ msgstr "Supprimer l'ensemble de propositions"
 msgid ""
 "Are you sure you want to delete this proposal set? This action cannot be "
 "undone."
-msgstr ""
-"Etes vous sûr de vouloir supprimer cet ensemble de proposition? Cette action "
-"ne peut être défaite."
+msgstr "Etes vous sûr de vouloir supprimer cet ensemble de proposition? Cette action ne peut être défaite."
 
 #: templates/proposals/proposalset_detail.html:5
 msgid "View Proposal Set"
 msgstr "Visioner l'Ensemble de Propositons"
 
-#: templates/proposals/proposalset_detail.html:46
+#: templates/proposals/proposalset_detail.html:74
 msgid "There is no proposals in this set"
 msgstr "Il n'y a pas de propositions de dans cet ensemble"
 
 #: templates/proposals/proposalset_form.html:14
 #: templates/proposals/proposalset_form.html:37
+#: templates/proposals/proposalset_list.html:34
 msgid "Edit proposal set"
 msgstr "Editer l'ensemble de propositions"
 
 #: templates/proposals/proposalset_form.html:16
-#: templates/proposals/proposalset_list.html:30
+#: templates/proposals/proposalset_list.html:31
 msgid "Add proposal set"
 msgstr "Ajouter un ensemble de propositions"
 
@@ -377,25 +370,26 @@ msgstr "Ajouter un nouvel ensemble de propoitions"
 msgid "List all the proposal set"
 msgstr "Lister tout les ensembles de propositions"
 
-#: templates/proposals/proposalset_list.html:42
+#: templates/proposals/proposalset_list.html:38
+msgid "Delete proposal set"
+msgstr "Supprimer l'ensemble de propositions"
+
+#: templates/proposals/proposalset_list.html:43
 msgid "Created by"
 msgstr "Créé par"
 
-#: templates/proposals/proposalset_list.html:42
+#: templates/proposals/proposalset_list.html:43
 msgid "at"
 msgstr "à"
 
-#: templates/proposals/proposalset_list.html:47
+#: templates/proposals/proposalset_list.html:48
 msgid "There is no proposal set created"
 msgstr "Il n'y a pas d'ensemble de propositions créé"
 
 #: templates/proposals/proposalset_select_form.html:59
 msgid "If you want to create independent proposals"
-msgstr ""
+msgstr "Si vous voulez créer des propositions indépendantes"
 
 #: templates/proposals/proposalset_select_form.html:59
 msgid "Click here"
-msgstr ""
-
-#~ msgid "Users"
-#~ msgstr "Utilisateurs"
+msgstr "Cliquez ici"

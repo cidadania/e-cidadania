@@ -11,10 +11,12 @@ from django.conf import settings
 import datetime
 import cPickle as pickle
 import base64
-import Image, ImageFilter
+import Image
+import ImageFilter
 import os.path
 
 AVATAR_SIZES = (128, 96, 64, 48, 32, 24, 16)
+
 
 class BaseProfile(models.Model):
     """
@@ -44,7 +46,7 @@ class Avatar(models.Model):
     """
     Avatar model
     """
-    #image = models.ImageField(upload_to="avatars/%Y/%b/%d")
+    # image = models.ImageField(upload_to="avatars/%Y/%b/%d")
     image = models.ImageField(upload_to="avatars/")
     user = models.ForeignKey(User)
     date = models.DateTimeField(auto_now_add=True)
@@ -127,6 +129,7 @@ class EmailValidationManager(models.Manager):
         self.filter(user=user).delete()
         return self.create(user=user, key=key, email=email)
 
+
 class EmailValidation(models.Model):
     """
     Email Validation model
@@ -138,7 +141,7 @@ class EmailValidation(models.Model):
     objects = EmailValidationManager()
 
     def __unicode__(self):
-        return _("Email validation process for %(user)s") % { 'user': self.user }
+        return _("Email validation process for %(user)s") % {'user': self.user}
 
     def is_expired(self):
         return (datetime.datetime.today() - self.created).days > 0
@@ -157,4 +160,3 @@ class EmailValidation(models.Model):
         self.created = datetime.datetime.now()
         self.save()
         return True
-

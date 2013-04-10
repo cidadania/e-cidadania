@@ -58,14 +58,14 @@ the right column.
 A simple form will appear with several fields:
 
 Title
-    The proposal title. It must be a sinthesis of the proposal.
+    The proposal title. It must be a synthesis of the proposal.
     
 Description
     An extensive description of the proposal. You can link various external elements
     like images, websites, videos, etc.
 
 Latitude/Longitude
-    Right now e-cidadania has a simple geolocation sustem. If you want your proposal
+    Right now e-cidadania has a simple geolocation system. If you want your proposal
     to be geolocated to need to put the coordinates.
 
 Tags
@@ -98,11 +98,11 @@ Comments
 File repository
 ```````````````
 To see or download any document you just have to click on the document and it
-will start downloading. If the document tou want doesn't appear in the list
+will start downloading. If the document you want doesn't appear in the list
 you just have to make click on "See all documents" and a page will come up with
 all the documents related to that participative process.
 
 Frequently Asked Questions
 --------------------------
 
-If you have any frequently asked questions that doens't appear here please tell us!
+If you have any frequently asked questions that doesn't appear here please tell us!

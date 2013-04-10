@@ -30,12 +30,13 @@ from itertools import groupby
 
 from django.utils.html import conditional_escape as esc
 
+
 class EventCalendar(LocaleHTMLCalendar):
 
-    """    
+    """
     Event calendar is a basic calendar made with HTMLCalendar module and
     its instance LocaleHTMLCalendar for translation.
-    
+
     :Attributes: LocaleHTMLCalendar
     :Methods: formatday, formatmonth, group_by_day, day_cell
     """
@@ -44,13 +45,13 @@ class EventCalendar(LocaleHTMLCalendar):
     def __init__(self, events, *args, **kwargs):
         self.events = self.group_by_day(events)
         super(EventCalendar, self).__init__(*args, **kwargs)
-        
+
 #    def __init__(self, events):
 #        super(EventCalendar, self).__init__()
 #        self.events = self.group_by_day(events)
-    
+
     def formatday(self, day, weekday):
-        
+
         """
         Format the day cell with the current events for the day.
         """
@@ -70,18 +71,18 @@ class EventCalendar(LocaleHTMLCalendar):
                 return self.day_cell(cssclass, '%d %s' % (day, ''.join(body)))
             return self.day_cell(cssclass, day)
         return self.day_cell('noday', '&nbsp;')
-        
+
     def formatmonth(self, year, month):
-    
+
         """
         Format the current month wuth the events.
         """
         # WTF is this!?
         self.year, self.month = year, month
         return super(EventCalendar, self).formatmonth(self.year, self.month)
-    
+
     def group_by_day(self, events):
-        
+
         """
         Group the returned events into their respective dates.
         """
@@ -89,9 +90,9 @@ class EventCalendar(LocaleHTMLCalendar):
         return dict(
             [(day, list(items)) for day, items in groupby(events, field)]
         )
-    
+
     def day_cell(self, cssclass, body):
-        
+
         """
         Create the day cell.
         """

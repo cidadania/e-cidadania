@@ -25,6 +25,11 @@ automatically if found in the data models.
 {% endblock %}
 
 {% block content %}
+<style type="text/css">
+        #map img { 
+            max-width: none;  
+        }   
+</style>
 
 <div class="row">
     <div class="span12">
@@ -142,6 +147,14 @@ automatically if found in the data models.
                 </div>
             </div>
 
+            {% trans "If you want to add location information please click 'Show map'" %}:        
+            <a id="showmap" class="btn btn-default" style="margin-bottom:15px;">{% trans "Show map" %}</a>
+            <div id="map" style="width:900px;height:500px;border:1px solid #AAA;" class="hidden" data-show="no"></div>
+
+            <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/map_tools.js"></script>   
+            <script type="text/javascript">clickMap();startMap();toggleMap();</script> 
+
             {% if user_is_admin %}
                 <hr>
                 <h3>{% trans "Staff members options" %}</h3>
@@ -183,6 +196,40 @@ automatically if found in the data models.
                         {% endif %}
                     </div>
                 </div>
+                <div class="control-group {% if form.latitude.errors %}error{% endif %} hidden">
+                   <label class="control-label">{{ form.latitude.label }}</label>
+                    <div class="controls">
+                         <div class="input-append">
+                             {{ form.latitude }}
+                             {% if form.latitude.help_text %}
+                                 <span class="add-on"><a href="#" rel="tooltip" title="{{ form.latitude.help_text }}"><i class="icon-question-sign"></i></a></span>
+                             {% endif %}
+                         </div>
+                         {% if form.latitude.errors %}
+                             {% for error in form.latitude.errors %}
+                                {{ error|escape }}
+                             {% endfor %}
+                         {% endif %}
+                    </div>
+                </div>
+
+                <div class="control-group {% if form.longitude.errors %}error{% endif %} hidden">
+                   <label class="control-label">{{ form.longitude.label }}</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            {{ form.longitude }}
+                            {% if form.longitude.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.longitude.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.longitude.errors %}
+                            {% for error in form.longitude.errors %}
+                               {{ error|escape }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
             {% endif %}
 
             <hr />
@@ -192,6 +239,6 @@ automatically if found in the data models.
         </form>
     </div>
 </div>
-
+</br>
 {% endblock %}
 

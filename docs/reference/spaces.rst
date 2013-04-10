@@ -56,20 +56,43 @@
 
 :mod:`spaces.views` --- Views
 -----------------------------
-
-.. automodule:: core.spaces.views    
  
-General spaces views
-....................
+General space views
+...................
+
+.. automodule:: core.spaces.views.intent
+
+.. autoclass:: ValidateIntent(DetailView)
+    :members:
+
+.. autofunction:: add_intent(request, space_url)
+
+.. automodule:: core.spaces.views.rss
+
+.. autoclass:: SpaceFeed(HTTPAuthFeed)
+    :members:
+
+News views
+..........
+
+.. automodule:: core.spaces.views.news    
 
 .. autoclass:: ListPosts(ListView)
+    :members:
+
+.. autoclass:: RedirectArchive(RedirectView)
+    :members:
+
+.. autoclass:: YearlyPosts(YearArchiveView)
+    :members:
+
+.. autoclass:: MonthlyPosts(MonthArchiveView)
     :members:
 
 Spaces views
 ............
 
-.. autoclass:: GoToSpace(RedirectView)
-    :members:
+.. automodule:: core.spaces.views.spaces    
 
 .. autoclass:: ListSpaces(ListView)
     :members:
@@ -80,6 +103,9 @@ Spaces views
 .. autoclass:: DeleteSpace(DeleteView)
     :members:
 
+.. autoclass:: EditRole(UpdateView)
+    :members:
+
 .. autofunction:: edit_space(request, space_name)
 
 .. autofunction:: create_space(request)
@@ -87,30 +113,33 @@ Spaces views
 Document views
 ..............
 
-.. autoclass:: ListDocs(ListView)
-    :members:
-
-.. autoclass:: DeleteDocument(DeleteView)
-    :members:
+.. automodule:: core.spaces.views.documents    
 
 .. autoclass:: AddDocument(FormView)
 
 .. autoclass:: EditDocument(UpdateView)
 
+.. autoclass:: DeleteDocument(DeleteView)
+    :members:
 
-Meeting views
-.............
+.. autoclass:: ListDocs(ListView)
+    :members:
 
-.. autoclass:: ListEvents(ListView)
+Event views
+...........
+
+.. automodule:: core.spaces.views.events
+    
+.. autoclass:: AddEvent(FormView)
+
+.. autoclass:: EditEvent(UpdateView)
+
+.. autoclass:: DeleteEvent(DeleteView)
     :members:
 
 .. autoclass:: ViewEvent(DetailView)
     :members:
 
-.. autoclass:: DeleteEvent(DeleteView)
+.. autoclass:: ListEvents(ListView)
     :members:
-    
-.. autoclass:: AddEvent(FormView)
-
-.. autoclass:: EditEvent(UpdateView)
 

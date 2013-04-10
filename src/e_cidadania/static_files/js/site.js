@@ -6,10 +6,14 @@
     Author: Oscar Carballal Prego <info@oscarcp.com>
 */
 
-function checkBrowser() {
-    // Detect IE 6-8
-    if ( $.support.leadingWhitespace == false ) {
-        alert('Su navegador no dispone de las últimas tecnologías web.')
+
+/* Browser detection. We do not support IE<9 so we check directly for canvas */
+function hasCanvas() {
+    if (Modernizr.canvas) {
+        // Don't do anything
+    }
+    else {
+        $('#browser').modal('show');
     }
 }
 
@@ -90,6 +94,7 @@ function dropdown() {
 }
 
 function sitestart() {
+    hasCanvas();
     dropdown();
     msg();
     // This function activates the datepicker sitewide
@@ -98,7 +103,6 @@ function sitestart() {
 }
 
 $(document).ready(function(){
-    //checkBrowser();
     sitestart();
     $(".alert-message").alert();
 });

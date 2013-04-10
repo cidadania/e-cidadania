@@ -9,6 +9,7 @@ from copy import deepcopy
 
 register = template.Library()
 
+
 def get_custom_menu(request):
     apps = deepcopy(SIDEBAR_APP_MENU)
     for app in apps:

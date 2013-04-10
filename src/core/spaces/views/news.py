@@ -20,7 +20,7 @@
 from django.views.generic.base import RedirectView
 from django.views.generic.list import ListView
 from django.views.generic.dates import ArchiveIndexView, MonthArchiveView, \
-                                       YearArchiveView
+    YearArchiveView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import get_object_or_404
@@ -46,7 +46,7 @@ class RedirectArchive(RedirectView):
 
     def get_redirect_url(self, **kwargs):
         space = self.kwargs['space_url']
-        return reverse(urln.NEWS_ARCHIVE, kwargs={'space_url':space})
+        return reverse(urln.NEWS_ARCHIVE, kwargs={'space_url': space})
 
 
 class YearlyPosts(YearArchiveView):

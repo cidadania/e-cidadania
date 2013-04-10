@@ -1,245 +1,244 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
+#   <tamara.atanasoska20@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 11:54+0100\n"
-"PO-Revision-Date: 2012-12-17 12:08+0000\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-13 09:31+0100\n"
+"PO-Revision-Date: 2013-03-06 10:18+0000\n"
 "Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
-"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/"
-"ecidadania/language/mk_MK/)\n"
-"Language: mk_MK\n"
+"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/ecidadania/language/mk_MK/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: mk_MK\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #: admin.py:61
 msgid "Location"
-msgstr ""
+msgstr "Локација"
 
 #: admin.py:64
 msgid "Relations"
-msgstr ""
+msgstr "Релации"
 
 #: admin.py:67
 msgid "Other"
-msgstr ""
+msgstr "Друго"
 
 #: admin.py:70
 msgid "Options"
-msgstr ""
+msgstr "Опции"
 
 #: models.py:42
 msgid "Economically not viable"
-msgstr ""
+msgstr "Економски не остварливо"
 
 #: models.py:43
 msgid "Legally not viable"
-msgstr ""
+msgstr "Правно не остварливо"
 
 #: models.py:44
 msgid "Technically not viable"
-msgstr ""
+msgstr "Технички не остварливо"
 
 #: models.py:45
 msgid "Offtopic"
-msgstr ""
+msgstr "Надвор од темата"
 
 #: models.py:49
 msgid "Tags"
-msgstr ""
+msgstr "Тагови"
 
 #: models.py:50 models.py:159
 msgid "Latitude"
-msgstr ""
+msgstr "Латитуда"
 
 #: models.py:51 models.py:161
 msgid "Longitude"
-msgstr ""
+msgstr "Лонгитуда"
 
 #: models.py:67
 msgid "object ID"
-msgstr ""
+msgstr "object ID"
 
 #: models.py:97
 msgid "Name"
-msgstr ""
+msgstr "Име"
 
 #: models.py:98 models.py:148
 msgid "Max: 200 characters"
-msgstr ""
+msgstr "Макс: 200 карактери"
 
 #: models.py:111
 msgid "Select the debate associated with this proposal set"
-msgstr ""
+msgstr "Изберете дебата поврзана со оваа група на предлози"
 
 #: models.py:117
 msgid "Proposal set"
-msgstr ""
+msgstr "Група на предлози"
 
 #: models.py:118
 msgid "Proposal sets"
-msgstr ""
+msgstr "Множество на предлози"
 
 #: models.py:145
 msgid "Code"
-msgstr ""
+msgstr "Код"
 
 #: models.py:147
 msgid "Title"
-msgstr ""
+msgstr "Наслов"
 
 #: models.py:150
 msgid "Proposal set in which the         proposal resides"
-msgstr ""
+msgstr "Група на предлози во која се наоѓа предлогот"
 
 #: models.py:152
 msgid "Description"
-msgstr ""
+msgstr "Опис"
 
 #: models.py:155
 msgid "Change the user that will         figure as the author"
-msgstr ""
+msgstr "Изменете го корисникот кој ќе фигурира како автор"
 
 #: models.py:157
 msgid "Insert here relevant words related with         the proposal"
-msgstr ""
+msgstr "Внесете овде релеватни зборови поврзани со предлогот"
 
 #: models.py:160 models.py:162
 msgid "Specify it in decimal"
-msgstr ""
+msgstr "Специфицирајте во децимали"
 
 #: models.py:170
 msgid "Select proposals from the list"
-msgstr ""
+msgstr "Изберете предлози од листата"
 
 #: models.py:174
 msgid "Support votes from"
-msgstr ""
+msgstr "Гласови за поддршка од "
 
 #: models.py:175
 msgid "Votes from"
-msgstr ""
+msgstr "Гласови од"
 
 #: models.py:193
 msgid "Proposal"
-msgstr ""
+msgstr "Предлог"
 
 #: models.py:194
 msgid "Proposals"
-msgstr ""
+msgstr "Предлози"
 
 #: models.py:217
 msgid "Customizing         proposal form for a proposal set"
-msgstr ""
+msgstr "Приспособете ја на вашите потреби формата за групи на предлози"
 
 #: models.py:219
 msgid "Additional field that needed to added to the proposal         form"
-msgstr ""
+msgstr "Дополнително поле кое треба да се додаде на формата за предлози"
 
 #: models.py:226
 msgid "ProposalField"
-msgstr ""
+msgstr "ProposalField"
 
 #: models.py:227
 msgid "ProposalFields"
-msgstr ""
+msgstr "ProposalFields"
 
 #: templates/proposals/mergedproposal_in_set.html:10
 #: templates/proposals/mergedproposal_in_set.html:30
 #: templates/proposals/proposalset_select_form.html:10
 #: templates/proposals/proposalset_select_form.html:30
 msgid "Select Proposal Set"
-msgstr ""
+msgstr "Избери група на предлози"
 
 #: templates/proposals/mergedproposal_in_set.html:58
 #: templates/proposals/proposal_add_fields.html:92
 #: templates/proposals/proposal_confirm_delete.html:26
 #: templates/proposals/proposal_form.html:150
 #: templates/proposals/proposal_form_in_set.html:153
-#: templates/proposals/proposal_list.html:50
+#: templates/proposals/proposal_list.html:63
 #: templates/proposals/proposal_merged.html:156
 #: templates/proposals/proposalfield_remove_fields.html:78
 #: templates/proposals/proposalform_remove_field.html:82
 #: templates/proposals/proposalset_confirm_delete.html:26
-#: templates/proposals/proposalset_detail.html:50
+#: templates/proposals/proposalset_detail.html:78
 #: templates/proposals/proposalset_form.html:88
-#: templates/proposals/proposalset_list.html:51
+#: templates/proposals/proposalset_list.html:52
 #: templates/proposals/proposalset_select_form.html:61
 msgid "Go back"
-msgstr ""
+msgstr "Вратете се назад"
 
 #: templates/proposals/mergedproposal_in_set.html:59
 #: templates/proposals/proposal_add_fields.html:93
 #: templates/proposals/proposalset_form.html:89
 #: templates/proposals/proposalset_select_form.html:62
 msgid "Create"
-msgstr ""
+msgstr "Креирај"
 
 #: templates/proposals/proposal_add_fields.html:10
 msgid "Add form field to proposal form"
-msgstr ""
+msgstr "Доади го полето на предлогот"
 
 #: templates/proposals/proposal_add_fields.html:30
 msgid "Add field to proposal form"
-msgstr ""
+msgstr "Додади го полето на предлогот"
 
 #: templates/proposals/proposal_add_fields.html:78
 msgid "Additional Fields for the Proposal form in this Proposal Set"
-msgstr ""
+msgstr "Додатни полиња од "
 
 #: templates/proposals/proposal_confirm_delete.html:4
 #: templates/proposals/proposal_confirm_delete.html:21
 msgid "Delete proposal"
-msgstr ""
+msgstr "Избриши предлог"
 
 #: templates/proposals/proposal_confirm_delete.html:23
 msgid ""
 "Are you sure you want to delete this proposal? This action cannot be undone."
-msgstr ""
+msgstr "Дали сте сигурни дека сакате да го избришете овој предлог? Оваа акција е финална и не може да биде вратена."
 
 #: templates/proposals/proposal_confirm_delete.html:27
-#: templates/proposals/proposal_list.html:22
+#: templates/proposals/proposal_list.html:35
 #: templates/proposals/proposalfield_remove_fields.html:79
 #: templates/proposals/proposalform_remove_field.html:83
 #: templates/proposals/proposalset_confirm_delete.html:27
-#: templates/proposals/proposalset_detail.html:22
-#: templates/proposals/proposalset_list.html:35
+#: templates/proposals/proposalset_detail.html:50
 msgid "Delete"
-msgstr ""
+msgstr "Избриши"
 
 #: templates/proposals/proposal_detail.html:5
 msgid "View proposal"
-msgstr ""
+msgstr "Види предлог"
 
 #: templates/proposals/proposal_detail.html:64
-#: templates/proposals/proposal_list.html:29
-#: templates/proposals/proposalset_detail.html:29
+#: templates/proposals/proposal_list.html:42
+#: templates/proposals/proposalset_detail.html:57
 msgid "support"
-msgstr ""
+msgstr "поддршка"
 
 #: templates/proposals/proposal_detail.html:69
-#: templates/proposals/proposal_list.html:37
-#: templates/proposals/proposalset_detail.html:37
+#: templates/proposals/proposal_list.html:50
+#: templates/proposals/proposalset_detail.html:65
 msgid "proposed by "
-msgstr ""
+msgstr "предложено од"
 
 #: templates/proposals/proposal_detail.html:69
-#: templates/proposals/proposal_list.html:37
-#: templates/proposals/proposalset_detail.html:37
+#: templates/proposals/proposal_list.html:50
+#: templates/proposals/proposalset_detail.html:65
 msgid " at "
-msgstr ""
+msgstr " at "
 
 #: templates/proposals/proposal_detail.html:71
 #: templates/proposals/proposal_form.html:143
 #: templates/proposals/proposal_form_in_set.html:145
 msgid "Show map"
-msgstr ""
+msgstr "Покажи мапа"
 
 #: templates/proposals/proposal_detail.html:75
 msgid "Merged Proposal"
@@ -252,140 +251,144 @@ msgstr ""
 #: templates/proposals/proposal_merged.html:14
 #: templates/proposals/proposal_merged.html:37
 msgid "Edit proposal"
-msgstr ""
+msgstr "Измени предлог"
 
 #: templates/proposals/proposal_form.html:16
 #: templates/proposals/proposal_form.html:45
 #: templates/proposals/proposal_form_in_set.html:16
 #: templates/proposals/proposal_form_in_set.html:45
 msgid "Add new proposal"
-msgstr ""
+msgstr "Додади нов предлог"
 
 #: templates/proposals/proposal_form.html:142
 #: templates/proposals/proposal_form_in_set.html:144
 msgid "If you want to add location information please click 'Show map'"
-msgstr ""
+msgstr "Ако сакате да додадете информации за локацијата кликнете „Покажи мапа“"
 
 #: templates/proposals/proposal_form.html:151
 #: templates/proposals/proposal_form_in_set.html:154
 #: templates/proposals/proposal_merged.html:157
 msgid "Publish"
-msgstr ""
+msgstr "Објави"
 
 #: templates/proposals/proposal_list.html:5
 msgid "View proposals"
-msgstr ""
+msgstr "Види предлози"
 
-#: templates/proposals/proposal_list.html:17
-#: templates/proposals/proposalset_detail.html:17
+#: templates/proposals/proposal_list.html:30
+#: templates/proposals/proposalset_detail.html:45
 msgid "Add proposal"
-msgstr ""
+msgstr "Додади предлог"
 
-#: templates/proposals/proposal_list.html:19
-#: templates/proposals/proposalset_detail.html:19
-#: templates/proposals/proposalset_list.html:32
+#: templates/proposals/proposal_list.html:32
+#: templates/proposals/proposalset_detail.html:47
 msgid "Edit"
-msgstr ""
+msgstr "Измени"
 
-#: templates/proposals/proposal_list.html:37
+#: templates/proposals/proposal_list.html:50
 msgid " on "
-msgstr ""
+msgstr "на"
 
-#: templates/proposals/proposal_list.html:37
-#: templates/proposals/proposalset_detail.html:37
+#: templates/proposals/proposal_list.html:50
+#: templates/proposals/proposalset_detail.html:65
 msgid "comments"
-msgstr ""
-
-#: templates/proposals/proposal_list.html:46
-msgid "There are no proposals for this space"
-msgstr ""
-
-#: templates/proposals/proposal_list.html:56
-#: templates/proposals/proposalset_detail.html:56
-#: templates/proposals/proposalset_list.html:57
-msgid "previous"
-msgstr ""
+msgstr "коментари"
 
 #: templates/proposals/proposal_list.html:59
-#: templates/proposals/proposalset_detail.html:59
-#: templates/proposals/proposalset_list.html:60
-msgid "of"
-msgstr ""
+msgid "There are no proposals for this space"
+msgstr "Нема предлози на оваа работна површина"
 
-#: templates/proposals/proposal_list.html:62
-#: templates/proposals/proposalset_detail.html:62
-#: templates/proposals/proposalset_list.html:63
+#: templates/proposals/proposal_list.html:69
+#: templates/proposals/proposalset_detail.html:84
+#: templates/proposals/proposalset_list.html:58
+msgid "previous"
+msgstr "претходно"
+
+#: templates/proposals/proposal_list.html:72
+#: templates/proposals/proposalset_detail.html:87
+#: templates/proposals/proposalset_list.html:61
+msgid "of"
+msgstr "на"
+
+#: templates/proposals/proposal_list.html:75
+#: templates/proposals/proposalset_detail.html:90
+#: templates/proposals/proposalset_list.html:64
 msgid "next"
-msgstr ""
+msgstr "следно"
 
 #: templates/proposals/proposal_merged.html:16
 #: templates/proposals/proposal_merged.html:39
 msgid "Add new merged proposal"
-msgstr ""
+msgstr "Додади нов "
 
 #: templates/proposals/proposalfield_remove_fields.html:10
 #: templates/proposals/proposalform_remove_field.html:10
 #: templates/proposals/proposalform_remove_field.html:30
 msgid "Delete Proposal Form Field"
-msgstr ""
+msgstr "Избриши го полето"
 
 #: templates/proposals/proposalfield_remove_fields.html:30
 msgid "Delete Proposal Field"
-msgstr ""
+msgstr "Избриши го полето"
 
 #: templates/proposals/proposalset_confirm_delete.html:4
 #: templates/proposals/proposalset_confirm_delete.html:21
 msgid "Delete Proposal Set"
-msgstr ""
+msgstr "Избриши група на предлози"
 
 #: templates/proposals/proposalset_confirm_delete.html:23
 msgid ""
 "Are you sure you want to delete this proposal set? This action cannot be "
 "undone."
-msgstr ""
+msgstr "Дали сте сигурни дека сакате да ја избришете оваа група на предлози? Оваа акција е финална и не може да се врати."
 
 #: templates/proposals/proposalset_detail.html:5
 msgid "View Proposal Set"
-msgstr ""
+msgstr "Види група на предлози"
 
-#: templates/proposals/proposalset_detail.html:46
+#: templates/proposals/proposalset_detail.html:74
 msgid "There is no proposals in this set"
-msgstr ""
+msgstr "Нема предлози во оваа група"
 
 #: templates/proposals/proposalset_form.html:14
 #: templates/proposals/proposalset_form.html:37
+#: templates/proposals/proposalset_list.html:34
 msgid "Edit proposal set"
-msgstr ""
+msgstr "Измени група на предлози"
 
 #: templates/proposals/proposalset_form.html:16
-#: templates/proposals/proposalset_list.html:30
+#: templates/proposals/proposalset_list.html:31
 msgid "Add proposal set"
-msgstr ""
+msgstr "Додади група на предлози"
 
 #: templates/proposals/proposalset_form.html:39
 msgid "Add new proposal set"
-msgstr ""
+msgstr "Додади нова група на предлози"
 
 #: templates/proposals/proposalset_list.html:5
 msgid "List all the proposal set"
+msgstr "Излистај ги сите групи на предлози"
+
+#: templates/proposals/proposalset_list.html:38
+msgid "Delete proposal set"
 msgstr ""
 
-#: templates/proposals/proposalset_list.html:42
+#: templates/proposals/proposalset_list.html:43
 msgid "Created by"
-msgstr ""
+msgstr "Креирано од"
 
-#: templates/proposals/proposalset_list.html:42
+#: templates/proposals/proposalset_list.html:43
 msgid "at"
-msgstr ""
+msgstr "at"
 
-#: templates/proposals/proposalset_list.html:47
+#: templates/proposals/proposalset_list.html:48
 msgid "There is no proposal set created"
-msgstr ""
+msgstr "Нема креирано група на предлози"
 
 #: templates/proposals/proposalset_select_form.html:59
 msgid "If you want to create independent proposals"
-msgstr ""
+msgstr "Ако сакате да креирате независни предлози"
 
 #: templates/proposals/proposalset_select_form.html:59
 msgid "Click here"
-msgstr ""
+msgstr "Кликнете овде"

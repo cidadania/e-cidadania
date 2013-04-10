@@ -1,115 +1,115 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
+#   <tamara.atanasoska20@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 11:54+0100\n"
-"PO-Revision-Date: 2012-12-17 12:08+0000\n"
-"Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
-"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/"
-"ecidadania/language/mk_MK/)\n"
-"Language: mk_MK\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"PO-Revision-Date: 2013-01-16 14:22+0000\n"
+"Last-Translator: tamara <tamara.atanasoska20@gmail.com>\n"
+"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/ecidadania/language/mk_MK/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: mk_MK\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #: admin.py:37
 msgid "Other data"
-msgstr ""
+msgstr "Други податоци"
 
 #: models.py:33
 msgid "Title"
-msgstr ""
+msgstr "Наслов"
 
 #: models.py:34
 msgid "Max: 200 characters"
-msgstr ""
+msgstr "Макс: 200 карактери"
 
 #: models.py:35
 msgid "Description"
-msgstr ""
+msgstr "Опис"
 
 #: models.py:36
 msgid "Date"
-msgstr ""
+msgstr "Датум"
 
 #: models.py:37
 msgid "Last update"
-msgstr ""
+msgstr "Последна промена"
 
 #: models.py:38
 msgid "Author"
-msgstr ""
+msgstr "Автор"
 
 #: models.py:39
 msgid ""
 "Change the user that will figure as the                                   "
 "author"
-msgstr ""
+msgstr "Промени го корисникот кој ќе фигурира како автор"
 
 #: models.py:41
 msgid "Publish in index"
-msgstr ""
+msgstr "Објави на насловна"
 
 #: models.py:42
 msgid "This will publish the post in the main site page"
-msgstr ""
+msgstr "Ова ќе го објави текстот на насловната страница"
 
 #: models.py:43
 msgid "Publish in"
-msgstr ""
+msgstr "Објавено во"
 
 #: models.py:45
 msgid "If you want to post to the index leave this blank"
-msgstr ""
+msgstr "Ако сакате да го објавите на насловна оставете го ова празно"
 
 #: models.py:46
 msgid ""
-"Insert here relevant words related with                                      "
-"the post"
-msgstr ""
+"Insert here relevant words related with"
+"                                      the post"
+msgstr "Внесете овде релевантни зборови поврзани со објавата"
 
 #: models.py:48
 msgid "Views"
-msgstr ""
+msgstr "Прегледи"
 
 #: templates/news/news_list.html:4
 msgid "News list"
-msgstr ""
+msgstr "Листа на вести"
 
 #: templates/news/news_list.html:33 templates/news/post_archive.html:4
 #: templates/news/post_archive.html:33
 msgid "News archive"
-msgstr ""
+msgstr "Архива на вести"
 
 #: templates/news/news_list.html:44 templates/news/post_archive.html:44
 #: templates/news/post_archive_month.html:49
 #: templates/news/post_archive_year.html:49
 msgid "There are no posts in this space."
-msgstr ""
+msgstr "Нема објави на оваа работна површина."
 
 #: templates/news/news_list.html:51 templates/news/post_archive.html:51
 #: templates/news/post_archive_month.html:56
 #: templates/news/post_archive_year.html:56
 msgid "previous"
-msgstr ""
+msgstr "претходно"
 
 #: templates/news/news_list.html:54 templates/news/post_archive.html:54
 #: templates/news/post_archive_month.html:59
 #: templates/news/post_archive_year.html:59
 msgid "of"
-msgstr ""
+msgstr "на"
 
 #: templates/news/news_list.html:57 templates/news/post_archive.html:57
 #: templates/news/post_archive_month.html:62
 #: templates/news/post_archive_year.html:62
 msgid "next"
-msgstr ""
+msgstr "следно"
 
 #: templates/news/news_list.html:64 templates/news/post_archive.html:64
 #: templates/news/post_archive_month.html:69
@@ -117,7 +117,7 @@ msgstr ""
 #: templates/news/post_confirm_delete.html:37
 #: templates/news/post_form.html:186
 msgid "Go back"
-msgstr ""
+msgstr "Вратете се назад"
 
 #: templates/news/post_archive_month.html:5
 #, python-format
@@ -125,7 +125,7 @@ msgid ""
 "\n"
 "        Archive for %(m)s %(y)s\n"
 "    "
-msgstr ""
+msgstr "\n        Архива за %(m)s %(y)s\n    "
 
 #: templates/news/post_archive_month.html:38
 #, python-format
@@ -133,7 +133,7 @@ msgid ""
 "\n"
 "                    Archive for %(m)s %(y)s\n"
 "                "
-msgstr ""
+msgstr "\n                    Архива за %(m)s %(y)s\n                "
 
 #: templates/news/post_archive_year.html:5
 #, python-format
@@ -141,7 +141,7 @@ msgid ""
 "\n"
 "        Archive for %(y)s\n"
 "    "
-msgstr ""
+msgstr "\n        Архива за %(y)s\n    "
 
 #: templates/news/post_archive_year.html:38
 #, python-format
@@ -149,66 +149,66 @@ msgid ""
 "\n"
 "                    Archive for %(y)s\n"
 "                "
-msgstr ""
+msgstr "\n                    Архива за %(y)s\n                "
 
 #: templates/news/post_confirm_delete.html:4
 msgid "Delete news"
-msgstr ""
+msgstr "Избриши вести"
 
 #: templates/news/post_confirm_delete.html:32
 msgid "Delete post"
-msgstr ""
+msgstr "Избриши објава"
 
 #: templates/news/post_confirm_delete.html:34
 msgid ""
 "Are you sure you want to delete this post? This action cannot be undone."
-msgstr ""
+msgstr "Сигурни сте дека сакате да ја избришете оваа објава? Ова акција е финална и не може да се врати назад."
 
 #: templates/news/post_confirm_delete.html:38
 #: templates/news/post_detail.html:40 templates/news/post_detail_index.html:40
 msgid "Delete"
-msgstr ""
+msgstr "Избриши"
 
 #: templates/news/post_detail.html:35 templates/news/post_detail_index.html:35
 msgid "Edit"
-msgstr ""
+msgstr "Измени"
 
 #: templates/news/post_detail.html:45 templates/news/post_detail_index.html:45
 msgid "Written by"
-msgstr ""
+msgstr "Напишано од"
 
 #: templates/news/post_detail.html:45 templates/news/post_detail_index.html:45
 msgid "on"
-msgstr ""
+msgstr "на"
 
 #: templates/news/post_detail.html:45 templates/news/post_detail_index.html:45
 msgid "comments"
-msgstr ""
+msgstr "коментари"
 
 #: templates/news/post_detail.html:53 templates/news/post_detail_index.html:53
 msgid "Recent posts"
-msgstr ""
+msgstr "Скорешни објави"
 
 #: templates/news/post_detail.html:54 templates/news/post_detail_index.html:54
 msgid "Related posts"
-msgstr ""
+msgstr "Поврзани објави"
 
 #: templates/news/post_detail.html:55 templates/news/post_detail_index.html:55
 msgid "Share this post"
-msgstr ""
+msgstr "Сподели ја оваа објава"
 
 #: templates/news/post_form.html:14 templates/news/post_form.html.py:50
 msgid "Edit post"
-msgstr ""
+msgstr "Измени "
 
 #: templates/news/post_form.html:16 templates/news/post_form.html.py:52
 msgid "Create new post"
-msgstr ""
+msgstr "Креирајте нова објава"
 
 #: templates/news/post_form.html:124
 msgid "Staff members options"
-msgstr ""
+msgstr "Опции за администраторите"
 
 #: templates/news/post_form.html:187
 msgid "Publish"
-msgstr ""
+msgstr "Објави"

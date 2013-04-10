@@ -28,16 +28,18 @@ from django.utils.translation import ugettext_lazy as _
 
 from core.spaces.models import Space, Entity, Document, Event, Intent
 
+
 class EntityAdmin(admin.ModelAdmin):
 
     """
     Entities administration model.
-    
+
     :list fields: name, website, space
-    :search fields: name 
+    :search fields: name
     """
     list_display = ('name', 'website', 'space')
     search_fields = ('name',)
+
 
 class EntityInline(admin.TabularInline):
 
@@ -52,13 +54,13 @@ class SpaceAdmin(admin.ModelAdmin):
     """
     Administration view for django admin to create spaces. The save() method
     is overriden to store automatically the author of the space.
-    
+
     :list fields: name, description, date
     :search fields: name
     """
     list_display = ('name', 'description', 'date')
     search_fields = ('name',)
-    
+
     fieldsets = [
         (None, {'fields':
             [('name', 'url'), 'description']}),
@@ -70,21 +72,22 @@ class SpaceAdmin(admin.ModelAdmin):
             ('mod_cal', 'mod_docs', 'mod_news', 'mod_proposals',
             'mod_debate')}),
         (_('Staff'), {'fields':
-            [('admins', 'mods','users')]}),
+            [('admins', 'mods', 'users')]}),
     ]
-    
+
     inlines = [
         EntityInline,
     ]
-    
+
     def save_model(self, request, obj, form, change):
         if not change:
             obj.author = request.user
         obj.save()
         obj.users.add(request.user)
-        
+
     def send_email(self, request, queryset):
         user_emails = queryset.objects.values('email')
+
 
 class IntentAdmin(admin.ModelAdmin):
 
@@ -100,18 +103,19 @@ class IntentAdmin(admin.ModelAdmin):
         ['user', 'space', 'token']})
     ]
 
+
 class DocumentAdmin(admin.ModelAdmin):
 
     """
     Administration view to upload/modify documents. The save() method is
     overriden to store the author automatically.
-    
+
     :list fields: title, space, docfile, author, pub_date
     :search fields: title, space, author, pub_date
     """
     list_display = ('title', 'space', 'docfile', 'author', 'pub_date')
     search_fields = ('title', 'space', 'author', 'pub_date')
-    
+
     fieldsets = [
         (None, {'fields':
             ['title', 'docfile', 'space']}),
@@ -122,11 +126,12 @@ class DocumentAdmin(admin.ModelAdmin):
             obj.author = request.user
         obj.save()
 
+
 class EventAdmin(admin.ModelAdmin):
 
     """
     Meetings administration model.
-    
+
     :list fields: title, space, meeting_date
     :search fields: title
     """

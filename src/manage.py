@@ -1,7 +1,8 @@
 #!/usr/bin/env python
-import os, sys
+import os
+import sys
 
-os.environ.setdefault('LANG','en_US')
+os.environ.setdefault('LANG', 'en_US')
 
 if __name__ == "__main__":
     manage_cwd = os.getcwd()

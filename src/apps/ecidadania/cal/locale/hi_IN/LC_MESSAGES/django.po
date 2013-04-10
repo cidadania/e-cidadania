@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Vishrut Mehta <vishrut.mehta009@gmail.com>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-11 10:51+0100\n"
+"PO-Revision-Date: 2013-02-19 21:34+0000\n"
+"Last-Translator: vishrut009 <vishrut.mehta009@gmail.com>\n"
+"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/language/hi_IN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hi_IN\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/cal/calendar.html:4 templates/cal/calendar.html.py:16
+msgid "Calendar"
+msgstr "कैलेंडर"
+
+#: templates/cal/calendar.html:21
+msgid "Previous month"
+msgstr "पिछले महीने"
+
+#: templates/cal/calendar.html:22
+msgid "Next month"
+msgstr "अगले महीने"
+
+#: templates/cal/calendar.html:23
+msgid "Go back"
+msgstr "वापस जाओ"
+
+#: templates/cal/error.html:4 templates/cal/error.html.py:9
+msgid "Calendar error"
+msgstr "कैलेंडर त्रुटि"
+
+#: templates/cal/error.html:10
+msgid "You entered and incorrect month or year. Please correct it."
+msgstr "आप एक गलत महीने या साल में प्रवेश किया. यह सही है."
+
+#: templates/cal/error.html:11
+msgid "You can go"
+msgstr "तुम जा सकते हो"
+
+#: templates/cal/error.html:11
+msgid "back to home"
+msgstr "घर के लिए वापस"
+
+#: templates/cal/error.html:11
+msgid "or"
+msgstr "या"
+
+#: templates/cal/error.html:11
+msgid "back to your profile"
+msgstr "अपने प्रोफाइल के लिए वापस"

@@ -33,8 +33,9 @@ from django.shortcuts import get_object_or_404
 from apps.ecidadania.proposals import url_names as urln_prop
 from core.spaces import url_names as urln_space
 from core.spaces.models import Space
-from core.permissions import has_space_permission, has_all_permissions,has_operation_permission
+from core.permissions import has_space_permission, has_all_permissions, has_operation_permission
 from apps.ecidadania.proposals.models import Proposal
+
 
 class ViewProposal(DetailView):
 
@@ -55,14 +56,14 @@ class ViewProposal(DetailView):
     def get_object(self):
         prop_id = self.kwargs['prop_id']
         space_url = self.kwargs['space_url']
-        proposal = get_object_or_404(Proposal, pk = prop_id)
-        place = get_object_or_404(Space, url = space_url)
-        
+        proposal = get_object_or_404(Proposal, pk=prop_id)
+        place = get_object_or_404(Space, url=space_url)
+
         if place.public:
             return proposal
         elif has_space_permission(self.request.user, place,
             allow=['admins', 'mods', 'users']) \
-            or has_all_permissions(request.user):
+                or has_all_permissions(self.request.user):
             return proposal
         else:
             self.template_name = 'not_allowed.html'
@@ -74,12 +75,12 @@ class ViewProposal(DetailView):
         # We are going to get the proposal position in the list
         self.get_position = 0
         proposal = get_object_or_404(Proposal, pk=self.kwargs['prop_id'])
-        if proposal.merged == True:
+        if proposal.merged:
             context['merged_proposal'] = proposal.merged_proposals.all()
 
         support_votes_count = Proposal.objects.filter(space=current_space)\
                              .annotate(Count('support_votes'))
-        for i,x in enumerate(support_votes_count):
+        for i, x in enumerate(support_votes_count):
             if x.id == int(self.kwargs['prop_id']):
                 self.get_position = i
         context['support_votes_count'] = support_votes_count[int(self.get_position)].support_votes__count
@@ -99,7 +100,7 @@ def support_proposal(request, space_url):
     space = get_object_or_404(Space, url=space_url)
 
     if has_operation_permission(request.user, space,
-    "proposals.change_proposal" ,allow=['admins', 'mods', 'users']):
+    "proposals.change_proposal", allow=['admins', 'mods', 'users']):
         try:
             prop.support_votes.add(request.user)
             return HttpResponse(" Support vote emmited.")

@@ -1,66 +1,92 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 11:55+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"PO-Revision-Date: 2013-03-11 09:55+0000\n"
+"Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
+"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/ecidadania/language/mk_MK/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: mk_MK\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #: static/js/debate_board.js:12
 msgid "Write here your title"
-msgstr ""
+msgstr "Овде впишете го насловот"
 
 #: static/js/debate_board.js:13
 msgid "Write here your message"
-msgstr ""
+msgstr "Овде впишете ја пораката"
 
-#: static/js/debate_board.js:14
+#: static/js/debate_board.js:14 static/js/debate_board.js.c:28
 msgid "Edit"
-msgstr ""
+msgstr "Измени"
 
-#: static/js/debate_board.js:15
+#: static/js/debate_board.js:15 static/js/debate_board.js.c:27
 msgid "View"
-msgstr ""
+msgstr "Види"
 
 #: static/js/debate_board.js:16
 msgid "There has been an error."
-msgstr ""
+msgstr "Грешка."
 
 #: static/js/debate_board.js:17
-msgid "Couldn't create note."
+msgid "Could't delete column or row."
 msgstr ""
 
 #: static/js/debate_board.js:18
-msgid "Couldn't get note data."
-msgstr ""
+msgid "Couldn't create note."
+msgstr "Не може да се креира мислење."
 
 #: static/js/debate_board.js:19
-msgid "Couldn't save note."
-msgstr ""
+msgid "Couldn't get note data."
+msgstr "Не може да се повратат податоците од мислењето."
 
 #: static/js/debate_board.js:20
-msgid "Couldn't save note position."
-msgstr ""
+msgid "Couldn't save note."
+msgstr "Не може да се зачува мислењето."
 
 #: static/js/debate_board.js:21
-msgid "Couldn't delete note."
-msgstr ""
+msgid "Couldn't save note position."
+msgstr "Не може да се зачува позицијата на мислењето."
 
 #: static/js/debate_board.js:22
-msgid "Are you sure?"
-msgstr ""
+msgid "Couldn't delete note."
+msgstr "Не може да се избрише мислењето."
 
 #: static/js/debate_board.js:23
+msgid "There must be at least one column or row in the table."
+msgstr ""
+
+#: static/js/debate_board.js:24
+msgid "Couln't create row or column."
+msgstr ""
+
+#: static/js/debate_board.js:25
+msgid "Are you sure?"
+msgstr "Дали сте стигурни?"
+
+#: static/js/debate_board.js:26
 msgid "Comment"
+msgstr "Коментар"
+
+#: static/js/debate_board.js:29
+msgid "Delete note"
+msgstr "Избриши мислење"
+
+#: static/js/debate_board.js:30
+msgid "Caution"
+msgstr ""
+
+#: static/js/debate_board.js:31
+msgid ""
+"You are adding too much columns. We put no limit,     but too many columns "
+"will be a problem in smaller screens."
 msgstr ""

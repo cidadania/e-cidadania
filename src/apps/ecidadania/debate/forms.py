@@ -26,6 +26,7 @@ from django.forms.models import modelformset_factory
 
 from apps.ecidadania.debate.models import Debate, Note, Row, Column
 
+
 class DebateForm(ModelForm):
 
     """
@@ -44,6 +45,7 @@ class DebateForm(ModelForm):
 RowForm = modelformset_factory(Row, exclude=('debate'))
 ColumnForm = modelformset_factory(Column, exclude=('debate'))
 
+
 class NoteForm(ModelForm):
 
     """
@@ -57,6 +59,7 @@ class NoteForm(ModelForm):
     class Meta:
         model = Note
 
+
 class UpdateNoteForm(ModelForm):
 
     """
@@ -69,6 +72,7 @@ class UpdateNoteForm(ModelForm):
     class Meta:
         model = Note
         exclude = ('debate', 'author', 'row', 'column', 'date')
+
 
 class UpdateNotePosition(ModelForm):
 

@@ -30,8 +30,7 @@
     <div class="row">
         <div class="span12">
             <ul class="nav nav-tabs">
-                <li class="e"><a href="#overview" da
-                    ta-toggle="tab">{% trans "Overview" %}</a></li>
+                <li class="e"><a href="#overview" data-toggle="tab">{% trans "Overview" %}</a></li>
                 {% if get_place.mod_news %}
                     <li><a href="#news" data-toggle="tab">{% trans "News" %}</a></li>
                 {% endif %}
@@ -331,7 +330,7 @@
                             <h4>{% trans "Most commented" %}</h4>
                                 {% for c in mostcommented %}
                                     <ul class="unstyled">
-                                        <li><a href="{% url 'view-post' get_place.url c %}">{{ c }}</a></li>
+                                        <li><a href="{% url 'view-post' get_place.url c.id %}">{{ c.title }}</a></li>
                                     </ul>
                                 {% endfor %}
                             <h4>{% trans "View monthly archive" %}</h4>
@@ -354,10 +353,8 @@
                                         <li><a href="{{ debate.get_absolute_url }}">{{ debate.title }}</a>
                                             <a href="{% url 'edit-debate' get_place.url debate.id %}" title="{% trans 'Edit debate' %}">
                                             <i class="icon-edit" style="font-size:16px;"></i></a>
-                                            {% comment %}
                                             <a href="{% url 'delete-debate' get_place.url debate.id %}" title="{% trans 'Delete debate' %}">
                                             <i class="icon-trash" style="font-size:16px;"></i></a>
-                                            {% endcomment %}
                                     {% endif %}
                                 {% empty %}
                                     <li>{% trans "No debates started." %}</li>
@@ -370,7 +367,7 @@
                                         <li><a href="{{ debate.get_absolute_url }}">{{ debate.title }}</a></li>
                                     {% endif %}
                                 {% empty %}
-                                    <li>{% trans "No debates closed yet." %}</li>
+                                    <li>{% trans "No debates closed yet."  %}</li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -454,7 +451,25 @@
                                 {% endfor %}
                             </ul>
                             <h4>{% trans "Most commented" %}</h4>
+                            <ul class='unstyled'>
+                                {% for proposal in mostcommentedproposal %}
+                                    {% for most_proposal in proposal %}
+                                        <li><a href="{{ most_proposal.get_absolute_url}}">{{ most_proposal.title }}</a> {% trans "by"%} {{ most_proposal.author }} {% trans "on" %} <a href="{{ most_proposal.proposalset.get_absolute_url }}">{{ proposalset }}</a> {% trans     "at" %} {{ most_proposal.pub_date|date:"d F Y"}}</li>
+                                    {% endfor %}
+                                    {% empty %}
+                                        <li>{% trans "No proposal sets available."%}</li>
+                                {% endfor %} 
+                            </ul>
                             <h4>{% trans "Highlighted proposals" %}</h4>
+                            <ul class="unstyle">
+                                {% for p in highlightedproposal %}
+                                {% for h_proposal in p %}
+                                <li><a href="{{ h_proposal.get_absolute_url}}">{{ h_proposal.title }}</a> {% trans "by"%} {{ h_proposal.author }} {% trans "on" %} <a href="{{ h_proposal.proposalset.get_absolute_url }}">{{ proposalset }}</a> {% trans "at" %} {{ h_proposal.pub_date|date:"d F Y"}}</li>
+        
+                                {% endfor %}
+                                {% endfor %}
+
+                            </ul>
                         </div>
                         <div class="span4">
                             {% if user_is_admin %}
@@ -642,7 +657,7 @@
         </div>
     </div>
     {% endcomment %}
-
+</br></br>
 {% endblock %}
 
 {% block footerimg %}

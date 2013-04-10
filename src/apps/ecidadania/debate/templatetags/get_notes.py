@@ -26,6 +26,7 @@ from django.shortcuts import get_object_or_404
 
 register = Library()
 
+
 class NotesNode(template.Node):
     """
     """
@@ -34,7 +35,7 @@ class NotesNode(template.Node):
         self.debate = get_object_or_404(Debate, pk=format_string)
         self.debate_matrix = len(self.debate.xvalues.split(',')) * \
                              len(self.debate.yvalues.split(','))
-       
+
     def render(self, context):
         i = 1
         while i < self.debate_matrix:
@@ -51,6 +52,7 @@ class NotesNode(template.Node):
             except:
                 return "<td id='%s' class='connectedSortable'></td>" % (get_sortable)
                 i += 1
+
 
 @register.tag
 def get_debate_notes(parser, token):

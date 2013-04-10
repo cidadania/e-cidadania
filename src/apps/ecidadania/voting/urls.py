@@ -18,7 +18,6 @@
 # along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
 
 from django.conf.urls import *
-from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
@@ -44,16 +43,16 @@ urlpatterns = patterns('apps.ecidadania.voting.views',
 
     url(r'^(?P<voting_id>\d+)/edit/$', EditVoting.as_view(),
         name=EDIT_VOTING),
-        
+
     url(r'^poll/(?P<poll_id>\d+)/delete/$', DeletePoll.as_view(),
         name=DELETE_POLL),
-        
+
     url(r'^(?P<voting_id>\d+)/delete/$', DeleteVoting.as_view(),
         name=DELETE_VOTING),
-        
-    url(_(r'^poll/(?P<pk>\d+)/$'), ViewPoll.as_view(), name=VIEW_POLL),
 
-    url(_(r'^poll/(?P<pk>\d+)/results/$'), ViewPollResults.as_view(),
+    url(r'^poll/(?P<pk>\d+)/$', ViewPoll.as_view(), name=VIEW_POLL),
+
+    url(r'^poll/(?P<pk>\d+)/results/$', ViewPollResults.as_view(),
         name=VIEW_RESULT),
 
     url(r'^(?P<voting_id>\d+)/$', ViewVoting.as_view(), name=VIEW_VOTING),
@@ -65,7 +64,3 @@ urlpatterns = patterns('apps.ecidadania.voting.views',
     url(r'^vote/validate/(?P<token>\w+)/$', 'voting.validate_voting',
         name=VALIDATE_VOTE),
 )
-
-
-
-

@@ -1,0 +1,401 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Vishrut Mehta <vishrut.mehta009@gmail.com>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-11 10:51+0100\n"
+"PO-Revision-Date: 2013-03-13 09:04+0000\n"
+"Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
+"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/language/hi_IN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hi_IN\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/404.html:9
+msgid "Nooo...!"
+msgstr "नहीं"
+
+#: templates/404.html:11
+msgid "The page you're looking for does not exist."
+msgstr "पृष्ठ आप के लिए देख रहे हैं मौजूद नहीं है."
+
+#: templates/404.html:12
+msgid "May it be abstract?"
+msgstr "यह सार हो सकता है?"
+
+#: templates/500.html:10
+msgid "This wasn't supposed to happen! What did you do!?"
+msgstr "ऐसा नहीं होना चाहिए था! आप क्या करते हैं?"
+
+#: templates/500.html:11
+msgid ""
+"We will send the spaguetti squad to repair this. Meanwhile you can go back "
+"to the index."
+msgstr "हम spaguetti दस्ते भेजने के लिए यह मरम्मत करेंगे. इस बीच आप सूची पर वापस जा सकते हैं."
+
+#: templates/explore.html:9
+msgid "Recent processes"
+msgstr "हाल ही प्रक्रियाओं"
+
+#: templates/explore.html:15 templates/explore.html.py:28
+#: templates/explore.html:41
+msgid "There are no recent spaces."
+msgstr "वहाँ कोई हाल ही में रिक्त स्थान हैं."
+
+#: templates/explore.html:20
+msgid "Public processes"
+msgstr "लोक प्रक्रियाओं"
+
+#: templates/explore.html:33
+msgid "Private processes"
+msgstr "निजी प्रक्रियाओं"
+
+#: templates/explore.html:49
+msgid "Latest news from public processes"
+msgstr "सार्वजनिक प्रक्रियाओं से नवीनतम समाचार"
+
+#: templates/explore.html:54
+msgid "There are no posts."
+msgstr "वहाँ कोई पोस्ट कर रहे हैं."
+
+#: templates/explore.html:59
+msgid "What we say in twitter"
+msgstr "हम चहचहाना में क्या कहते हैं"
+
+#: templates/invite.html:9 templates/invite_done.html:4
+msgid "Invite your friends to e-cidadania"
+msgstr "e - cidadania अपने दोस्तों को आमंत्रित"
+
+#: templates/invite.html:15 templates/invite_done.html:10
+msgid "Invite your friends"
+msgstr "अपने मित्रों को आमंत्रित करें"
+
+#: templates/invite.html:21
+msgid "Invite via E-mail"
+msgstr "ई - मेल के माध्यम से में आमंत्रित करें"
+
+#: templates/invite.html:22
+msgid "Write the e-mail adresses here"
+msgstr "ई - मेल पते यहां लिखें"
+
+#: templates/invite.html:23
+msgid ""
+"If you want to invite more than one person, you will have to write their "
+"adresses separated by commas. Example: this@that.com, foo@bar.net, "
+"black@white.org"
+msgstr "यदि आप एक से अधिक व्यक्ति को आमंत्रित करना चाहते हैं, आप उनके पते अल्पविराम के द्वारा अलग लिखना होगा. उदाहरण: this@that.com, foo@bar.net, black@white.org"
+
+#: templates/invite.html:24
+msgid ""
+"Hi!, I would like you to join e-cidadania, the participative democracy "
+"platform for citizens."
+msgstr "हाय, मैं आप e- cidadania, नागरिकों के लिए भागीदारी लोकतंत्र मंच में शामिल होने के लिए करना चाहते हैं."
+
+#: templates/invite.html:25
+msgid ""
+"You can write here whatever text you want for your invitation, or leave it "
+"by default."
+msgstr "आप यहाँ लिख सकते हैं, जो पाठ आप अपने निमंत्रण के लिए करना चाहते हैं या यह डिफ़ॉल्ट रूप से छोड़ दें."
+
+#: templates/invite.html:26
+msgid "Submit"
+msgstr "प्रस्तुत करना"
+
+#: templates/invite.html:31
+msgid ""
+"To send invitations via e-mail you have to be <a "
+"href='/accounts/login/'>logged in</a>."
+msgstr "ई - मेल के जरिए निमंत्रण भेजने के लिए आप <a   href='/accounts/login/'> में लॉग है.</a>"
+
+#: templates/invite_done.html:11
+msgid "The email(s) have been sent"
+msgstr "ईमेल (ओं) भेज दिया गया है"
+
+#: templates/invite_done.html:12
+msgid "Go to index"
+msgstr "सूचकांक के लिए जाओ"
+
+#: templates/menu.html:3
+msgid "Explore"
+msgstr "पता लगाने के"
+
+#: templates/menu.html:4
+msgid "Blog"
+msgstr "ब्लॉग"
+
+#: templates/menu.html:5
+msgid "Help"
+msgstr "मदद"
+
+#: templates/menu.html:10
+msgid "Login"
+msgstr "लॉगिन"
+
+#: templates/menu.html:11
+msgid "Sign up"
+msgstr "साइन अप करें"
+
+#: templates/menu.html:15
+msgid "Language"
+msgstr "भाषा"
+
+#: templates/menu.html:35
+msgid "My profile"
+msgstr "मेरा प्रोफ़ाइल"
+
+#: templates/menu.html:47
+msgid "Administration"
+msgstr "प्रशासन"
+
+#: templates/menu.html:48
+msgid "Add news"
+msgstr "समाचार जोड़ें"
+
+#: templates/menu.html:52
+msgid "Create new space"
+msgstr "नए अंतरिक्ष बनाएँ"
+
+#: templates/menu.html:54
+msgid "Edit profile"
+msgstr "प्रोफ़ाइल संपादित करें"
+
+#: templates/menu.html:56
+msgid "Logout"
+msgstr "लॉगआउट"
+
+#: templates/not_allowed.html:4
+msgid "Not allowed"
+msgstr "अनुमति नहीं"
+
+#: templates/not_allowed.html:10
+msgid "You are not allowed to access here."
+msgstr "आप यहाँ का उपयोग करने की अनुमति नहीं है."
+
+#: templates/not_allowed.html:13
+msgid "I want to participate"
+msgstr "मैं भाग लेना चाहता हूँ"
+
+#: templates/not_allowed.html:15 templates/space_intent.html:12
+msgid ""
+"You can go <a href='/'>back to home</a> or <a href='/accounts/'>back to your"
+" profile</a>"
+msgstr "You can go <a href='/'>back to home</a> or <a href='/accounts/'>back to your profile</a>"
+
+#: templates/site_index.html:5
+msgid "e-cidadania"
+msgstr "e-cidadania"
+
+#: templates/site_index.html:23
+msgid ""
+"Would you like the debates and decisions to be more inclusive? Well done and"
+" integrative proposals where participation is always a nice and enriching "
+"experience? We too, that's why we created e-cidadania."
+msgstr "आप अधिक समावेशी हो बहस और निर्णय करना चाहेंगे? अच्छा किया और एकीकृत प्रस्तावों जहां भागीदारी हमेशा एक अच्छा और समृद्ध अनुभव है? हम भी हैं, यही कारण है कि हम e - cidadania बनाया."
+
+#: templates/site_index.html:25
+msgid "Latest participative processes"
+msgstr "नवीनतम भागीदारी प्रक्रियाओं"
+
+#: templates/site_index.html:32
+msgid "Public"
+msgstr "सार्वजनिक"
+
+#: templates/site_index.html:34
+msgid "Private"
+msgstr "निजी"
+
+#: templates/site_index.html:38
+msgid "There are no processes."
+msgstr "वहाँ कोई प्रक्रिया हैं."
+
+#: templates/site_index.html:49
+msgid "View all the processes"
+msgstr "सभी प्रक्रियाओं देखें"
+
+#: templates/site_index.html:62
+msgid "Sign in"
+msgstr "में साइन इन करें"
+
+#: templates/site_index.html:66
+msgid "Forgot your password?"
+msgstr "अपना पासवर्ड भूल गए?"
+
+#: templates/site_index.html:67
+msgid "Invite someone!"
+msgstr "किसी को आमंत्रित करें!"
+
+#: templates/site_index.html:74
+msgid "First time here? Register!"
+msgstr "पहली बार यहाँ? रजिस्टर करें!"
+
+#: templates/site_index.html:80
+msgid "Register"
+msgstr "रजिस्टर"
+
+#: templates/space_intent.html:4
+msgid "Participate"
+msgstr "भाग लेना"
+
+#: templates/space_intent.html:11
+msgid ""
+"If the administrator approves your request, you will be notified by email"
+msgstr "यदि व्यवस्थापक आपके अनुरोध को मंजूरी दी है, आपको ईमेल द्वारा सूचित किया जाएगा"
+
+#: templates/comments/approve.html:4
+msgid "Approve a comment"
+msgstr "एक टिप्पणी स्वीकृत"
+
+#: templates/comments/approve.html:7
+msgid "Really make this comment public?"
+msgstr "वास्तव में इस टिप्पणी को सार्वजनिक करना?"
+
+#: templates/comments/approve.html:12
+msgid "Approve"
+msgstr "अनुमोदन करना"
+
+#: templates/comments/approved.html:4
+msgid "Thanks for approving"
+msgstr "अनुमोदन के लिए धन्यवाद"
+
+#: templates/comments/approved.html:7 templates/comments/deleted.html:7
+#: templates/comments/flagged.html:7
+msgid ""
+"Thanks for taking the time to improve the quality of discussion on our site"
+msgstr "समय लेने के लिए हमारी साइट पर चर्चा की गुणवत्ता में सुधार करने के लिए धन्यवाद"
+
+#: templates/comments/delete.html:4
+msgid "Remove a comment"
+msgstr "एक टिप्पणी निकालें"
+
+#: templates/comments/delete.html:7
+msgid "Really remove this comment?"
+msgstr "वास्तव में इस टिप्पणी को हटाने?"
+
+#: templates/comments/delete.html:12
+msgid "Remove"
+msgstr "हटाना"
+
+#: templates/comments/deleted.html:4
+msgid "Thanks for removing"
+msgstr "हटाने के लिए धन्यवाद"
+
+#: templates/comments/flag.html:4
+msgid "Flag this comment"
+msgstr "इस टिप्पणी फ़्लैग करें"
+
+#: templates/comments/flag.html:7
+msgid "Really flag this comment?"
+msgstr "वास्तव में झंडा इस टिप्पणी?"
+
+#: templates/comments/flag.html:12
+msgid "Flag"
+msgstr "झंडा"
+
+#: templates/comments/flagged.html:4
+msgid "Thanks for flagging"
+msgstr "फ़ुटपाथ के लिए धन्यवाद"
+
+#: templates/comments/form.html:2
+msgid "Leave a comment"
+msgstr "एक टिप्पणी छोड़ दो"
+
+#: templates/comments/form.html:19 templates/comments/form.html.py:49
+#: templates/comments/preview.html:34
+msgid "Post"
+msgstr "पद"
+
+#: templates/comments/form.html:20 templates/comments/form.html.py:50
+#: templates/comments/preview.html:35
+msgid "Preview"
+msgstr "पूर्वावलोकन"
+
+#: templates/comments/list.html:3
+msgid "Comments"
+msgstr "टिप्पणियां"
+
+#: templates/comments/list.html:7
+msgid "said"
+msgstr "कहा"
+
+#: templates/comments/posted.html:4
+msgid "Thanks for commenting"
+msgstr "टिप्पणी के लिए धन्यवाद"
+
+#: templates/comments/posted.html:7
+msgid "Thank you for your comment"
+msgstr "आप अपनी टिप्पणी के लिए धन्यवाद"
+
+#: templates/comments/posted.html:10 templates/comments/posted.html.py:12
+msgid "Go back"
+msgstr "वापस जाओ"
+
+#: templates/comments/preview.html:4 templates/comments/preview.html.py:17
+msgid "Preview your comment"
+msgstr "अपनी टिप्पणी का पूर्वावलोकन"
+
+#: templates/comments/preview.html:15
+msgid "Please correct the error below"
+msgid_plural "Please correct the errors below"
+msgstr[0] "कृपया नीचे त्रुटियां सुधारें"
+msgstr[1] "कृपया नीचे त्रुटियां सुधारें"
+
+#: templates/comments/preview.html:20
+msgid "and"
+msgstr "और "
+
+#: templates/comments/preview.html:20
+msgid "Post your comment"
+msgstr "अपनी टिप्पणी "
+
+#: templates/comments/preview.html:20
+msgid "or make changes"
+msgstr "या परिवर्तन करें"
+
+#: templates/invite/invite.html:132
+msgid "Like"
+msgstr "जैसा"
+
+#: templates/invite/invite.html:138
+msgid "Tweet"
+msgstr "कलरव"
+
+#: templates/invite/invite.html:163
+msgid "Connect with me on e-cidadania!"
+msgstr "कनेक्ट मेरे साथ e- cidadania पर!"
+
+#: templates/invite/invite.html:187 templates/invite/invite_plain.txt:3
+msgid "Someone sent you an invitation to join e-cidadania!"
+msgstr "किसी ने आपको एक ई - cidadania में शामिल होने का निमंत्रण भेजा है!"
+
+#: templates/invite/invite.html:190
+#, python-format
+msgid ""
+"\n"
+"                                        <a href=\"http://ecidadania.org\">e-cidadania</a> is an e-democracy platform for citizen participation. More clearly, it's for direct democracy in every one if its shapes,\n"
+"                                        from 99%% movement, 15M to official participative budgets. The message that was sent to you follows:\n"
+"                                        "
+msgstr "\n\n⏎ <a href=\"http://ecidadania.org\">e-cidadania</a> is an e-democracy platform for citizen participation. More clearly, it's for direct democracy in every one if its shapes,⏎ from 99%% movement, 15M to official participative budgets. The message that was sent to you follows:⏎ "
+
+#: templates/invite/invite_plain.txt:4
+#, python-format
+msgid ""
+"\n"
+"You have been invited to join e-cidadania, an e-democracy platform for citizen participation. More clearly, it's for direct democracy in every one of its shapes, from 99%% movement, 15M to official participative budgets. The message that was sent to you follows:\n"
+msgstr "\n⏎ You have been invited to join e-cidadania, an e-democracy platform for citizen participation. More clearly, it's for direct democracy in every one of its shapes, from 99%% movement, \n"
+
+#: templates/invite/invite_plain.txt:9
+msgid "Join e-cidadania today in http://ecidadania.org"
+msgstr "e - cidadania आज सम्मिलित हों http://ecidadania.org"
+
+#: templates/invite/invite_plain.txt:11
+msgid ""
+"If you have any questions dont hesitate and send us a mail to "
+"support@ecidadania.org."
+msgstr "अगर आप किसी भी प्रश्न को संकोच और हमें मेल support@ecidadania.org भेज न."

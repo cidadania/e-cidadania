@@ -1,35 +1,34 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
-# Oscar Carballal <oscar.carballal@cidadania.coop>, 2012.
+# Oscar Carballal <oscar.carballal@cidadania.coop>, 2012-2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 11:54+0100\n"
-"PO-Revision-Date: 2012-12-13 16:26+0000\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"PO-Revision-Date: 2013-03-11 09:55+0000\n"
 "Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
-"Language-Team: Spanish (Spain) (http://www.transifex.com/projects/p/"
-"ecidadania/language/es_ES/)\n"
-"Language: es_ES\n"
+"Language-Team: Spanish (Spain) <ecidadania-es@freelists.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: models.py:31
 msgid "Users"
-msgstr ""
+msgstr "Usuarios"
 
 #: models.py:32
 msgid "Fixed"
-msgstr ""
+msgstr "Fijo"
 
 #: models.py:33
 msgid "No ponderation"
-msgstr ""
+msgstr "Sin ponderación"
 
 #: models.py:48
 msgid "Question"
@@ -52,9 +51,8 @@ msgid "Author"
 msgstr "Autor"
 
 #: models.py:53
-#, fuzzy
 msgid "Change the user that will figure as the         author"
-msgstr "Cambiar el usuario que figura como autor"
+msgstr "Cambiar el usuario que aparece como autor"
 
 #: models.py:56
 msgid "Publish in"
@@ -65,9 +63,8 @@ msgid "If you want to post to the index leave this         blank"
 msgstr "Si quieres publicarlo en el índice deja esto en blanco"
 
 #: models.py:59
-#, fuzzy
 msgid "Insert here relevant words related with         the poll"
-msgstr "Introduce aqui palabras relevantes con la encuesta"
+msgstr "Introduce aquí palabras relacionadas con la encuesta"
 
 #: models.py:61 models.py:109
 msgid "Start date"
@@ -99,17 +96,7 @@ msgstr "Fecha de creación"
 
 #: models.py:111
 msgid "Ponderation"
-msgstr ""
-
-#: urls.py:54
-#, fuzzy
-msgid "^poll/(?P<pk>\\d+)/$"
-msgstr "^(?P<pk>\\d+)/$"
-
-#: urls.py:56
-#, fuzzy
-msgid "^poll/(?P<pk>\\d+)/results/$"
-msgstr "^(?P<pk>\\d+)/$"
+msgstr "Ponderación"
 
 #: templates/voting/poll_confirm_delete.html:6
 msgid "View poll "
@@ -122,9 +109,7 @@ msgstr "Eliminar encuesta"
 #: templates/voting/poll_confirm_delete.html:37
 msgid ""
 "Are you sure you want to delete this poll? This action cannot be undone."
-msgstr ""
-"¿Estás seguro de que quieres eliminar esta encuesta? Esta acción no se puede "
-"deshacer."
+msgstr "¿Estás seguro de que quieres eliminar esta encuesta? Esta acción no se puede deshacer."
 
 #: templates/voting/poll_confirm_delete.html:40
 #: templates/voting/poll_detail.html:49 templates/voting/poll_edit.html:187
@@ -221,9 +206,7 @@ msgstr "Eliminar votación"
 msgid ""
 "Are you sure you want to delete this voting process? This action cannot be "
 "undone."
-msgstr ""
-"¿Estás seguro de querer eliminar esta votación? Esta acción no se puede "
-"deshacer."
+msgstr "¿Estás seguro de querer eliminar esta votación? Esta acción no se puede deshacer."
 
 #: templates/voting/voting_detail.html:67
 msgid "Description:"
@@ -247,7 +230,7 @@ msgstr "Sets de propuestas"
 
 #: templates/voting/voting_detail.html:77
 msgid "linked to"
-msgstr ""
+msgstr "enlazado a"
 
 #: templates/voting/voting_detail.html:106
 msgid "Unlinked proposals:"
@@ -263,50 +246,19 @@ msgstr "Crear nueva votación"
 
 #: templates/voting/voting_list.html:4
 msgid "Voting list"
-msgstr ""
+msgstr "Lista de votaciones"
 
 #: templates/voting/voting_list.html:33
-#, fuzzy
 msgid "Voting archive"
-msgstr "Archivo de encuestas"
+msgstr "Archivo de votaciones"
 
-#: views/voting.py:239
+#: views/voting.py:245
 msgid "Validate your vote"
-msgstr ""
+msgstr "Valida tu voto"
 
-#: views/voting.py:240
+#: views/voting.py:246
 #, python-format
 msgid ""
 "You voted recently on a process in our platform, please validate your vote "
 "following this link: %s"
-msgstr ""
-
-#~ msgid "This proposal set is linked to:"
-#~ msgstr "Este set de propuestas esta enlazado a:"
-
-#~ msgid "Current votes status:"
-#~ msgstr "Estado actual de los votos:"
-
-#~ msgid "^list/$"
-#~ msgstr "^lista/$"
-
-#~ msgid "^addpoll/$"
-#~ msgstr "^añadirencuesta/$"
-
-#~ msgid "^(?P<poll_id>\\d+)/delete/$"
-#~ msgstr "^(?P<poll_id>\\d+)/eliminar/$"
-
-#~ msgid "^(?P<poll_id>\\d+)/edit/$"
-#~ msgstr "^(?P<poll_id>\\d+)/editar/$"
-
-#~ msgid "^(?P<poll_id>\\d+)/vote/$"
-#~ msgstr "^(?P<poll_id>\\d+)/votar/$"
-
-#~ msgid "^addvoting/$"
-#~ msgstr "^añadirvoto/$"
-
-#~ msgid "^(?P<voting_id>\\d+)/deletevoting/$"
-#~ msgstr "^(?P<voting_id>\\d+)/eliminarvoto/$"
-
-#~ msgid "^(?P<voting_id>\\d+)/editvoting/$"
-#~ msgstr "^(?P<voting_id>\\d+)/editarvoto/$"
+msgstr "Has votado recientemente en un proceso de nuestra plataforma. Por favor, valida tu voto en el siguiente enlace: %s"

@@ -141,10 +141,10 @@ automatically if found in the data models.
 
             {% trans "If you want to add location information please click 'Show map'" %}:
             <a id="showmap" class="btn btn-default" style="margin-bottom:15px;">{% trans "Show map" %}</a>
-            <div id="map" style="width:900px;height:500px;border:1px solid #AAA;" class="hidden"></div>
+            <div id="map" style="width:900px;height:500px;border:1px solid #AAA;" class="hidden" data-show="no"></div>
 
             <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
-            <script type="text/javascript" src="{{ STATIC_URL }}js/proposal_tools.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/map_tools.js"></script>
             <script type="text/javascript">clickMap();startMap();toggleMap();</script>
             <hr />
             <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">&laquo; {% trans "Go back" %}</a>
@@ -152,5 +152,5 @@ automatically if found in the data models.
         </form>
     </div>
 </div>
-
+</br>
 {% endblock %}

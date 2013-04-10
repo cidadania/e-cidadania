@@ -7,6 +7,7 @@ from django.db import models
 
 from tagging.models import Tag, TaggedItem
 
+
 class ModelTagManager(models.Manager):
     """
     A manager for retrieving tags for a particular model.
@@ -24,6 +25,7 @@ class ModelTagManager(models.Manager):
 
     def usage(self, *args, **kwargs):
         return Tag.objects.usage_for_model(self.model, *args, **kwargs)
+
 
 class ModelTaggedItemManager(models.Manager):
     """
@@ -46,6 +48,7 @@ class ModelTaggedItemManager(models.Manager):
             return TaggedItem.objects.get_union_by_model(self.model, tags)
         else:
             return TaggedItem.objects.get_union_by_model(queryset, tags)
+
 
 class TagDescriptor(object):
     """

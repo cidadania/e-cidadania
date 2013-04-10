@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load wysiwyg %}
+{% load comments %}
+{% with debate.title as debate_title %}
+{% block title %}{% trans "View debate" %} {{ debate_title }}{% endblock %}
+{% block logo %}<a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>{% endblock %}
+{% block banner %}<img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />{% endblock %}
+
+{% block space %}
+    <a class="brand" href="{{ get_place.get_absolute_url }}">{{ get_place.name }}</a>
+{% endblock %}
+{% endwith %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="span12">
+            <h4>{{ debate.title}}</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span6">
+            <p><strong>{% trans "Description:" %}</strong> {{ debate.description|safe }}</p>
+            <p><strong>{% trans "Theme:" %}</strong> {{ debate.theme}}</p>
+        </div>
+        <div class="span6">
+            {% with debate.start_date as start_date %}
+            {% with debate.end_date as end_date %}
+                <p><strong>{% trans "Start date:" %}</strong> {% if start_date %}{{ start_date }}{% else %}{% trans "No date" %}{% endif %}</p>
+                <p><strong>{% trans "End date:" %}</strong> {% if end_date %}{{ end_date }}{% else %}{% trans "No date" %}{% endif %}</p>
+            {% endwith %}
+            {% endwith %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block freewidth %}
+{% with request.user as request_user %}
+
+    <div class="row">
+        <div class="span12 specialmargin">
+            <div id="debate-number" class="hidden">{{ debate.pk }}</div>
+            <div id="last-note" class="hidden">{{ lastnote }}</div>
+
+            <div id="debate">
+                {% with debate.pk as debate_pk %}
+                <table id="debate{{ debate_pk }}" cellspacing="0" style="width:100%;" align="left">
+                    <thead>
+                        <tr id="debate{{ debate_pk }}-headers">
+                            {% endwith %}
+                            <th id="corner" class="corner-criteria"></th>
+                            {% for col in columns %}
+                                <th id="col-{{ col.id }}">{{ col.criteria }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody id="debate-body">
+                        {% for row in rows %}
+                            <tr id="debate-row-{{ forloop.counter }}">
+                                {% comment %}
+                                    The th style width is meant to make smaller the th, since most browsers make
+                                    the th fill all the space.
+                                {% endcomment %}
+                                {% with row.id as row_id %}
+                                <th id="row-{{ row_id }}" width="1%"><div class="debate-ttitle">{{ row.criteria }}</div></th>
+                                {% for td in columns %}
+                                    {% with td.id as td_id %}
+                                    <td headers="{{ td_id }}-{{ row_id }}" id="sortable-debate" class="connectedSortable">
+                                        {% for note in notes %}
+                                            {% if note.column_id == td_id and note.row_id == row_id %}
+                                                <div id="{{ note.id }}" class="note {% if note.author == request_user %}mine{% endif %} {% if note.author == request_user or request_user.is_staff %}{% else %}disabled{% endif %}" rel="popover" data-title="{{note.title}}" data-content="<span style='font-weight:bold;line-height:1.5em;'>Author: {{note.author}}</span><br/>{{note.message|truncatechars:350}}">
+                                                    <div class="handler">
+                                                        <span id="view-note" style="float:left;">
+                                                            <a href="#" class="nounderline" onclick="viewNote(this)" data-toggle="modal" data-target="#view-current-note" title="{% trans 'View' %}"><i class="icon-eye-open" style="font-size:12px;"></i></a>
+                                                        </span>
+                                                    </div>
+                                                    <p class="note-text">{{ note.title }}</p>
+                                                    {% get_comment_count for note as comment_count %}
+                                                    <span class="comments">{{ comment_count }} {% trans "comments" %}</span><br/>
+												</div>
+
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% endwith %}
+                                    </td>
+                                {% endfor %}
+                                {% endwith %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+
+                <div id="view-current-note" class="modal hide fade" style="display: none; ">
+                    <div class="modal-header">
+                        <a class="close" data-dismiss="modal">×</a>
+                        <h3 id="view-note-title"></h3>
+                    </div>
+                    <div class="modal-body">
+                        <p id="view-note-desc"></p>
+                        {% trans "Author:" %}  <span id="view-note-author"></span>
+                        <span id="num-comments"></span>
+                        <div id="comments"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ STATIC_URL }}/js/debate_board_expired.js" type="text/javascript"></script>
+	<script>
+        $(function() {
+            $(".note").popover({
+                placement : 'top',
+                trigger: 'hover',
+                html: true,
+                delay: { show: 500, hide: 100 }
+            });
+        });
+</script>
+{% endwith %}
+{% endblock %}

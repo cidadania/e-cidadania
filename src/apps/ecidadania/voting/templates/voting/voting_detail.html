@@ -37,22 +37,22 @@
                 type: "POST",
                 url: "../vote/voting/",
                 data: { propid: proposal },
-                success: function(data)
-                {
-                $("#jsnotify").notify("create", {
-                    title:"An email has been sent",
-                    text:"We sent you an email for validating the vote.",
-                    icon:"alert.png",
-                    expires: 0
-                })
+                success: function(data) {
+                    $.gritter.add({
+                        title:"An email has been sent",
+                        text:"We sent you an email for validating the vote.",
+                        icon:"http://ecidadania.org/static/assets/icons/alert.png",
+                        expires: 0
+                    })
                 }
             });
 
             request.fail(function(jqXHR, textStatus) {
-                $("#jsnotify").notify("create", {
+                $.gritter.add({
                     title:"Couldn't vote the proposal",
                     text:"There has been an error." + textStatus,
-                    icon:"alert.png"
+                    icon:"http://ecidadania.org/static/assets/icons/alert.png",
+                    expires: 0
                 });
             })
         }

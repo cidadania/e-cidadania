@@ -22,14 +22,18 @@ from django.utils.translation import ugettext_lazy as _
 
 from apps.ecidadania.voting.models import *
 
+
 class ChoiceInline(admin.TabularInline):
         model = Choice
+
+
 class PollAdmin(admin.ModelAdmin):
         list_display = ('question', 'pub_date', 'poll_lastup', 'author',
                                      'space')
         search_fields = ('question', 'author', 'space')
 
         inlines = [ChoiceInline]
+
 
 class VotingAdmin(admin.ModelAdmin):
 

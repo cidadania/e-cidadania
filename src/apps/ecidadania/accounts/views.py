@@ -26,18 +26,20 @@ from django.contrib.auth.models import User
 from apps.ecidadania.accounts.models import UserProfile, Phone
 
 # This views are no longer required since they were replaced by userprofile
+
+
 @login_required
 def view_profile(request):
 
     """
     Return the profile of the current logged user.
-    
+
     userdata: This variable gets the django basic user profile from
               the current logged in user.
     userprofile: Gets all the variables stored by the model UserProfile
                  using the method get_profile() since it's bound to the
                  user profile in the settings file.
-    
+
     Template tags
     -------------
     user: returns any of the data stored by the django user profile.

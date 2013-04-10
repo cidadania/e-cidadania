@@ -61,7 +61,7 @@ def add_new_debate(request, space_url):
     """
     Create a new debate. This function returns two forms to create
     a complete debate, debate form and phases formset.
-    
+
     .. versionadded:: 0.1.5
 
     :attributes: debate_form, row_formset, column_formset
@@ -70,7 +70,7 @@ def add_new_debate(request, space_url):
     place = get_object_or_404(Space, url=space_url)
 
     if has_space_permission(request.user, place, allow=['admins']) \
-    or has_all_permissions(request.user):
+            or has_all_permissions(request.user):
 
         RowFormSet = inlineformset_factory(Debate, Row, extra=1)
         ColumnFormSet = inlineformset_factory(Debate, Column, extra=1)
@@ -78,7 +78,6 @@ def add_new_debate(request, space_url):
         debate_form = DebateForm(request.POST or None)
         row_formset = RowFormSet(request.POST or None, prefix="rowform")
         column_formset = ColumnFormSet(request.POST or None, prefix="colform")
-
 
         # Get the last PK and add 1 to get the current PK
         try:
@@ -89,7 +88,7 @@ def add_new_debate(request, space_url):
 
         if request.method == 'POST':
             if debate_form.is_valid() and row_formset.is_valid() \
-            and column_formset.is_valid():
+                    and column_formset.is_valid():
                 debate_form_uncommited = debate_form.save(commit=False)
                 debate_form_uncommited.space = place
                 debate_form_uncommited.author = request.user
@@ -97,12 +96,12 @@ def add_new_debate(request, space_url):
                 saved_debate = debate_form_uncommited.save()
                 debate_instance = get_object_or_404(Debate,
                     pk=current_debate_id)
-                
+
                 row = row_formset.save(commit=False)
                 for form in row:
                     form.debate = debate_instance
                     form.save()
-                
+
                 column = column_formset.save(commit=False)
                 for form in column:
                     form.debate = debate_instance
@@ -117,19 +116,20 @@ def add_new_debate(request, space_url):
                                'rowform': row_formset,
                                'colform': column_formset,
                                'get_place': place,
-                               'debateid': current_debate_id},
-                              context_instance=RequestContext(request))
+                                     'debateid': current_debate_id},
+            context_instance=RequestContext(request))
     return render_to_response('not_allowed.html',
                               context_instance=RequestContext(request))
+
 
 @permission_required('debate.change_debate')
 def edit_debate(request, space_url, debate_id):
 
-
+    pk = debate_id
     place = get_object_or_404(Space, url=space_url)
 
-    if has_operation_permission(request.user, place, 'debate.change_debate', \
-        allow=['admins', 'mods']):
+    if has_operation_permission(request.user, place, 'debate.change_debate',
+                                allow=['admins', 'mods']):
 
         RowFormSet = inlineformset_factory(Debate, Row, extra=1)
         ColumnFormSet = inlineformset_factory(Debate, Column, extra=1)
@@ -141,7 +141,7 @@ def edit_debate(request, space_url, debate_id):
 
         if request.method == 'POST':
             if debate_form.is_valid() and row_formset.is_valid() \
-            and column_formset.is_valid():
+                    and column_formset.is_valid():
                 debate_form_uncommited = debate_form.save(commit=False)
                 debate_form_uncommited.space = place
                 debate_form_uncommited.author = request.user
@@ -149,7 +149,7 @@ def edit_debate(request, space_url, debate_id):
                 saved_debate = debate_form_uncommited.save()
                 debate_instance = get_object_or_404(Debate,
                     pk=debate_id)
-                        
+
                 row = row_formset.save(commit=False)
                 for form in row:
                     form.debate = instance
@@ -169,10 +169,12 @@ def edit_debate(request, space_url, debate_id):
                                    'rowform': row_formset,
                                    'colform': column_formset,
                                    'get_place': place,
-                                   'debateid': pk},
+                                           'debateid': debate_id},
                                   context_instance=RequestContext(request))
     return render_to_response('not_allowed.html',
                               context_instance=RequestContext(request))
+
+
 def get_debates(request):
 
     """
@@ -194,34 +196,37 @@ def create_note(request, space_url):
     .. versionadded:: 0.1.5
     """
     note_form = NoteForm(request.POST or None)
-        
-    if request.method == "POST" and request.is_ajax:        
-        if note_form.is_valid():
-            note_form_uncommited = note_form.save(commit=False)
-            note_form_uncommited.author = request.user
-            note_form_uncommited.debate = get_object_or_404(Debate,
-                pk=request.POST['debateid'])
-            note_form_uncommited.title = request.POST['title']
-            note_form_uncommited.message = request.POST['message']
-            note_form_uncommited.column = get_object_or_404(Column,
-                pk=request.POST['column'])
-            note_form_uncommited.row = get_object_or_404(Row,
-                pk=request.POST['row'])
-            note_form_uncommited.save()
+    place = get_object_or_404(Space, url=space_url)
 
-            response_data = {}
-            response_data['id'] = note_form_uncommited.id
-            response_data['message'] = note_form_uncommited.message
-            response_data['title'] = note_form_uncommited.title
-            return HttpResponse(json.dumps(response_data),
-                                mimetype="application/json")
+    if request.method == "POST" and request.is_ajax:
+        if has_operation_permission(request.user, place, 'note.add_note',
+        allow=['admins', 'mods', 'users']):
+            if note_form.is_valid():
+                note_form_uncommited = note_form.save(commit=False)
+                note_form_uncommited.author = request.user
+                note_form_uncommited.debate = get_object_or_404(Debate,
+                    pk=request.POST['debateid'])
+                note_form_uncommited.title = request.POST['title']
+                note_form_uncommited.message = request.POST['message']
+                note_form_uncommited.column = get_object_or_404(Column,
+                    pk=request.POST['column'])
+                note_form_uncommited.row = get_object_or_404(Row,
+                    pk=request.POST['row'])
+                note_form_uncommited.save()
 
+                response_data = {}
+                response_data['id'] = note_form_uncommited.id
+                response_data['message'] = note_form_uncommited.message
+                response_data['title'] = note_form_uncommited.title
+                msg = "The note has been created."
+                return HttpResponse(json.dumps(response_data),
+                                    mimetype="application/json")
+
+            else:
+                msg = "The note form didn't validate. This fields gave errors: " + str(note_form.errors)
         else:
-            msg = "The note form didn't validate. This fields gave errors: " \
-            + str(note_form.errors)
-    else:
-        msg = "The petition was not POST."
-        
+            msg = "The petition was not POST."
+
     return HttpResponse(json.dumps(msg), mimetype="application/json")
 
 
@@ -233,19 +238,21 @@ def update_note(request, space_url):
     editing.
     """
 
+    place = get_object_or_404(Space, url=space_url)
+
     if request.method == "GET" and request.is_ajax:
         note = get_object_or_404(Note, pk=request.GET['noteid'])
         ctype = ContentType.objects.get_for_model(Note)
         latest_comments = Comment.objects.filter(is_public=True,
             is_removed=False, content_type=ctype, object_pk=note.id) \
             .order_by('-submit_date')[:5]
-        form = CommentForm(target_object = note)
+        form = CommentForm(target_object=note)
 
         response_data = {}
         response_data['title'] = note.title
         response_data['message'] = note.message
-        response_data['author'] = { 'name': note.author.username }
-        response_data['comments'] = [ {'username': c.user.username,
+        response_data['author'] = {'name': note.author.username}
+        response_data['comments'] = [{'username': c.user.username,
             'comment': c.comment,
             'submit_date': c.submit_date} for c in latest_comments]
         response_data["form_html"] = form.as_p()
@@ -254,21 +261,23 @@ def update_note(request, space_url):
                             mimetype="application/json")
 
     if request.method == "POST" and request.is_ajax:
-        note = get_object_or_404(Note, pk=request.POST['noteid'])
-        note_form = UpdateNoteForm(request.POST or None, instance=note)
-        if note_form.is_valid():
-            note_form_uncommited = note_form.save(commit=False)
-            note_form_uncommited.title = request.POST['title']
-            note_form_uncommited.message = request.POST['message']
-            note_form_uncommited.last_mod_author = request.user
-        
-            note_form_uncommited.save()
-            msg = "The note has been updated."
+        if has_operation_permission(request.user, place, 'note.change_note',
+        allow=['admins', 'mods']) or request.user == note.author:
+            note = get_object_or_404(Note, pk=request.POST['noteid'])
+            note_form = UpdateNoteForm(request.POST or None, instance=note)
+            if note_form.is_valid():
+                note_form_uncommited = note_form.save(commit=False)
+                note_form_uncommited.title = request.POST['title']
+                note_form_uncommited.message = request.POST['message']
+                note_form_uncommited.last_mod_author = request.user
+
+                note_form_uncommited.save()
+                msg = "The note has been updated."
+            else:
+                msg = "The form is not valid, check field(s): " + note_form.errors
+            return HttpResponse(msg)
         else:
-            msg = "The form is not valid, check field(s): " + note_form.errors
-    else:
-        msg = "There was some error in the petition."
-        
+            msg = "There was some error in the petition."
     return HttpResponse(msg)
 
 
@@ -281,9 +290,11 @@ def update_position(request, space_url):
     """
     note = get_object_or_404(Note, pk=request.POST['noteid'])
     position_form = UpdateNotePosition(request.POST or None, instance=note)
+    place = get_object_or_404(Space, url=space_url)
 
     if request.method == "POST" and request.is_ajax:
-        if request.user == note.author or request.user.is_staff:
+        if has_operation_permission(request.user, place, 'note.change_note',
+        allow=['admins', 'mods']) or request.user == note.author:
             if position_form.is_valid():
                 position_form_uncommited = position_form.save(commit=False)
                 position_form_uncommited.column = get_object_or_404(Column,
@@ -306,8 +317,10 @@ def delete_note(request, space_url):
     Deletes a note object.
     """
     note = get_object_or_404(Note, pk=request.POST['noteid'])
+    place = get_object_or_404(Space, url=space_url)
 
-    if note.author == request.user or has_all_permissions(request.user):
+    if has_operation_permission(request.user, place, 'note.delete_note',
+    allow=['admins', 'mods']) or note.author == request.user:
         ctype = ContentType.objects.get_for_model(Note)
         all_comments = Comment.objects.filter(is_public=True,
                 is_removed=False, content_type=ctype,
@@ -324,7 +337,7 @@ def delete_note(request, space_url):
 class ViewDebate(DetailView):
     """
     View a debate.
-    
+
     :context: get_place, notes, columns, rows
     """
     context_object_name = 'debate'
@@ -333,16 +346,18 @@ class ViewDebate(DetailView):
     def get_object(self):
         key = self.kwargs['debate_id']
         debate = get_or_insert_object_in_cache(Debate, key, pk=key)
-        
+
         # Check debate dates
-        if datetime.date.today() >= debate.end_date \
-        or datetime.date.today() <  debate.start_date:
+        if datetime.date.today() >= debate.end_date:
+            self.template_name = 'debate/debate_expired_view.html'
+            return debate
+        elif datetime.date.today() < debate.start_date:
             self.template_name = 'debate/debate_outdated.html'
             return debate
             # We can't return none, if we do, the platform cannot show
             # the start and end dates and the title
-            #return Debate.objects.none()
-        
+            # return Debate.objects.none()
+
         return debate
 
     def get_context_data(self, **kwargs):
@@ -350,10 +365,10 @@ class ViewDebate(DetailView):
         columns = Column.objects.filter(debate=self.kwargs['debate_id'])
         rows = Row.objects.filter(debate=self.kwargs['debate_id'])
         space_key = self.kwargs['space_url']
-        current_space = get_or_insert_object_in_cache(Space, space_key, 
+        current_space = get_or_insert_object_in_cache(Space, space_key,
                                                       url=space_key)
         debate_key = self.kwargs['debate_id']
-        current_debate = get_or_insert_object_in_cache(Debate, debate_key, 
+        current_debate = get_or_insert_object_in_cache(Debate, debate_key,
                                                        pk=debate_key)
         notes = Note.objects.filter(debate=current_debate.pk)
         try:
@@ -376,7 +391,7 @@ class ViewDebate(DetailView):
 class ListDebates(ListView):
     """
     Return a list of debates for the current space.
-    
+
     :context: get_place
     """
     paginate_by = 10
@@ -396,5 +411,35 @@ class ListDebates(ListView):
         context = super(ListDebates, self).get_context_data(**kwargs)
         key = self.kwargs['space_url']
         space = get_or_insert_object_in_cache(Space, key, url=key)
+        context['get_place'] = space
+        return context
+
+
+class DeleteDebate(DeleteView):
+
+    """
+    Delete an existent debate. Debate deletion is only reserved to spaces
+    administrators or site admins.
+    """
+    context_object_name = "get_place"
+
+    def get_success_url(self):
+        space = self.kwargs['space_url']
+        return '/spaces/%s' % (space)
+
+    def get_object(self):
+        space = get_object_or_404(Space, url=self.kwargs['space_url'])
+        if has_operation_permission(self.request.user, space, 'debate.delete_debate', allow=['admins', 'mods']):
+            return get_object_or_404(Debate, pk=self.kwargs['debate_id'])
+        else:
+            self.template_name = 'not_allowed.html'
+
+    def get_context_data(self, **kwargs):
+
+        """
+        Get extra context data for ViewDebate view.
+        """
+        context = super(DeleteDebate, self).get_context_data(**kwargs)
+        space = get_object_or_404(Space, url=self.kwargs['space_url'])
         context['get_place'] = space
         return context

@@ -2,37 +2,53 @@
 {% load cache %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xml:lang="es-ES">
-	<head>
-		<title>{% block title %}{% endblock %}</title>
-		<!-- Load CSS -->
-		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/bootstrap.min.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/ui.notify.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/smoothness/jquery-ui-1.8.13.custom.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/bootstrap-wysihtml5.css" media="screen">
-		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/font-awesome.css" media="screen" />
-		<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}/css/screen.css"/>
-		<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}/css/debate.css"/>
-		<link href='http://fonts.googleapis.com/css?family=Duru+Sans' rel='stylesheet' type='text/css'>
-		<!-- End load CSS -->
-		<link rel="shortcut icon" href="{{ STATIC_URL }}/assets/favicon.ico" type="image/ico"/>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<meta name="Description" content="e-cidadania es una plataforma de democracia participativa"/>
-		<meta name="Robots" content="all"/>
-		<!-- Load JavaScript -->
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <!-- Load CSS -->
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/bootstrap.min.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/smoothness/jquery-ui-1.10.1.custom.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/bootstrap-wysihtml5.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/font-awesome.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/jquery.gritter.css" media="screen" />
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}/css/screen.css"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}/css/debate.css"/>
+        <link href='http://fonts.googleapis.com/css?family=Duru+Sans' rel='stylesheet' type='text/css'>
+        <!-- End load CSS -->
+        <link rel="shortcut icon" href="{{ STATIC_URL }}/assets/favicon.ico" type="image/ico"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="Description" content="e-cidadania es una plataforma de democracia participativa"/>
+        <meta name="Robots" content="all"/>
+        <!-- Load JavaScript -->
         <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
-		<script src="http://www.google.com/jsapi?key=ABQIAAAATqrYeRgzMa92HeAJ337iJhRWlTAuTwYT79cviOHriikXgTyaXRSApoqdJPf4dwJKYRnFn_s4iABNkg" type="text/javascript"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
         <script src="{{ STATIC_URL }}/js/advanced.js"></script>
-		<script src="{{ STATIC_URL }}/js/wysihtml5-0.4.0pre.min.js"></script>
-		<script type="text/javascript">
-			google.load("jquery", "1.7.1", {uncompressed:false});
-			google.load("jqueryui", "1.8.16", {uncompressed:false});
-		</script>
-		<script src="{{ STATIC_URL }}/js/bootstrap-wysihtml5.js"></script>
-    	<!-- End load JavaScript -->
-       	{% block extrajs %}
-       	{% endblock %}
-	</head>
-	<body>
+        <script src="{{ STATIC_URL }}/js/wysihtml5-0.4.0pre.min.js"></script>
+        <script src="{{ STATIC_URL }}/js/bootstrap-wysihtml5.js"></script>
+        <script src="{{ STATIC_URL }}/js/modernizr.js"></script>
+        <!-- End load JavaScript -->
+        {% block extrajs %}
+        {% endblock %}
+    </head>
+    <body>
+
+        <div id="browser" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">{% trans "Your browser is too old" %}</h3>
+            </div>
+            <div class="modal-body">
+                <p>{% blocktrans %}
+                    You can continue navigation under your risk, but it appears that your browser is too old for the
+                    features we use in e-cidadania. Please consider updating your browser or downloading a new one
+                    like Chrome, Opera, Safari or Firefox.
+                {% endblocktrans %}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+        </div>
 
         {# {% get_current_language as LANGUAGE_CODE %} #}
     
@@ -65,31 +81,22 @@
             {% endfor %}
         {% endif %}
     
-        <div id="jsnotify">
-            <div class="hidden" id="basic-template">
-                <a class="ui-notify-cross ui-notify-close" href="#">x</a>
-                <div style="float:left;margin:0 10px 0 0"><img src="{{ STATIC_URL }}assets/icons/#{icon}" alt="warning" /></div>
-                <h1>#{title}</h1>
-                <p>#{text}</p>
-            </div>
-        </div>
-    
         <div class="container">
             <div>
                 <div class="row">
                     <div class="span12">
                         {% block header %}
                             <div id="logo">
-	                            {% block logo %}
-	                                <a href="/"><img src="{{ STATIC_URL }}assets/logos/index.png"/></a>
-	                            {% endblock %}
-	                        </div>
+                                {% block logo %}
+                                    <a href="/"><img src="{{ STATIC_URL }}assets/logos/index.png"/></a>
+                                {% endblock %}
+                            </div>
             
- 	                        <div id="banner">
-	                            {% block banner %}
-		                            <img src="{{ STATIC_URL }}assets/banners/index.png"/>
- 	                            {% endblock %}
-	                        </div>
+                            <div id="banner">
+                                {% block banner %}
+                                    <img src="{{ STATIC_URL }}assets/banners/index.png"/>
+                                {% endblock %}
+                            </div>
                         {% endblock %}
                     </div>
                 </div>
@@ -105,9 +112,9 @@
         {% block freewidth %}
         {% endblock %}
         
-	    <div class="row mainfooter">
-	        <div style="padding: 0px 10px 0px 10px;">
-	            (c) 2011-{% now "Y" %} <a href="http://ecidadania.org">e-cidadania</a> |
+        <div class="row mainfooter">
+            <div style="padding: 0px 10px 0px 10px;">
+                (c) 2011-{% now "Y" %} <a href="http://ecidadania.org">e-cidadania</a> |
                 <a href="http://docs.ecidadania.org">Help</a> |
                 <a href="http://code.ecidadania.org">Developers</a> |
                 <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;&#111;&#64;&#101;&#99;&#105;&#100;&#97;&#100;&#97;&#110;&#105;&#97;&#46;&#111;&#114;&#103;">Contact</a> |
@@ -121,19 +128,18 @@
                 {% endblock %}
             </div>
         </div>
-		
-		<!-- Load JavaScript -->
+        
+        <!-- Load JavaScript -->
         <script src="{{ STATIC_URL }}/js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="{{ STATIC_URL }}/js/site.js" type="text/javascript"></script>
-        <script src="{{ STATIC_URL }}/js/jquery.notify.min.js" type="text/javascript"></script>
-		<script type="text/javascript">
-    	    $(document).ready(function(){
-                $(".alert").alert();
+        <script src="{{ STATIC_URL }}/js/site.js" type="text/javascript"></script>
+        <script src="{{ STATIC_URL }}/js/jquery.gritter.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
                 $("[rel=tooltip]").tooltip();
             });
-		</script>
-    	<!-- End load JavaScript -->
-    	
-	</body>
+        </script>
+        <!-- End load JavaScript -->
+        
+    </body>
 </html>
 

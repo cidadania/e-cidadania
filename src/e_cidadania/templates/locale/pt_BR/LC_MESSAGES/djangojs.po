@@ -1,0 +1,197 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Felipe Vieira <felipe29vieira@gmail.com>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-01-08 11:55+0100\n"
+"PO-Revision-Date: 2013-02-22 00:04+0000\n"
+"Last-Translator: felipevieira <felipe29vieira@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/ecidadania/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: static/admin/js/SelectFilter2.js:47
+#, c-format
+msgid "Available %s"
+msgstr "Disponível %s"
+
+#: static/admin/js/SelectFilter2.js:54
+msgid "Filter"
+msgstr "Filtro"
+
+#: static/admin/js/SelectFilter2.js:61
+msgid "Choose all"
+msgstr "Escolher todos"
+
+#: static/admin/js/SelectFilter2.js:67
+msgid "Add"
+msgstr "Inserir"
+
+#: static/admin/js/SelectFilter2.js:69
+msgid "Remove"
+msgstr "Excluir"
+
+#: static/admin/js/SelectFilter2.js:75
+#, c-format
+msgid "Chosen %s"
+msgstr "Escolhido %s"
+
+#: static/admin/js/SelectFilter2.js:76
+msgid "Select your choice(s) and click "
+msgstr "Selecione sua(s) escolha(s) e clique"
+
+#: static/admin/js/SelectFilter2.js:81
+msgid "Clear all"
+msgstr "Limpar tudo"
+
+#: static/admin/js/actions.js:18 static/admin/js/actions.min.js:10
+msgid "%(sel)s of %(cnt)s selected"
+msgid_plural "%(sel)s of %(cnt)s selected"
+msgstr[0] "%(sel)s de%(cnt)s selecionadas"
+msgstr[1] "%(sel)s de %(cnt)s selecionadas"
+
+#: static/admin/js/actions.js:111 static/admin/js/actions.min.js:89
+msgid ""
+"You have unsaved changes on individual editable fields. If you run an "
+"action, your unsaved changes will be lost."
+msgstr "Você tem alterações não salvas em campos individuais editáveis. Caso você execute uma ação, suas alterações não salvas serão perdidas"
+
+#: static/admin/js/actions.js:123 static/admin/js/actions.min.js:97
+msgid ""
+"You have selected an action, but you haven't saved your changes to "
+"individual fields yet. Please click OK to save. You'll need to re-run the "
+"action."
+msgstr "Você selecionou uma ação mas não salvou suas alterações em campos individuais ainda. Por favor, clique OK para salvar. Você precisará re-executar a ação"
+
+#: static/admin/js/actions.js:125 static/admin/js/actions.min.js:97
+msgid ""
+"You have selected an action, and you haven't made any changes on individual "
+"fields. You're probably looking for the Go button rather than the Save "
+"button."
+msgstr "Você selecionou uma ação e não fez nenhuma alteração nos campos individuais. Você está provavelmente procurando pelo botão Ir ao invés do botão Salvar"
+
+#: static/admin/js/calendar.js:26 static/admin/js/dateparse.js:32
+msgid ""
+"January February March April May June July August September October November"
+" December"
+msgstr "Janeira Fevereiro Março Abril Maio Junho Julho Agosto Setembro Outubro Novembro Dezembro"
+
+#: static/admin/js/calendar.js:27
+msgid "S M T W T F S"
+msgstr "D S T Q Q S S"
+
+#: static/admin/js/collapse.js:9 static/admin/js/collapse.js.c:21
+#: static/admin/js/collapse.min.js:6 static/admin/js/collapse.min.js.c:14
+msgid "Show"
+msgstr "Mostrar"
+
+#: static/admin/js/collapse.js:16 static/admin/js/collapse.min.js:10
+msgid "Hide"
+msgstr "Esconder"
+
+#: static/admin/js/dateparse.js:33
+msgid "Sunday Monday Tuesday Wednesday Thursday Friday Saturday"
+msgstr "Domingo Segunda-feira Terça-feira Quarta-feira Quinta-feira Sexta-feira Sábado"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:49
+#: static/admin/js/admin/DateTimeShortcuts.js:85
+msgid "Now"
+msgstr "Agora"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:53
+msgid "Clock"
+msgstr "Relógio"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:81
+msgid "Choose a time"
+msgstr "Escolha a hora"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:86
+msgid "Midnight"
+msgstr "Meia-noite"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:87
+msgid "6 a.m."
+msgstr "6:00"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:88
+msgid "Noon"
+msgstr "Meio-dia"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:92
+#: static/admin/js/admin/DateTimeShortcuts.js:200
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:140
+#: static/admin/js/admin/DateTimeShortcuts.js:193
+msgid "Today"
+msgstr "Hoje"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:144
+msgid "Calendar"
+msgstr "Calendário"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:191
+msgid "Yesterday"
+msgstr "Ontem"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:195
+msgid "Tomorrow"
+msgstr "Amanhã"
+
+#: static/js/debate_board.js:12
+msgid "Write here your title"
+msgstr "Escreva aqui seu título"
+
+#: static/js/debate_board.js:13
+msgid "Write here your message"
+msgstr "Escreva aqui sua mensagem"
+
+#: static/js/debate_board.js:14
+msgid "Edit"
+msgstr "Editar"
+
+#: static/js/debate_board.js:15
+msgid "View"
+msgstr "Ver"
+
+#: static/js/debate_board.js:16
+msgid "There has been an error."
+msgstr "Ocorreu um erro."
+
+#: static/js/debate_board.js:17
+msgid "Couldn't create note."
+msgstr "Não foi possível criar a nota."
+
+#: static/js/debate_board.js:18
+msgid "Couldn't get note data."
+msgstr "Não foi possível obter dados da nota."
+
+#: static/js/debate_board.js:19
+msgid "Couldn't save note."
+msgstr "Não foi possível salvar a nota."
+
+#: static/js/debate_board.js:20
+msgid "Couldn't save note position."
+msgstr "Não foi possível salvar a posição da nota."
+
+#: static/js/debate_board.js:21
+msgid "Couldn't delete note."
+msgstr "Não foi possível excluir a nota."
+
+#: static/js/debate_board.js:22
+msgid "Are you sure?"
+msgstr "Você tem certeza?"
+
+#: static/js/debate_board.js:23
+msgid "Comment"
+msgstr "Comentário"

@@ -45,8 +45,8 @@ from django.db.models import Q
 
 from apps.ecidadania.proposals.models import Proposal
 from apps.thirdparty.userprofile.forms import AvatarForm, AvatarCropForm, \
-                          EmailValidationForm, ProfileForm, RegistrationForm, \
-                          LocationForm, PublicFieldsForm, ChangeEmail
+    EmailValidationForm, ProfileForm, RegistrationForm, \
+    LocationForm, PublicFieldsForm, ChangeEmail
 from apps.thirdparty.userprofile.models import EmailValidation, Avatar
 from core.spaces.models import Space
 
@@ -54,7 +54,7 @@ if not settings.AUTH_PROFILE_MODULE:
     raise SiteProfileNotAvailable
 try:
     app_label, model_name = settings.AUTH_PROFILE_MODULE.split('.')
-    #app_label, model_name = settings.AUTH_PROFILE_MODULE.split('.')
+    # app_label, model_name = settings.AUTH_PROFILE_MODULE.split('.')
     Profile = models.get_model(app_label, model_name)
 except (ImportError, ImproperlyConfigured):
     raise SiteProfileNotAvailable
@@ -76,9 +76,9 @@ if not os.path.isfile(DEFAULT_AVATAR):
     shutil.copy(image, DEFAULT_AVATAR)
 
 GOOGLE_MAPS_API_KEY = hasattr(settings, "GOOGLE_MAPS_API_KEY") and \
-                      settings.GOOGLE_MAPS_API_KEY or None
+    settings.GOOGLE_MAPS_API_KEY or None
 AVATAR_WEBSEARCH = hasattr(settings, "AVATAR_WEBSEARCH") and \
-                   settings.AVATAR_WEBSEARCH or None
+    settings.AVATAR_WEBSEARCH or None
 
 if AVATAR_WEBSEARCH:
     import gdata.service
@@ -112,7 +112,7 @@ def public(request, username):
         raise Http404
 
     template = "userprofile/profile/public.html"
-    data = { 'profile': profile, 'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY, }
+    data = {'profile': profile, 'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY, }
     return render_to_response(template, data, context_instance=RequestContext(request))
 
 
@@ -131,7 +131,7 @@ def searchimages(request):
             images[entry.media.thumbnail[0].url] = entry.content.src
 
     template = "userprofile/avatar/search.html"
-    data = { 'section': 'avatar', 'images': images, }
+    data = {'section': 'avatar', 'images': images, }
     return render_to_response(template, data, context_instance=RequestContext(request))
 
 
@@ -152,12 +152,13 @@ def overview(request):
         email = EmailValidation.objects.get(user=request.user).email
     except EmailValidation.DoesNotExist:
         email = request.user.email
-        if email: validated = True
+        if email:
+            validated = True
 
     template = "userprofile/profile/overview.html"
-    data = { 'section': 'overview', 'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY,
+    data = {'section': 'overview', 'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY,
              'email': email, 'validated': validated, 'proposals': proposals,
-             'spaces': spaces }
+             'spaces': spaces}
     return render_to_response(template, data, context_instance=RequestContext(request))
 
 
@@ -177,7 +178,7 @@ def personal(request):
         form = ProfileForm(instance=profile)
 
     template = "userprofile/profile/personal.html"
-    data = { 'section': 'personal', 'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY,
+    data = {'section': 'personal', 'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY,
              'form': form, }
     return render_to_response(template, data, context_instance=RequestContext(request))
 
@@ -198,7 +199,7 @@ def location(request):
         form = LocationForm(instance=profile)
 
     template = "userprofile/profile/location.html"
-    data = { 'section': 'location', 'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY,
+    data = {'section': 'location', 'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY,
              'form': form, }
     return render_to_response(template, data, context_instance=RequestContext(request))
 
@@ -220,7 +221,7 @@ def delete(request):
         return HttpResponseRedirect(reverse("profile_delete_done"))
 
     template = "userprofile/profile/delete.html"
-    data = { 'section': 'delete', }
+    data = {'section': 'delete', }
     return render_to_response(template, data, context_instance=RequestContext(request))
 
 
@@ -229,7 +230,7 @@ def avatarchoose(request):
     """
     Avatar choose
     """
-    profile, created = Profile.objects.get_or_create(user = request.user)
+    profile, created = Profile.objects.get_or_create(user=request.user)
     if not request.method == "POST":
         form = AvatarForm()
     else:
@@ -256,7 +257,7 @@ def avatarchoose(request):
         generic96 = ""
 
     template = "userprofile/avatar/choose.html"
-    data = { 'generic96': generic96, 'form': form,
+    data = {'generic96': generic96, 'form': form,
              'AVATAR_WEBSEARCH': AVATAR_WEBSEARCH, 'section': 'avatar', }
     return render_to_response(template, data, context_instance=RequestContext(request))
 
@@ -278,7 +279,7 @@ def avatarcrop(request):
             bottom = int(form.cleaned_data.get('bottom'))
 
             image = Image.open(avatar.image.path)
-            box = [ left, top, right, bottom ]
+            box = [left, top, right, bottom]
             image = image.crop(box)
             if image.mode not in ('L', 'RGB'):
                 image = image.convert('RGB')
@@ -289,7 +290,7 @@ def avatarcrop(request):
             return HttpResponseRedirect(reverse("profile_avatar_crop_done"))
 
     template = "userprofile/avatar/crop.html"
-    data = { 'section': 'avatar', 'avatar': avatar, 'form': form, }
+    data = {'section': 'avatar', 'avatar': avatar, 'form': form, }
     return render_to_response(template, data, context_instance=RequestContext(request))
 
 
@@ -315,7 +316,7 @@ def email_validation_process(request, key):
         successful = False
 
     template = "userprofile/account/email_validation_done.html"
-    data = { 'successful': successful, }
+    data = {'successful': successful, }
     return render_to_response(template, data, context_instance=RequestContext(request))
 
 
@@ -332,7 +333,7 @@ def email_validation(request, space_url):
         form = EmailValidationForm()
 
     template = "userprofile/account/email_validation.html"
-    data = { 'form': form, }
+    data = {'form': form, }
     return render_to_response(template, data, context_instance=RequestContext(request))
 
 
@@ -346,7 +347,7 @@ def register(request):
             newuser.email = form.cleaned_data.get('email')
             EmailValidation.objects.add(user=newuser, email=newuser.email)
             newuser.save()
-            
+
             # Add the user to the space administrators group
             u_group = Group.objects.get(name="Space administrators")
             newuser.groups.add(u_group)
@@ -356,7 +357,7 @@ def register(request):
         form = RegistrationForm()
 
     template = "userprofile/account/registration.html"
-    data = { 'form': form, }
+    data = {'form': form, }
     return render_to_response(template, data, context_instance=RequestContext(request))
 
 
@@ -371,8 +372,9 @@ def email_validation_reset(request):
     except EmailValidation.DoesNotExist:
         response = "failed"
 
-    return HttpResponseRedirect(reverse("email_validation_reset_response", 
+    return HttpResponseRedirect(reverse("email_validation_reset_response",
             args=[response]))
+
 
 @login_required
 def email_change(request):
@@ -384,15 +386,14 @@ def email_change(request):
             user1.save()
             email = request.user.email
             variables = RequestContext(request, {
-            'email': email
-        })
+                                       'email': email
+                                       })
         return render_to_response('userprofile/email/email_change_done.html', variables)
     else:
         user = request.user
         email = user.email
         variables = RequestContext(request, {
-        'form': form1,
+                                   'form': form1,
         'email': email
-    })
+                                   })
     return render_to_response('userprofile/email/email_change.html', variables)
-

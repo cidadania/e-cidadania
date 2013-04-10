@@ -1,5 +1,6 @@
 from django.contrib.sites.models import Site
 
+
 def site(request):
     """
     Adds site-related context variables to the context.

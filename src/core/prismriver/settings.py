@@ -11,13 +11,12 @@ if hasattr(settings, 'SIDEBAR_APP_MENU'):
     SIDEBAR_APP_MENU = settings.SIDEBAR_APP_MENU
 else:
     SIDEBAR_APP_MENU = [
-            {"name": "Users and Settings",
+        {"name": "Users and Settings",
              "items": ["auth", "prismriver", "sites"],
-             "icon": "users.png",
-             },
+             "icon": "users.png"},
     ]
 
-#Display Last actions on the sidebar? Default:True
+# Display Last actions on the sidebar? Default:True
 if hasattr(settings, 'SIDEBAR_LAST_ACTIONS'):
     SIDEBAR_LAST_ACTIONS = settings.SIDEBAR_LAST_ACTIONS
 else:

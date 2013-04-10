@@ -14,7 +14,7 @@
 
 .. automodule:: apps.ecidadania.proposals.models
 
-.. autoclass:: BaseClass(models.Model)
+.. autoclass:: BaseProposalAbstractModel(models.Model)
     :members:
 
 .. autoclass:: Category(BaseClass)
@@ -34,12 +34,9 @@
 :mod:`proposals.views` --- Views
 --------------------------------
 
-.. automodule:: apps.ecidadania.proposals.views    
+.. automodule:: apps.ecidadania.proposals.views.proposals
 
 .. autoclass:: ListProposals(ListView)
-    :members:
-
-.. autoclass:: ViewProposal(DetailView)
     :members:
     
 .. autoclass:: DeleteProposal(DeleteView)
@@ -48,3 +45,8 @@
 .. autoclass:: AddProposal(FormView)
     
 .. autoclass:: EditProposal(UpdateView)
+
+.. automodule:: apps.ecidadania.proposals.views.common
+
+.. autoclass:: ViewProposal(DetailView)
+    :members:

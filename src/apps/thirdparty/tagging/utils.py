@@ -15,6 +15,7 @@ try:
 except NameError:
     from sets import Set as set
 
+
 def parse_tag_input(input):
     """
     Parses tag input, with multiple word input being activated and
@@ -85,6 +86,7 @@ def parse_tag_input(input):
     words.sort()
     return words
 
+
 def split_strip(input, delimiter=u','):
     """
     Splits ``input`` on ``delimiter``, stripping each resulting string
@@ -95,6 +97,7 @@ def split_strip(input, delimiter=u','):
 
     words = [w.strip() for w in input.split(delimiter)]
     return [w for w in words if w]
+
 
 def edit_string_for_tags(tags):
     """
@@ -126,6 +129,7 @@ def edit_string_for_tags(tags):
         glue = u' '
     return glue.join(names)
 
+
 def get_queryset_and_model(queryset_or_model):
     """
     Given a ``QuerySet`` or a ``Model``, returns a two-tuple of
@@ -138,6 +142,7 @@ def get_queryset_and_model(queryset_or_model):
         return queryset_or_model, queryset_or_model.model
     except AttributeError:
         return queryset_or_model._default_manager.all(), queryset_or_model
+
 
 def get_tag_list(tags):
     """
@@ -179,7 +184,7 @@ def get_tag_list(tags):
                 contents.add('int')
         if len(contents) == 1:
             if 'string' in contents:
-                return Tag.objects.filter(name__in=[force_unicode(tag) \
+                return Tag.objects.filter(name__in=[force_unicode(tag)
                                                     for tag in tags])
             elif 'tag' in contents:
                 return tags
@@ -189,6 +194,7 @@ def get_tag_list(tags):
             raise ValueError(_('If a list or tuple of tags is provided, they must all be tag names, Tag objects or Tag ids.'))
     else:
         raise ValueError(_('The tag input given was invalid.'))
+
 
 def get_tag(tag):
     """
@@ -218,9 +224,11 @@ def get_tag(tag):
 # Font size distribution algorithms
 LOGARITHMIC, LINEAR = 1, 2
 
+
 def _calculate_thresholds(min_weight, max_weight, steps):
     delta = (max_weight - min_weight) / float(steps)
     return [min_weight + i * delta for i in range(1, steps + 1)]
+
 
 def _calculate_tag_weight(weight, max_weight, distribution):
     """
@@ -234,6 +242,7 @@ def _calculate_tag_weight(weight, max_weight, distribution):
     elif distribution == LOGARITHMIC:
         return math.log(weight) * max_weight / math.log(max_weight)
     raise ValueError(_('Invalid distribution algorithm specified: %s.') % distribution)
+
 
 def calculate_cloud(tags, steps=4, distribution=LOGARITHMIC):
     """

@@ -1,0 +1,94 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Savita Seetaraman <savita.seetaraman5@gmail.com>, 2013.
+# Vishrut Mehta <vishrut.mehta009@gmail.com>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"PO-Revision-Date: 2013-03-14 07:32+0000\n"
+"Last-Translator: savitats <savita.seetaraman5@gmail.com>\n"
+"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/language/hi_IN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hi_IN\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: static/js/debate_board.js:12
+msgid "Write here your title"
+msgstr "यहाँ अपने शीर्षक लिखें"
+
+#: static/js/debate_board.js:13
+msgid "Write here your message"
+msgstr "यहाँ अपना संदेश लिखें"
+
+#: static/js/debate_board.js:14 static/js/debate_board.js.c:28
+msgid "Edit"
+msgstr "संपादित करें"
+
+#: static/js/debate_board.js:15 static/js/debate_board.js.c:27
+msgid "View"
+msgstr "देखना"
+
+#: static/js/debate_board.js:16
+msgid "There has been an error."
+msgstr "वहाँ एक त्रुटि हुई."
+
+#: static/js/debate_board.js:17
+msgid "Could't delete column or row."
+msgstr "स्तंभ या पंक्ति को हटाया नहीं किया जा सका."
+
+#: static/js/debate_board.js:18
+msgid "Couldn't create note."
+msgstr "नोट बनाने के लिए नहीं किया जा सका."
+
+#: static/js/debate_board.js:19
+msgid "Couldn't get note data."
+msgstr "नोट डेटा नहीं मिल सकी."
+
+#: static/js/debate_board.js:20
+msgid "Couldn't save note."
+msgstr "नोट सहेज नहीं सका."
+
+#: static/js/debate_board.js:21
+msgid "Couldn't save note position."
+msgstr "नोट स्थिति को बचाने के लिए नहीं किया जा सका."
+
+#: static/js/debate_board.js:22
+msgid "Couldn't delete note."
+msgstr "नोट को हटाया नहीं जा सका."
+
+#: static/js/debate_board.js:23
+msgid "There must be at least one column or row in the table."
+msgstr "कम से कम एक स्तंभ या तालिका में पंक्ति होना चाहिए."
+
+#: static/js/debate_board.js:24
+msgid "Couln't create row or column."
+msgstr "स्तंभ या पंक्ति नहीं बना सका."
+
+#: static/js/debate_board.js:25
+msgid "Are you sure?"
+msgstr "तुम्हें यकीन है?"
+
+#: static/js/debate_board.js:26
+msgid "Comment"
+msgstr "टिप्पणी"
+
+#: static/js/debate_board.js:29
+msgid "Delete note"
+msgstr "नोट हटाना"
+
+#: static/js/debate_board.js:30
+msgid "Caution"
+msgstr "सावधानी"
+
+#: static/js/debate_board.js:31
+msgid ""
+"You are adding too much columns. We put no limit,     but too many columns "
+"will be a problem in smaller screens."
+msgstr "आप बहुत ज्यादा कॉलम जोड़ रहे हैं. हम कोई सीमा नहीं रखा है, लेकिन बहुत अधिक कॉलम छोटे परदे में एक समस्या हो जाएगी."

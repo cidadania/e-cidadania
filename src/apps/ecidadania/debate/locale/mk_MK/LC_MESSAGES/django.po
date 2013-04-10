@@ -1,238 +1,251 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
+#   <tamara.atanasoska20@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 11:54+0100\n"
-"PO-Revision-Date: 2012-12-17 12:08+0000\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"PO-Revision-Date: 2013-03-13 08:40+0000\n"
 "Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
-"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/"
-"ecidadania/language/mk_MK/)\n"
-"Language: mk_MK\n"
+"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/ecidadania/language/mk_MK/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: mk_MK\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #: models.py:42 models.py:111
 msgid "Title"
-msgstr ""
+msgstr "Наслов"
 
 #: models.py:43
 msgid "Description"
-msgstr ""
+msgstr "Опис"
 
 #: models.py:44
 msgid "Theme"
-msgstr ""
+msgstr "Тема"
 
 #: models.py:47 models.py:114
 msgid "Date created"
-msgstr ""
+msgstr "Креирано на"
 
 #: models.py:48
 msgid "Last update"
-msgstr ""
+msgstr "Последна промена"
 
 #: models.py:50
 msgid "Start date"
-msgstr ""
+msgstr "Почеток"
 
 #: models.py:51
 msgid "End date"
-msgstr ""
+msgstr "Крај"
 
 #: models.py:80 models.py:93
 msgid "Criteria"
-msgstr ""
+msgstr "Назнака"
 
 #: models.py:112
 msgid "Message"
-msgstr ""
+msgstr "Порака"
 
 #: models.py:117
 msgid "Last modification time"
-msgstr ""
+msgstr "Време на последна промена"
 
-#: templates/debate/debate_add.html:14 templates/debate/debate_add.html:41
+#: templates/debate/debate_add.html:14 templates/debate/debate_add.html:43
 msgid "Edit debate"
-msgstr ""
+msgstr "Измени дебата"
 
-#: templates/debate/debate_add.html:16 templates/debate/debate_add.html:43
+#: templates/debate/debate_add.html:16 templates/debate/debate_add.html:45
 #: templates/debate/debate_add_simple.html:4
 msgid "Create new debate"
-msgstr ""
+msgstr "Креирај нова дебата"
 
-#: templates/debate/debate_add.html:47
+#: templates/debate/debate_add.html:49
 msgid "How to create a debate"
-msgstr ""
+msgstr "Како да креирате дебата"
 
-#: templates/debate/debate_add.html:50
+#: templates/debate/debate_add.html:52
 msgid ""
-"To create a debate, you must fill the fields with any criteria necessary for "
-"it,\n"
-"                    in this docuemntation page we have an example of a "
-"debate that you can follow to create yours.\n"
-"                    For the rest of the fields, just follow their respective "
-"instructions."
-msgstr ""
+"To create a debate, you must fill the fields with any criteria necessary for it,\n"
+"                    in this docuemntation page we have an example of a debate that you can follow to create yours.\n"
+"                    For the rest of the fields, just follow their respective instructions."
+msgstr "За да креирате дебата, морате да ги исполните полињата со сите назнаки потребни за неа,⏎ на оваа страна од документацијата имаме пример дебата кој можете да го следите за да креирате ваша.⏎ За останатиот дел од полињата, следете ги соодветните инструкции."
 
-#: templates/debate/debate_add.html:56
+#: templates/debate/debate_add.html:58
 msgid "Close"
-msgstr ""
+msgstr "Затвори"
 
-#: templates/debate/debate_add.html:64
+#: templates/debate/debate_add.html:66
 msgid "Remove column"
-msgstr ""
-
-#: templates/debate/debate_add.html:65
-msgid "Add column"
-msgstr ""
+msgstr "Отстрани колона"
 
 #: templates/debate/debate_add.html:67
+msgid "Add column"
+msgstr "Додади колона"
+
+#: templates/debate/debate_add.html:69
 msgid "Remove row"
-msgstr ""
+msgstr "Отстрани ред"
 
-#: templates/debate/debate_add.html:68
+#: templates/debate/debate_add.html:70
 msgid "Add row"
-msgstr ""
+msgstr "Додади ред"
 
-#: templates/debate/debate_add.html:111 templates/debate/debate_view.html:106
+#: templates/debate/debate_add.html:113 templates/debate/debate_view.html:106
 msgid "Add new note"
-msgstr ""
+msgstr "Додади ново мислење"
 
-#: templates/debate/debate_add.html:112
+#: templates/debate/debate_add.html:114
 msgid "Change color"
-msgstr ""
+msgstr "Измени боја"
 
-#: templates/debate/debate_add.html:116
+#: templates/debate/debate_add.html:118
 #: templates/debate/debate_add_simple.html:60
 msgid "Other debate data"
-msgstr ""
+msgstr "Други податоци за дебатата"
 
-#: templates/debate/debate_add.html:221
+#: templates/debate/debate_add.html:223
 #: templates/debate/debate_add_simple.html:121
 #: templates/debate/debate_view.html:140
 msgid "Cancel"
-msgstr ""
+msgstr "Откажи"
 
-#: templates/debate/debate_add.html:222
+#: templates/debate/debate_add.html:224
 #: templates/debate/debate_add_simple.html:120
 #: templates/debate/debate_view.html:141
 msgid "Save"
+msgstr "Зачувај"
+
+#: templates/debate/debate_confirm_delete.html:4
+#: templates/debate/debate_confirm_delete.html:21
+msgid "Delete debate"
 msgstr ""
+
+#: templates/debate/debate_confirm_delete.html:23
+msgid ""
+"Are you sure you want to delete this debate? This action cannot be undone."
+msgstr ""
+
+#: templates/debate/debate_confirm_delete.html:26
+#: templates/debate/debate_list.html:34
+msgid "Go back"
+msgstr "Вратете се назад"
+
+#: templates/debate/debate_confirm_delete.html:27
+#: templates/debate/debate_list.html:23
+msgid "Delete"
+msgstr "Избриши"
 
 #: templates/debate/debate_list.html:7
 msgid "Debates in "
-msgstr ""
+msgstr "Дебати во"
 
 #: templates/debate/debate_list.html:13
 msgid "Debates in"
-msgstr ""
+msgstr "Дебати во "
 
-#: templates/debate/debate_list.html:21
+#: templates/debate/debate_list.html:20 templates/debate/debate_view.html:85
+msgid "Edit"
+msgstr "Измени"
+
+#: templates/debate/debate_list.html:30
 msgid "There are no debates."
-msgstr ""
+msgstr "Нема дебати."
 
-#: templates/debate/debate_list.html:25
-msgid "Go back"
-msgstr ""
-
-#: templates/debate/debate_list.html:31
+#: templates/debate/debate_list.html:40
 msgid "previous"
-msgstr ""
+msgstr "претходно"
 
-#: templates/debate/debate_list.html:34
+#: templates/debate/debate_list.html:43
 msgid "of"
-msgstr ""
+msgstr "на"
 
-#: templates/debate/debate_list.html:37
+#: templates/debate/debate_list.html:46
 msgid "next"
-msgstr ""
+msgstr "следно"
 
 #: templates/debate/debate_outdated.html:4
 #: templates/debate/debate_outdated.html:16
 msgid "Can't view this debate"
-msgstr ""
+msgstr "Не може да ја погледнете оваа дебата"
 
 #: templates/debate/debate_outdated.html:17
 msgid ""
 "It seems that the debate you're trying to access is either <strong>not "
 "started</strong> or it <strong>expired</strong>."
-msgstr ""
+msgstr "Изгледа дека дебатата кон која пробувате да пристапите е или <strong>сеуште не започната </strong> или <strong>завршена</strong>."
 
 #: templates/debate/debate_outdated.html:20
 msgid "Started on:"
-msgstr ""
+msgstr "Почнато на:"
 
 #: templates/debate/debate_outdated.html:23
 msgid "Finished on:"
-msgstr ""
+msgstr "Завршено на:"
 
 #: templates/debate/debate_view.html:6
 msgid "View debate"
-msgstr ""
+msgstr "Погледни дебата"
 
 #: templates/debate/debate_view.html:25
 msgid "Description:"
-msgstr ""
+msgstr "Опис:"
 
 #: templates/debate/debate_view.html:26
 msgid "Theme:"
-msgstr ""
+msgstr "Тема:"
 
 #: templates/debate/debate_view.html:31
 msgid "Start date:"
-msgstr ""
+msgstr "Почетен датум:"
 
 #: templates/debate/debate_view.html:31 templates/debate/debate_view.html:32
 msgid "No date"
-msgstr ""
+msgstr "Нема датум"
 
 #: templates/debate/debate_view.html:32
 msgid "End date:"
-msgstr ""
+msgstr "Краен датум:"
 
 #: templates/debate/debate_view.html:78
 msgid "View"
-msgstr ""
+msgstr "Види"
 
 #: templates/debate/debate_view.html:81
 msgid "Delete note"
-msgstr ""
-
-#: templates/debate/debate_view.html:85
-msgid "Edit"
-msgstr ""
+msgstr "Избриши мислење"
 
 #: templates/debate/debate_view.html:91
 msgid "comments"
-msgstr ""
+msgstr "коментари"
 
 #: templates/debate/debate_view.html:112
 msgid "Edit note"
-msgstr ""
+msgstr "Измени мислење"
 
 #: templates/debate/debate_view.html:120
 msgid "100 characters"
-msgstr ""
+msgstr "100 карактери"
 
 #: templates/debate/debate_view.html:152
 msgid "Author:"
-msgstr ""
+msgstr "Автор:"
 
 #: templates/debate/debate_view.html:158
 msgid "Comment"
-msgstr ""
+msgstr "Коментар"
 
 #: templates/debate/debate_view.html:162
 msgid "Submit"
-msgstr ""
+msgstr "Понесете"
 
 #: templates/debate/debate_view.html:163
 msgid "Preview"
-msgstr ""
+msgstr "Преглед"

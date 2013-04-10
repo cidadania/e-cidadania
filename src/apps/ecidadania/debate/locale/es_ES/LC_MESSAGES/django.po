@@ -1,23 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
-# Oscar Carballal <oscar.carballal@cidadania.coop>, 2012.
+# Oscar Carballal <oscar.carballal@cidadania.coop>, 2012-2013.
 # Oscar Carballal <oscar@cidadania.coop>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 11:54+0100\n"
-"PO-Revision-Date: 2012-12-17 12:08+0000\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"PO-Revision-Date: 2013-03-13 08:43+0000\n"
 "Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
-"Language-Team: Spanish (Spain) (http://www.transifex.com/projects/p/"
-"ecidadania/language/es_ES/)\n"
-"Language: es_ES\n"
+"Language-Team: Spanish (Spain) <ecidadania-es@freelists.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: models.py:42 models.py:111
@@ -60,78 +59,90 @@ msgstr "Mensaje"
 msgid "Last modification time"
 msgstr "Última modificación"
 
-#: templates/debate/debate_add.html:14 templates/debate/debate_add.html:41
+#: templates/debate/debate_add.html:14 templates/debate/debate_add.html:43
 msgid "Edit debate"
 msgstr "Editar debate"
 
-#: templates/debate/debate_add.html:16 templates/debate/debate_add.html:43
+#: templates/debate/debate_add.html:16 templates/debate/debate_add.html:45
 #: templates/debate/debate_add_simple.html:4
 msgid "Create new debate"
 msgstr "Crear nuevo debate"
 
-#: templates/debate/debate_add.html:47
+#: templates/debate/debate_add.html:49
 msgid "How to create a debate"
 msgstr "Cómo crear un debate"
 
-#: templates/debate/debate_add.html:50
+#: templates/debate/debate_add.html:52
 msgid ""
-"To create a debate, you must fill the fields with any criteria necessary for "
-"it,\n"
-"                    in this docuemntation page we have an example of a "
-"debate that you can follow to create yours.\n"
-"                    For the rest of the fields, just follow their respective "
-"instructions."
-msgstr ""
-"Para crear un debate, debes rellenar todos los campos con los criterios "
-"necesarios para ellos.\n"
-"En esta página de la documentación tenemos un ejemplo de un debate que "
-"puedes ver para crear el tuyo.\n"
-"Para el resto de campos, tan sólo sigue las respectivas instrucciones."
+"To create a debate, you must fill the fields with any criteria necessary for it,\n"
+"                    in this docuemntation page we have an example of a debate that you can follow to create yours.\n"
+"                    For the rest of the fields, just follow their respective instructions."
+msgstr "Para crear un debate, debes rellenar todos los campos con los criterios necesarios para ellos.\nEn esta página de la documentación tenemos un ejemplo de un debate que puedes ver para crear el tuyo.\nPara el resto de campos, tan sólo sigue las respectivas instrucciones."
 
-#: templates/debate/debate_add.html:56
+#: templates/debate/debate_add.html:58
 msgid "Close"
 msgstr "Cerrar"
 
-#: templates/debate/debate_add.html:64
+#: templates/debate/debate_add.html:66
 msgid "Remove column"
 msgstr "Eliminar columna"
 
-#: templates/debate/debate_add.html:65
+#: templates/debate/debate_add.html:67
 msgid "Add column"
 msgstr "Añadir columna"
 
-#: templates/debate/debate_add.html:67
+#: templates/debate/debate_add.html:69
 msgid "Remove row"
 msgstr "Eliminar fila"
 
-#: templates/debate/debate_add.html:68
+#: templates/debate/debate_add.html:70
 msgid "Add row"
 msgstr "Añadir fila"
 
-#: templates/debate/debate_add.html:111 templates/debate/debate_view.html:106
+#: templates/debate/debate_add.html:113 templates/debate/debate_view.html:106
 msgid "Add new note"
 msgstr "Añadir nueva nota"
 
-#: templates/debate/debate_add.html:112
+#: templates/debate/debate_add.html:114
 msgid "Change color"
 msgstr "Cambiar color"
 
-#: templates/debate/debate_add.html:116
+#: templates/debate/debate_add.html:118
 #: templates/debate/debate_add_simple.html:60
 msgid "Other debate data"
 msgstr "Otros datos del debate"
 
-#: templates/debate/debate_add.html:221
+#: templates/debate/debate_add.html:223
 #: templates/debate/debate_add_simple.html:121
 #: templates/debate/debate_view.html:140
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: templates/debate/debate_add.html:222
+#: templates/debate/debate_add.html:224
 #: templates/debate/debate_add_simple.html:120
 #: templates/debate/debate_view.html:141
 msgid "Save"
 msgstr "Guardar"
+
+#: templates/debate/debate_confirm_delete.html:4
+#: templates/debate/debate_confirm_delete.html:21
+msgid "Delete debate"
+msgstr "Eliminar debate"
+
+#: templates/debate/debate_confirm_delete.html:23
+msgid ""
+"Are you sure you want to delete this debate? This action cannot be undone."
+msgstr "Estás seguro de querer eliminar este debate? Esta acción no se puede deshacer."
+
+#: templates/debate/debate_confirm_delete.html:26
+#: templates/debate/debate_list.html:34
+msgid "Go back"
+msgstr "Volver"
+
+#: templates/debate/debate_confirm_delete.html:27
+#: templates/debate/debate_list.html:23
+msgid "Delete"
+msgstr "Eliminar"
 
 #: templates/debate/debate_list.html:7
 msgid "Debates in "
@@ -141,23 +152,23 @@ msgstr "Debates en "
 msgid "Debates in"
 msgstr "Debates en"
 
-#: templates/debate/debate_list.html:21
+#: templates/debate/debate_list.html:20 templates/debate/debate_view.html:85
+msgid "Edit"
+msgstr "Editar"
+
+#: templates/debate/debate_list.html:30
 msgid "There are no debates."
 msgstr "No hay debates."
 
-#: templates/debate/debate_list.html:25
-msgid "Go back"
-msgstr "Volver"
-
-#: templates/debate/debate_list.html:31
+#: templates/debate/debate_list.html:40
 msgid "previous"
 msgstr "anterior"
 
-#: templates/debate/debate_list.html:34
+#: templates/debate/debate_list.html:43
 msgid "of"
 msgstr "de"
 
-#: templates/debate/debate_list.html:37
+#: templates/debate/debate_list.html:46
 msgid "next"
 msgstr "siguiente"
 
@@ -170,9 +181,7 @@ msgstr "No puedes ver este debate"
 msgid ""
 "It seems that the debate you're trying to access is either <strong>not "
 "started</strong> or it <strong>expired</strong>."
-msgstr ""
-"Parece que el debate al que estás intentando acceder o bien <strong>no ha "
-"empezado</strong> o <strong>ya ha sido cerrado</strong>."
+msgstr "Parece que el debate al que estás intentando acceder o bien <strong>no ha empezado</strong> o <strong>ya ha sido cerrado</strong>."
 
 #: templates/debate/debate_outdated.html:20
 msgid "Started on:"
@@ -213,10 +222,6 @@ msgstr "Ver"
 #: templates/debate/debate_view.html:81
 msgid "Delete note"
 msgstr "Eliminar nota"
-
-#: templates/debate/debate_view.html:85
-msgid "Edit"
-msgstr "Editar"
 
 #: templates/debate/debate_view.html:91
 msgid "comments"

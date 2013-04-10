@@ -22,26 +22,27 @@ from django.utils.translation import ugettext_lazy as _
 
 from apps.ecidadania.staticpages.models import StaticPage
 
+
 class PageAdmin(admin.ModelAdmin):
 
     """
     """
     list_display = ('name', 'uri', 'pub_date', 'author')
     search_fields = ('name', 'uri', 'author')
-    
-    #change_form_template = 'staticpages/change_form.html'
-    
+
+    # change_form_template = 'staticpages/change_form.html'
+
     fieldsets = [
         (None, {'fields':
             [('name', 'uri')]}),
 
         (_('Description'), {'fields':
             [('content')]}),
-        
+
         (_('Options'), {'fields':
             [('show_footer', 'order')]})
     ]
-    
+
     def save_model(self, request, obj, form, change):
         if not change:
             obj.author = request.user

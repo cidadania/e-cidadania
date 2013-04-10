@@ -18,7 +18,6 @@
 # along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
 
 from django.conf.urls import *
-from django.utils.translation import ugettext_lazy as _
 
 urlpatterns = patterns('apps.ecidadania.cal.views',
 

@@ -44,10 +44,14 @@ from apps.ecidadania.debate.models import Debate
 from apps.ecidadania.voting.models import Poll, Voting
 from helpers.cache import get_or_insert_object_in_cache
 
+from operator import itemgetter
+
 # Please take in mind that the create_space view can't be replaced by a CBV
 # (class-based view) since it manipulates two forms at the same time. Apparently
 # that creates some trouble in the django API. See this ticket:
 # https://code.djangoproject.com/ticket/16256
+
+
 @permission_required('spaces.add_space')
 def create_space(request):
 
@@ -55,7 +59,7 @@ def create_space(request):
     Returns a SpaceForm form to fill with data to create a new space. There
     is an attached EntityFormset to save the entities related to the space.
     Only site administrators are allowed to create spaces.
-    
+
     :attributes: - space_form: empty SpaceForm instance
                  - entity_forms: empty EntityFormSet
     :rtype: Space object, multiple entity objects.
@@ -64,12 +68,12 @@ def create_space(request):
     space_form = SpaceForm(request.POST or None, request.FILES or None)
     entity_forms = EntityFormSet(request.POST or None, request.FILES or None,
                                  queryset=Entity.objects.none())
-    
+
     if request.method == 'POST':
         if space_form.is_valid() and entity_forms.is_valid():
             space_form_uncommited = space_form.save(commit=False)
             space_form_uncommited.author = request.user
-                
+
             new_space = space_form_uncommited.save()
             space = get_object_or_404(Space, name=space_form_uncommited.name)
 
@@ -81,10 +85,10 @@ def create_space(request):
             # We add the created spaces to the user allowed spaces
             # space.admins.add(request.user)
             space_form.save_m2m()
-            
+
             return HttpResponseRedirect(reverse(urln.SPACE_INDEX,
                 kwargs={'space_url': space.url}))
-    
+
     return render_to_response('spaces/space_form.html',
                               {'form': space_form,
                                'entityformset': entity_forms},
@@ -97,21 +101,21 @@ class ViewSpaceIndex(DetailView):
     Returns the index page for a space. The access to spaces is restricted and
     filtered in the get_object method. This view gathers information from all
     the configured modules in the space.
-    
+
     :attributes: space_object, place
     :rtype: Object
     :context: get_place, entities, documents, proposals, publication
     """
     context_object_name = 'get_place'
     template_name = 'spaces/space_index.html'
-    
+
     def get_object(self):
-        # Makes sure the space ins't already in the cache before hitting 
+        # Makes sure the space ins't already in the cache before hitting
         # the database
         space_url = self.kwargs['space_url']
         space_object = get_or_insert_object_in_cache(Space, space_url,
             url=space_url)
-        
+
         if space_object.public or has_all_permissions(self.request.user):
             if self.request.user.is_anonymous():
                 messages.info(self.request, _("Hello anonymous user. Remember \
@@ -134,7 +138,7 @@ class ViewSpaceIndex(DetailView):
         else:
             messages.warning(self.request, _("You're not registered to this \
             space."))
-        
+
         self.template_name = 'not_allowed.html'
         return space_object
 
@@ -145,13 +149,28 @@ class ViewSpaceIndex(DetailView):
         # databass
         place_url = self.kwargs['space_url']
         place = get_or_insert_object_in_cache(Space, place_url, url=place_url)
+        '''posts_by_score = Comment.objects.filter(is_public=True) \
+            .values('object_pk').annotate(score=Count('id')).order_by('-score')'''
         posts_by_score = Comment.objects.filter(is_public=True) \
             .values('object_pk').annotate(score=Count('id')).order_by('-score')
         post_ids = [int(obj['object_pk']) for obj in posts_by_score]
         top_posts = Post.objects.filter(space=place.id).in_bulk(post_ids)
         # print top_posts.values()[0].title
-        o_list = Comment.objects.annotate(ocount=Count('object_pk'))
-
+        # o_list = Comment.objects.annotate(ocount=Count('object_pk'))
+        comment_list = {}
+        most_commented = []
+        for proposal in Proposal.objects.filter(space=place.id):
+            comment_list[proposal.pk]=Comment.objects.filter(object_pk=proposal.pk).count()
+        for p in dict(sorted(comment_list.items(), key = itemgetter(1))):
+            most_commented.append(Proposal.objects.filter(pk=p))
+        
+        highlighted = {}
+        highlight = []
+        for i in Proposal.objects.filter(space=place.id):
+            highlighted[i.pk] = i.support_votes.count
+        for p in dict(sorted(highlighted.items(), key = itemgetter(1))):
+            highlight.append(Proposal.objects.filter(pk=p))
+        
         context['entities'] = Entity.objects.filter(space=place.id)
         context['documents'] = Document.objects.filter(space=place.id)
         context['proposalsets'] = ProposalSet.objects.filter(space=place.id)
@@ -161,7 +180,11 @@ class ViewSpaceIndex(DetailView):
                                                     .order_by('-pub_date')[:5]
         context['mostviewed'] = Post.objects.filter(space=place.id) \
                                                     .order_by('-views')[:5]
-        context['mostcommented'] = top_posts
+        # context['mostcommented'] = [top_posts.get(id,None) for id in post_ids]
+        context['mostcommented'] = filter(None, map(lambda x: top_posts.get(x, None), post_ids))
+        context['mostcommentedproposal'] = most_commented
+        context['highlightedproposal'] = highlight
+
         # context['mostcommented'] = sorted(o_list,
         #     key=lambda k: k['ocount'])[:10]
         # print sorted(o_list, key=lambda k: k['ocount'])[:10]
@@ -174,13 +197,13 @@ class ViewSpaceIndex(DetailView):
                                                 .order_by('-event_date')
         context['votings'] = Voting.objects.filter(space=place.id)
         context['polls'] = Poll.objects.filter(space=place.id)
-        #True if the request.user has admin rights on this space
+        # True if the request.user has admin rights on this space
         context['user_is_admin'] = (self.request.user in place.admins.all()
             or self.request.user in place.mods.all()
-            or self.request.user.is_staff or self.request.user.is_superuser) 
+            or self.request.user.is_staff or self.request.user.is_superuser)
         context['polls'] = Poll.objects.filter(space=place.id)
         return context
-        
+
 
 # Please take in mind that the change_space view can't be replaced by a CBV
 # (class-based view) since it manipulates two forms at the same time. Apparently
@@ -194,7 +217,7 @@ def edit_space(request, space_url):
     this view is restricted only to site and space administrators. The filter
     for space administrators is given by the change_space permission and their
     belonging to that space.
-    
+
     :attributes: - place: current space intance.
                  - form: SpaceForm instance.
                  - form_uncommited: form instance before commiting to the DB,
@@ -215,15 +238,15 @@ def edit_space(request, space_url):
             if form.is_valid() and entity_forms.is_valid():
                 form_uncommited = form.save(commit=False)
                 form_uncommited.author = request.user
-            
+
                 new_space = form_uncommited.save()
                 space = get_object_or_404(Space, name=form_uncommited.name)
-            
+
                 ef_uncommited = entity_forms.save(commit=False)
                 for ef in ef_uncommited:
                     ef.space = space
                     ef.save()
-                
+
                 form.save_m2m()
                 return HttpResponseRedirect(reverse(urln.SPACE_INDEX,
                     kwargs={'space_url': space.url}))
@@ -231,7 +254,7 @@ def edit_space(request, space_url):
         return render_to_response('spaces/space_form.html', {'form': form,
                     'get_place': place, 'entityformset': entity_forms},
                     context_instance=RequestContext(request))
-            
+
     return render_to_response('not_allowed.html',
         context_instance=RequestContext(request))
 
@@ -242,7 +265,7 @@ class DeleteSpace(DeleteView):
     Returns a confirmation page before deleting the space object completely.
     This does not delete the space related content. Only the site
     administrators can delete a space.
-    
+
     :rtype: Confirmation
     """
     context_object_name = 'get_place'
@@ -253,20 +276,20 @@ class DeleteSpace(DeleteView):
         return super(DeleteSpace, self).dispatch(*args, **kwargs)
 
     def get_object(self):
-        space = get_object_or_404(Space, url = self.kwargs['space_url'])
+        space = get_object_or_404(Space, url=self.kwargs['space_url'])
         if self.request.user in space.admins.all():
             return space
         else:
             self.template_name = 'not_allowed.html'
             return space
-      
+
 
 # class GoToSpace(RedirectView):
 
 #     """
 #     Sends the user to the selected space. This view only accepts GET petitions.
 #     GoToSpace is a django generic :class:`RedirectView`.
-    
+
 #     :Attributes: **self.place** - Selected space object
 #     :rtype: Redirect
 #     """
@@ -281,12 +304,12 @@ class ListSpaces(ListView):
     Return a list of spaces in the system (except private ones) using a generic
     view. The users associated to a private spaces will see it, but not the
     other private spaces. ListSpaces is a django generic :class:`ListView`.
-    
+
     :rtype: Object list
     :contexts: object_list
     """
     paginate_by = 10
-    
+
     public_spaces = Space.objects.filter(public=True)
     all_spaces = Space.objects.all()
 
@@ -306,9 +329,9 @@ class ListSpaces(ListView):
         if not current_user.is_anonymous():
             for space in self.all_spaces:
                 if has_space_permission(current_user, space,
-                                        allow=['users','admins','mods']):
+                                        allow=['users', 'admins', 'mods']):
                     user_spaces.add(space.pk)
-            user_spaces = Space.objects.filter(pk__in = user_spaces)
+            user_spaces = Space.objects.filter(pk__in=user_spaces)
             return self.public_spaces | user_spaces
 
         return self.public_spaces

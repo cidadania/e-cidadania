@@ -9,6 +9,7 @@ from django.utils.safestring import mark_safe
 from django.utils.text import capfirst
 from core.prismriver.settings import CUSTOM_MENU, DEFAULT_LABELS
 
+
 def load_apps(request):
     current_url = request.path.replace(reverse('admin:index'), "")
     app_dict = {}
@@ -27,7 +28,7 @@ def load_apps(request):
                     'name': capfirst(model._meta.verbose_name_plural),
                     'admin_url': mark_safe('%s/%s/' % (app_label, model.__name__.lower())),
                     'perms': perms,
-                    }
+                }
                 if app_label in app_dict:
                     app_dict[app_label]['models'].append(model_dict)
                     if enabled:
@@ -42,7 +43,7 @@ def load_apps(request):
                         'big_icon': "default_big.png",
                         'description': _("Default application description"),
                         'enabled': enabled,
-                        }
+                    }
                     if app_dict[app_label]["app_url"] in DEFAULT_LABELS.keys():
                         current_app = DEFAULT_LABELS[app_dict[app_label]["app_url"]]
                         app_dict[app_label]["name"] = current_app[0]
@@ -74,5 +75,5 @@ def load_custom_models(request, model_paths):
                             'name': capfirst(model._meta.verbose_name_plural),
                             'admin_url': mark_safe('%s/%s/' % (app_label, model.__name__.lower())),
                             'perms': perms,
-                            })
+                        })
     return model_list, enabled

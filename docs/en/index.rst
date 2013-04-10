@@ -87,6 +87,6 @@ Getting help
   * ecidadania-es@freelists.org
 
 - Bug reporting in the e-cidadania `bug tracker <http://code.ecidadania.org>`_ or
-  contact us through e-mail at soporte@ecidadania.org
+  contact us through e-mail at info@ecidadania.org
 
 :doc:`authors`

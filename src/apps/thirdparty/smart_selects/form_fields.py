@@ -54,6 +54,3 @@ class GroupedModelSelect(ModelChoiceField):
         return (obj.pk, "   " + self.label_from_instance(obj))
 
     choices = property(_get_choices, ChoiceField._set_choices)
-
-
-

@@ -1,0 +1,1693 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Vishrut Mehta <vishrut.mehta009@gmail.com>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2011-12-20 10:49+0100\n"
+"PO-Revision-Date: 2013-03-13 08:50+0000\n"
+"Last-Translator: vishrut009 <vishrut.mehta009@gmail.com>\n"
+"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/language/hi_IN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hi_IN\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: countries.py:10
+msgid "Andorra"
+msgstr "एंडोरा"
+
+#: countries.py:11
+msgid "United Arab Emirates"
+msgstr "संयुक्त अरब अमीरात"
+
+#: countries.py:12
+msgid "Afghanistan"
+msgstr "अफ़ग़ानिस्तान"
+
+#: countries.py:13
+msgid "Antigua & Barbuda"
+msgstr "एंटीगुआ और बारबुडा"
+
+#: countries.py:14
+msgid "Anguilla"
+msgstr "एंगुइल्ला"
+
+#: countries.py:15
+msgid "Albania"
+msgstr "अल्बानिया"
+
+#: countries.py:16
+msgid "Armenia"
+msgstr "अर्मेनिआ"
+
+#: countries.py:17
+msgid "Netherlands Antilles"
+msgstr "नीदरलैंड एंटाइल्स"
+
+#: countries.py:18
+msgid "Angola"
+msgstr "अंगोला"
+
+#: countries.py:19
+msgid "Antarctica"
+msgstr "अंटार्टिका"
+
+#: countries.py:20
+msgid "Argentina"
+msgstr "अर्जेंटीना"
+
+#: countries.py:21
+msgid "American Samoa"
+msgstr "अमेरिकन समोआ"
+
+#: countries.py:22
+msgid "Austria"
+msgstr "ऑस्ट्रिया"
+
+#: countries.py:23
+msgid "Australia"
+msgstr "ऑस्ट्रेलिया"
+
+#: countries.py:24
+msgid "Aruba"
+msgstr "अरूबा"
+
+#: countries.py:25
+msgid "Azerbaijan"
+msgstr "आज़रबाइजान"
+
+#: countries.py:26
+msgid "Bosnia and Herzegovina"
+msgstr "बोस्निया और हर्ज़िगोविना"
+
+#: countries.py:27
+msgid "Barbados"
+msgstr "बारबाडोस"
+
+#: countries.py:28
+msgid "Bangladesh"
+msgstr "बांग्लादेश"
+
+#: countries.py:29
+msgid "Belgium"
+msgstr "बेल्जियम"
+
+#: countries.py:30
+msgid "Burkina Faso"
+msgstr "बुर्किना फासो"
+
+#: countries.py:31
+msgid "Bulgaria"
+msgstr "बुल्गारिया"
+
+#: countries.py:32
+msgid "Bahrain"
+msgstr "बहरीन"
+
+#: countries.py:33
+msgid "Burundi"
+msgstr "बुरुंडी"
+
+#: countries.py:34
+msgid "Benin"
+msgstr "बेनिन"
+
+#: countries.py:35
+msgid "Bermuda"
+msgstr "बरमूडा"
+
+#: countries.py:36
+msgid "Brunei Darussalam"
+msgstr "ब्रुनेई दारुसलाम"
+
+#: countries.py:37
+msgid "Bolivia"
+msgstr "बोलीविया"
+
+#: countries.py:38
+msgid "Brazil"
+msgstr "ब्राज़िल"
+
+#: countries.py:39
+msgid "Bahama"
+msgstr "बहामा"
+
+#: countries.py:40
+msgid "Bhutan"
+msgstr "भूटान"
+
+#: countries.py:41
+msgid "Bouvet Island"
+msgstr "बुवेत आइलैंड"
+
+#: countries.py:42
+msgid "Botswana"
+msgstr "बोत्सवाना"
+
+#: countries.py:43
+msgid "Belarus"
+msgstr "बेलोरूस"
+
+#: countries.py:44
+msgid "Belize"
+msgstr "बेलीज"
+
+#: countries.py:45
+msgid "Canada"
+msgstr "कनाडा"
+
+#: countries.py:46
+msgid "Cocos (Keeling) Islands"
+msgstr "कोकोस द्वीप (कीलिंग)"
+
+#: countries.py:47
+msgid "Central African Republic"
+msgstr "मध्य अफ्रीकी गणराज्य"
+
+#: countries.py:48
+msgid "Congo"
+msgstr "कांगो"
+
+#: countries.py:49
+msgid "Switzerland"
+msgstr "स्विजरलैंड"
+
+#: countries.py:50
+msgid "Ivory Coast"
+msgstr "हाथीदांत का किनारा"
+
+#: countries.py:51
+msgid "Cook Islands"
+msgstr "कुक आइलैंड्स"
+
+#: countries.py:52
+msgid "Chile"
+msgstr "चिली"
+
+#: countries.py:53
+msgid "Cameroon"
+msgstr "कैमरून"
+
+#: countries.py:54
+msgid "China"
+msgstr "चीन"
+
+#: countries.py:55
+msgid "Colombia"
+msgstr "कोलंबिया"
+
+#: countries.py:56
+msgid "Costa Rica"
+msgstr "कोस्टा रिका"
+
+#: countries.py:57
+msgid "Cuba"
+msgstr "क्यूबा"
+
+#: countries.py:58
+msgid "Cape Verde"
+msgstr "केप वर्ड"
+
+#: countries.py:59
+msgid "Christmas Island"
+msgstr "क्रिसमस आयलंड"
+
+#: countries.py:60
+msgid "Cyprus"
+msgstr "सायप्रस"
+
+#: countries.py:61
+msgid "Czech Republic"
+msgstr "चेक गणराज्य"
+
+#: countries.py:62
+msgid "Germany"
+msgstr "जर्मनी"
+
+#: countries.py:63
+msgid "Djibouti"
+msgstr "जिबोटी"
+
+#: countries.py:64
+msgid "Denmark"
+msgstr "डेनमार्क"
+
+#: countries.py:65
+msgid "Dominica"
+msgstr "डॉमिनिका"
+
+#: countries.py:66
+msgid "Dominican Republic"
+msgstr "डॉमिनिक गणराज्य"
+
+#: countries.py:67
+msgid "Algeria"
+msgstr "एलजीरिया"
+
+#: countries.py:68
+msgid "Ecuador"
+msgstr "इक्वेडोर"
+
+#: countries.py:69
+msgid "Estonia"
+msgstr "एस्तोनिया"
+
+#: countries.py:70
+msgid "Egypt"
+msgstr "मिस्र"
+
+#: countries.py:71
+msgid "Western Sahara"
+msgstr "पश्चिमी सहारा"
+
+#: countries.py:72
+msgid "Eritrea"
+msgstr "इरीट्रिया"
+
+#: countries.py:73
+msgid "Spain"
+msgstr "स्पेन"
+
+#: countries.py:74
+msgid "Ethiopia"
+msgstr "इथियोपिया"
+
+#: countries.py:75
+msgid "Finland"
+msgstr "फ़िनलैंड"
+
+#: countries.py:76
+msgid "Fiji"
+msgstr "फिजी"
+
+#: countries.py:77
+msgid "Falkland Islands (Malvinas)"
+msgstr "फ़ॉकलैंड द्वीप (माल्विनास)"
+
+#: countries.py:78
+msgid "Micronesia"
+msgstr "माइक्रोनेशिया"
+
+#: countries.py:79
+msgid "Faroe Islands"
+msgstr "फ़ैरो आइलैंड्स"
+
+#: countries.py:80
+msgid "France"
+msgstr "फ्रांस"
+
+#: countries.py:81
+msgid "France, Metropolitan"
+msgstr "फ्रांस, मेट्रोपोलिटन"
+
+#: countries.py:82
+msgid "Gabon"
+msgstr "गैबन"
+
+#: countries.py:83
+msgid "United Kingdom (Great Britain)"
+msgstr "यूनाइटेड किंगडम (ग्रेट ब्रिटेन)"
+
+#: countries.py:84
+msgid "Grenada"
+msgstr "ग्रेनेडा"
+
+#: countries.py:85
+msgid "Georgia"
+msgstr "जॉर्जिया"
+
+#: countries.py:86
+msgid "French Guiana"
+msgstr "फ़्रेंच गयाना"
+
+#: countries.py:87
+msgid "Ghana"
+msgstr "घाना"
+
+#: countries.py:88
+msgid "Gibraltar"
+msgstr "गिब्राल्टर"
+
+#: countries.py:89
+msgid "Greenland"
+msgstr "ग्रीनलैंड"
+
+#: countries.py:90
+msgid "Gambia"
+msgstr "जाम्बिया"
+
+#: countries.py:91
+msgid "Guinea"
+msgstr "गिनी"
+
+#: countries.py:92
+msgid "Guadeloupe"
+msgstr "ग्वाडेलोप"
+
+#: countries.py:93
+msgid "Equatorial Guinea"
+msgstr "इक्वेटोरियल गिनी"
+
+#: countries.py:94
+msgid "Greece"
+msgstr "ग्रीस"
+
+#: countries.py:95
+msgid "South Georgia and the South Sandwich Islands"
+msgstr "दक्षिण जॉर्जिया और साउथ सैंडविच आइलैंड्स"
+
+#: countries.py:96
+msgid "Guatemala"
+msgstr "ग्वाटेमाला"
+
+#: countries.py:97
+msgid "Guam"
+msgstr "गुआम"
+
+#: countries.py:98
+msgid "Guinea-Bissau"
+msgstr "गिन्नी - बिसाउ"
+
+#: countries.py:99
+msgid "Guyana"
+msgstr "गिनी - बिसाऊ"
+
+#: countries.py:100
+msgid "Hong Kong"
+msgstr "हाँग काँग"
+
+#: countries.py:101
+msgid "Heard & McDonald Islands"
+msgstr "सुना और मैकडोनाल्ड आइलैंड्स"
+
+#: countries.py:102
+msgid "Honduras"
+msgstr "होंडुरस"
+
+#: countries.py:103
+msgid "Croatia"
+msgstr "क्रोएशिया"
+
+#: countries.py:104
+msgid "Haiti"
+msgstr "हैती"
+
+#: countries.py:105
+msgid "Hungary"
+msgstr "हंगरी"
+
+#: countries.py:106
+msgid "Indonesia"
+msgstr "इंडोनेशिया"
+
+#: countries.py:107
+msgid "Ireland"
+msgstr "आयरलैंड"
+
+#: countries.py:108
+msgid "Israel"
+msgstr "इजराइल"
+
+#: countries.py:109
+msgid "India"
+msgstr "भारत"
+
+#: countries.py:110
+msgid "British Indian Ocean Territory"
+msgstr "ब्रिटिश हिंद महासागरीय क्षेत्र"
+
+#: countries.py:111
+msgid "Iraq"
+msgstr "इराक"
+
+#: countries.py:112
+msgid "Islamic Republic of Iran"
+msgstr "ईरान के इस्लामी गणराज्य"
+
+#: countries.py:113
+msgid "Iceland"
+msgstr "आइसलैंड"
+
+#: countries.py:114
+msgid "Italy"
+msgstr "इटली"
+
+#: countries.py:115
+msgid "Jamaica"
+msgstr "जमैका"
+
+#: countries.py:116
+msgid "Jordan"
+msgstr "जॉर्डन"
+
+#: countries.py:117
+msgid "Japan"
+msgstr "जापान"
+
+#: countries.py:118
+msgid "Kenya"
+msgstr "केन्या"
+
+#: countries.py:119
+msgid "Kyrgyzstan"
+msgstr "किर्गिस्तान"
+
+#: countries.py:120
+msgid "Cambodia"
+msgstr "कंबोडिया"
+
+#: countries.py:121
+msgid "Kiribati"
+msgstr "किरबाती"
+
+#: countries.py:122
+msgid "Comoros"
+msgstr "कोमोरोज़"
+
+#: countries.py:123
+msgid "St. Kitts and Nevis"
+msgstr "सेंट किट्स और नेविस"
+
+#: countries.py:124
+msgid "Korea, Democratic People's Republic of"
+msgstr "कोरिया, डेमोक्रेटिक पीपुल्स रिपब्लिक ऑफ"
+
+#: countries.py:125
+msgid "Korea, Republic of"
+msgstr "कोरिया, गणराज्य के"
+
+#: countries.py:126
+msgid "Kuwait"
+msgstr "कुवैत"
+
+#: countries.py:127
+msgid "Cayman Islands"
+msgstr "केमैन द्वीप"
+
+#: countries.py:128
+msgid "Kazakhstan"
+msgstr "कजाखस्तान"
+
+#: countries.py:129
+msgid "Lao People's Democratic Republic"
+msgstr "लाओ पीपुल्स डेमोक्रेटिक रिपब्लिक"
+
+#: countries.py:130
+msgid "Lebanon"
+msgstr "लेबनान"
+
+#: countries.py:131
+msgid "Saint Lucia"
+msgstr "सेंट लूसिया"
+
+#: countries.py:132
+msgid "Liechtenstein"
+msgstr "लिचेंस्टीन"
+
+#: countries.py:133
+msgid "Sri Lanka"
+msgstr "श्रीलंका"
+
+#: countries.py:134
+msgid "Liberia"
+msgstr "लाइबेरिया"
+
+#: countries.py:135
+msgid "Lesotho"
+msgstr "लेसोथो"
+
+#: countries.py:136
+msgid "Lithuania"
+msgstr "लिथुआनिया"
+
+#: countries.py:137
+msgid "Luxembourg"
+msgstr "लक्ज़मबर्ग"
+
+#: countries.py:138
+msgid "Latvia"
+msgstr "लाटविया"
+
+#: countries.py:139
+msgid "Libyan Arab Jamahiriya"
+msgstr "बबर्र भाषा का अरब जमहीरिया"
+
+#: countries.py:140
+msgid "Morocco"
+msgstr "मोरक्को"
+
+#: countries.py:141
+msgid "Monaco"
+msgstr "मोनाको"
+
+#: countries.py:142
+msgid "Moldova, Republic of"
+msgstr "मोल्दोवा, गणराज्य के"
+
+#: countries.py:143
+msgid "Madagascar"
+msgstr "मेडागास्कर"
+
+#: countries.py:144
+msgid "Marshall Islands"
+msgstr "मार्शल द्वीप"
+
+#: countries.py:145
+msgid "Mali"
+msgstr "माली"
+
+#: countries.py:146
+msgid "Mongolia"
+msgstr "मंगोलिया"
+
+#: countries.py:147
+msgid "Myanmar"
+msgstr "म्यांमार"
+
+#: countries.py:148
+msgid "Macau"
+msgstr "मकाउ"
+
+#: countries.py:149
+msgid "Northern Mariana Islands"
+msgstr "उत्तरी मारियाना द्वीप"
+
+#: countries.py:150
+msgid "Martinique"
+msgstr "मार्टीनिक"
+
+#: countries.py:151
+msgid "Mauritania"
+msgstr "मॉरिटानिया"
+
+#: countries.py:152
+msgid "Monserrat"
+msgstr "मॉन्स्टेरॉट"
+
+#: countries.py:153
+msgid "Malta"
+msgstr "माल्टा"
+
+#: countries.py:154
+msgid "Mauritius"
+msgstr "मॉरिशस"
+
+#: countries.py:155
+msgid "Maldives"
+msgstr "मालदीव"
+
+#: countries.py:156
+msgid "Malawi"
+msgstr "मलावी"
+
+#: countries.py:157
+msgid "Mexico"
+msgstr "मेक्सिको"
+
+#: countries.py:158
+msgid "Malaysia"
+msgstr "मलेशिया"
+
+#: countries.py:159
+msgid "Mozambique"
+msgstr "मोज़ाम्बिक"
+
+#: countries.py:160
+msgid "Namibia"
+msgstr "नामीबिया"
+
+#: countries.py:161
+msgid "New Caledonia"
+msgstr "न्यू कैलेडोनिया"
+
+#: countries.py:162
+msgid "Niger"
+msgstr "नाइजर"
+
+#: countries.py:163
+msgid "Norfolk Island"
+msgstr "नॉरफ़ॉक आइलैंड"
+
+#: countries.py:164
+msgid "Nigeria"
+msgstr "नाइजीरिया"
+
+#: countries.py:165
+msgid "Nicaragua"
+msgstr "निकारागुआ"
+
+#: countries.py:166
+msgid "Netherlands"
+msgstr "नीदरलैंड"
+
+#: countries.py:167
+msgid "Norway"
+msgstr "नॉर्वे"
+
+#: countries.py:168
+msgid "Nepal"
+msgstr "नेपाल"
+
+#: countries.py:169
+msgid "Nauru"
+msgstr "नॉरू"
+
+#: countries.py:170
+msgid "Niue"
+msgstr "नीयू"
+
+#: countries.py:171
+msgid "New Zealand"
+msgstr "न्यूजीलैंड"
+
+#: countries.py:172
+msgid "Oman"
+msgstr "ओमान"
+
+#: countries.py:173
+msgid "Panama"
+msgstr "पनामा"
+
+#: countries.py:174
+msgid "Peru"
+msgstr "पेरू"
+
+#: countries.py:175
+msgid "French Polynesia"
+msgstr "फ़्रेंच पोलिनेशिया"
+
+#: countries.py:176
+msgid "Papua New Guinea"
+msgstr "पापुआ न्यू गिनीआ"
+
+#: countries.py:177
+msgid "Philippines"
+msgstr "फ़िलिपींस"
+
+#: countries.py:178
+msgid "Pakistan"
+msgstr "पाकिस्तान"
+
+#: countries.py:179
+msgid "Poland"
+msgstr "पोलैंड"
+
+#: countries.py:180
+msgid "St. Pierre & Miquelon"
+msgstr "सेंट पियरे और मिकेलॉन"
+
+#: countries.py:181
+msgid "Pitcairn"
+msgstr "पिटकेर्न"
+
+#: countries.py:182
+msgid "Puerto Rico"
+msgstr "पोर्टो रीको"
+
+#: countries.py:183
+msgid "Portugal"
+msgstr "पुर्तगाल"
+
+#: countries.py:184
+msgid "Palau"
+msgstr "पलाऊ"
+
+#: countries.py:185
+msgid "Paraguay"
+msgstr "पैराग्वे"
+
+#: countries.py:186
+msgid "Qatar"
+msgstr "क़तर"
+
+#: countries.py:187
+msgid "Reunion"
+msgstr "पुनर्मिलन"
+
+#: countries.py:188
+msgid "Romania"
+msgstr "रोमानिया"
+
+#: countries.py:189
+msgid "Russian Federation"
+msgstr "रशियन फ़ेडरेशन"
+
+#: countries.py:190
+msgid "Rwanda"
+msgstr "रवांडा"
+
+#: countries.py:191
+msgid "Saudi Arabia"
+msgstr "सऊदी अरब"
+
+#: countries.py:192
+msgid "Solomon Islands"
+msgstr "सोलोमन आइलैंड्स"
+
+#: countries.py:193
+msgid "Seychelles"
+msgstr "सेशेल्स"
+
+#: countries.py:194
+msgid "Sudan"
+msgstr "सूडान"
+
+#: countries.py:195
+msgid "Sweden"
+msgstr "स्वीडन"
+
+#: countries.py:196
+msgid "Singapore"
+msgstr "सिंगापुर"
+
+#: countries.py:197
+msgid "St. Helena"
+msgstr "सेंट हेलेना"
+
+#: countries.py:198
+msgid "Slovenia"
+msgstr "स्लोवेनिया"
+
+#: countries.py:199
+msgid "Svalbard & Jan Mayen Islands"
+msgstr "स्वालबार्ड और जेन मायेन द्वीप समूह"
+
+#: countries.py:200
+msgid "Slovakia"
+msgstr "स्लोवाकिया"
+
+#: countries.py:201
+msgid "Sierra Leone"
+msgstr "सिएरा लियोन"
+
+#: countries.py:202
+msgid "San Marino"
+msgstr "सैन मारिनो"
+
+#: countries.py:203
+msgid "Senegal"
+msgstr "सेनेगल"
+
+#: countries.py:204
+msgid "Somalia"
+msgstr "सोमालिया"
+
+#: countries.py:205
+msgid "Suriname"
+msgstr "सूरीनाम"
+
+#: countries.py:206
+msgid "Sao Tome & Principe"
+msgstr "साओ टोम और प्रिंसिपे"
+
+#: countries.py:207
+msgid "El Salvador"
+msgstr "अल सल्वाडोर"
+
+#: countries.py:208
+msgid "Syrian Arab Republic"
+msgstr "सीरिया अरब गणराज्य"
+
+#: countries.py:209
+msgid "Swaziland"
+msgstr "स्वाज़ीलैंड"
+
+#: countries.py:210
+msgid "Turks & Caicos Islands"
+msgstr "तुर्क एंड कोइकोस आइलैंड्स"
+
+#: countries.py:211
+msgid "Chad"
+msgstr "चाड"
+
+#: countries.py:212
+msgid "French Southern Territories"
+msgstr "फ़्रांसीसी दक्षिणी क्षेत्र"
+
+#: countries.py:213
+msgid "Togo"
+msgstr "टोगो"
+
+#: countries.py:214
+msgid "Thailand"
+msgstr "थाईलैंड"
+
+#: countries.py:215
+msgid "Tajikistan"
+msgstr "ताजीकिस्तान"
+
+#: countries.py:216
+msgid "Tokelau"
+msgstr "टोकेलाऊ"
+
+#: countries.py:217
+msgid "Turkmenistan"
+msgstr "तुर्कमेनिस्तान"
+
+#: countries.py:218
+msgid "Tunisia"
+msgstr "ट्यूनीशिया"
+
+#: countries.py:219
+msgid "Tonga"
+msgstr "टोंगा"
+
+#: countries.py:220
+msgid "East Timor"
+msgstr "पूर्वी तिमोर"
+
+#: countries.py:221
+msgid "Turkey"
+msgstr "टर्की"
+
+#: countries.py:222
+msgid "Trinidad & Tobago"
+msgstr "त्रिनिदाद और टोबैगो"
+
+#: countries.py:223
+msgid "Tuvalu"
+msgstr "टवालू"
+
+#: countries.py:224
+msgid "Taiwan, Province of China"
+msgstr "ताइवान, चीन के प्रांत"
+
+#: countries.py:225
+msgid "Tanzania, United Republic of"
+msgstr "तंजानिया, संयुक्त गणराज्य"
+
+#: countries.py:226
+msgid "Ukraine"
+msgstr "यूक्रेन"
+
+#: countries.py:227
+msgid "Uganda"
+msgstr "यूगांडा"
+
+#: countries.py:228
+msgid "United States Minor Outlying Islands"
+msgstr "संयुक्त राज्य अमेरिका माइनर आउटलाइंग द्वीप"
+
+#: countries.py:229
+msgid "United States of America"
+msgstr "अमेरिका"
+
+#: countries.py:230
+msgid "Uruguay"
+msgstr "उरुग्वे"
+
+#: countries.py:231
+msgid "Uzbekistan"
+msgstr "उज़्बेकिस्तान"
+
+#: countries.py:232
+msgid "Vatican City State (Holy See)"
+msgstr "वैटिकन सिटी राज्य (पवित्रा देखें)"
+
+#: countries.py:233
+msgid "St. Vincent & the Grenadines"
+msgstr "सेंट विन्सेंट और ग्रेनेजियन्स"
+
+#: countries.py:234
+msgid "Venezuela"
+msgstr "वेनेज़ुएला"
+
+#: countries.py:235
+msgid "British Virgin Islands"
+msgstr "ब्रिटिश वर्जिन आइलैंड्स"
+
+#: countries.py:236
+msgid "United States Virgin Islands"
+msgstr "संयुक्त राज्य वर्जिन द्वीप"
+
+#: countries.py:237
+msgid "Viet Nam"
+msgstr "वियतनाम"
+
+#: countries.py:238
+msgid "Vanuatu"
+msgstr "वानातू"
+
+#: countries.py:239
+msgid "Wallis & Futuna Islands"
+msgstr "वालिस और फ़्यूचूना द्वीप - समूह"
+
+#: countries.py:240
+msgid "Samoa"
+msgstr "सामोआ"
+
+#: countries.py:241
+msgid "Yemen"
+msgstr "यमन"
+
+#: countries.py:242
+msgid "Mayotte"
+msgstr "मायोटी"
+
+#: countries.py:243
+msgid "Yugoslavia"
+msgstr "यूगोस्लाविया"
+
+#: countries.py:244
+msgid "South Africa"
+msgstr "दक्षिण अफ्रीका"
+
+#: countries.py:245
+msgid "Zambia"
+msgstr "ज़ाम्बिया"
+
+#: countries.py:246
+msgid "Zaire"
+msgstr "ज़ैरे"
+
+#: countries.py:247
+msgid "Zimbabwe"
+msgstr "ज़िम्बाब्वे"
+
+#: countries.py:248
+msgid "Unknown or unspecified country"
+msgstr "अज्ञात या अनिर्दिष्ट देश"
+
+#: countries.py:253
+msgid ""
+"This value must be in COUNTRIES setting in localflavor.generic package."
+msgstr "यह मान स्थानीयस्वाद.सामान्य पैकेज में स्थापित देशों में होना चाहिए."
+
+#: forms.py:58
+#, python-format
+msgid "The file type is invalid: %s"
+msgstr "फ़ाइल प्रकार अमान्य है: %s"
+
+#: forms.py:63
+msgid "You must enter one of the options"
+msgstr "आप विकल्पों में से एक दर्ज करना होगा"
+
+#: forms.py:77
+msgid "You must select a portion of the image with a minimum of 96x96 pixels."
+msgstr "आप 96x96 पिक्सल के एक न्यूनतम के साथ छवि के एक हिस्से का चयन करना होगा"
+
+#: forms.py:83 templates/userprofile/account/login.html:16
+#: templates/userprofile/account/registration.html:22
+#: templates/userprofile/profile/overview.html:51
+#: templates/userprofile/profile/public.html:35
+#: templates/userprofile/profile/usercard.html:11
+msgid "Username"
+msgstr "प्रयोक्ता नाम"
+
+#: forms.py:84 templates/userprofile/account/password_reset.html:21
+msgid "E-mail address"
+msgstr "ई - मेल पते"
+
+#: forms.py:85 templates/userprofile/account/login.html:26
+#: templates/userprofile/account/registration.html:54
+msgid "Password"
+msgstr "पासवर्ड"
+
+#: forms.py:86 templates/userprofile/account/registration.html:70
+msgid "Password (again)"
+msgstr "पासवर्ड (फिर)"
+
+#: forms.py:94
+msgid ""
+"That username has invalid characters. The valid values are letters, numbers "
+"and underscore."
+msgstr "कि उपयोक्तानाम में अमान्य वर्ण हैं. मान्य मान अक्षर, संख्या और रेखांकित."
+
+#: forms.py:99
+msgid "The username is already registered."
+msgstr "उपयोगकर्ता नाम पहले से ही पंजीकृत है."
+
+#: forms.py:108
+msgid "The passwords inserted are different."
+msgstr "डाला पासवर्ड अलग हैं."
+
+#: forms.py:120 forms.py:139
+msgid "That e-mail is already used."
+msgstr "कि ई - मेल पहले से ही प्रयोग किया जाता है."
+
+#: forms.py:124
+msgid "That e-mail is already being confirmed."
+msgstr "कि ई - मेल की पहले ही पुष्टि की जा रही है"
+
+#: models.py:39
+#, python-format
+msgid "%s's profile"
+msgstr "%s प्रोफाइल"
+
+#: models.py:58
+#, python-format
+msgid "%s's Avatar"
+msgstr "%s अवतार"
+
+#: models.py:142
+#, python-format
+msgid "Email validation process for %(user)s"
+msgstr "%(user)s के लिए ईमेल सत्यापन प्रक्रिया"
+
+#: templates/userprofile/menu.html:5
+msgid "Overview"
+msgstr "अवलोकन"
+
+#: templates/userprofile/menu.html:6
+msgid "Personal information"
+msgstr "व्यक्तिगत जानकारी"
+
+#: templates/userprofile/menu.html:7
+msgid "Avatar"
+msgstr "अवतार"
+
+#: templates/userprofile/menu.html:8
+#: templates/userprofile/profile/location.html:18
+#: templates/userprofile/profile/overview.html:80
+#: templates/userprofile/profile/overview_old.html:37
+#: templates/userprofile/profile/public.html:40
+msgid "Location"
+msgstr "स्थान"
+
+#: templates/userprofile/menu.html:9
+#: templates/userprofile/profile/delete.html:8
+msgid "Remove profile"
+msgstr " प्रोफाइल निकालें"
+
+#: templates/userprofile/account/email_validation.html:4
+#: templates/userprofile/account/email_validation.html:27
+msgid "E-mail change"
+msgstr "  ई - मेल में परिवर्तन"
+
+#: templates/userprofile/account/email_validation.html:4
+#: templates/userprofile/account/email_validation.html:20
+#: templates/userprofile/account/email_validation.html:27
+#: templates/userprofile/account/email_validation_processed.html:20
+msgid "Add e-mail"
+msgstr "ई - मेल जोड़ें"
+
+#: templates/userprofile/account/email_validation.html:21
+#: templates/userprofile/account/email_validation_processed.html:21
+msgid ""
+"Insert the new e-mail address. An e-mail will be send to it for testing and "
+"confirmation"
+msgstr "नया ई - मेल पता डालें. परीक्षण और पुष्टि के लिए एक ई - मेल में यह करने के लिए भेज दिया जाएगा"
+
+#: templates/userprofile/account/email_validation.html:28
+msgid "New e-mail address"
+msgstr "नई ई - मेल पते"
+
+#: templates/userprofile/account/email_validation.html:37
+msgid "Send confirmation"
+msgstr "पुष्टिकरण भेजें"
+
+#: templates/userprofile/account/email_validation_done.html:4
+msgid "E-mail validation successful"
+msgstr "ई - मेल के सफल सत्यापन"
+
+#: templates/userprofile/account/email_validation_done.html:4
+msgid "E-mail change unsuccessful"
+msgstr "ई - मेल के असफल परिवर्तन"
+
+#: templates/userprofile/account/email_validation_done.html:14
+msgid "E-mail address validated successfully"
+msgstr "ई - मेल पते को सफलतापूर्वक मान्य"
+
+#: templates/userprofile/account/email_validation_done.html:16
+msgid ""
+"The key you received via e-mail is no longer valid. Please try the e-mail "
+"validation process again"
+msgstr "आप ई - मेल के माध्यम से प्राप्त कुंजी अब मान्य नहीं है. ई - मेल सत्यापन प्रक्रिया फिर से प्रयास करें"
+
+#: templates/userprofile/account/email_validation_done.html:23
+#: templates/userprofile/account/email_validation_reset_response.html:22
+msgid "E-mail validation process"
+msgstr "ई - मेल की सत्यापन प्रक्रिया"
+
+#: templates/userprofile/account/email_validation_done.html:24
+#: templates/userprofile/account/email_validation_reset_response.html:23
+msgid "You can manage the e-mail validation process from the"
+msgstr "आप ई - मेल से सत्यापन प्रक्रिया का प्रबंधन कर सकते हैं"
+
+#: templates/userprofile/account/email_validation_done.html:24
+#: templates/userprofile/account/email_validation_reset_response.html:23
+msgid "overview page"
+msgstr "अवलोकन पृष्ठ"
+
+#: templates/userprofile/account/email_validation_processed.html:4
+#: templates/userprofile/account/email_validation_processed.html:13
+msgid "E-mail change processed"
+msgstr "ई - मेल परिवर्तन संसाधित"
+
+#: templates/userprofile/account/email_validation_processed.html:14
+msgid ""
+"An e-mail has been sent to the new e-mail address to verify and activate it."
+" Please access to your e-mail and complete this process following the "
+"instructions specified in the e-mail body"
+msgstr "नए ई - मेल पते को सत्यापित करने के लिए और इसे सक्रिय करने के लिए एक ई - मेल भेजा गया है. अपने ई - मेल और शरीर ई - मेल में दिए निर्देशों के बाद इस प्रक्रिया को पूरा करने के लिए उपयोग करें"
+
+#: templates/userprofile/account/email_validation_reset_response.html:4
+msgid "Validation e-mail sent"
+msgstr "मान्यकरण ई - मेल भेजा गया"
+
+#: templates/userprofile/account/email_validation_reset_response.html:4
+msgid "Your user account was already active"
+msgstr "आपके उपयोगकर्ता खाते में पहले से ही सक्रिय था"
+
+#: templates/userprofile/account/email_validation_reset_response.html:14
+msgid "We've e-mailed you the e-mail validation link"
+msgstr "हम है आप सत्यापन लिंक ई - मेल ई - मेल"
+
+#: templates/userprofile/account/email_validation_reset_response.html:16
+msgid "Your e-mail was already validated"
+msgstr "आपका ई - मेल पहले से ही मान्य किया गया था"
+
+#: templates/userprofile/account/login.html:4
+#: templates/userprofile/account/login.html:13
+msgid "User login"
+msgstr "उपयोगकर्ता लॉगिन"
+
+#: templates/userprofile/account/login.html:39
+msgid "Login"
+msgstr "लॉगिन"
+
+#: templates/userprofile/account/login.html:43
+msgid "Helpful links"
+msgstr "उपयोगी लिंक्स"
+
+#: templates/userprofile/account/login.html:44
+msgid "Recover your password"
+msgstr "अपना पासवर्ड की वसूली"
+
+#: templates/userprofile/account/login.html:45
+msgid "Sign up!"
+msgstr "साइन अप करें!"
+
+#: templates/userprofile/account/login.html:46
+msgid "Invite your friends"
+msgstr "अपने मित्रों को आमंत्रित करें"
+
+#: templates/userprofile/account/login.html:47
+msgid "Via e-mail"
+msgstr "ई - मेल के माध्यम से"
+
+#: templates/userprofile/account/login.html:48
+msgid "Via Twitter"
+msgstr "चहचहाना के माध्यम से"
+
+#: templates/userprofile/account/login.html:49
+msgid "Via Facebook"
+msgstr "फेसबुक के माध्यम से"
+
+#: templates/userprofile/account/login.html:50
+msgid "Via Google Plus"
+msgstr "गूगल प्लस के माध्यम से"
+
+#: templates/userprofile/account/logout.html:4
+#: templates/userprofile/account/logout.html:9
+msgid "Logged out"
+msgstr "बाहर लॉग इन"
+
+#: templates/userprofile/account/logout.html:10
+msgid "You've been logged out"
+msgstr "तुम बाहर लॉग इन किया है"
+
+#: templates/userprofile/account/logout.html:10
+msgid "Log in again"
+msgstr "में फिर से प्रवेश करें"
+
+#: templates/userprofile/account/logout.html:13
+#: templates/userprofile/profile/personal.html:25
+msgid "Go back"
+msgstr "वापस जाओ"
+
+#: templates/userprofile/account/password_change.html:4
+#: templates/userprofile/account/password_change.html:23
+#: templates/userprofile/account/password_reset_confirm.html:4
+msgid "Password change for"
+msgstr "पासवर्ड के लिए परिवर्तन"
+
+#: templates/userprofile/account/password_change.html:24
+msgid "Old password"
+msgstr "पुराना पासवर्ड"
+
+#: templates/userprofile/account/password_change.html:30
+#: templates/userprofile/account/password_reset_confirm.html:26
+msgid "New password"
+msgstr "नया पासवर्ड"
+
+#: templates/userprofile/account/password_change.html:36
+#: templates/userprofile/account/password_reset_confirm.html:32
+msgid "Confirm password"
+msgstr "पासवर्ड की पुष्टि"
+
+#: templates/userprofile/account/password_change.html:46
+#: templates/userprofile/account/password_reset_confirm.html:42
+msgid "Change"
+msgstr "परिवर्तन"
+
+#: templates/userprofile/account/password_change.html:52
+#: templates/userprofile/account/password_change_done.html:19
+msgid "Password change"
+msgstr "पासवर्ड परिवर्तन"
+
+#: templates/userprofile/account/password_change.html:53
+#: templates/userprofile/account/password_change_done.html:20
+msgid ""
+"Password change utility page. Please enter your new password twice so we can"
+" verify you typed it in correctly"
+msgstr "पासवर्ड बदलें उपयोगिता पृष्ठ. कृपया अपना नया पासवर्ड दर्ज दो बार तो हम सत्यापित कर सकते हैं कि आप इसे सही ढंग से टाइप"
+
+#: templates/userprofile/account/password_change_done.html:4
+#: templates/userprofile/account/password_reset_complete.html:4
+msgid "Password change successful"
+msgstr "पासवर्ड बदलें सफल"
+
+#: templates/userprofile/account/password_change_done.html:13
+msgid "The password has been changed successfully"
+msgstr "पासवर्ड सफलतापूर्वक बदल दिया गया है"
+
+#: templates/userprofile/account/password_expired.html:4
+msgid "Password key expired"
+msgstr "पासवर्ड प्रमुख समाप्त हो"
+
+#: templates/userprofile/account/password_expired.html:9
+msgid ""
+"The password key you're trying to use is expired. Please, request a new one"
+msgstr "पासवर्ड कुंजी आप का उपयोग करने के लिए कोशिश कर रहे हैं की समय सीमा समाप्त हो रहा है. कृपया, एक नया एक अनुरोध"
+
+#: templates/userprofile/account/password_reset.html:4
+#: templates/userprofile/account/password_reset.html:20
+#: templates/userprofile/account/password_reset_complete.html:19
+#: templates/userprofile/account/password_reset_confirm.html:55
+msgid "Password reset"
+msgstr "पासवर्ड रीसेट"
+
+#: templates/userprofile/account/password_reset.html:31
+msgid "Reset my password"
+msgstr "अपना पासवर्ड रीसेट"
+
+#: templates/userprofile/account/password_reset.html:37
+#: templates/userprofile/account/password_reset_done.html:16
+msgid "Password reset form"
+msgstr "पासवर्ड रीसेट फार्म"
+
+#: templates/userprofile/account/password_reset.html:38
+#: templates/userprofile/account/password_reset_done.html:17
+msgid ""
+"Forgotten your password? Enter your e-mail address, and we'll reset your "
+"password and e-mail the new one to you"
+msgstr "अपना पासवर्ड भूल गए? आपके ई - मेल पते दर्ज करें, और हम आपके पासवर्ड और नया ई - मेल एक आप को रीसेट"
+
+#: templates/userprofile/account/password_reset_complete.html:13
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr "आपका पासवर्ड सेट किया गया है. आप आगे जाना है और अब में लॉग इन कर सकते हैं."
+
+#: templates/userprofile/account/password_reset_complete.html:20
+#: templates/userprofile/account/password_reset_confirm.html:56
+msgid ""
+"Password reset utility page. Please enter your new password twice so we can "
+"verify you typed it in correctly"
+msgstr "पासवर्ड रीसेट उपयोगिता पृष्ठ. कृपया अपना नया पासवर्ड दर्ज दो बार तो हम सत्यापित कर सकते हैं कि आप इसे सही ढंग से टाइप"
+
+#: templates/userprofile/account/password_reset_confirm.html:47
+msgid "Password reset unsuccessful"
+msgstr "पासवर्ड असफल रीसेट"
+
+#: templates/userprofile/account/password_reset_confirm.html:48
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr "पासवर्ड रीसेट लिंक अमान्य था, शायद इसलिए क्योंकि यह पहले से ही इस्तेमाल किया गया. कृपया एक नया पासवर्ड रीसेट अनुरोध."
+
+#: templates/userprofile/account/password_reset_done.html:4
+#: templates/userprofile/account/password_reset_done.html:9
+msgid "Password reset successful"
+msgstr "पासवर्ड सफल रीसेट"
+
+#: templates/userprofile/account/password_reset_done.html:10
+msgid ""
+"We've e-mailed you the instructions to obtain a new password. You should be "
+"receiving it shortly"
+msgstr "हम है आप ई - मेल से निर्देश के लिए एक नया पासवर्ड प्राप्त करने के लिए. आप इसे शीघ्र ही प्राप्त करना चाहिए"
+
+#: templates/userprofile/account/registration.html:4
+#: templates/userprofile/account/registration.html:13
+msgid "User registration"
+msgstr "यूजर का पंजीकरण"
+
+#: templates/userprofile/account/registration.html:38
+msgid "E-mail (optional)"
+msgstr "ई - मेल (वैकल्पिक)"
+
+#: templates/userprofile/account/registration.html:85
+msgid "Register"
+msgstr "रजिस्टर"
+
+#: templates/userprofile/account/registration.html:94
+msgid "Register a new account"
+msgstr "रजिस्टर एक नया खाता"
+
+#: templates/userprofile/account/registration.html:95
+msgid ""
+"Joining this community is quick and easy. You only need to fill the form to "
+"get access to all the private content"
+msgstr "इस समुदाय में शामिल होने के त्वरित और आसान है. आप केवल फार्म भरने की जरूरत के लिए सभी निजी सामग्री तक पहुँच पाने के"
+
+#: templates/userprofile/account/registration_done.html:4
+msgid "Registration complete"
+msgstr "पूरा पंजीकरण"
+
+#: templates/userprofile/account/registration_done.html:11
+msgid ""
+"You have successfully registered a new account. In a few minutes you will "
+"receive a validation email on your mailbox to validate your registration. "
+"You can go now to the"
+msgstr "आप को सफलतापूर्वक एक नए खाते में दर्ज है. कुछ ही मिनटों में आप अपने मेलबॉक्स पर एक सत्यापन ईमेल प्राप्त करने के लिए अपने पंजीकरण मान्य होगा. अब आप जा सकते हैं"
+
+#: templates/userprofile/account/registration_done.html:11
+msgid "login page"
+msgstr "पेज लॉगिन"
+
+#: templates/userprofile/account/registration_done.html:11
+msgid "to authenticate and start using this site."
+msgstr "प्रमाणित करने के लिए और इस साइट का उपयोग शुरू करते हैं."
+
+#: templates/userprofile/avatar/choose.html:4
+#: templates/userprofile/avatar/choose.html:41
+msgid "Choose the location of your avatar"
+msgstr "अपने अवतार के स्थान चुनें"
+
+#: templates/userprofile/avatar/choose.html:36
+msgid "Delete"
+msgstr "हटाना"
+
+#: templates/userprofile/avatar/choose.html:44
+msgid "Select an image from disk"
+msgstr "डिस्क से एक छवि का चयन करें"
+
+#: templates/userprofile/avatar/choose.html:46
+#: templates/userprofile/avatar/choose.html:52
+#: templates/userprofile/avatar/crop.html:47
+msgid "Done"
+msgstr "करेंकिया गया"
+
+#: templates/userprofile/avatar/choose.html:50
+msgid ""
+"Select an image from a remote URL. Put the URL on the input below and we'll "
+"retrieve the image for you"
+msgstr "एक दूरस्थ URL से एक छवि का चयन करें. नीचे दी गई इनपुट पर URL रखो और हम आप के लिए छवि को पुनः प्राप्त करेंगे"
+
+#: templates/userprofile/avatar/choose.html:57
+#: templates/userprofile/avatar/search.html:4
+#: templates/userprofile/avatar/search.html:28
+msgid "Search for an image on Picasa Web"
+msgstr "Picasa वेब पर एक छवि के लिए खोज"
+
+#: templates/userprofile/avatar/choose.html:67
+#: templates/userprofile/avatar/crop.html:53
+#: templates/userprofile/avatar/done.html:19
+#: templates/userprofile/avatar/search.html:50
+msgid "Avatar selection page"
+msgstr "अवतार चयन पृष्ठ"
+
+#: templates/userprofile/avatar/choose.html:68
+#: templates/userprofile/avatar/crop.html:54
+#: templates/userprofile/avatar/done.html:20
+#: templates/userprofile/avatar/search.html:51
+msgid ""
+"You have several options to select the image you want as avatar on your "
+"profile"
+msgstr "आप कई विकल्प अपने प्रोफ़ाइल पर अवतार के रूप में छवि का चयन करें जो आप करना चाहते "
+
+#: templates/userprofile/avatar/crop.html:4
+#: templates/userprofile/avatar/crop.html:31
+msgid "Crop &amp; resize the area you want"
+msgstr "फसल क्षेत्र आप चाहते हैं आकार"
+
+#: templates/userprofile/avatar/done.html:4
+msgid "Avatar selection finished"
+msgstr "अवतार चयन समाप्त"
+
+#: templates/userprofile/avatar/done.html:13
+msgid "Your new avatar has been saved successfully"
+msgstr "आपका नया अवतार सफलतापूर्वक सहेजी गईं"
+
+#: templates/userprofile/avatar/search.html:29
+msgid "Search on Picasa Web"
+msgstr "Picasa वेब पर खोजें"
+
+#: templates/userprofile/avatar/search.html:32
+msgid "Search"
+msgstr "खोजें"
+
+#: templates/userprofile/profile/delete.html:4
+msgid "Delete personal information"
+msgstr "व्यक्तिगत जानकारी हटाएँ"
+
+#: templates/userprofile/profile/delete.html:10
+msgid ""
+"It erases all your private data except your username. You can refill the "
+"information later if you want to."
+msgstr "यह अपने उपयोगकर्ता नाम को छोड़कर अपने सभी निजी डेटा erases. आप फिर से भरना की जानकारी बाद में कर सकते हैं, अगर आप चाहते हैं."
+
+#: templates/userprofile/profile/delete.html:15
+msgid "Delete your personal information"
+msgstr "आपकी व्यक्तिगत जानकारी हटाएँ"
+
+#: templates/userprofile/profile/delete.html:16
+msgid "Are you sure?"
+msgstr "तुम्हें यकीन है?"
+
+#: templates/userprofile/profile/delete.html:17
+msgid "Yes"
+msgstr "हां"
+
+#: templates/userprofile/profile/delete_done.html:4
+msgid "Profile removed"
+msgstr "प्रोफ़ाइल हटा दिया"
+
+#: templates/userprofile/profile/delete_done.html:8
+msgid "Personal data removed"
+msgstr "व्यक्तिगत डेटा को हटाया"
+
+#: templates/userprofile/profile/delete_done.html:9
+msgid "Your profile information has been removed successfully."
+msgstr "आपकी प्रोफ़ाइल जानकारी सफलतापूर्वक निकाल दिया गया."
+
+#: templates/userprofile/profile/delete_done.html:11
+msgid "Back to home page"
+msgstr "वापस मुख पृष्ठ"
+
+#: templates/userprofile/profile/delete_done.html:12
+msgid "Back to your profile"
+msgstr "अपने प्रोफ़ाइल के लिए बैकअप लें"
+
+#: templates/userprofile/profile/location.html:4
+#: templates/userprofile/profile/location_done.html:4
+#: templates/userprofile/profile/personal_done.html:4
+#, python-format
+msgid "%(user)s's Dashboard"
+msgstr "%(user)s's डैशबोर्ड"
+
+#: templates/userprofile/profile/location.html:12
+msgid "Define your location"
+msgstr "अपने स्थान को परिभाषित"
+
+#: templates/userprofile/profile/location.html:14
+#: templates/userprofile/profile/overview.html:68
+#: templates/userprofile/profile/overview_old.html:28
+#: templates/userprofile/profile/public.html:37
+msgid "Country"
+msgstr "देश"
+
+#: templates/userprofile/profile/location.html:20
+msgid "Position"
+msgstr "स्थिति"
+
+#: templates/userprofile/profile/location.html:26
+#: templates/userprofile/profile/personal.html:26
+msgid "Save"
+msgstr "बचाना"
+
+#: templates/userprofile/profile/location_done.html:8
+msgid "Your profile information has been updated successfully"
+msgstr "आपकी प्रोफ़ाइल जानकारी सफलतापूर्वक अद्यतन किया गया है"
+
+#: templates/userprofile/profile/location_done.html:9
+msgid "Go back to your profile"
+msgstr "अपने प्रोफ़ाइल के लिए वापस जाओ"
+
+#: templates/userprofile/profile/overview.html:5
+#: templates/userprofile/profile/overview_old.html:5
+msgid "Overview of your profile"
+msgstr "अपने प्रोफ़ाइल का अवलोकन"
+
+#: templates/userprofile/profile/overview.html:32
+#, python-format
+msgid "%(username)s profile"
+msgstr "%(username)s प्रोफाइल"
+
+#: templates/userprofile/profile/overview.html:35
+msgid "Edit personal data"
+msgstr "व्यक्तिगत डेटा संपादित करें"
+
+#: templates/userprofile/profile/overview.html:36
+msgid "Edit location"
+msgstr "स्थान संपादित करें"
+
+#: templates/userprofile/profile/overview.html:37
+msgid "Public profile"
+msgstr "सार्वजनिक प्रोफ़ाइल"
+
+#: templates/userprofile/profile/overview.html:47
+#: templates/userprofile/profile/overview_old.html:14
+msgid "Change avatar"
+msgstr "अवतार बदलें"
+
+#: templates/userprofile/profile/overview.html:47
+#: templates/userprofile/profile/overview_old.html:14
+msgid "Add avatar"
+msgstr "अवतार जोड़ें"
+
+#: templates/userprofile/profile/overview.html:52
+msgid "Real name"
+msgstr "असली नाम"
+
+#: templates/userprofile/profile/overview.html:53
+msgid "Age"
+msgstr "उम्र"
+
+#: templates/userprofile/profile/overview.html:53
+msgid "years"
+msgstr "साल"
+
+#: templates/userprofile/profile/overview.html:54
+msgid "Member since"
+msgstr "से सदस्य"
+
+#: templates/userprofile/profile/overview.html:55
+msgid "E-mail"
+msgstr "ई - मेल"
+
+#: templates/userprofile/profile/overview.html:58
+#: templates/userprofile/profile/overview_old.html:21
+msgid "Not set yet"
+msgstr "अभी तक सेट नहीं"
+
+#: templates/userprofile/profile/overview.html:62
+#: templates/userprofile/profile/overview_old.html:23
+msgid " (Not validated)"
+msgstr "(मान्य नहीं)"
+
+#: templates/userprofile/profile/overview.html:72
+#: templates/userprofile/profile/overview.html:84
+#: templates/userprofile/profile/overview_old.html:32
+#: templates/userprofile/profile/overview_old.html:41
+msgid "Not set"
+msgstr "सेट नहीं"
+
+#: templates/userprofile/profile/overview.html:76
+msgid "City"
+msgstr "शहर"
+
+#: templates/userprofile/profile/overview.html:98
+msgid "Your spaces"
+msgstr "अपने स्थान"
+
+#: templates/userprofile/profile/overview.html:103
+msgid "You are not signed to any space"
+msgstr "आप किसी भी स्थान के लिए नहीं पर हस्ताक्षर किए हैं"
+
+#: templates/userprofile/profile/overview.html:108
+msgid "Your proposals"
+msgstr "अपने प्रस्तावों"
+
+#: templates/userprofile/profile/overview.html:112
+msgid "support votes"
+msgstr "समर्थन वोट"
+
+#: templates/userprofile/profile/overview.html:126
+msgid "You haven't made any proposals"
+msgstr "आप किसी भी प्रस्ताव नहीं बनाया है"
+
+#: templates/userprofile/profile/overview_old.html:18
+msgid "Username:"
+msgstr "प्रयोक्ता नाम:"
+
+#: templates/userprofile/profile/overview_old.html:19
+msgid "E-mail:"
+msgstr "ई - मेल:"
+
+#: templates/userprofile/profile/overview_old.html:80
+msgid "Management:"
+msgstr "प्रबंधन:"
+
+#: templates/userprofile/profile/overview_old.html:81
+msgid "Change password"
+msgstr "पासवर्ड बदलें"
+
+#: templates/userprofile/profile/overview_old.html:83
+msgid "Change your e-mail address"
+msgstr "आपके ई - मेल पते को बदलें"
+
+#: templates/userprofile/profile/overview_old.html:83
+msgid "Add your e-mail address"
+msgstr "आपके ई - मेल पते जोड़ें"
+
+#: templates/userprofile/profile/overview_old.html:84
+msgid "Resend validation e-mail"
+msgstr "ई - मेल मान्यता पुन: भेजें"
+
+#: templates/userprofile/profile/overview_old.html:88
+msgid "Add location"
+msgstr "स्थान जोड़ें"
+
+#: templates/userprofile/profile/overview_old.html:90
+msgid "Change location"
+msgstr "स्थान बदलें"
+
+#: templates/userprofile/profile/personal.html:4
+#: templates/userprofile/profile/personal.html:7
+msgid "Edit your personal information"
+msgstr "आपकी व्यक्तिगत जानकारी संपादित करें"
+
+#: templates/userprofile/profile/personal.html:27
+msgid "Delete profile"
+msgstr "प्रोफ़ाइल हटाएं"
+
+#: templates/userprofile/profile/personal_done.html:9
+msgid "Your profile information has been updated successfully."
+msgstr "आपकी प्रोफ़ाइल जानकारी सफलतापूर्वक अद्यतन किया गया है."
+
+#: templates/userprofile/profile/personal_done.html:11
+msgid "You can go"
+msgstr "तुम जा सकते हो"
+
+#: templates/userprofile/profile/personal_done.html:11
+msgid "back to home"
+msgstr "घर के लिए वापस"
+
+#: templates/userprofile/profile/personal_done.html:11
+msgid "or"
+msgstr "या"
+
+#: templates/userprofile/profile/personal_done.html:11
+msgid "back to your profile"
+msgstr "अपने प्रोफाइल के लिए वापस"
+
+#: templates/userprofile/profile/public.html:30
+#, python-format
+msgid "Public profile of %(user)s"
+msgstr "%(user)s की सार्वजनिक प्रोफ़ाइल"
+
+#: templates/userprofile/profile/usercard.html:12
+msgid "Public profile information"
+msgstr "सार्वजनिक प्रोफ़ाइल जानकारी"
+
+#: templatetags/avatars.py:68
+msgid ""
+"You have to provide only the size as             an integer (both sides will"
+" be equal) and optionally, the             username."
+msgstr "आप केवल एक पूर्णांक के रूप में आकार (दोनों पक्षों के बराबर हो जाएगा) और वैकल्पिक, उपयोगकर्ता नाम प्रदान किया है."

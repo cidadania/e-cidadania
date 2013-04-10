@@ -37,27 +37,28 @@ GENDER = (
 
 )
 
+
 class Interest(models.Model):
 
     """
     """
     item = models.CharField(_('Interest'), max_length=50)
 
-class UserProfile(BaseProfile):
 
+class UserProfile(BaseProfile):
 
     """
     Extends the default User profiles of Django. The fields of this model
     can be obtained by the user.get_profile method and it's extended by the
     django-profile application.
     """
-    #user = models.ForeignKey(User, unique=True)
-    
+    # user = models.ForeignKey(User, unique=True)
+
     firstname = models.CharField(_('Name'), max_length=50, blank=True)
     surname = models.CharField(_('Surname'), max_length=200, blank=True)
     gender = models.CharField(_('Gender'), max_length=1, choices=GENDER,
-                              blank=True)    
-    birthdate = models.DateField(_('Birth date'), blank=True, null=True)    
+        blank=True)
+    birthdate = models.DateField(_('Birth date'), blank=True, null=True, help_text='dd/mm/yyyy')
     country = models.ForeignKey(Country, null=True)
     region = ChainedForeignKey(
         Region,
@@ -74,44 +75,46 @@ class UserProfile(BaseProfile):
         null=True
     )
     district = models.CharField(_('District'), max_length=50)
-    
+
     # Detailed overview of the address
     address = models.CharField(_('Address'), max_length=100)
     address_number = models.CharField(_('Number'), max_length=3, blank=True,
-                                      null=True)
-    address_floor = models.CharField(_('Floor'), max_length=3)
+        null=True, validators=[RegexValidator(regex='^[0-9]*$',
+        message='Invalid characters in the building number.')])
+    address_floor = models.CharField(_('Floor'), max_length=3,
+        validators=[RegexValidator(regex='^[0-9]*$', message='Invalid \
+            characters in the floor number.')])
     address_letter = models.CharField(_('Letter'), max_length=2, null=True,
-                                      blank=True)
-    
+        blank=True, validators=[RegexValidator(regex='^[A-Za-z]*$')])
     phone = models.CharField(_('Phone 1'), max_length=9, null=True,
                              validators=[RegexValidator(
-                                        regex='^[0-9]*$',
+                                         regex='^[0-9]*$',
                                         message='Invalid characters in the phone number.'
-                                       )],
+                                         )],
                              blank=True, help_text=_('9 digits maximum'))
     phone_alt = models.CharField(_('Phone 2'), max_length=9, null=True,
                              validators=[RegexValidator(
-                                        regex='^[0-9]*$',
+                                         regex='^[0-9]*$',
                                         message='Invalid characters in the phone number.'
-                                       )],
+                                         )],
                              blank=True, help_text=_('9 digits maximum'))
 
     nid = models.CharField(_('Identification document'), max_length=200,
                            null=True, blank=True)
-    
+
     website = models.URLField(_('Website'), max_length=200,
                               null=True, blank=True)
     interests = models.ManyToManyField(Interest, blank=True, null=True)
 
     def get_age(self):
-        
+
         """
         Get the current user age.
         """
 
         if self.birthdate:
             diff = datetime.date.today() - self.birthdate
-            years = diff.days/365
+            years = diff.days /365
             return years
         else:
             return '??'

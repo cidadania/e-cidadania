@@ -1,6 +1,6 @@
 from django.conf.urls import *
 from django.views.generic.simple import direct_to_template
-from apps.thirdparty.userprofile.views import * 
+from apps.thirdparty.userprofile.views import *
 from django.conf import settings
 
 urlpatterns = patterns('',
@@ -45,7 +45,7 @@ urlpatterns = patterns('',
         name='profile_avatar_crop'),
 
     url(r'^edit/avatar/crop/done/$', direct_to_template,
-        { 'extra_context': {'section': 'avatar'},
+        {'extra_context': {'section': 'avatar'},
         'template': 'userprofile/avatar/done.html'},
         name='profile_avatar_crop_done'),
 
@@ -64,12 +64,12 @@ urlpatterns = patterns('',
 
     url(r'^email/validation/reset/(?P<action>done|failed)/$',
         direct_to_template,
-        {'template' : 'userprofile/account/email_validation_reset_response.html'},
+        {'template': 'userprofile/account/email_validation_reset_response.html'},
         name='email_validation_reset_response'),
 
     url(r'^password/reset/$', 'django.contrib.auth.views.password_reset',
         {'template_name': 'userprofile/account/password_reset.html',
-         'email_template_name': 'userprofile/email/password_reset_email.txt' },
+         'email_template_name': 'userprofile/email/password_reset_email.txt'},
         name='password_reset'),
 
     url(r'^password/reset/done/$',
@@ -81,7 +81,7 @@ urlpatterns = patterns('',
         {'template_name': 'userprofile/account/password_change.html'},
         name='password_change'),
 
-    url(r'^password/change/done/$', 
+    url(r'^password/change/done/$',
         'django.contrib.auth.views.password_change_done',
         {'template_name': 'userprofile/account/password_change_done.html'},
         name='password_change_done'),
@@ -110,7 +110,7 @@ urlpatterns = patterns('',
     url(r'^register/$', register, name='signup'),
 
     url(r'^register/validate/$', direct_to_template,
-        {'template' : 'userprofile/account/validate.html'},
+        {'template': 'userprofile/account/validate.html'},
         name='signup_validate'),
 
     url(r'^register/complete/$', direct_to_template,

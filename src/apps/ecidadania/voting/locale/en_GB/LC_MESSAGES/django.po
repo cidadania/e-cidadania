@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 11:54+0100\n"
+"POT-Creation-Date: 2013-03-13 09:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,14 +96,6 @@ msgstr ""
 
 #: models.py:111
 msgid "Ponderation"
-msgstr ""
-
-#: urls.py:54
-msgid "^poll/(?P<pk>\\d+)/$"
-msgstr ""
-
-#: urls.py:56
-msgid "^poll/(?P<pk>\\d+)/results/$"
 msgstr ""
 
 #: templates/voting/poll_confirm_delete.html:6
@@ -260,11 +252,11 @@ msgstr ""
 msgid "Voting archive"
 msgstr ""
 
-#: views/voting.py:239
+#: views/voting.py:245
 msgid "Validate your vote"
 msgstr ""
 
-#: views/voting.py:240
+#: views/voting.py:246
 #, python-format
 msgid ""
 "You voted recently on a process in our platform, please validate your vote "

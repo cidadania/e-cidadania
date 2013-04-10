@@ -10,6 +10,7 @@ from django.utils.text import capfirst
 from core.prismriver.settings import CUSTOM_MENU, DEFAULT_LABELS
 from core.prismriver.dashboard.models import Plugin
 
+
 def separate_class_path(class_path):
     path = class_path.split(".")
     class_name = path.pop()
@@ -29,10 +30,8 @@ def dashboard(request):
     context = {
         'title': _('Site administration'),
         'plugins': rendered_plugins,
-        }
+    }
     context.update({})
     context_instance = template.RequestContext(request)
     return render_to_response('admin/dashboard.html', context,
                               context_instance=context_instance)
-
-

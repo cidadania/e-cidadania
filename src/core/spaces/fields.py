@@ -24,6 +24,7 @@ from django.db.models import signals
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
+
 class ThumbnailField:
     """Instances of this class will be used to access data of the
     generated thumbnails"""
@@ -47,13 +48,13 @@ class StdImageField(ImageField):
         - Automatically generate thumbnails
     """
     def __init__(self, verbose_name=None, name=None, width_field=None,
-        height_field=None, size=None, thumbnail_size=None, **kwargs):
+                 height_field=None, size=None, thumbnail_size=None, **kwargs):
         """Added fields:
             - size: a tuple containing width and height to resize image, and
                 an optional boolean setting if is wanted forcing that size
                 (None for not resizing).
             - thumbnail_size: a tuple with same values than `size' (None for
-                not creating a thumbnail 
+                not creating a thumbnail
         Example: (640, 480, True) -> Will resize image to a width of 640px and
             a height of 480px. File will be cutted if necessary for forcing
             the image to have the desired size
@@ -77,7 +78,7 @@ class StdImageField(ImageField):
 
     def _get_thumbnail_filename(self, filename):
         """Returns the thumbnail name associated to the standard image filename
-        
+
         Example: /var/www/myproject/media/img/picture_1.jpeg will return
             /var/www/myproject/media/img/picture_1.thumbnail.jpeg
         """
@@ -146,4 +147,3 @@ class StdImageField(ImageField):
             thumbnail_filename = self._get_thumbnail_filename(filename)
             thumbnail_field = ThumbnailField(thumbnail_filename)
             setattr(getattr(instance, self.name), 'thumbnail', thumbnail_field)
-

@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Vishrut Mehta <vishrut.mehta009@gmail.com>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-11 10:51+0100\n"
+"PO-Revision-Date: 2013-02-19 21:30+0000\n"
+"Last-Translator: vishrut009 <vishrut.mehta009@gmail.com>\n"
+"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/language/hi_IN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hi_IN\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: models.py:35
+msgid "Male"
+msgstr "नर"
+
+#: models.py:36
+msgid "Female"
+msgstr "महिला"
+
+#: models.py:44
+msgid "Interest"
+msgstr "ब्याज"
+
+#: models.py:56
+msgid "Name"
+msgstr "नाम"
+
+#: models.py:57
+msgid "Surname"
+msgstr "कुलनाम"
+
+#: models.py:58
+msgid "Gender"
+msgstr "लिंग"
+
+#: models.py:60
+msgid "Birth date"
+msgstr "जन्म तिथि"
+
+#: models.py:76
+msgid "District"
+msgstr "ज़िला"
+
+#: models.py:79
+msgid "Address"
+msgstr "पता"
+
+#: models.py:80
+msgid "Number"
+msgstr "संख्या"
+
+#: models.py:82
+msgid "Floor"
+msgstr "मंजिल"
+
+#: models.py:83
+msgid "Letter"
+msgstr "पत्र"
+
+#: models.py:86
+msgid "Phone 1"
+msgstr "फोन 1"
+
+#: models.py:91 models.py:97
+msgid "9 digits maximum"
+msgstr "9 अधिकतम अंक"
+
+#: models.py:92
+msgid "Phone 2"
+msgstr "2 फोन"
+
+#: models.py:99
+msgid "Identification document"
+msgstr "पहचान दस्तावेज"
+
+#: models.py:102
+msgid "Website"
+msgstr "वेबसाइट"

@@ -1,23 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
-# Oscar Carballal <oscar.carballal@cidadania.coop>, 2012.
+# Antón Méixome <meixome@certima.net>, 2013.
+# Oscar Carballal <oscar.carballal@cidadania.coop>, 2012-2013.
 # Oscar Carballal <oscar@cidadania.coop>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 11:54+0100\n"
-"PO-Revision-Date: 2012-12-17 12:09+0000\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-11 10:51+0100\n"
+"PO-Revision-Date: 2013-03-13 09:04+0000\n"
 "Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
-"Language-Team: Galician (Spain) (http://www.transifex.com/projects/p/"
-"ecidadania/language/gl_ES/)\n"
-"Language: gl_ES\n"
+"Language-Team: Galician (Spain) <ecidadania-gl@freelists.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: gl_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: templates/404.html:9
@@ -40,43 +40,36 @@ msgstr "Suponse que isto non debe ocorrer! Que fixo!?"
 msgid ""
 "We will send the spaguetti squad to repair this. Meanwhile you can go back "
 "to the index."
-msgstr ""
-"Enviaremos ao escuadrón espagueti a reparalo. Mentres tanto pode volver ao "
-"índice."
+msgstr "Enviaremos ao escuadrón espagueti a reparalo. Mentres tanto pode volver ao índice."
 
 #: templates/explore.html:9
-#, fuzzy
 msgid "Recent processes"
-msgstr "Non hai procesos."
+msgstr "Procesos recentes"
 
 #: templates/explore.html:15 templates/explore.html.py:28
 #: templates/explore.html:41
-#, fuzzy
 msgid "There are no recent spaces."
-msgstr "Non hai procesos."
+msgstr "Non hai espazos recentes"
 
 #: templates/explore.html:20
 msgid "Public processes"
-msgstr ""
+msgstr "Procesos públicos"
 
 #: templates/explore.html:33
-#, fuzzy
 msgid "Private processes"
-msgstr "Ver todos os procesos"
+msgstr "Procesos privados"
 
 #: templates/explore.html:49
-#, fuzzy
 msgid "Latest news from public processes"
-msgstr "Últimos procesos participativos"
+msgstr "Últimas novas dos procesos públicos"
 
 #: templates/explore.html:54
-#, fuzzy
 msgid "There are no posts."
-msgstr "Non hai procesos."
+msgstr "Non hai comentarios"
 
 #: templates/explore.html:59
 msgid "What we say in twitter"
-msgstr ""
+msgstr "Que dixemos no Twitter"
 
 #: templates/invite.html:9 templates/invite_done.html:4
 msgid "Invite your friends to e-cidadania"
@@ -99,25 +92,19 @@ msgid ""
 "If you want to invite more than one person, you will have to write their "
 "adresses separated by commas. Example: this@that.com, foo@bar.net, "
 "black@white.org"
-msgstr ""
-"Se desexa invitar a varias persoas pode escribir os seus enderezos separados "
-"por comas. Exemplo: isto@aquilo.com, lusco@fusco.net, branco@negro.org"
+msgstr "Se desexa invitar a varias persoas pode escribir os seus enderezos separados por comas. Exemplo: isto@aquilo.com, lusco@fusco.net, branco@negro.org"
 
 #: templates/invite.html:24
 msgid ""
 "Hi!, I would like you to join e-cidadania, the participative democracy "
 "platform for citizens."
-msgstr ""
-"Ola! Gustaríame que te xuntases a e-cidadania, a plataforma de democracia "
-"participativa para a cidadanía"
+msgstr "Ola! Gustaríame que te xuntases a e-cidadania, a plataforma de democracia participativa para a cidadanía"
 
 #: templates/invite.html:25
 msgid ""
 "You can write here whatever text you want for your invitation, or leave it "
 "by default."
-msgstr ""
-"Pode escribir aquí todo o texto que desexe para a invitación, ou deixar o "
-"predefinido"
+msgstr "Pode escribir aquí todo o texto que desexe para a invitación, ou deixar o predefinido"
 
 #: templates/invite.html:26
 msgid "Submit"
@@ -125,11 +112,9 @@ msgstr "Enviar"
 
 #: templates/invite.html:31
 msgid ""
-"To send invitations via e-mail you have to be <a href='/accounts/"
-"login/'>logged in</a>."
-msgstr ""
-"Para enviar invitacións por correo electrónico tes que <a href='/accounts/"
-"login/'>entrar</a>."
+"To send invitations via e-mail you have to be <a "
+"href='/accounts/login/'>logged in</a>."
+msgstr "Para enviar invitacións por correo electrónico tes que <a href='/accounts/login/'>entrar</a>."
 
 #: templates/invite_done.html:11
 msgid "The email(s) have been sent"
@@ -141,15 +126,15 @@ msgstr "Ir ao índice"
 
 #: templates/menu.html:3
 msgid "Explore"
-msgstr ""
+msgstr "Explorar"
 
 #: templates/menu.html:4
 msgid "Blog"
-msgstr ""
+msgstr "Blogue"
 
 #: templates/menu.html:5
 msgid "Help"
-msgstr ""
+msgstr "Axuda"
 
 #: templates/menu.html:10
 msgid "Login"
@@ -201,11 +186,9 @@ msgstr "Desexo participar"
 
 #: templates/not_allowed.html:15 templates/space_intent.html:12
 msgid ""
-"You can go <a href='/'>back to home</a> or <a href='/accounts/'>back to your "
-"profile</a>"
-msgstr ""
-"Pode <a href='/'>volver ao inicio</a> ou <a href='/accounts/'>volver ao seu "
-"perfil</a>"
+"You can go <a href='/'>back to home</a> or <a href='/accounts/'>back to your"
+" profile</a>"
+msgstr "Pode <a href='/'>volver ao inicio</a> ou <a href='/accounts/'>volver ao seu perfil</a>"
 
 #: templates/site_index.html:5
 msgid "e-cidadania"
@@ -213,10 +196,10 @@ msgstr "e-cidadania"
 
 #: templates/site_index.html:23
 msgid ""
-"Would you like the debates and decisions to be more inclusive? Well done and "
-"integrative proposals where participation is always a nice and enriching "
+"Would you like the debates and decisions to be more inclusive? Well done and"
+" integrative proposals where participation is always a nice and enriching "
 "experience? We too, that's why we created e-cidadania."
-msgstr ""
+msgstr "G"
 
 #: templates/site_index.html:25
 msgid "Latest participative processes"
@@ -287,8 +270,7 @@ msgstr "Grazas por aprobalo"
 #: templates/comments/flagged.html:7
 msgid ""
 "Thanks for taking the time to improve the quality of discussion on our site"
-msgstr ""
-"Grazas por tomarse o tempo para mellorar a calidade do debate no noso sitio"
+msgstr "Grazas por tomarse o tempo para mellorar a calidade do debate no noso sitio"
 
 #: templates/comments/delete.html:4
 msgid "Remove a comment"
@@ -398,34 +380,17 @@ msgstr "Alguén che enviou unha invitación para entrar en e-cidadania!"
 #, python-format
 msgid ""
 "\n"
-"                                        <a href=\"http://ecidadania.org\">e-"
-"cidadania</a> is an e-democracy platform for citizen participation. More "
-"clearly, it's for direct democracy in every one if its shapes,\n"
-"                                        from 99%% movement, 15M to official "
-"participative budgets. The message that was sent to you follows:\n"
+"                                        <a href=\"http://ecidadania.org\">e-cidadania</a> is an e-democracy platform for citizen participation. More clearly, it's for direct democracy in every one if its shapes,\n"
+"                                        from 99%% movement, 15M to official participative budgets. The message that was sent to you follows:\n"
 "                                        "
-msgstr ""
-"\n"
-"<a href=\"http://ecidadania.org\">e-cidadania</a> é unha plataforma de e-"
-"democracia para participación cidadá. Máis claro, para democracia directa en "
-"todas as súas formas, dende o movemento 99%% ata o 15M ata os presupostos "
-"participativos. A mensaxe que se che enviou segue:\n"
-"                                        "
+msgstr "\n<a href=\"http://ecidadania.org\">e-cidadania</a> é unha plataforma de e-democracia para participación cidadá. Máis claro, para democracia directa en todas as súas formas, dende o movemento 99%% ata o 15M ata os presupostos participativos. A mensaxe que se che enviou segue:\n                                        "
 
 #: templates/invite/invite_plain.txt:4
 #, python-format
 msgid ""
 "\n"
-"You have been invited to join e-cidadania, an e-democracy platform for "
-"citizen participation. More clearly, it's for direct democracy in every one "
-"of its shapes, from 99%% movement, 15M to official participative budgets. "
-"The message that was sent to you follows:\n"
-msgstr ""
-"\n"
-"Foches invitado a unirte a e-cidadania, unha plataforma de e-democracia para "
-"participación cidadá. Más claramente, para democracia directa en todas as "
-"súas formas, dende o movemento 99%% ata o 15M ata os presupostos "
-"participativos. A mensaxe que se che enviou segue:\n"
+"You have been invited to join e-cidadania, an e-democracy platform for citizen participation. More clearly, it's for direct democracy in every one of its shapes, from 99%% movement, 15M to official participative budgets. The message that was sent to you follows:\n"
+msgstr "\nFoches invitado a unirte a e-cidadania, unha plataforma de e-democracia para participación cidadá. Más claramente, para democracia directa en todas as súas formas, dende o movemento 99%% ata o 15M ata os presupostos participativos. A mensaxe que se che enviou segue:\n"
 
 #: templates/invite/invite_plain.txt:9
 msgid "Join e-cidadania today in http://ecidadania.org"
@@ -435,9 +400,4 @@ msgstr "Únete a e-cidadania hoxe en http://ecidadania.org"
 msgid ""
 "If you have any questions dont hesitate and send us a mail to "
 "support@ecidadania.org."
-msgstr ""
-"Se tes preguntas non dubides en enviarnos un correo electrónico a "
-"info@ecidadania.org"
-
-#~ msgid "Home"
-#~ msgstr "Inicio"
+msgstr "Se tes preguntas non dubides en enviarnos un correo electrónico a info@ecidadania.org"

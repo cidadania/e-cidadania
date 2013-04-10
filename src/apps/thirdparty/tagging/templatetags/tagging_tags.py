@@ -7,6 +7,7 @@ from tagging.utils import LINEAR, LOGARITHMIC
 
 register = Library()
 
+
 class TagsForModelNode(Node):
     def __init__(self, model, context_var, counts):
         self.model = model
@@ -19,6 +20,7 @@ class TagsForModelNode(Node):
             raise TemplateSyntaxError(_('tags_for_model tag was given an invalid model: %s') % self.model)
         context[self.context_var] = Tag.objects.usage_for_model(model, counts=self.counts)
         return ''
+
 
 class TagCloudForModelNode(Node):
     def __init__(self, model, context_var, **kwargs):
@@ -34,6 +36,7 @@ class TagCloudForModelNode(Node):
             Tag.objects.cloud_for_model(model, **self.kwargs)
         return ''
 
+
 class TagsForObjectNode(Node):
     def __init__(self, obj, context_var):
         self.obj = Variable(obj)
@@ -43,6 +46,7 @@ class TagsForObjectNode(Node):
         context[self.context_var] = \
             Tag.objects.get_for_object(self.obj.resolve(context))
         return ''
+
 
 class TaggedObjectsNode(Node):
     def __init__(self, tag, model, context_var):
@@ -57,6 +61,7 @@ class TaggedObjectsNode(Node):
         context[self.context_var] = \
             TaggedItem.objects.get_by_model(model, self.tag.resolve(context))
         return ''
+
 
 def do_tags_for_model(parser, token):
     """
@@ -98,6 +103,7 @@ def do_tags_for_model(parser, token):
         return TagsForModelNode(bits[1], bits[3], counts=False)
     else:
         return TagsForModelNode(bits[1], bits[3], counts=True)
+
 
 def do_tag_cloud_for_model(parser, token):
     """
@@ -178,6 +184,7 @@ def do_tag_cloud_for_model(parser, token):
                 })
     return TagCloudForModelNode(bits[1], bits[3], **kwargs)
 
+
 def do_tags_for_object(parser, token):
     """
     Retrieves a list of ``Tag`` objects associated with an object and
@@ -197,6 +204,7 @@ def do_tags_for_object(parser, token):
     if bits[2] != 'as':
         raise TemplateSyntaxError(_("second argument to %s tag must be 'as'") % bits[0])
     return TagsForObjectNode(bits[1], bits[3])
+
 
 def do_tagged_objects(parser, token):
     """

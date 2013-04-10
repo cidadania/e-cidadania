@@ -26,6 +26,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from apps.ecidadania.proposals.models import Proposal, ProposalSet, ProposalField
 
+
 class ProposalSetAdmin(admin.ModelAdmin):
 
     """
@@ -38,8 +39,7 @@ class ProposalSetAdmin(admin.ModelAdmin):
     list_display = ('name', 'author')
 
     fieldsets = [
-        (None, {'fields':
-            ['name']})
+        (None, {'fields': ['name']})
     ]
 
 
@@ -48,35 +48,36 @@ class ProposalAdmin(admin.ModelAdmin):
     """
     Basic proposal administration interface since most of the work is done
     in the website.
-    
+
     :list display: title, author, tags
     :search: none:
     """
     list_display = ('title', 'author', 'tags')
-    
+
     fieldsets = [
         (None, {'fields':
-            ['code', 'title', 'proposalset' ,'description', 'tags', 'support_votes']}),
-        
+            ['code', 'title', 'proposalset', 'description', 'tags',
+            'support_votes']}),
+
         (_('Location'), {'fields':
             ['latitude', 'longitude']}),
 
         (_('Relations'), {'fields':
             [('space', 'author')]}),
-        
+
         (_('Other'), {'fields':
             ['budget', 'closed', 'close_reason', 'closed_by']}),
-        
+
         (_('Options'), {'fields':
             ['anon_allowed', 'refurbished']}),
 
     ]
-    
+
 
 class ProposalFieldAdmin(admin.ModelAdmin):
-    
+
     """
-    Basic proposal administration interface since most part is done in 
+    Basic proposal administration interface since most part is done in
     the website.
 
     :list display: proposalset, field_name
@@ -88,9 +89,8 @@ class ProposalFieldAdmin(admin.ModelAdmin):
 
     fieldsets = [
         (None, {'fields':
-            ['proposalset','field_name']}),
+            ['proposalset', 'field_name']}),
     ]
-
 
 
 admin.site.register(ProposalSet, ProposalSetAdmin)

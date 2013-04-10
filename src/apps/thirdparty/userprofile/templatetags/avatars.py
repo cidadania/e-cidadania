@@ -1,13 +1,13 @@
 # coding=UTF-8
 from django.template import Library, Node, Template, TemplateSyntaxError, \
-                            Variable
+    Variable
 from django.utils.translation import ugettext as _
 from apps.thirdparty.userprofile.models import Avatar, AVATAR_SIZES
 from django.contrib.auth.models import User
 from django.conf import settings
 import Image
 # from PythonMagick import Image
-#from utils.TuxieMagick import Image
+# from utils.TuxieMagick import Image
 import os
 import time
 
@@ -17,6 +17,7 @@ if hasattr(settings, "DEFAULT_AVATAR") and settings.DEFAULT_AVATAR:
     DEFAULT_AVATAR = settings.DEFAULT_AVATAR
 else:
     DEFAULT_AVATAR = os.path.join(settings.MEDIA_ROOT, "generic.jpg")
+
 
 class ResizedThumbnailNode(Node):
     def __init__(self, size, username=None):
@@ -60,14 +61,15 @@ class ResizedThumbnailNode(Node):
 
         return url
 
+
 @register.tag('avatar')
 def Thumbnail(parser, token):
     bits = token.contents.split()
     username = None
     if len(bits) > 3:
-        raise TemplateSyntaxError, _(u"You have to provide only the size as \
+        raise TemplateSyntaxError(_(u"You have to provide only the size as \
             an integer (both sides will be equal) and optionally, the \
-            username.")
+            username."))
     elif len(bits) == 3:
         username = bits[2]
     elif len(bits) < 2:

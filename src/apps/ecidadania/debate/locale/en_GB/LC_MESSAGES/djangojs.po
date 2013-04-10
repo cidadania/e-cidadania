@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 11:55+0100\n"
+"POT-Creation-Date: 2013-03-13 09:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,11 +26,11 @@ msgstr ""
 msgid "Write here your message"
 msgstr ""
 
-#: static/js/debate_board.js:14
+#: static/js/debate_board.js:14 static/js/debate_board.js.c:28
 msgid "Edit"
 msgstr ""
 
-#: static/js/debate_board.js:15
+#: static/js/debate_board.js:15 static/js/debate_board.js.c:27
 msgid "View"
 msgstr ""
 
@@ -39,29 +39,55 @@ msgid "There has been an error."
 msgstr ""
 
 #: static/js/debate_board.js:17
-msgid "Couldn't create note."
+msgid "Could't delete column or row."
 msgstr ""
 
 #: static/js/debate_board.js:18
-msgid "Couldn't get note data."
+msgid "Couldn't create note."
 msgstr ""
 
 #: static/js/debate_board.js:19
-msgid "Couldn't save note."
+msgid "Couldn't get note data."
 msgstr ""
 
 #: static/js/debate_board.js:20
-msgid "Couldn't save note position."
+msgid "Couldn't save note."
 msgstr ""
 
 #: static/js/debate_board.js:21
-msgid "Couldn't delete note."
+msgid "Couldn't save note position."
 msgstr ""
 
 #: static/js/debate_board.js:22
-msgid "Are you sure?"
+msgid "Couldn't delete note."
 msgstr ""
 
 #: static/js/debate_board.js:23
+msgid "There must be at least one column or row in the table."
+msgstr ""
+
+#: static/js/debate_board.js:24
+msgid "Couln't create row or column."
+msgstr ""
+
+#: static/js/debate_board.js:25
+msgid "Are you sure?"
+msgstr ""
+
+#: static/js/debate_board.js:26
 msgid "Comment"
+msgstr ""
+
+#: static/js/debate_board.js:29
+msgid "Delete note"
+msgstr ""
+
+#: static/js/debate_board.js:30
+msgid "Caution"
+msgstr ""
+
+#: static/js/debate_board.js:31
+msgid ""
+"You are adding too much columns. We put no limit,     but too many columns "
+"will be a problem in smaller screens."
 msgstr ""

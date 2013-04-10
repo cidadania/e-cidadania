@@ -26,7 +26,8 @@ Python
         from myapp.module import function
 
 **Line width (columns)**
-    The code must be always 80 columns wide except on templates.
+    The code must be between 80 and 120 columns, but we encourage that
+    developers set them an 80 columns limit when possible.
 
 **Long declarations**
     If a code line does not fit in 80 columns, try to reduce it declaring variables

@@ -28,6 +28,7 @@ from django.template import RequestContext
 from e_cidadania import settings
 from apps.ecidadania.accounts.models import UserProfile
 
+
 class ProfileAdmin(admin.ModelAdmin):
 
     """
@@ -36,24 +37,24 @@ class ProfileAdmin(admin.ModelAdmin):
     """
     list_display = ('user', 'firstname', 'surname', 'country', 'website')
     actions = ['mass_mail']
-    
+
     def mass_mail(self, request, queryset):
         """
         This function exports the selected ovjects to a new view to manipulate
         them properly.
         """
-        #selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
+        # selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
         # ct = ContentType.objects.get_for_model(queryset.model)
         if 'sendmail' in request.POST:
             for obj in queryset:
                 get_user = get_object_or_404(User, id=obj.id)
                 send_mail(request.POST['massmail_subject'], request.POST['message'], settings.DEFAULT_FROM_EMAIL, [get_user.email])
             return HttpResponseRedirect(request.get_full_path())
-        
+
         selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
         ct = ContentType.objects.get_for_model(queryset.model)
-        return render_to_response('mail/massmail.html', { 'people': selected },
+        return render_to_response('mail/massmail.html', {'people': selected},
                                 context_instance=RequestContext(request))
     mass_mail.short_description = 'Send a global mail to the selected users'
-    
+
 admin.site.register(UserProfile, ProfileAdmin)

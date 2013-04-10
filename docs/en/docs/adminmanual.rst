@@ -17,8 +17,8 @@ Restricting user registration
 
 e-cidadania has a basic automated registration system that the administrator can
 activate or deactivate at his own will. By default, e-cidadania comes with
-registrarion activated, but if for some reason the administrator wants to block
-that registration system (passing to manual mode) he just has toactivate when he considers removing the comment symbol (sharp).
+registration activated, but if for some reason the administrator wants to block
+that registration system (passing to manual mode) he just has to activate when he considers removing the comment symbol (sharp).
 
 *apps/userprofile/urls/en.py:107*::
 

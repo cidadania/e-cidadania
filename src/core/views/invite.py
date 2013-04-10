@@ -24,6 +24,7 @@ from django.template import RequestContext, loader, Context
 from django.utils.translation import ugettext_lazy as _
 from e_cidadania import settings
 
+
 def invite(request):
 
     """
@@ -39,12 +40,12 @@ def invite(request):
 
         plain_template = "invite/invite_plain.txt"
         html_template = "invite/invite.html"
-        
+
         plain_msg = loader.get_template(plain_template).render(
-                                                RequestContext(request,
+            RequestContext(request,
                                                 {'msg': usr_msg}))
         html_msg = loader.get_template(html_template).render(
-                                                RequestContext(request,
+            RequestContext(request,
                                                 {'msg': usr_msg}))
 
         email = EmailMultiAlternatives(_('Invitation to join e-cidadania'), plain_msg, settings.DEFAULT_FROM_EMAIL, [], addr_list)
@@ -52,6 +53,5 @@ def invite(request):
         email.send(fail_silently=False)
         return render_to_response('invite_done.html',
                                   context_instance=RequestContext(request))
-    uri = request.build_absolute_uri("/")    
-    return render_to_response('invite.html', {"uri":uri}, context_instance=RequestContext(request))
-    
+    uri = request.build_absolute_uri("/")
+    return render_to_response('invite.html', {"uri": uri}, context_instance=RequestContext(request))

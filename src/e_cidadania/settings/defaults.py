@@ -32,7 +32,7 @@ __status__ = "beta"
 
 # Get the current working directory so we can fill automatically other variables.
 cwd = os.path.dirname(os.path.realpath(__file__)).strip('settings')
-#print "Current working dir: %s" % cwd
+# print "Current working dir: %s" % cwd
 
 # Extending the user profile a bit more
 AUTH_PROFILE_MODULE = "accounts.UserProfile"
@@ -45,7 +45,9 @@ LANGUAGES = (
     ('en_GB', 'English'),
     ('gl_ES', 'Galego'),
     ('fr_FR', 'Français'),
-    ('mk_MK', 'Makedonski')
+    ('mk_MK', 'Makedonski'),
+    ('pt_BR', 'Português'),
+    ('hi_IN', 'Hindi'),
 )
 
 LOCALE_PATHS = (
@@ -57,14 +59,14 @@ USE_I18N = True
 USE_L10N = True
 
 # Calendar
-FIRST_WEEK_DAY = 0 # '0' for Monday, '6' for Sunday
+FIRST_WEEK_DAY = 0  # '0' for Monday, '6' for Sunday
 
 # Configuration related to media and static content directories
 MEDIA_ROOT = cwd + '/uploads/'
-#print "Media root: %s" % MEDIA_ROOT
+# print "Media root: %s" % MEDIA_ROOT
 MEDIA_URL = '/uploads/'
 STATIC_ROOT = cwd + '/static/'
-#print "Static root: %s" % STATIC_ROOT
+# print "Static root: %s" % STATIC_ROOT
 STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = STATIC_URL
 
@@ -90,7 +92,7 @@ SECRET_KEY = '8nwcwmtau*bnu0u=shmdkda^-tpn55ch%qeqc8xn#-77r8c*0a'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    #'django.template.loaders.eggs.Loader',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -106,7 +108,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 MIDDLEWARE_CLASSES = (
     # GZipMiddleware compresses content for modern browsers
     'django.middleware.gzip.GZipMiddleware',
-    # ConditionalGetMiddleware adds support for modern browsers to conditionaly 
+    # ConditionalGetMiddleware adds support for modern browsers to conditionaly
     # GET responses
     'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.common.CommonMiddleware',

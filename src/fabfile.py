@@ -29,6 +29,7 @@ from fabric.operations import put
 
 env.hosts = ['188.40.90.250']
 
+
 def test():
     """
     Executes all the tests of the platform and if the tests failed it will prompt

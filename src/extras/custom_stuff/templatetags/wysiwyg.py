@@ -8,18 +8,19 @@ from django.template.loader import get_template, render_to_string
 
 register = template.Library()
 
+
 @register.simple_tag
 def wysiwyg_editor(field_id, editor_name=None, config=None):
-	if not editor_name:
-		editor_name = "%s_editor" % field_id
+    if not editor_name:
+        editor_name = "%s_editor" % field_id
 
-	ctx = {
-		'field_id': field_id,
-		'editor_name': editor_name,
-		'config': config
-	}
+    ctx = {
+        'field_id': field_id,
+        'editor_name': editor_name,
+        'config': config
+    }
 
-	return render_to_string(
-		"../templates/wysihtml5_instance.html",
-		ctx
-)
+    return render_to_string(
+        "../templates/wysihtml5_instance.html",
+        ctx
+    )

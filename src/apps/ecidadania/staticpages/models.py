@@ -22,13 +22,14 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.contrib.auth.models import User, Group
 
+
 class StaticPage(models.Model):
 
     """
     Create basic static pages.
     """
-    name = models.CharField(_('Page Title'), max_length = 100)
-    uri = models.CharField(_('URL'), max_length = 50)
+    name = models.CharField(_('Page Title'), max_length=100)
+    uri = models.CharField(_('URL'), max_length=50)
     content = models.TextField(_('Content'))
     show_footer = models.BooleanField(_('Show in footer'))
     author = models.ForeignKey(User, blank=True, null=True, verbose_name=_('Author'))
@@ -42,7 +43,7 @@ class StaticPage(models.Model):
 
     def __unicode__(self):
         return self.name
-        
+
     @models.permalink
     def get_absolute_url(self):
         return ('view-page', (), {

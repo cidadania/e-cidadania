@@ -107,6 +107,15 @@ hr { /* This hr replaces the bootstrap one */
     top: 20%;
     margin-top: -200px;
 }
+
+#gritter-notice-wrapper {
+    background: #000;
+    opacity: 0.8;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
 /* END COMMON CUSTOMIZATIONS */
 
 /* BOOTSTRAP OVERRIDES */
@@ -728,5 +737,5 @@ table {
   }
 
 
-.icon-white, .nav-pills > .active > a > [class^="icon-"], .nav-pills > .active     > a > [class*=" icon-"], .nav-list > .active > a > [class^="icon-"], .nav-lis    t > .active > a > [class*=" icon-"], .navbar-inverse .nav > .active > a > [cla    ss^="icon-"], .navbar-inverse .nav > .active > a > [class*=" icon-"], .dropdow    n-menu > li > a:hover > [class^="icon-"], .dropdown-menu > li > a:hover > [cla    ss*=" icon-"], .dropdown-menu > .active > a > [class^="icon-"], .dropdown-menu     > .active > a > [class*=" icon-"], .dropdown-submenu:hover > a > [class^="ico    n-"], .dropdown-submenu:hover > a > [class*=" icon-"] {background:none;}
+.icon-white, .nav-pills > .active > a > [class^="icon-"], .nav-pills > .active     > a > [class*=" icon-"], .nav-list > .active > a > [class^="icon-"], .nav-list > .active > a > [class*=" icon-"], .navbar-inverse .nav > .active > a > [class^="icon-"], .navbar-inverse .nav > .active > a > [class*=" icon-"], .dropdown-menu > li > a:hover > [class^="icon-"], .dropdown-menu > li > a:hover > [class*=" icon-"], .dropdown-menu > .active > a > [class^="icon-"], .dropdown-menu     > .active > a > [class*=" icon-"], .dropdown-submenu:hover > a > [class^="icon-"], .dropdown-submenu:hover > a > [class*=" icon-"] {background:none;}
 

@@ -21,6 +21,7 @@ from django.contrib import admin
 
 from apps.ecidadania.debate.models import Debate, Note, Column, Row
 
+
 class ColumnInline(admin.TabularInline):
 
     """
@@ -30,6 +31,7 @@ class ColumnInline(admin.TabularInline):
     model = Column
     extra = 2
 
+
 class RowInline(admin.TabularInline):
 
     """
@@ -38,6 +40,7 @@ class RowInline(admin.TabularInline):
     """
     model = Row
     extra = 2
+
 
 class DebateAdmin(admin.ModelAdmin):
 

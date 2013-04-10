@@ -44,19 +44,19 @@ class AddPost(FormView):
     Create a new post. Only registered users belonging to a concrete group
     are allowed to create news. only site administrators will be able to
     post news in the index page.
-    
+
     .. versionadded: 0.1
-    
+
     :parameters: space_url
     :context: get_place
     """
     form_class = NewsForm
     template_name = 'news/post_form.html'
-    
+
     def get_success_url(self):
         space = self.kwargs['space_url']
         return reverse(urln.SPACE_INDEX, kwargs={'space_url': space})
-        
+
     def form_valid(self, form):
         self.space = get_object_or_404(Space, url=self.kwargs['space_url'])
         form_uncommited = form.save(commit=False)
@@ -70,7 +70,7 @@ class AddPost(FormView):
         self.space = get_object_or_404(Space, url=self.kwargs['space_url'])
         context['get_place'] = self.space
         return context
-        
+
     @method_decorator(permission_required('news.add_post'))
     def dispatch(self, *args, **kwargs):
         return super(AddPost, self).dispatch(*args, **kwargs)
@@ -107,7 +107,7 @@ class EditPost(UpdateView):
 
     """
     Edit an existent post.
-    
+
     :parameters: space_url, post_id
     :context: get_place
     """
@@ -121,12 +121,12 @@ class EditPost(UpdateView):
     def get_object(self):
         cur_post = get_object_or_404(Post, pk=self.kwargs['post_id'])
         return cur_post
-        
+
     def get_context_data(self, **kwargs):
         context = super(EditPost, self).get_context_data(**kwargs)
         context['get_place'] = get_object_or_404(Space, url=self.kwargs['space_url'])
         return context
-        
+
     @method_decorator(permission_required('news.change_post'))
     def dispatch(self, *args, **kwargs):
         return super(EditPost, self).dispatch(*args, **kwargs)
@@ -155,4 +155,3 @@ class DeletePost(DeleteView):
         context = super(DeletePost, self).get_context_data(**kwargs)
         context['get_place'] = get_object_or_404(Space, url=self.kwargs['space_url'])
         return context
-

@@ -1,388 +1,385 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
+#   <tamara.atanasoska20@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 11:55+0100\n"
-"PO-Revision-Date: 2012-12-17 12:09+0000\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-11 10:51+0100\n"
+"PO-Revision-Date: 2013-03-13 09:04+0000\n"
 "Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
-"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/"
-"ecidadania/language/mk_MK/)\n"
-"Language: mk_MK\n"
+"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/ecidadania/language/mk_MK/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: mk_MK\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #: templates/404.html:9
 msgid "Nooo...!"
-msgstr ""
+msgstr "Нееее...!"
 
 #: templates/404.html:11
 msgid "The page you're looking for does not exist."
-msgstr ""
+msgstr "Страницата која ја баравте не постои."
 
 #: templates/404.html:12
 msgid "May it be abstract?"
-msgstr ""
+msgstr "Можеби е апстрактна?"
 
 #: templates/500.html:10
 msgid "This wasn't supposed to happen! What did you do!?"
-msgstr ""
+msgstr "Ова не требаше да се случи! Што нарави !?"
 
 #: templates/500.html:11
 msgid ""
 "We will send the spaguetti squad to repair this. Meanwhile you can go back "
 "to the index."
-msgstr ""
+msgstr "Ќе го испратиме тимот да го поправи ова. Во меѓувреме може да се вратите на првата страница."
 
 #: templates/explore.html:9
 msgid "Recent processes"
-msgstr ""
+msgstr "Скорешни процеси"
 
 #: templates/explore.html:15 templates/explore.html.py:28
 #: templates/explore.html:41
 msgid "There are no recent spaces."
-msgstr ""
+msgstr "Нема скорешни работни површини."
 
 #: templates/explore.html:20
 msgid "Public processes"
-msgstr ""
+msgstr "Јавни процеси"
 
 #: templates/explore.html:33
 msgid "Private processes"
-msgstr ""
+msgstr "Приватни процеси"
 
 #: templates/explore.html:49
 msgid "Latest news from public processes"
-msgstr ""
+msgstr "Најнови весто од јавните процеси"
 
 #: templates/explore.html:54
 msgid "There are no posts."
-msgstr ""
+msgstr "Нема објави."
 
 #: templates/explore.html:59
 msgid "What we say in twitter"
-msgstr ""
+msgstr "Што велиме на twitter"
 
 #: templates/invite.html:9 templates/invite_done.html:4
 msgid "Invite your friends to e-cidadania"
-msgstr ""
+msgstr "Поканете ги своите пријатели "
 
 #: templates/invite.html:15 templates/invite_done.html:10
 msgid "Invite your friends"
-msgstr ""
+msgstr "Поканете ги своите пријатели "
 
 #: templates/invite.html:21
 msgid "Invite via E-mail"
-msgstr ""
+msgstr "Поканете преку e-mail"
 
 #: templates/invite.html:22
 msgid "Write the e-mail adresses here"
-msgstr ""
+msgstr "Впишете ги e-mail адресите овде"
 
 #: templates/invite.html:23
 msgid ""
 "If you want to invite more than one person, you will have to write their "
 "adresses separated by commas. Example: this@that.com, foo@bar.net, "
 "black@white.org"
-msgstr ""
+msgstr "Ако сакате да поканите повеќе од една личност, мора да ги впишете нивните адреси одделени со запирки. Пример: this@that.com, foo@bar.net, black@white.org"
 
 #: templates/invite.html:24
 msgid ""
 "Hi!, I would like you to join e-cidadania, the participative democracy "
 "platform for citizens."
-msgstr ""
+msgstr "Здраво, те поканувам да и се приклучип на e-cidadania, платформата за партиципативно граѓанство."
 
 #: templates/invite.html:25
 msgid ""
 "You can write here whatever text you want for your invitation, or leave it "
 "by default."
-msgstr ""
+msgstr "Можете да напишете каков сакате текст како ваша покана, или да го оставите предефинираниот."
 
 #: templates/invite.html:26
 msgid "Submit"
-msgstr ""
+msgstr "Понесете"
 
 #: templates/invite.html:31
 msgid ""
-"To send invitations via e-mail you have to be <a href='/accounts/"
-"login/'>logged in</a>."
-msgstr ""
+"To send invitations via e-mail you have to be <a "
+"href='/accounts/login/'>logged in</a>."
+msgstr "За да испратите пораки преку e-mail мора да бидете <a href='/accounts/login/'>најавени</a>."
 
 #: templates/invite_done.html:11
 msgid "The email(s) have been sent"
-msgstr ""
+msgstr "Email пораките се испратени"
 
 #: templates/invite_done.html:12
 msgid "Go to index"
-msgstr ""
+msgstr "Одете до насловна"
 
 #: templates/menu.html:3
 msgid "Explore"
-msgstr ""
+msgstr "Истражи"
 
 #: templates/menu.html:4
 msgid "Blog"
-msgstr ""
+msgstr "Блог"
 
 #: templates/menu.html:5
 msgid "Help"
-msgstr ""
+msgstr "Помош"
 
 #: templates/menu.html:10
 msgid "Login"
-msgstr ""
+msgstr "Најава"
 
 #: templates/menu.html:11
 msgid "Sign up"
-msgstr ""
+msgstr "Регистрација"
 
 #: templates/menu.html:15
 msgid "Language"
-msgstr ""
+msgstr "Јазик"
 
 #: templates/menu.html:35
 msgid "My profile"
-msgstr ""
+msgstr "Мојот профил"
 
 #: templates/menu.html:47
 msgid "Administration"
-msgstr ""
+msgstr "Администрација"
 
 #: templates/menu.html:48
 msgid "Add news"
-msgstr ""
+msgstr "Додадете вести"
 
 #: templates/menu.html:52
 msgid "Create new space"
-msgstr ""
+msgstr "Креирајте нова работна површина"
 
 #: templates/menu.html:54
 msgid "Edit profile"
-msgstr ""
+msgstr "Измени профил"
 
 #: templates/menu.html:56
 msgid "Logout"
-msgstr ""
+msgstr "Одјава"
 
 #: templates/not_allowed.html:4
 msgid "Not allowed"
-msgstr ""
+msgstr "Не е дозволено"
 
 #: templates/not_allowed.html:10
 msgid "You are not allowed to access here."
-msgstr ""
+msgstr "Пристапот овде не ви е дозволен."
 
 #: templates/not_allowed.html:13
 msgid "I want to participate"
-msgstr ""
+msgstr "Сакам да учествувам"
 
 #: templates/not_allowed.html:15 templates/space_intent.html:12
 msgid ""
-"You can go <a href='/'>back to home</a> or <a href='/accounts/'>back to your "
-"profile</a>"
-msgstr ""
+"You can go <a href='/'>back to home</a> or <a href='/accounts/'>back to your"
+" profile</a>"
+msgstr "Можете да одите <a href='/'>назад до насловна</a> или <a href='/accounts/'>назад до вашиот профил</a>"
 
 #: templates/site_index.html:5
 msgid "e-cidadania"
-msgstr ""
+msgstr "e-cidadania"
 
 #: templates/site_index.html:23
 msgid ""
-"Would you like the debates and decisions to be more inclusive? Well done and "
-"integrative proposals where participation is always a nice and enriching "
+"Would you like the debates and decisions to be more inclusive? Well done and"
+" integrative proposals where participation is always a nice and enriching "
 "experience? We too, that's why we created e-cidadania."
-msgstr ""
+msgstr "Дали би сакале дебатите и одлуките да бидат по инклузивни? Добро структуирани и целосни предлози како учеството е секогаш добро искуство? И ние, затоа и ја креиравме e-cidadania."
 
 #: templates/site_index.html:25
 msgid "Latest participative processes"
-msgstr ""
+msgstr "Послени партиципативни процеси"
 
 #: templates/site_index.html:32
 msgid "Public"
-msgstr ""
+msgstr "Јавно"
 
 #: templates/site_index.html:34
 msgid "Private"
-msgstr ""
+msgstr "Приватно"
 
 #: templates/site_index.html:38
 msgid "There are no processes."
-msgstr ""
+msgstr "Нема процеси."
 
 #: templates/site_index.html:49
 msgid "View all the processes"
-msgstr ""
+msgstr "Види ги сите процеси"
 
 #: templates/site_index.html:62
 msgid "Sign in"
-msgstr ""
+msgstr "Најава"
 
 #: templates/site_index.html:66
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Ја заборавивте лозинката?"
 
 #: templates/site_index.html:67
 msgid "Invite someone!"
-msgstr ""
+msgstr "Поканете некој!"
 
 #: templates/site_index.html:74
 msgid "First time here? Register!"
-msgstr ""
+msgstr "Прв пат овде? Регистрирај се!"
 
 #: templates/site_index.html:80
 msgid "Register"
-msgstr ""
+msgstr "Регистрирај се"
 
 #: templates/space_intent.html:4
 msgid "Participate"
-msgstr ""
+msgstr "Учествувај"
 
 #: templates/space_intent.html:11
 msgid ""
 "If the administrator approves your request, you will be notified by email"
-msgstr ""
+msgstr "Ако администраторот го одобри вашето побарување, ќе бидете известени по email "
 
 #: templates/comments/approve.html:4
 msgid "Approve a comment"
-msgstr ""
+msgstr "Одобри коментар"
 
 #: templates/comments/approve.html:7
 msgid "Really make this comment public?"
-msgstr ""
+msgstr "Навистина сакате да го направите овој коментар јавен?"
 
 #: templates/comments/approve.html:12
 msgid "Approve"
-msgstr ""
+msgstr "Одобри"
 
 #: templates/comments/approved.html:4
 msgid "Thanks for approving"
-msgstr ""
+msgstr "Ви благодариме за одобрувањето"
 
 #: templates/comments/approved.html:7 templates/comments/deleted.html:7
 #: templates/comments/flagged.html:7
 msgid ""
 "Thanks for taking the time to improve the quality of discussion on our site"
-msgstr ""
+msgstr "Ви благодариме што одвоивте време за да го подобрите квалитетот на дискусијата на нашата страница"
 
 #: templates/comments/delete.html:4
 msgid "Remove a comment"
-msgstr ""
+msgstr "Отстрани коментар"
 
 #: templates/comments/delete.html:7
 msgid "Really remove this comment?"
-msgstr ""
+msgstr "Навистина сакате да го отстраните овој коментар?"
 
 #: templates/comments/delete.html:12
 msgid "Remove"
-msgstr ""
+msgstr "Отстрани"
 
 #: templates/comments/deleted.html:4
 msgid "Thanks for removing"
-msgstr ""
+msgstr "Ви благоариме за отстранувањето"
 
 #: templates/comments/flag.html:4
 msgid "Flag this comment"
-msgstr ""
+msgstr "Означи го овој коментар"
 
 #: templates/comments/flag.html:7
 msgid "Really flag this comment?"
-msgstr ""
+msgstr "Навистина сакате да го означите овој коментар?"
 
 #: templates/comments/flag.html:12
 msgid "Flag"
-msgstr ""
+msgstr "Означи"
 
 #: templates/comments/flagged.html:4
 msgid "Thanks for flagging"
-msgstr ""
+msgstr "Ви благодариме за означувањето"
 
 #: templates/comments/form.html:2
 msgid "Leave a comment"
-msgstr ""
+msgstr "Остави коментар"
 
 #: templates/comments/form.html:19 templates/comments/form.html.py:49
 #: templates/comments/preview.html:34
 msgid "Post"
-msgstr ""
+msgstr "Објави"
 
 #: templates/comments/form.html:20 templates/comments/form.html.py:50
 #: templates/comments/preview.html:35
 msgid "Preview"
-msgstr ""
+msgstr "Преглед"
 
 #: templates/comments/list.html:3
 msgid "Comments"
-msgstr ""
+msgstr "Коментари"
 
 #: templates/comments/list.html:7
 msgid "said"
-msgstr ""
+msgstr "кажа"
 
 #: templates/comments/posted.html:4
 msgid "Thanks for commenting"
-msgstr ""
+msgstr "Ви благодариме за коментарот"
 
 #: templates/comments/posted.html:7
 msgid "Thank you for your comment"
-msgstr ""
+msgstr "Ви благодариме за коментарот"
 
 #: templates/comments/posted.html:10 templates/comments/posted.html.py:12
 msgid "Go back"
-msgstr ""
+msgstr "Вратете се назад"
 
 #: templates/comments/preview.html:4 templates/comments/preview.html.py:17
 msgid "Preview your comment"
-msgstr ""
+msgstr "Прегледајте го коментарот"
 
 #: templates/comments/preview.html:15
 msgid "Please correct the error below"
 msgid_plural "Please correct the errors below"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ве молиме поправете ја грешката подоле"
+msgstr[1] "Ве молиме поправете ги грешките подоле"
 
 #: templates/comments/preview.html:20
 msgid "and"
-msgstr ""
+msgstr "и"
 
 #: templates/comments/preview.html:20
 msgid "Post your comment"
-msgstr ""
+msgstr "Објавете го коментарот"
 
 #: templates/comments/preview.html:20
 msgid "or make changes"
-msgstr ""
+msgstr "или направете промени"
 
 #: templates/invite/invite.html:132
 msgid "Like"
-msgstr ""
+msgstr "Like"
 
 #: templates/invite/invite.html:138
 msgid "Tweet"
-msgstr ""
+msgstr "Tweet"
 
 #: templates/invite/invite.html:163
 msgid "Connect with me on e-cidadania!"
-msgstr ""
+msgstr "Поврзи се со мене на e-cidadania!"
 
 #: templates/invite/invite.html:187 templates/invite/invite_plain.txt:3
 msgid "Someone sent you an invitation to join e-cidadania!"
-msgstr ""
+msgstr "Некој ти пратил порака за да се приклучиш на e-cidadania!"
 
 #: templates/invite/invite.html:190
 #, python-format
 msgid ""
 "\n"
-"                                        <a href=\"http://ecidadania.org\">e-"
-"cidadania</a> is an e-democracy platform for citizen participation. More "
-"clearly, it's for direct democracy in every one if its shapes,\n"
-"                                        from 99%% movement, 15M to official "
-"participative budgets. The message that was sent to you follows:\n"
+"                                        <a href=\"http://ecidadania.org\">e-cidadania</a> is an e-democracy platform for citizen participation. More clearly, it's for direct democracy in every one if its shapes,\n"
+"                                        from 99%% movement, 15M to official participative budgets. The message that was sent to you follows:\n"
 "                                        "
 msgstr ""
 
@@ -390,18 +387,15 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"You have been invited to join e-cidadania, an e-democracy platform for "
-"citizen participation. More clearly, it's for direct democracy in every one "
-"of its shapes, from 99%% movement, 15M to official participative budgets. "
-"The message that was sent to you follows:\n"
+"You have been invited to join e-cidadania, an e-democracy platform for citizen participation. More clearly, it's for direct democracy in every one of its shapes, from 99%% movement, 15M to official participative budgets. The message that was sent to you follows:\n"
 msgstr ""
 
 #: templates/invite/invite_plain.txt:9
 msgid "Join e-cidadania today in http://ecidadania.org"
-msgstr ""
+msgstr "Приклучите се на e-cidadania денеска на http://ecidadania.org"
 
 #: templates/invite/invite_plain.txt:11
 msgid ""
 "If you have any questions dont hesitate and send us a mail to "
 "support@ecidadania.org."
-msgstr ""
+msgstr "Ако имате било какви прашања пишете на support@ecidadania.org."

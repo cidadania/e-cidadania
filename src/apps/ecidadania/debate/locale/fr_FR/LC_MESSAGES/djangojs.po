@@ -1,66 +1,93 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
+# Translators:
+#  <hugo.deslongchamps@googlemail.com>, 2013.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 11:55+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"PO-Revision-Date: 2013-03-14 14:26+0000\n"
+"Last-Translator: hugodeslongchamps <hugo.deslongchamps@googlemail.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/ecidadania/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: static/js/debate_board.js:12
 msgid "Write here your title"
-msgstr ""
+msgstr "Entrer votre titre ici"
 
 #: static/js/debate_board.js:13
 msgid "Write here your message"
-msgstr ""
+msgstr "Entrer votre message ici"
 
-#: static/js/debate_board.js:14
+#: static/js/debate_board.js:14 static/js/debate_board.js.c:28
 msgid "Edit"
-msgstr ""
+msgstr "Editer"
 
-#: static/js/debate_board.js:15
+#: static/js/debate_board.js:15 static/js/debate_board.js.c:27
 msgid "View"
-msgstr ""
+msgstr "Afficher"
 
 #: static/js/debate_board.js:16
 msgid "There has been an error."
-msgstr ""
+msgstr "Une erreur s'est produite."
 
 #: static/js/debate_board.js:17
-msgid "Couldn't create note."
-msgstr ""
+msgid "Could't delete column or row."
+msgstr "Impossible de supprimer la colonne ou rangée."
 
 #: static/js/debate_board.js:18
-msgid "Couldn't get note data."
-msgstr ""
+msgid "Couldn't create note."
+msgstr "Création de la note impossible."
 
 #: static/js/debate_board.js:19
-msgid "Couldn't save note."
-msgstr ""
+msgid "Couldn't get note data."
+msgstr "Récupération de l'information du nœud impossible. "
 
 #: static/js/debate_board.js:20
-msgid "Couldn't save note position."
-msgstr ""
+msgid "Couldn't save note."
+msgstr "Sauvegarde de la note impossible."
 
 #: static/js/debate_board.js:21
-msgid "Couldn't delete note."
-msgstr ""
+msgid "Couldn't save note position."
+msgstr "Sauvegarde de la position du nœud impossible."
 
 #: static/js/debate_board.js:22
-msgid "Are you sure?"
-msgstr ""
+msgid "Couldn't delete note."
+msgstr "Suppression de la note impossible."
 
 #: static/js/debate_board.js:23
+msgid "There must be at least one column or row in the table."
+msgstr "Il doit y avoir au moins une colonne ou une rangée dans le tableau."
+
+#: static/js/debate_board.js:24
+msgid "Couln't create row or column."
+msgstr "Création de la colonne ou rangée impossible."
+
+#: static/js/debate_board.js:25
+msgid "Are you sure?"
+msgstr "Vous êtes sûr?"
+
+#: static/js/debate_board.js:26
 msgid "Comment"
-msgstr ""
+msgstr "Commentaire"
+
+#: static/js/debate_board.js:29
+msgid "Delete note"
+msgstr "Suprimer la note"
+
+#: static/js/debate_board.js:30
+msgid "Caution"
+msgstr "Attention"
+
+#: static/js/debate_board.js:31
+msgid ""
+"You are adding too much columns. We put no limit,     but too many columns "
+"will be a problem in smaller screens."
+msgstr "Vous ajoutez trop de colonnes. Nous ne posons pas de limites, mais un nombre trop important de colonnes posera problème sur les petits écrans."

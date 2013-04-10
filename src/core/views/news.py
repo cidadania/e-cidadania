@@ -20,7 +20,7 @@
 
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
-from django.shortcuts import  get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import FormView
@@ -42,9 +42,10 @@ class ListNews(ListView):
     template_name = 'news/news_list.html'
 
     def get_queryset(self):
-        news = Post.objects.all().filter(pub_index = True)
+        news = Post.objects.all().filter(pub_index=True)
 
         return news
+
 
 class AddPost(FormView):
 
@@ -54,10 +55,10 @@ class AddPost(FormView):
     """
     form_class = NewsForm
     template_name = 'news/post_form.html'
-    
+
     def get_success_url(self):
         return '/news/'
-    
+
     def form_valid(self, form):
         form_uncommited = form.save(commit=False)
         form_uncommited.author = self.request.user
@@ -65,11 +66,11 @@ class AddPost(FormView):
         form_uncommited.save()
         messages.success(self.request, _('Post added successfully.'))
         return super(AddPost, self).form_valid(form)
-        
+
     @method_decorator(permission_required('news.add_post'))
     def dispatch(self, *args, **kwargs):
         return super(AddPost, self).dispatch(*args, **kwargs)
-        
+
 
 class ViewPost(DetailView):
 
@@ -78,11 +79,11 @@ class ViewPost(DetailView):
     """
     context_object_name = 'news'
     template_name = 'news/post_detail_index.html'
-    
+
     def get_object(self):
         post_id = self.kwargs['post_id']
-        return get_object_or_404(Post, pk = post_id)
-    
+        return get_object_or_404(Post, pk=post_id)
+
 
 class EditPost(UpdateView):
 
@@ -92,11 +93,11 @@ class EditPost(UpdateView):
     model = Post
     template_name = 'news/post_form.html'
     success_url = '/'
-    
+
     def get_object(self):
         cur_post = get_object_or_404(Post, pk=self.kwargs['post_id'])
         return cur_post
-        
+
     @method_decorator(permission_required('news.change_post'))
     def dispatch(self, *args, **kwargs):
         return super(EditPost, self).dispatch(*args, **kwargs)
@@ -109,10 +110,10 @@ class DeletePost(DeleteView):
     administrators or site admins.
     """
     success_url = '/'
-    
+
     def get_object(self):
-        return get_object_or_404(Post, pk = self.kwargs['post_id'])
-    
+        return get_object_or_404(Post, pk=self.kwargs['post_id'])
+
     @method_decorator(permission_required('news.delete_post'))
     def dispatch(self, *args, **kwargs):
         return super(DeletePost, self).dispatch(*args, **kwargs)

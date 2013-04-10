@@ -23,21 +23,21 @@
                 type: "POST",
                 url: "../support/",
                 data: { propid: proposal },
-               success: function(data)
-               {
-               var cur_votes = $("div.span1 p");
-               cur_votes.text(cur_votes.text()*1+1);
-               $("div.span1 button").attr('disabled', 'disabled');
-
-               }
-
+                success: function(data) {
+                    var cur_votes = $("div.span1 p");
+                    cur_votes.text(cur_votes.text()*1+1);
+                    $("div.span1 button").attr('disabled', 'disabled');
+                    $("div.span1 button").tooltip('show');
+                    setTimeout(function(){$("div.span1 button").tooltip('hide')},2000);
+                }
             });
 
             request.fail(function(jqXHR, textStatus) {
-                $("#jsnotify").notify("create", {
-                    title:"Couldn't vote the proposal",
+                $.gritter.add({
+                    title:"Coulnd't vote the proposal",
                     text:"There has been an error." + textStatus,
-                    icon:"alert.png"
+                    icon:"http://ecidadania.org/static/assets/icons/alert.png",
+                    expires: 0
                 });
             })
         }
@@ -60,8 +60,8 @@
         <div class="span12">
             <div class="row proposal-wrapper">
                 <div class="span1">
-                    <p style="line-height:30px;font-size:30px;margin-left:5px;">{{ support_votes_count }}</p>
-                    <button style="margin-left:-15px;" onclick="upvote({{ proposal.id }})" class="btn btn-small" {% if user in proposal.support_votes.all %}disabled="disabled"{% endif %}>{% trans "support" %}</button>
+                    <p style="line-height:30px;font-size:30px;margin-left:5px;">{{ proposal.support_votes.count }}</p>
+                    <button style="margin-left:-15px;" onclick="upvote({{ proposal.id }})" class="btn btn-small" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{% trans 'Thanks for supporting!' %}" {% if user in proposal.support_votes.all %}disabled="disabled"{% endif %}>{% trans "support" %}</button>
                 </div>
                 <div class="span10">
                     <div class="proposal-title">{{ proposal.title }}</div>
@@ -91,7 +91,7 @@
     </div>
 
     <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/proposal_tools.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/map_tools.js"></script>
     <script type="text/javascript">toggleMap();viewMap( {{ proposal.latitude }}, {{ proposal.longitude }} );</script>
 
 {% endblock %}

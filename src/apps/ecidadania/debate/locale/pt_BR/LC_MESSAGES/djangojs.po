@@ -1,0 +1,94 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Enrico Nicoletto <enrico.BR@gmx.co.uk>, 2013.
+# Felipe Vieira <felipe29vieira@gmail.com>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
+"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"PO-Revision-Date: 2013-03-14 16:12+0000\n"
+"Last-Translator: felipevieira <felipe29vieira@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/ecidadania/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: static/js/debate_board.js:12
+msgid "Write here your title"
+msgstr "Escreva aqui seu título"
+
+#: static/js/debate_board.js:13
+msgid "Write here your message"
+msgstr "Escreva aqui sua mensagem"
+
+#: static/js/debate_board.js:14 static/js/debate_board.js.c:28
+msgid "Edit"
+msgstr "Editar"
+
+#: static/js/debate_board.js:15 static/js/debate_board.js.c:27
+msgid "View"
+msgstr "Ver"
+
+#: static/js/debate_board.js:16
+msgid "There has been an error."
+msgstr "Ocorreu um erro."
+
+#: static/js/debate_board.js:17
+msgid "Could't delete column or row."
+msgstr "Não foi possível remover coluna ou linha"
+
+#: static/js/debate_board.js:18
+msgid "Couldn't create note."
+msgstr "Não foi possível criar a nota."
+
+#: static/js/debate_board.js:19
+msgid "Couldn't get note data."
+msgstr "Não foi possível obter dados da nota."
+
+#: static/js/debate_board.js:20
+msgid "Couldn't save note."
+msgstr "Não foi possível salvar a nota."
+
+#: static/js/debate_board.js:21
+msgid "Couldn't save note position."
+msgstr "Não foi possível salvar a posição da nota."
+
+#: static/js/debate_board.js:22
+msgid "Couldn't delete note."
+msgstr "Não foi possível excluir a nota."
+
+#: static/js/debate_board.js:23
+msgid "There must be at least one column or row in the table."
+msgstr "Deve haver pelo menos uma coluna ou linha na tabela"
+
+#: static/js/debate_board.js:24
+msgid "Couln't create row or column."
+msgstr "Não foi possível criar linha ou coluna"
+
+#: static/js/debate_board.js:25
+msgid "Are you sure?"
+msgstr "Você tem certeza?"
+
+#: static/js/debate_board.js:26
+msgid "Comment"
+msgstr "Comentário"
+
+#: static/js/debate_board.js:29
+msgid "Delete note"
+msgstr "Excluir nota"
+
+#: static/js/debate_board.js:30
+msgid "Caution"
+msgstr "Atenção"
+
+#: static/js/debate_board.js:31
+msgid ""
+"You are adding too much columns. We put no limit,     but too many columns "
+"will be a problem in smaller screens."
+msgstr "Vocês está inserindo muitas colunas. Nós não estabelecemos limite, mas muitas colunas serão um problema em telas menores"

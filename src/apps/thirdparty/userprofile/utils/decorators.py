@@ -4,6 +4,7 @@
 from django.template import loader, Context, RequestContext, TemplateSyntaxError
 from django.http import HttpResponse
 
+
 def render_response(template_prefix=None, always_use_requestcontext=True):
     """
     Create a decorator which can be used as a shortcut to render templates to
@@ -47,9 +48,9 @@ def render_response(template_prefix=None, always_use_requestcontext=True):
                 elif len_tuple == 3:
                     template_name, namespace, context_processors = response
                 else:
-                    raise TemplateSyntaxError, '%s.%s function did not return a parsable tuple' % (func.__module__, func.__name__)
+                    raise TemplateSyntaxError('%s.%s function did not return a parsable tuple' % (func.__module__, func.__name__))
             else:
-                raise TemplateSyntaxError, '%s.%s function did not provide a template name or HttpResponse object' % (func.__module__, func.__name__)
+                raise TemplateSyntaxError('%s.%s function did not provide a template name or HttpResponse object' % (func.__module__, func.__name__))
 
             if always_use_requestcontext or context_processors is not None:
                 context = RequestContext(request, namespace, context_processors)

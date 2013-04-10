@@ -1,196 +1,197 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
+# Translators:
+#  <hugo.deslongchamps@googlemail.com>, 2013.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: e-cidadania\n"
+"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
 "POT-Creation-Date: 2013-01-08 11:55+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2013-02-20 13:45+0000\n"
+"Last-Translator: hugodeslongchamps <hugo.deslongchamps@googlemail.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/ecidadania/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: static/admin/js/SelectFilter2.js:47
 #, c-format
 msgid "Available %s"
-msgstr ""
+msgstr "Disponible %s"
 
 #: static/admin/js/SelectFilter2.js:54
 msgid "Filter"
-msgstr ""
+msgstr "Filtrer"
 
 #: static/admin/js/SelectFilter2.js:61
 msgid "Choose all"
-msgstr ""
+msgstr "Choisir tous"
 
 #: static/admin/js/SelectFilter2.js:67
 msgid "Add"
-msgstr ""
+msgstr "Ajouter"
 
 #: static/admin/js/SelectFilter2.js:69
 msgid "Remove"
-msgstr ""
+msgstr "Supprimer"
 
 #: static/admin/js/SelectFilter2.js:75
 #, c-format
 msgid "Chosen %s"
-msgstr ""
+msgstr "Choisi %s"
 
 #: static/admin/js/SelectFilter2.js:76
 msgid "Select your choice(s) and click "
-msgstr ""
+msgstr "Sélectionner votre/vos choix et cliquer"
 
 #: static/admin/js/SelectFilter2.js:81
 msgid "Clear all"
-msgstr ""
+msgstr "Tout effacer"
 
 #: static/admin/js/actions.js:18 static/admin/js/actions.min.js:10
 msgid "%(sel)s of %(cnt)s selected"
 msgid_plural "%(sel)s of %(cnt)s selected"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(sel)s de %(cnt)s sélectionné"
+msgstr[1] "%(sel)s de %(cnt)s sélectionné"
 
 #: static/admin/js/actions.js:111 static/admin/js/actions.min.js:89
 msgid ""
 "You have unsaved changes on individual editable fields. If you run an "
 "action, your unsaved changes will be lost."
-msgstr ""
+msgstr "Vous avez des modifications non enregistrée sur des champs modifiables individuels. Si vous faite une action, vos changements non sauvegardés seront perdus."
 
 #: static/admin/js/actions.js:123 static/admin/js/actions.min.js:97
 msgid ""
 "You have selected an action, but you haven't saved your changes to "
 "individual fields yet. Please click OK to save. You'll need to re-run the "
 "action."
-msgstr ""
+msgstr "Vous avez sélectionner une action, mais vous n'avez pas sauvegardé les changements faits sur les champs individuels. Veuillez s'il vous plaît cliquer sur OK pour sauvegarder. Il faudra relancer l'action."
 
 #: static/admin/js/actions.js:125 static/admin/js/actions.min.js:97
 msgid ""
 "You have selected an action, and you haven't made any changes on individual "
 "fields. You're probably looking for the Go button rather than the Save "
 "button."
-msgstr ""
+msgstr "Vous avez sélectionner une action, et vous n'avez pas fait de changements sur des champs individuels. Vous cherchez sûrement le bouton Go plutôt que le bouton sauvegarder"
 
 #: static/admin/js/calendar.js:26 static/admin/js/dateparse.js:32
 msgid ""
-"January February March April May June July August September October November "
-"December"
-msgstr ""
+"January February March April May June July August September October November"
+" December"
+msgstr "Janvier Février Mars Avril Mai Juin Juillet Août Septembre Octobre Novembre Décembre"
 
 #: static/admin/js/calendar.js:27
 msgid "S M T W T F S"
-msgstr ""
+msgstr "D L M M J V S"
 
 #: static/admin/js/collapse.js:9 static/admin/js/collapse.js.c:21
 #: static/admin/js/collapse.min.js:6 static/admin/js/collapse.min.js.c:14
 msgid "Show"
-msgstr ""
+msgstr "Montrer"
 
 #: static/admin/js/collapse.js:16 static/admin/js/collapse.min.js:10
 msgid "Hide"
-msgstr ""
+msgstr "Cacher"
 
 #: static/admin/js/dateparse.js:33
 msgid "Sunday Monday Tuesday Wednesday Thursday Friday Saturday"
-msgstr ""
+msgstr "Dimanche Lundi Mardi Mercredi Jeudi Vendredi Samedi"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:49
 #: static/admin/js/admin/DateTimeShortcuts.js:85
 msgid "Now"
-msgstr ""
+msgstr "Maintenant"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:53
 msgid "Clock"
-msgstr ""
+msgstr "Horloge"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:81
 msgid "Choose a time"
-msgstr ""
+msgstr "Choisir une heure"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:86
 msgid "Midnight"
-msgstr ""
+msgstr "Minuit"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:87
 msgid "6 a.m."
-msgstr ""
+msgstr "6 heures"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:88
 msgid "Noon"
-msgstr ""
+msgstr "Midi"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:92
 #: static/admin/js/admin/DateTimeShortcuts.js:200
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:140
 #: static/admin/js/admin/DateTimeShortcuts.js:193
 msgid "Today"
-msgstr ""
+msgstr "Aujourd’hui"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:144
 msgid "Calendar"
-msgstr ""
+msgstr "Calendrier"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:191
 msgid "Yesterday"
-msgstr ""
+msgstr "Hier"
 
 #: static/admin/js/admin/DateTimeShortcuts.js:195
 msgid "Tomorrow"
-msgstr ""
+msgstr "Demain"
 
 #: static/js/debate_board.js:12
 msgid "Write here your title"
-msgstr ""
+msgstr "Entrer votre titre ici"
 
 #: static/js/debate_board.js:13
 msgid "Write here your message"
-msgstr ""
+msgstr "Entrer votre message ici"
 
 #: static/js/debate_board.js:14
 msgid "Edit"
-msgstr ""
+msgstr "Editer"
 
 #: static/js/debate_board.js:15
 msgid "View"
-msgstr ""
+msgstr "Afficher"
 
 #: static/js/debate_board.js:16
 msgid "There has been an error."
-msgstr ""
+msgstr "Une erreur s'est produite."
 
 #: static/js/debate_board.js:17
 msgid "Couldn't create note."
-msgstr ""
+msgstr "Création de la note impossible."
 
 #: static/js/debate_board.js:18
 msgid "Couldn't get note data."
-msgstr ""
+msgstr "Récupération de l'information du nœud impossible. "
 
 #: static/js/debate_board.js:19
 msgid "Couldn't save note."
-msgstr ""
+msgstr "Sauvegarde de la note impossible."
 
 #: static/js/debate_board.js:20
 msgid "Couldn't save note position."
-msgstr ""
+msgstr "Sauvegarde de la position du nœud impossible."
 
 #: static/js/debate_board.js:21
 msgid "Couldn't delete note."
-msgstr ""
+msgstr "Suppression de la note impossible."
 
 #: static/js/debate_board.js:22
 msgid "Are you sure?"
-msgstr ""
+msgstr "Vous êtes sûr?"
 
 #: static/js/debate_board.js:23
 msgid "Comment"
-msgstr ""
+msgstr "Commentaire"

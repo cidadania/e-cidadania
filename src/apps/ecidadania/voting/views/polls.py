@@ -54,17 +54,17 @@ def add_poll(request, space_url):
     Create a new poll. Only registered users belonging to a concrete group
     are allowed to create polls. The polls are composed by a form and a choice
     formset.
-    
+
     :parameters: space_url
     :context: get_place
     """
     space = get_object_or_404(Space, url=space_url)
     poll_form = PollForm(request.POST or None)
     choice_form = ChoiceFormSet(request.POST or None, prefix="choiceform",
-        queryset= Choice.objects.none())
+        queryset=Choice.objects.none())
 
     if (has_operation_permission(request.user, space, 'voting.add_poll',
-        allow=['admins', 'mods'])):
+                                 allow=['admins', 'mods'])):
         if request.method == 'POST':
             if poll_form.is_valid() and choice_form.is_valid():
                 poll_form_uncommited = poll_form.save(commit=False)
@@ -82,11 +82,11 @@ def add_poll(request, space_url):
 
                 return HttpResponseRedirect(reverse(urln.SPACE_INDEX,
                 kwargs={'space_url': space.url}))
-                
+
         return render_to_response('voting/poll_form.html', {'form': poll_form,
             'choiceform': choice_form, 'get_place': space},
             context_instance=RequestContext(request))
-    
+
     return render_to_response('not_allowed.html',
         context_instance=RequestContext(request))
 
@@ -103,22 +103,26 @@ class ViewPoll(DetailView):
     template_name = 'voting/poll_detail.html'
 
     def get_object(self):
-        space = get_object_or_404(Space, url=self.kwargs['space_url'])
         poll = get_object_or_404(Poll, pk=self.kwargs['pk'])
-
-        if self.request.user in poll.participants.all() \
-        or datetime.date.today() >= poll.end_date \
-        or datetime.date.today() <  poll.start_date:
-            return HttpResponseRedirect(reverse(urln_voting.VIEW_RESULT,
-                kwargs={'space_url': space.url, 'pk':poll.id}))
-        else:
-            return poll
+        return poll
 
     def get_context_data(self, **kwargs):
         context = super(ViewPoll, self).get_context_data(**kwargs)
         context['get_place'] = get_object_or_404(Space,
             url=self.kwargs['space_url'])
         return context
+
+    def get(self, request, **kwargs):
+        self.object = self.get_object()
+        if self.request.user in self.object.participants.all() \
+            or datetime.date.today() >= self.object.end_date \
+                or datetime.date.today() < self.object.start_date:
+            return HttpResponseRedirect(reverse(urln_voting.VIEW_RESULT,
+                kwargs={'space_url': self.kwargs['space_url'],
+                        'pk': self.kwargs['pk']}))
+        else:
+            context = self.get_context_data(object=self.object)
+            return self.render_to_response(context)
 
 
 class ViewPollResults(DetailView):
@@ -156,8 +160,8 @@ def edit_poll(request, space_url, poll_id):
     place = get_object_or_404(Space, url=space_url)
 
     if has_operation_permission(request.user, place, 'voting.change_poll',
-        allow=['admins', 'mods']):
-     
+                                allow=['admins', 'mods']):
+
         ChoiceFormSet = inlineformset_factory(Poll, Choice)
         instance = Poll.objects.get(pk=poll_id)
         poll_form = PollForm(request.POST or None, instance=instance)
@@ -183,7 +187,7 @@ def edit_poll(request, space_url, poll_id):
                                  {'form': poll_form,
                                   'choiceform': choice_form,
                                   'get_place': place,
-                                  'pollid': poll_id,},
+                                  'pollid': poll_id, },
                                  context_instance=RequestContext(request))
     else:
         return render_to_response('not_allowed.html',
@@ -195,9 +199,9 @@ class DeletePoll(DeleteView):
     """
     Delete an existent poll. Poll deletion is only reserved to spaces
     administrators or site admins.
-    """    
+    """
     context_object_name = "get_place"
-    
+
     def get_success_url(self):
         space = self.kwargs['space_url']
         return '/spaces/%s' % (space)
@@ -205,7 +209,7 @@ class DeletePoll(DeleteView):
     def get_object(self):
         space = get_object_or_404(Space, url=self.kwargs['space_url'])
         if has_operation_permission(self.request.user, space,
-            'voting.delete_poll', allow=['admins']):
+                                    'voting.delete_poll', allow=['admins']):
             return get_object_or_404(Poll, pk=self.kwargs['poll_id'])
         else:
             self.template_name = 'not_allowed.html'
@@ -253,15 +257,14 @@ def vote_poll(request, poll_id, space_url):
     """
     space = get_object_or_404(Space, url=space_url)
     poll = get_object_or_404(Poll, pk=poll_id)
-    try :
-	choice = get_object_or_404(Choice, pk=request.POST['choice'])
+    try:
+        choice = get_object_or_404(Choice, pk=request.POST['choice'])
     except KeyError:
-    	return render_to_response('voting/poll_detail.html', {
-		    'poll': poll,
-		    'get_place': space,
-		    'error_message': "You didn't select a choice.",
-		    }, context_instance=RequestContext(request))
-
+        return render_to_response('voting/poll_detail.html', {
+            'poll': poll,
+            'get_place': space,
+            'error_message': "You didn't select a choice.",
+        }, context_instance=RequestContext(request))
 
     if request.method == 'POST' and has_space_permission(request.user, space,
     allow=['admins', 'mods', 'users']):

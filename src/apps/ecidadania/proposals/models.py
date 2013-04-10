@@ -46,19 +46,20 @@ CLOSE_REASONS = (
 )
 
 OPTIONAL_FIELDS = (
-    ('tags', _('Tags')), 
+    ('tags', _('Tags')),
     ('latitude', _('Latitude')),
     ('longitude', _('Longitude'))
 )
+
 
 class BaseProposalAbstractModel(models.Model):
 
     """
     Integrated generic relation into the proposal module, which will allow
-    the proposal module to be related to any other module in e-cidadania. 
+    the proposal module to be related to any other module in e-cidadania.
 
     .. versionadded:: 0.1.5b
-    
+
     :automatically filled fields: contype_type, object_pk
 
     """
@@ -66,7 +67,7 @@ class BaseProposalAbstractModel(models.Model):
     content_type = models.ForeignKey(ContentType, null=True, blank=True)
     object_pk = models.TextField(_('object ID'), null=True)
     content_object = generic.GenericForeignKey(ct_field="content_type", fk_field="object_pk")
-    
+
     class Meta:
         abstract = True
 
@@ -95,7 +96,7 @@ class ProposalSet(models.Model):
     """
 
     name = models.CharField(_('Name'), max_length=200, unique=True,
-                            help_text = _('Max: 200 characters'))
+                            help_text=_('Max: 200 characters'))
     # ptype = models.CharField(_('Ponderation'), choices=PONDERATIONS,
     #     max_length=20, help_text=_('Ponderation types:<br><strong>Users: \
     #     </strong>Users give support votes to the proposal, and that votes \
@@ -108,7 +109,7 @@ class ProposalSet(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, blank=True, null=True)
     debate = models.ForeignKey(Debate, blank=True, null=True,
-        help_text = _('Select the debate associated with this proposal set'))
+        help_text=_('Select the debate associated with this proposal set'))
 
     def __unicode__(self):
         return self.name
@@ -120,7 +121,7 @@ class ProposalSet(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('view-proposalset',(), {
+        return ('view-proposalset', (), {
             'space_url': self.space.url,
             'set_id': self.id
         })
@@ -145,21 +146,21 @@ class Proposal(BaseProposalAbstractModel):
     code = models.CharField(_('Code'), max_length=50, blank=True,
         null=True)
     title = models.CharField(_('Title'), max_length=100, unique=True,
-        help_text = _('Max: 200 characters'))
+        help_text=_('Max: 200 characters'))
     proposalset = models.ForeignKey(ProposalSet, related_name='proposal_in',
         blank=True, null=True, help_text=_('Proposal set in which the \
         proposal resides'))
     description = models.TextField(_('Description'), max_length=300)
     space = models.ForeignKey(Space, blank=True, null=True)
     author = models.ForeignKey(User, related_name='proposal_authors',
-        blank=True, null=True, help_text = _('Change the user that will \
+        blank=True, null=True, help_text=_('Change the user that will \
         figure as the author'))
-    tags = TagField(help_text = _('Insert here relevant words related with \
+    tags = TagField(help_text=_('Insert here relevant words related with \
         the proposal'))
     latitude = models.DecimalField(_('Latitude'), blank=True, null=True,
-        max_digits=17, decimal_places=15, help_text =_('Specify it in decimal'))
+        max_digits=17, decimal_places=15, help_text=_('Specify it in decimal'))
     longitude = models.DecimalField(_('Longitude'), blank=True, null=True,
-        max_digits=17, decimal_places=15, help_text =_('Specify it in decimal'))
+        max_digits=17, decimal_places=15, help_text=_('Specify it in decimal'))
     closed = models.NullBooleanField(default=False, blank=True)
     closed_by = models.ForeignKey(User, blank=True, null=True,
         related_name='proposal_closed_by')
@@ -167,7 +168,7 @@ class Proposal(BaseProposalAbstractModel):
         blank=True)
     merged = models.NullBooleanField(default=False, blank=True, null=True)
     merged_proposals = models.ManyToManyField('self', blank=True, null=True,
-        help_text = _("Select proposals from the list"))
+        help_text=_("Select proposals from the list"))
 
     anon_allowed = models.NullBooleanField(default=False, blank=True)
     support_votes = models.ManyToManyField(User, null=True, blank=True,
@@ -202,7 +203,7 @@ class Proposal(BaseProposalAbstractModel):
 
 
 class ProposalField(models.Model):
-    
+
     """
     Proposal Fields data model. This will store details of addition form
     fields which can be optionally added the proposal form which is residing
@@ -214,9 +215,9 @@ class ProposalField(models.Model):
 
     """
 
-    proposalset= models.ForeignKey(ProposalSet, help_text= _('Customizing \
+    proposalset= models.ForeignKey(ProposalSet, help_text=_('Customizing \
         proposal form for a proposal set'), unique=False)
-    field_name = models.CharField(max_length=100, choices=OPTIONAL_FIELDS,help_text = _('Additional field that needed to added to the proposal \
+    field_name = models.CharField(max_length=100, choices=OPTIONAL_FIELDS, help_text=_('Additional field that needed to added to the proposal \
         form'))
 
     def __unicode__(self):

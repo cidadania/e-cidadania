@@ -20,6 +20,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 from apps.thirdparty.tagging.fields import TagField
 from apps.thirdparty.tagging.models import Tag
@@ -35,7 +36,7 @@ PONDERATIONS = (
 
 
 class Poll(models.Model):
-    
+
     """
     Data model for Polls. It stores the question and some data like the space
     and dates. The most important field is "participants". It allows us to
@@ -80,13 +81,17 @@ class Poll(models.Model):
             return ('view-polls', (), {
                 'poll_id': str(self.id)})
 
+    def clean(self):
+        if self.start_date > self.end_date:
+            raise ValidationError('The start date can not be after the end date.')
+
 
 class Choice(models.Model):
     poll = models.ForeignKey(Poll)
     choice_text = models.CharField(_('Choice'), max_length=200, blank=True, null=True, help_text=_('Enter choice to be voted upon'))
-    #votes = models.IntegerField(blank=True, null=True, default='0')
+    # votes = models.IntegerField(blank=True, null=True, default='0')
     votes = models.ManyToManyField(User, blank=True, null=True)
-    
+
     @models.permalink
     def get_absolute_url(self):
         if self.space is not None:
@@ -113,7 +118,7 @@ class Voting(models.Model):
 
     proposalsets = models.ManyToManyField(ProposalSet, blank=True, null=True)
 
-    proposals = models.ManyToManyField(Proposal, blank = True, null=True, limit_choices_to = {'proposalset__isnull': True})
+    proposals = models.ManyToManyField(Proposal, blank=True, null=True, limit_choices_to={'proposalset__isnull': True})
 
     @models.permalink
     def get_absolute_url(self):
@@ -124,6 +129,10 @@ class Voting(models.Model):
         else:
             return ('view-votings', (), {
                 'voting_id': str(self.id)})
+
+    def clean(self):
+        if self.start_date > self.end_date:
+            raise ValidationError('The start date can not be after the end date.')
 
 
 class ConfirmVote(models.Model):
@@ -142,4 +151,3 @@ class ConfirmVote(models.Model):
     def get_approve_url(self):
         site = Site.objects.all()[0]
         return "http://%s%svote/approve/%s" % (site.domain, self.proposal.get_absolute_url(), self.token)
-

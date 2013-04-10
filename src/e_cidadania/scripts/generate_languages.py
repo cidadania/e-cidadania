@@ -15,19 +15,20 @@ __author__ = "Oscar Carballal Prego <oscar.carballal@cidadania.coop>"
 __license__ = "GPLv3"
 __version__ = "0.6"
 
+
 class Language():
 
     """
     Language class.
     """
     def __init__(self):
-        
+
         """
         Store all the applications and languages installed in the platfom
         """
         # Get current work directory and add it to sys.path so we can import
         # the project settings.
-        self.cwd = os.getcwd() # Remove scripts directory just in case
+        self.cwd = os.getcwd()  # Remove scripts directory just in case
         sys.path.append(self.cwd)
 
         # Get the languages configured in settings.py and the installed
@@ -41,24 +42,24 @@ Probable cause: the script is not being executed from the project root (usually 
         # You must put here the name off you applications variable in the form
         # "settings.YOURVARNAME"
         APPLICATIONS = settings.ECIDADANIA_MODULES
-        
+
         self.applications = APPLICATIONS
         self.languages = settings.LANGUAGES
         self.appnames = []
         self.appdirs = []
-        
+
         # We are going to add all the applications of the project, and create
         # a dictionary with appname:appdir values
         print "\n >> Populating variables with applications...\n"
         for app in self.applications:
-            appdata = app.split('.') # Separate all components
-            #appdata.pop(0) # Remove project name, it's useless. This was for django <= 1.3
-            app_path_list = appdata # This will leave us with an useful route to the application
+            appdata = app.split('.')  # Separate all components
+            # appdata.pop(0) # Remove project name, it's useless. This was for django <= 1.3
+            app_path_list = appdata  # This will leave us with an useful route to the application
             app_path = '/'.join(app_path_list)
-            appname = app_path_list[-1] # Get the application name (last value)
+            appname = app_path_list[-1]  # Get the application name (last value)
             self.appnames.append(appname)
             self.appdirs.append(app_path)
-            
+
         # When we exit the for loop, create a dictionary with appname:app_path
         self.appDict = dict(zip(self.appnames, self.appdirs))
         print self.appDict
@@ -85,9 +86,8 @@ Probable cause: the script is not being executed from the project root (usually 
                 a = subprocess.Popen(command + "-l %s" % (lang[0]), shell=True)
             subprocess.Popen.wait(a)
 
-            
     def make(self):
-        
+
         """
         Generate the language catalogs for the application and site root.
         """
@@ -99,10 +99,9 @@ Probable cause: the script is not being executed from the project root (usually 
         print "\n>> Installed applications:"
         for app in self.appDict.keys():
             print ' - ' + app
-        
+
         self._iterator('django-admin.py makemessages ', 'Generating')
         self._iterator('django-admin.py makemessages -d djangojs ', 'Generating JavaScript')
-
 
     def compile(self):
 
@@ -118,9 +117,7 @@ Probable cause: the script is not being executed from the project root (usually 
         for app in self.appDict.keys():
             print ' - ' + app
 
-        self._iterator('django-admin.py compilemessages ', 'Compiling')        
-        
-
+        self._iterator('django-admin.py compilemessages ', 'Compiling')
 
     def clean(self):
 
@@ -128,8 +125,7 @@ Probable cause: the script is not being executed from the project root (usually 
         Removes the language installed catalogs in the platform, leaving the
         locale directories clean for new catalogs.
         """
-        print '\n>> WARNING: This command will remove ALL the language \
-catalogs, having to rebuild and translate them all.'
+        print '\n>> WARNING: This command will remove ALL the language catalogs, having to rebuild and translate them all.'
         raw_input('\n Continue? (Ctrl-C to quit)')
         for app, appdir in self.appDict.items():
             os.chdir(self.cwd + '/' + appdir)
@@ -145,23 +141,15 @@ catalogs, having to rebuild and translate them all.'
             subprocess.Popen.wait(a)
 
 lang = Language()
-parser = argparse.ArgumentParser(description='e-cidadania language catalog' \
-    ' generator. This script manages all the .po and .mo files from templates,' \
-    ' python code and javascript i18n (if used).')
+parser = argparse.ArgumentParser(description='e-cidadania language catalog generator. This script manages all the .po and .mo files from templates, python code and javascript i18n (if used).')
 subparser = parser.add_subparsers()
-parser_make = subparser.add_parser('make', help='Create all the language' \
-                                                ' catalogs for translation,'\
-                                                ' including JavaScript.')
+parser_make = subparser.add_parser('make', help='Create all the language catalogs for translation including JavaScript.')
 parser_make.set_defaults(func=lang.make)
 
-parser_compile = subparser.add_parser('compile', help='Compile all the language' \
-                                                      ' catalogs for use.')
+parser_compile = subparser.add_parser('compile', help='Compile all the language catalogs for use.')
 parser_compile.set_defaults(func=lang.compile)
 
-parser_clean = subparser.add_parser('clean', help='Delete all the language catalogs.' \
-                                                  ' After this you will'\
-                                                  ' have to rebuild the catalogs' \
-                                                  ' and translate them.')
+parser_clean = subparser.add_parser('clean', help='Delete all the language catalogs. After this you will have to rebuild the catalogs and translate them.')
 parser_clean.set_defaults(func=lang.clean)
 
 

@@ -21,7 +21,8 @@
 Change environment according to the parameters.
 """
 
-import os, sys
+import os
+import sys
 
 from django.core.management.base import BaseCommand, CommandError
 from django.core import management
@@ -34,9 +35,9 @@ class Command(BaseCommand):
     args = "<settings_file> [development, production]"
     help = "This command will run the django development server with the \
     specified configuration file, which can be 'production' or 'development'."
-    
+
     def handle(self, *args, **options):
-    
+
         """
         """
         if args[0] == 'development':

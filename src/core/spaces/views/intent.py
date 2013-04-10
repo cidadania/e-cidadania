@@ -42,7 +42,7 @@ def add_intent(request, space_url):
     Returns a page where the logged in user can click on a "I want to
     participate" button, which after sends an email to the administrator of
     the space with a link to approve the user to use the space.
-    
+
     :attributes:  space, intent, token
     :rtype: Multiple entity objects.
     :context: space_url, heading
@@ -57,7 +57,7 @@ def add_intent(request, space_url):
     try:
         intent = Intent.objects.get(user=request.user, space=space)
         heading = _("Access has been already authorized")
-        
+
     except Intent.DoesNotExist:
         token = hashlib.md5("%s%s%s" % (request.user, space,
                             datetime.datetime.now())).hexdigest()
@@ -66,7 +66,7 @@ def add_intent(request, space_url):
         subject = _("New participation request")
         body = _("User {0} wants to participate in space {1}.\n \
                 Please click on the link below to approve.\n {2}").format(
-                request.user.username, space.name, intent.get_approve_url())
+            request.user.username, space.name, intent.get_approve_url())
         heading = _("Your request is being processed.")
         send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, mails)
 
@@ -92,12 +92,12 @@ class ValidateIntent(DetailView):
         # Makes sure the space ins't already in the cache before hitting the
         # databass
         space_url = self.kwargs['space_url']
-        space_object = get_or_insert_object_in_cache(Space, space_url, 
+        space_object = get_or_insert_object_in_cache(Space, space_url,
             url=space_url)
 
         if has_space_permission(self.request.user, space_object,
-            allow=['admins','mods']) \
-        or has_all_permissions(self.request.user):
+            allow=['admins', 'mods']) \
+                or has_all_permissions(self.request.user):
             try:
                 intent = Intent.objects.get(token=self.kwargs['token'])
                 intent.space.users.add(intent.user)
@@ -106,7 +106,7 @@ class ValidateIntent(DetailView):
                 messages.success(self.request, _("Authorization successful"))
 
             except Intent.DoesNotExist:
-                self.status  = _("The requested intent does not exist!")
+                self.status = _("The requested intent does not exist!")
 
             return space_object
 

@@ -3,8 +3,21 @@
 {% load comments %}
 
 {% block title %}{% trans "View proposals" %}{% endblock %}
-{% block logo %}<a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>{% endblock %}
-{% block banner %}<img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />{% endblock %}
+{% block logo %}
+    {% if get_place %}
+        <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
+    {% endif %}
+{% endblock %}
+
+{% block banner %}
+    {% if get_place %}
+        <img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />
+    {% endif %}
+{% endblock %}
+
+{% block space %}
+    <a class="brand" href="{{ get_place.get_absolute_url }}">{{ get_place.name }}</a>
+{% endblock %}
 
 {% block content %}
 
@@ -25,7 +38,7 @@
                     {% endif %}
 
                     <div class="span1">
-                        <p style="line-height:30px;font-size:30px;margin-left:5px;">{{ p.support_votes__count }}</p>
+                        <p style="line-height:30px;font-size:30px;margin-left:5px;">{{ p.support_votes.count }}</p>
                         <button style="margin-left:-15px;" onclick="upvote({{ p.id }})" class="btn btn-small" {% if user in p.support_votes.all %}disabled="disabled"{% endif %}>{% trans "support" %}</button>
                     </div>
 

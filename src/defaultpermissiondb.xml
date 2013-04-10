@@ -1,196 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<django-objects version="1.0">
+<django -objects version="1.0">
     <object pk="16" model="contenttypes.contenttype">
-        <field type="CharField" name="name">Document</field>
-        <field type="CharField" name="app_label">spaces</field>
-        <field type="CharField" name="model">document</field>
-    </object>
+        <field type="CharField" name="name">Document< /field>
+        <field type="CharField" name="app_label">spaces< /field>
+        <field type="CharField" name="model">document< /field>
+    < /object>
     <object pk="15" model="contenttypes.contenttype">
-        <field type="CharField" name="name">Entity</field>
-        <field type="CharField" name="app_label">spaces</field>
-        <field type="CharField" name="model">entity</field>
-    </object>
+        <field type="CharField" name="name">Entity< /field>
+        <field type="CharField" name="app_label">spaces< /field>
+        <field type="CharField" name="model">entity< /field>
+    < /object>
     <object pk="17" model="contenttypes.contenttype">
-        <field type="CharField" name="name">Event</field>
-        <field type="CharField" name="app_label">spaces</field>
-        <field type="CharField" name="model">event</field>
-    </object>
+        <field type="CharField" name="name">Event< /field>
+        <field type="CharField" name="app_label">spaces< /field>
+        <field type="CharField" name="model">event< /field>
+    < /object>
     <object pk="26" model="contenttypes.contenttype">
-        <field type="CharField" name="name">Proposal</field>
-        <field type="CharField" name="app_label">proposals</field>
-        <field type="CharField" name="model">proposal</field>
-    </object>
+        <field type="CharField" name="name">Proposal< /field>
+        <field type="CharField" name="app_label">proposals< /field>
+        <field type="CharField" name="model">proposal< /field>
+    < /object>
     <object pk="25" model="contenttypes.contenttype">
-        <field type="CharField" name="name">Proposal set</field>
-        <field type="CharField" name="app_label">proposals</field>
-        <field type="CharField" name="model">proposalset</field>
-    </object>
+        <field type="CharField" name="name">Proposal set< /field>
+        <field type="CharField" name="app_label">proposals< /field>
+        <field type="CharField" name="model">proposalset< /field>
+    < /object>
     <object pk="27" model="contenttypes.contenttype">
-        <field type="CharField" name="name">ProposalField</field>
-        <field type="CharField" name="app_label">proposals</field>
-        <field type="CharField" name="model">proposalfield</field>
-    </object>
+        <field type="CharField" name="name">ProposalField< /field>
+        <field type="CharField" name="app_label">proposals< /field>
+        <field type="CharField" name="model">proposalfield< /field>
+    < /object>
     <object pk="14" model="contenttypes.contenttype">
-        <field type="CharField" name="name">Space</field>
-        <field type="CharField" name="app_label">spaces</field>
-        <field type="CharField" name="model">space</field>
-    </object>
+        <field type="CharField" name="name">Space< /field>
+        <field type="CharField" name="app_label">spaces< /field>
+        <field type="CharField" name="model">space< /field>
+    < /object>
     <object pk="10" model="contenttypes.contenttype">
-        <field type="CharField" name="name">avatar</field>
-        <field type="CharField" name="app_label">userprofile</field>
-        <field type="CharField" name="model">avatar</field>
-    </object>
+        <field type="CharField" name="name">avatar< /field>
+        <field type="CharField" name="app_label">userprofile< /field>
+        <field type="CharField" name="model">avatar< /field>
+    < /object>
     <object pk="24" model="contenttypes.contenttype">
-        <field type="CharField" name="name">category</field>
-        <field type="CharField" name="app_label">proposals</field>
-        <field type="CharField" name="model">category</field>
-    </object>
+        <field type="CharField" name="name">category< /field>
+        <field type="CharField" name="app_label">proposals< /field>
+        <field type="CharField" name="model">category< /field>
+    < /object>
     <object pk="36" model="contenttypes.contenttype">
-        <field type="CharField" name="name">choice</field>
-        <field type="CharField" name="app_label">voting</field>
-        <field type="CharField" name="model">choice</field>
-    </object>
+        <field type="CharField" name="name">choice< /field>
+        <field type="CharField" name="app_label">voting< /field>
+        <field type="CharField" name="model">choice< /field>
+    < /object>
     <object pk="21" model="contenttypes.contenttype">
-        <field type="CharField" name="name">city</field>
-        <field type="CharField" name="app_label">accounts</field>
-        <field type="CharField" name="model">city</field>
-    </object>
+        <field type="CharField" name="name">city< /field>
+        <field type="CharField" name="app_label">accounts< /field>
+        <field type="CharField" name="model">city< /field>
+    < /object>
     <object pk="31" model="contenttypes.contenttype">
-        <field type="CharField" name="name">column</field>
-        <field type="CharField" name="app_label">debate</field>
-        <field type="CharField" name="model">column</field>
-    </object>
+        <field type="CharField" name="name">column< /field>
+        <field type="CharField" name="app_label">debate< /field>
+        <field type="CharField" name="model">column< /field>
+    < /object>
     <object pk="7" model="contenttypes.contenttype">
-        <field type="CharField" name="name">comment</field>
-        <field type="CharField" name="app_label">comments</field>
-        <field type="CharField" name="model">comment</field>
-    </object>
+        <field type="CharField" name="name">comment< /field>
+        <field type="CharField" name="app_label">comments< /field>
+        <field type="CharField" name="model">comment< /field>
+    < /object>
     <object pk="8" model="contenttypes.contenttype">
-        <field type="CharField" name="name">comment flag</field>
-        <field type="CharField" name="app_label">comments</field>
-        <field type="CharField" name="model">commentflag</field>
-    </object>
+        <field type="CharField" name="name">comment flag< /field>
+        <field type="CharField" name="app_label">comments< /field>
+        <field type="CharField" name="model">commentflag< /field>
+    < /object>
     <object pk="28" model="contenttypes.contenttype">
-        <field type="CharField" name="name">confirm vote</field>
-        <field type="CharField" name="app_label">proposals</field>
-        <field type="CharField" name="model">confirmvote</field>
-    </object>
+        <field type="CharField" name="name">confirm vote< /field>
+        <field type="CharField" name="app_label">proposals< /field>
+        <field type="CharField" name="model">confirmvote< /field>
+    < /object>
     <object pk="4" model="contenttypes.contenttype">
-        <field type="CharField" name="name">content type</field>
-        <field type="CharField" name="app_label">contenttypes</field>
-        <field type="CharField" name="model">contenttype</field>
-    </object>
+        <field type="CharField" name="name">content type< /field>
+        <field type="CharField" name="app_label">contenttypes< /field>
+        <field type="CharField" name="model">contenttype< /field>
+    < /object>
     <object pk="19" model="contenttypes.contenttype">
-        <field type="CharField" name="name">country</field>
-        <field type="CharField" name="app_label">accounts</field>
-        <field type="CharField" name="model">country</field>
-    </object>
+        <field type="CharField" name="name">country< /field>
+        <field type="CharField" name="app_label">accounts< /field>
+        <field type="CharField" name="model">country< /field>
+    < /object>
     <object pk="30" model="contenttypes.contenttype">
-        <field type="CharField" name="name">debate</field>
-        <field type="CharField" name="app_label">debate</field>
-        <field type="CharField" name="model">debate</field>
-    </object>
+        <field type="CharField" name="name">debate< /field>
+        <field type="CharField" name="app_label">debate< /field>
+        <field type="CharField" name="model">debate< /field>
+    < /object>
     <object pk="11" model="contenttypes.contenttype">
-        <field type="CharField" name="name">email validation</field>
-        <field type="CharField" name="app_label">userprofile</field>
-        <field type="CharField" name="model">emailvalidation</field>
-    </object>
+        <field type="CharField" name="name">email validation< /field>
+        <field type="CharField" name="app_label">userprofile< /field>
+        <field type="CharField" name="model">emailvalidation< /field>
+    < /object>
     <object pk="2" model="contenttypes.contenttype">
-        <field type="CharField" name="name">group</field>
-        <field type="CharField" name="app_label">auth</field>
-        <field type="CharField" name="model">group</field>
-    </object>
+        <field type="CharField" name="name">group< /field>
+        <field type="CharField" name="app_label">auth< /field>
+        <field type="CharField" name="model">group< /field>
+    < /object>
     <object pk="18" model="contenttypes.contenttype">
-        <field type="CharField" name="name">intent</field>
-        <field type="CharField" name="app_label">spaces</field>
-        <field type="CharField" name="model">intent</field>
-    </object>
+        <field type="CharField" name="name">intent< /field>
+        <field type="CharField" name="app_label">spaces< /field>
+        <field type="CharField" name="model">intent< /field>
+    < /object>
     <object pk="22" model="contenttypes.contenttype">
-        <field type="CharField" name="name">interest</field>
-        <field type="CharField" name="app_label">accounts</field>
-        <field type="CharField" name="model">interest</field>
-    </object>
+        <field type="CharField" name="name">interest< /field>
+        <field type="CharField" name="app_label">accounts< /field>
+        <field type="CharField" name="model">interest< /field>
+    < /object>
     <object pk="9" model="contenttypes.contenttype">
-        <field type="CharField" name="name">log entry</field>
-        <field type="CharField" name="app_label">admin</field>
-        <field type="CharField" name="model">logentry</field>
-    </object>
+        <field type="CharField" name="name">log entry< /field>
+        <field type="CharField" name="app_label">admin< /field>
+        <field type="CharField" name="model">logentry< /field>
+    < /object>
     <object pk="33" model="contenttypes.contenttype">
-        <field type="CharField" name="name">note</field>
-        <field type="CharField" name="app_label">debate</field>
-        <field type="CharField" name="model">note</field>
-    </object>
+        <field type="CharField" name="name">note< /field>
+        <field type="CharField" name="app_label">debate< /field>
+        <field type="CharField" name="model">note< /field>
+    < /object>
     <object pk="1" model="contenttypes.contenttype">
-        <field type="CharField" name="name">permission</field>
-        <field type="CharField" name="app_label">auth</field>
-        <field type="CharField" name="model">permission</field>
-    </object>
+        <field type="CharField" name="name">permission< /field>
+        <field type="CharField" name="app_label">auth< /field>
+        <field type="CharField" name="model">permission< /field>
+    < /object>
     <object pk="35" model="contenttypes.contenttype">
-        <field type="CharField" name="name">poll</field>
-        <field type="CharField" name="app_label">voting</field>
-        <field type="CharField" name="model">poll</field>
-    </object>
+        <field type="CharField" name="name">poll< /field>
+        <field type="CharField" name="app_label">voting< /field>
+        <field type="CharField" name="model">poll< /field>
+    < /object>
     <object pk="29" model="contenttypes.contenttype">
-        <field type="CharField" name="name">post</field>
-        <field type="CharField" name="app_label">news</field>
-        <field type="CharField" name="model">post</field>
-    </object>
+        <field type="CharField" name="name">post< /field>
+        <field type="CharField" name="app_label">news< /field>
+        <field type="CharField" name="model">post< /field>
+    < /object>
     <object pk="20" model="contenttypes.contenttype">
-        <field type="CharField" name="name">region</field>
-        <field type="CharField" name="app_label">accounts</field>
-        <field type="CharField" name="model">region</field>
-    </object>
+        <field type="CharField" name="name">region< /field>
+        <field type="CharField" name="app_label">accounts< /field>
+        <field type="CharField" name="model">region< /field>
+    < /object>
     <object pk="32" model="contenttypes.contenttype">
-        <field type="CharField" name="name">row</field>
-        <field type="CharField" name="app_label">debate</field>
-        <field type="CharField" name="model">row</field>
-    </object>
+        <field type="CharField" name="name">row< /field>
+        <field type="CharField" name="app_label">debate< /field>
+        <field type="CharField" name="model">row< /field>
+    < /object>
     <object pk="5" model="contenttypes.contenttype">
-        <field type="CharField" name="name">session</field>
-        <field type="CharField" name="app_label">sessions</field>
-        <field type="CharField" name="model">session</field>
-    </object>
+        <field type="CharField" name="name">session< /field>
+        <field type="CharField" name="app_label">sessions< /field>
+        <field type="CharField" name="model">session< /field>
+    < /object>
     <object pk="6" model="contenttypes.contenttype">
-        <field type="CharField" name="name">site</field>
-        <field type="CharField" name="app_label">sites</field>
-        <field type="CharField" name="model">site</field>
-    </object>
+        <field type="CharField" name="name">site< /field>
+        <field type="CharField" name="app_label">sites< /field>
+        <field type="CharField" name="model">site< /field>
+    < /object>
     <object pk="34" model="contenttypes.contenttype">
-        <field type="CharField" name="name">static page</field>
-        <field type="CharField" name="app_label">staticpages</field>
-        <field type="CharField" name="model">staticpage</field>
-    </object>
+        <field type="CharField" name="name">static page< /field>
+        <field type="CharField" name="app_label">staticpages< /field>
+        <field type="CharField" name="model">staticpage< /field>
+    < /object>
     <object pk="12" model="contenttypes.contenttype">
-        <field type="CharField" name="name">tag</field>
-        <field type="CharField" name="app_label">tagging</field>
-        <field type="CharField" name="model">tag</field>
-    </object>
+        <field type="CharField" name="name">tag< /field>
+        <field type="CharField" name="app_label">tagging< /field>
+        <field type="CharField" name="model">tag< /field>
+    < /object>
     <object pk="13" model="contenttypes.contenttype">
-        <field type="CharField" name="name">tagged item</field>
-        <field type="CharField" name="app_label">tagging</field>
-        <field type="CharField" name="model">taggeditem</field>
-    </object>
+        <field type="CharField" name="name">tagged item< /field>
+        <field type="CharField" name="app_label">tagging< /field>
+        <field type="CharField" name="model">taggeditem< /field>
+    < /object>
     <object pk="3" model="contenttypes.contenttype">
-        <field type="CharField" name="name">user</field>
-        <field type="CharField" name="app_label">auth</field>
-        <field type="CharField" name="model">user</field>
-    </object>
+        <field type="CharField" name="name">user< /field>
+        <field type="CharField" name="app_label">auth< /field>
+        <field type="CharField" name="model">user< /field>
+    < /object>
     <object pk="23" model="contenttypes.contenttype">
-        <field type="CharField" name="name">user profile</field>
-        <field type="CharField" name="app_label">accounts</field>
-        <field type="CharField" name="model">userprofile</field>
-    </object>
+        <field type="CharField" name="name">user profile< /field>
+        <field type="CharField" name="app_label">accounts< /field>
+        <field type="CharField" name="model">userprofile< /field>
+    < /object>
     <object pk="37" model="contenttypes.contenttype">
-        <field type="CharField" name="name">voting</field>
-        <field type="CharField" name="app_label">voting</field>
-        <field type="CharField" name="model">voting</field>
-    </object>
+        <field type="CharField" name="name">voting< /field>
+        <field type="CharField" name="app_label">voting< /field>
+        <field type="CharField" name="model">voting< /field>
+    < /object>
     <object pk="aa5e689a45d01464a9fab4edd2daad41" model="sessions.session">
         <field type="TextField" name="session_data">OTlkMWM1NmQ3MmY0MDY1N2U1MTBlNGUxNWQ0OTBlZDFkNDdmY2UwMzqAAn1xAShVEl9hdXRoX3Vz
 ZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED
 VQ1fYXV0aF91c2VyX2lkcQRLAXUu
-</field>
-        <field type="DateTimeField" name="expire_date">2013-01-02T15:58:59.964575</field>
+< /field>
+        <field type="DateTimeField" name="expire_date">2013 -01 -02T15:
+            58:
+                59.964575< /field>
     </object>
     <object pk="1" model="sites.site">
         <field type="CharField" name="domain">example.com</field>

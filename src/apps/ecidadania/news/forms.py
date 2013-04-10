@@ -21,8 +21,9 @@ from django.forms import ModelForm
 
 from apps.ecidadania.news.models import Post
 
+
 class NewsForm(ModelForm):
-    
+
     """
     """
     class Meta:

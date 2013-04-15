@@ -349,7 +349,7 @@ def register(request):
             newuser.save()
 
             # Add the user to the space administrators group
-            u_group = Group.objects.get(name="Space administrators")
+            u_group = Group.objects.get(name="Creators")
             newuser.groups.add(u_group)
 
             return HttpResponseRedirect('%scomplete/' % request.path_info)

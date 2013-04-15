@@ -54,7 +54,7 @@ class Debate(models.Model):
 
     class Meta:
         permissions = (
-            ('view', 'Can view the debate.'),
+            ('view', 'Can view the debate'),
         )
 
     def __unicode__(self):
@@ -129,5 +129,5 @@ class Note(models.Model):
 
     class Meta:
         permissions = (
-            ('move_note', 'Can move note across the debate.'),
+            ('move', 'Can move note'),
         )

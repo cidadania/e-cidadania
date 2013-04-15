@@ -62,6 +62,11 @@ class Poll(models.Model):
     start_date = models.DateField(_('Start date'), blank=True, null=True)
     end_date = models.DateField(_('End date'), blank=True, null=True)
 
+    class Meta:
+        permissions = (
+            ('view', 'Can view the poll'),
+        )
+
     def __unicode__(self):
         return self.question
 
@@ -119,6 +124,11 @@ class Voting(models.Model):
     proposalsets = models.ManyToManyField(ProposalSet, blank=True, null=True)
 
     proposals = models.ManyToManyField(Proposal, blank=True, null=True, limit_choices_to={'proposalset__isnull': True})
+
+    class Meta:
+        permissions = (
+            ('view', 'Can view the voting'),
+        )
 
     @models.permalink
     def get_absolute_url(self):

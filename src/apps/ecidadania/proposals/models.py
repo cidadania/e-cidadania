@@ -118,6 +118,9 @@ class ProposalSet(models.Model):
         verbose_name = _('Proposal set')
         verbose_name_plural = _('Proposal sets')
         get_latest_by = 'pub_date'
+        permissions = (
+            ('view', 'Can view the ProposalSet'),
+        )
 
     @models.permalink
     def get_absolute_url(self):
@@ -194,6 +197,9 @@ class Proposal(BaseProposalAbstractModel):
         verbose_name = _('Proposal')
         verbose_name_plural = _('Proposals')
         get_latest_by = 'pub_date'
+        permissions = (
+            ('view', 'Can view the proposal'),
+        )
 
     @models.permalink
     def get_absolute_url(self):

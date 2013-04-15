@@ -40,6 +40,9 @@ class StaticPage(models.Model):
     class Meta:
         ordering = ['name']
         verbose_name_plural = _('Static Pages')
+        permissions = (
+            ('view', 'Can view the page'),
+        )
 
     def __unicode__(self):
         return self.name

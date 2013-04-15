@@ -48,6 +48,11 @@ class Post(models.Model):
                                      the post'))
     views = models.IntegerField(_('Views'), blank=True, null=True)
 
+    class Meta:
+        permissions = (
+            ('view', 'Can view the post'),
+        )
+
     def __unicode__(self):
         return self.title
 

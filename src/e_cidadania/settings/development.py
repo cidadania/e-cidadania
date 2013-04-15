@@ -59,6 +59,10 @@ DATABASES = {
     }
 }
 
+FIXTURE_DIRS = (
+    (cwd + '/e_cidadania/fixtures/'),
+)
+
 # Debug toolbar settings. By default is commented, if you want to activate it,
 # you will have to install django-debug toolbar and uncomment all this section.
 # INTERNAL_IPS = ('127.0.0.1',)

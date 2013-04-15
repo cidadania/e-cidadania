@@ -23,7 +23,7 @@ from django.utils.translation import ugettext_lazy as _
 from apps.ecidadania.staticpages.models import StaticPage
 
 
-class PageAdmin(admin.ModelAdmin):
+class PageAdmin(GuardedModelAdmin):
 
     """
     """

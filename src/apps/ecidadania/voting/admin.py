@@ -27,7 +27,7 @@ class ChoiceInline(admin.TabularInline):
         model = Choice
 
 
-class PollAdmin(admin.ModelAdmin):
+class PollAdmin(GuardedModelAdmin):
         list_display = ('question', 'pub_date', 'poll_lastup', 'author',
                                      'space')
         search_fields = ('question', 'author', 'space')
@@ -35,7 +35,7 @@ class PollAdmin(admin.ModelAdmin):
         inlines = [ChoiceInline]
 
 
-class VotingAdmin(admin.ModelAdmin):
+class VotingAdmin(GuardedModelAdmin):
 
         list_display = ('title', 'start_date', 'end_date', 'author', 'space')
         search_fields = ('title', 'author', 'space')

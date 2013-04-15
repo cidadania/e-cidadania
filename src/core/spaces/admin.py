@@ -29,7 +29,7 @@ from django.utils.translation import ugettext_lazy as _
 from core.spaces.models import Space, Entity, Document, Event, Intent
 
 
-class EntityAdmin(admin.ModelAdmin):
+class EntityAdmin(GuardedModelAdmin):
 
     """
     Entities administration model.
@@ -49,7 +49,7 @@ class EntityInline(admin.TabularInline):
     model = Entity
 
 
-class SpaceAdmin(admin.ModelAdmin):
+class SpaceAdmin(GuardedModelAdmin):
 
     """
     Administration view for django admin to create spaces. The save() method
@@ -89,7 +89,7 @@ class SpaceAdmin(admin.ModelAdmin):
         user_emails = queryset.objects.values('email')
 
 
-class IntentAdmin(admin.ModelAdmin):
+class IntentAdmin(GuardedModelAdmin):
 
     """
     This is the administrative view to manage the request from users to
@@ -104,7 +104,7 @@ class IntentAdmin(admin.ModelAdmin):
     ]
 
 
-class DocumentAdmin(admin.ModelAdmin):
+class DocumentAdmin(GuardedModelAdmin):
 
     """
     Administration view to upload/modify documents. The save() method is
@@ -127,7 +127,7 @@ class DocumentAdmin(admin.ModelAdmin):
         obj.save()
 
 
-class EventAdmin(admin.ModelAdmin):
+class EventAdmin(GuardedModelAdmin):
 
     """
     Meetings administration model.

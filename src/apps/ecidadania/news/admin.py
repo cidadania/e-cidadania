@@ -20,10 +20,12 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
+from guardian.admin import GuardedModelAdmin
+
 from apps.ecidadania.news.models import Post
 
 
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(GuardedModelAdmin):
 
     """
     Administration view for news.

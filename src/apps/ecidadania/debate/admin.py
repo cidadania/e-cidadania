@@ -19,6 +19,8 @@
 
 from django.contrib import admin
 
+from guardian.admin import GuardedModelAdmin
+
 from apps.ecidadania.debate.models import Debate, Note, Column, Row
 
 
@@ -42,7 +44,7 @@ class RowInline(admin.TabularInline):
     extra = 2
 
 
-class DebateAdmin(admin.ModelAdmin):
+class DebateAdmin(GuardedModelAdmin):
 
     """
     Administration for all the debates.
@@ -51,7 +53,7 @@ class DebateAdmin(admin.ModelAdmin):
     inlines = [ColumnInline, RowInline]
 
 
-class NoteAdmin(admin.ModelAdmin):
+class NoteAdmin(GuardedModelAdmin):
 
     """
     Administration for all the notes in every debate.

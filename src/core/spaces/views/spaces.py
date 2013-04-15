@@ -45,6 +45,7 @@ from apps.ecidadania.voting.models import Poll, Voting
 from helpers.cache import get_or_insert_object_in_cache
 
 from operator import itemgetter
+from guardian.shortcuts import assign_perm
 
 # Please take in mind that the create_space view can't be replaced by a CBV
 # (class-based view) since it manipulates two forms at the same time. Apparently
@@ -85,6 +86,12 @@ def create_space(request):
             # We add the created spaces to the user allowed spaces
             # space.admins.add(request.user)
             space_form.save_m2m()
+
+            # Assign permissions to the user so he can chenge everything in the
+            # space
+            assign_perm('view_space', request.user, new_space)
+            assign_perm('change_space', request.user, new_space)
+            assign_perm('delete_space', request.user, new_space)
 
             return HttpResponseRedirect(reverse(urln.SPACE_INDEX,
                 kwargs={'space_url': space.url}))

@@ -26,6 +26,8 @@ from django.contrib import admin
 from django.http import HttpResponse
 from django.utils.translation import ugettext_lazy as _
 
+from guardian.admin import GuardedModelAdmin
+
 from core.spaces.models import Space, Entity, Document, Event, Intent
 
 

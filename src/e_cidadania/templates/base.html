@@ -1,6 +1,6 @@
 {% load i18n %}
 {% load cache %}
-<!DOCTYPE html">
+<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}">
     <head>
         <title>{% block title %}{% endblock %}</title>
@@ -120,6 +120,8 @@
                 $("[rel=tooltip]").tooltip();
             });
         </script>
+        {% block extrajsbottom %}
+        {% endblock %}
         <!-- End load JavaScript -->
         
     </body>

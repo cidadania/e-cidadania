@@ -260,6 +260,8 @@ def validate_voting(request, space_url, token):
     """
     space = get_object_or_404(Space, url=space_url)
     try:
-        token = ConfirmVote.object.get(token=token)
+        tk = get_object_or_404(ConfirmVote, token=token)
+        
+        return HttpResponse("Your vote has been validated.")
     except:
-        return HttpResponse("Couldn't find the token for validation.")
+        return HttpResponse("Couldn't find the token for validation or the token has already been used.")

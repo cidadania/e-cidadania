@@ -114,7 +114,7 @@ class UserProfile(BaseProfile):
 
         if self.birthdate:
             diff = datetime.date.today() - self.birthdate
-            years = diff.days /365
+            years = diff.days / 365
             return years
         else:
             return '??'

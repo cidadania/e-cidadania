@@ -49,7 +49,7 @@
 
             request.fail(function(jqXHR, textStatus) {
                 $.gritter.add({
-                    title:"Couldn't vote the proposal",
+                    title:"Couldn't vote the proposal", 
                     text:"There has been an error." + textStatus,
                     icon:"http://ecidadania.org/static/assets/icons/alert.png",
                     expires: 0
@@ -103,24 +103,26 @@
                 {% endfor %}
             {% endfor %}
 
-            <h4>{% trans "Unlinked proposals:" %}</h4>
-            <br />
-            {% for p in proposals %}
-                <div class="proposal-wrapper" style="margin-bottom:15px;">
-                    <div class="span1">
-                        <p style="line-height:30px;font-size:30px;margin-left:5px;">{{ p.votes.count }}</p>
-                        {% if not request.user in p.votes %}
-                            <button onclick="upvote({{ p.id }})" class="btn btn-small" {% if user in p.votes.all %}disabled="disabled"{% endif %}>{% trans "vote" %}</button>
-                        {% endif %}
-                    </div>
+            {% if proposals %}
+                <h4>{% trans "Unlinked proposals:" %}</h4>
+                <br />
+                {% for p in proposals %}
+                    <div class="proposal-wrapper" style="margin-bottom:15px;">
+                        <div class="span1">
+                            <p style="line-height:30px;font-size:30px;margin-left:5px;">{{ p.votes.count }}</p>
+                            {% if not request.user in p.votes %}
+                                <button onclick="upvote({{ p.id }})" class="btn btn-small" {% if user in p.votes.all %}disabled="disabled"{% endif %}>{% trans "vote" %}</button>
+                            {% endif %}
+                        </div>
                         
-                    <div id="proposal">
-                        <div class="title"><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></div>
-                        <div class="message">{{ p.description|truncatewords:40 }}</div>
+                        <div id="proposal">
+                            <div class="title"><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></div>
+                            <div class="message">{{ p.description|truncatewords:40 }}</div>
+                        </div>
+                        <div style="clear:left;"></div>
                     </div>
-                    <div style="clear:left;"></div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

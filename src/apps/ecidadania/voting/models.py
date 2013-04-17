@@ -115,7 +115,6 @@ class Voting(models.Model):
     end_date = models.DateField(_('End date'), blank=True, null=True)
     ponderation = models.CharField(_('Ponderation'), max_length=3, null=True,
         blank=True, choices=PONDERATIONS)
-
     proposalsets = models.ManyToManyField(ProposalSet, blank=True, null=True)
 
     proposals = models.ManyToManyField(Proposal, blank=True, null=True, limit_choices_to={'proposalset__isnull': True})

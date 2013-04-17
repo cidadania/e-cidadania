@@ -59,8 +59,8 @@ class Poll(models.Model):
         blank'))
     poll_tags = TagField(help_text=_('Insert here relevant words related with \
         the poll'))
-    start_date = models.DateField(_('Start date'), blank=True, null=True)
-    end_date = models.DateField(_('End date'), blank=True, null=True)
+    start_date = models.DateField(_('Start date'))
+    end_date = models.DateField(_('End date'))
 
     def __unicode__(self):
         return self.question

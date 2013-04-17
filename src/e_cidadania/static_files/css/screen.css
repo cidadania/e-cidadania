@@ -9,7 +9,7 @@
 
 /* HTML TAGS DEFINITION */
 
-body {
+html, body {
     background: #FAFAFA;
     font-family: 'Duru Sans', Verdana, "Lucida Sans", Arial;
     font-size: 12px;
@@ -17,6 +17,8 @@ body {
     padding: 0;
     margin: 0;
     cursor: default;
+    height: 100%;
+    margin-bottom: -85px;
 }
 
 a {
@@ -35,11 +37,24 @@ textarea {
 hr { /* This hr replaces the bootstrap one */
     border-bottom: 1px solid #DDD;
 }
+
+#footer {
+    -webkit-box-shadow: inset 0px 5px 6px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0px 5px 6px 0px rgba(0, 0, 0, 0.5);
+}
 /* END HTML TAGS DEFINITION */
 
 /* COMMON CUSTOMIZATIONS */
 .hidden {
     display: none;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin-bottom: -75px;
+    padding-bottom: 80px;
 }
 
 .error {
@@ -84,14 +99,11 @@ hr { /* This hr replaces the bootstrap one */
 }
 
 .mainfooter {
-    position: fixed;
-    bottom: 0;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 100%;
-    margin: auto;
+    margin-top: 25px;
+    padding: 15px 15px;
+    width: auto;
     color: #EEE;
-    background: #000;
+    background: url("../assets/bg.png") repeat-x;
     opacity: 0.8;
     border: none;
     font-size: 10px;

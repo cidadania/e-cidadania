@@ -151,6 +151,7 @@ def edit_debate(request, space_url, debate_id):
                     pk=debate_id)
 
                 row = row_formset.save(commit=False)
+
                 for form in row:
                     form.debate = instance
                     form.save()

@@ -183,7 +183,7 @@ class Event(models.Model):
     event_author = models.ForeignKey(User, verbose_name=_('Created by'),
         blank=True, null=True, related_name='meeting_author',
         help_text=_('Select the user that will be designated as author.'))
-    event_date = models.DateField(verbose_name=_('Event date'),
+    event_date = models.DateTimeField(verbose_name=_('Event date'),
         help_text=_('Select the date where the event is celebrated.'))
     description = models.TextField(_('Description'), blank=True, null=True)
     location = models.TextField(_('Location'), blank=True, null=True)
@@ -193,7 +193,7 @@ class Event(models.Model):
         max_digits=17, decimal_places=15, help_text=_('Specify it in decimal'))
 
     def is_due(self):
-        if self.pub_date < datetime.now():
+        if self.event_date < datetime.now():
             return True
         else:
             return False

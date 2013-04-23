@@ -49,6 +49,14 @@
                 {% if get_place.mod_voting %}
                     <li><a href="#voting" data-toggle="tab">{% trans "Voting" %}</a></li>
                 {% endif %}
+                {% comment %}
+                This has to be replaced, don't be lazy.
+                {% endcomment %}
+                {% if user not in get_place.admins.all or user not in get_place.mods.all or user not in get_place.users.all %}
+                <li class="pull-right">
+                    <a href="{% url 'add-intent' get_place.url %}"><i class="icon-plus" style="font-size:16px;"></i> {% trans "Join!" %}</a>
+                </li>
+                {% endif %}
                 <li class="pull-right">
                     <a href="{% url 'space-feed' get_place.url %}"><i class="icon-rss" style="font-size:16px;"></i> RSS</a>
                 </li>

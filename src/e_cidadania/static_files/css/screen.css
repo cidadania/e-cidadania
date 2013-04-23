@@ -53,8 +53,8 @@ hr { /* This hr replaces the bootstrap one */
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin-bottom: -75px;
-    padding-bottom: 80px;
+    margin-bottom: -40px;
+    padding-bottom: 15px;
 }
 
 .error {

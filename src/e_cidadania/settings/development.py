@@ -51,7 +51,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db/development.db',
+        'NAME': 'e_cidadania/db/development.db',
         'USER': '',
         'PASSWORD': '',
         'HOST': '',

@@ -80,6 +80,11 @@ hr { /* This hr replaces the bootstrap one */
     color: #222;
 }
 
+/* Fix bootstrap tooltip nowrap */
+.tooltip-inner {
+    white-space: normal;
+}
+
 #logo {
     float: left;
     /* The logo image must be 75px height */

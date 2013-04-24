@@ -42,7 +42,8 @@ automatically if found in the data models.
     {% if form.title.value %}
         <h3>{% trans "Edit debate" %} {{ form.title.value }}</h3>
     {% else %}
-        <h3>{% trans "Create new debate" %}</h3>
+        <h3>{% trans "Create new debate" %} <a data-toggle="modal" id="debate-tutorial" href="#myModal" ><img src="{{ STATIC_URL }}/assets/icons/question.png" /></a>
+</h3>
         <div class="modal hide fade" id="myModal">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
@@ -75,7 +76,6 @@ automatically if found in the data models.
 
     <div id="debate">
 
-        <a data-toggle="modal" id="debate-tutorial" href="#myModal" ><img src="{{ STATIC_URL }}/assets/icons/question.png" /></a>
         <form class="form-horizontal" id="ajaxform" enctype="" action="" method="post">{% csrf_token %}
             <table id="debate{{ debateid }}" cellspacing="0" cellpadding="0" border="0">
                 <thead>

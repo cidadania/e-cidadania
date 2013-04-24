@@ -40,6 +40,9 @@
                 {% if events %}
                     <li><a href="#events" data-toggle="tab">{% trans "Your events" %}</a></li>
                 {% endif %}
+                <li class="pull-right">
+                    <a href="{% url 'invite' %}"><i class="icon-plus" style="font-size:16px;"></i> {% trans "Invite someone!" %}</a>
+                </li>
                 <li class="dropdown" data-dropdown="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Options" %} <b class="caret"></b></a>
                     <ul class="dropdown-menu">

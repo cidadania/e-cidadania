@@ -262,9 +262,9 @@ def update_note(request, space_url):
                             mimetype="application/json")
 
     if request.method == "POST" and request.is_ajax:
+        note = get_object_or_404(Note, pk=request.POST['noteid'])
         if has_operation_permission(request.user, place, 'debate.change_note',
         allow=['admins', 'mods']) or request.user == note.author:
-            note = get_object_or_404(Note, pk=request.POST['noteid'])
             note_form = UpdateNoteForm(request.POST or None, instance=note)
             if note_form.is_valid():
                 note_form_uncommited = note_form.save(commit=False)

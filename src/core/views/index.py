@@ -61,7 +61,7 @@ def index_view(request):
         messages.info(request, _("Hi! It seems that it's your first time \
         here. Maybe you want to <a href=\"/accounts/register\">register</a> \
         or <a href=\"/accounts/login/\">login</a> if you have an account."))
-    
+
         return render_to_response('site_index.html', extra_context,
                               context_instance=RequestContext(request))
     else:

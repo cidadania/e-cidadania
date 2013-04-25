@@ -36,37 +36,10 @@ function removeChoice() {
         });
     } 
 
-/*function saveTable() {
-    
-        saveTable() - Saves the table data. Instead of using a standard form,
-        we submite the data trough ajax post, and treat it as a form in the
-        django view.
-    
-    $('#ajaxform').submit( function(e) {
-        var tableID = $('table').attr('id');
-
-        var xvalues = [];
-      //  var xfields = $('th.criteria-vtitle :input');
-      //  $.each(xfields, function(i, field){
-      //      xvalues.push(field.value);
-      //  });
-        $('#id_columns').val(xvalues);
-        var rows = $('#' + tableID + ' tbody tr');
-        $.each(rows, function(i, field) {
-            var rowID = this.attr('id');
-            })
-        });
-}
-*/
 /*******************
     MAIN LOOP
 ********************/
 
 $(document).ready(function() {
-    // Activate javascript notifications.
-    $('#jsnotify').notify();
-    // Activate sortables
-    // Show controls for some notes
- //   saveTable();
 });
 

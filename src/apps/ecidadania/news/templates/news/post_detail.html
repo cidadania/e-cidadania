@@ -31,13 +31,13 @@
         <div class="span8">
             <h2 class="posttitle"><a href="{{ news.get_absolute_url }}">{{ news.title }}</a>
                 {% if perms.news.change_post %}
-                    <a href="{% url 'edit-post' get_place.url news.id %}">
-                        <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/>
+                    <a href="{% url 'edit-post' get_place.url news.id %}" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}">
+                        <i class="icon-edit" style="font-size:16px;"></i> 
                     </a>
                 {% endif %}
                 {% if perms.news.delete_post %}
-                    <a href="{% url 'delete-post' get_place.url news.id %}">
-                        <img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/>
+                    <a href="{% url 'delete-post' get_place.url news.id %}" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}">
+                        <i class="icon-trash" style="font-size:16px;"></i>
                     </a>
                 {% endif %}
             </h2>

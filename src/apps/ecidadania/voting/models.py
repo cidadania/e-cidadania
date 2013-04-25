@@ -59,8 +59,8 @@ class Poll(models.Model):
         blank'))
     poll_tags = TagField(help_text=_('Insert here relevant words related with \
         the poll'))
-    start_date = models.DateField(_('Start date'), blank=True, null=True)
-    end_date = models.DateField(_('End date'), blank=True, null=True)
+    start_date = models.DateField(_('Start date'))
+    end_date = models.DateField(_('End date'))
 
     class Meta:
         permissions = (
@@ -120,10 +120,11 @@ class Voting(models.Model):
     end_date = models.DateField(_('End date'), blank=True, null=True)
     ponderation = models.CharField(_('Ponderation'), max_length=3, null=True,
         blank=True, choices=PONDERATIONS)
-
     proposalsets = models.ManyToManyField(ProposalSet, blank=True, null=True)
 
     proposals = models.ManyToManyField(Proposal, blank=True, null=True, limit_choices_to={'proposalset__isnull': True})
+    max_votes = models.IntegerField(_('Maximum votes per person'), blank=True,
+        null=True)
 
     class Meta:
         permissions = (

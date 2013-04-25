@@ -66,7 +66,7 @@ automatically if found in the data models.
                     <div class="input-append">
                         {{ form.title }}
                         {% if form.title.help_text %}
-                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.title.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            <span class="add-on"><a href="#" rel="tooltip" data-title="{{ form.title.help_text }}"><i class="icon-question-sign"></i></a></span>
                         {% endif %}
                     </div>
                     {% if form.title.errors %}

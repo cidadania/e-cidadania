@@ -24,13 +24,13 @@ from django.contrib.syndication.views import Feed
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 
 from apps.ecidadania.news.forms import NewsForm
 from apps.ecidadania.news.models import Post
 from apps.ecidadania.staticpages.models import StaticPage
-
 from core.spaces.models import Space
-
 from e_cidadania import settings
 
 
@@ -61,8 +61,11 @@ def index_view(request):
         messages.info(request, _("Hi! It seems that it's your first time \
         here. Maybe you want to <a href=\"/accounts/register\">register</a> \
         or <a href=\"/accounts/login/\">login</a> if you have an account."))
-    return render_to_response('site_index.html', extra_context,
+
+        return render_to_response('site_index.html', extra_context,
                               context_instance=RequestContext(request))
+    else:
+        return HttpResponseRedirect(reverse('profile_overview'))
 
 
 class IndexEntriesFeed(Feed):

@@ -17,7 +17,7 @@
             {% for lang in LANGUAGES %}
                 <li>
                     <form class="languageform" name="setLang{{ lang.1}}" action="/i18n/setlang/" method="POST">{% csrf_token %}
-                        <input name="next" type="hidden" value="/" />
+                        <input name="next" type="hidden" value="{{ request.get_full_path }}" />
                         <input type="hidden" name="language" value="{{ lang.0 }}" />
                         <a href="#" onclick="document.setLang{{ lang.1 }}.submit();return false;">
                             <img style="margin-left:10px;" src="{{ STATIC_URL }}/assets/flags/{{ lang.0 }}.gif" title="{{ lang.1 }}" alt="{{ lang.1 }}"/>

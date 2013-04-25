@@ -3,7 +3,7 @@
 {% load wysiwyg %}
 
 {% block title %}
-    {% trans "Results" %}{{ poll.question }}
+    {% trans "Results" %} {{ poll.question }}
 {% endblock %}
 
 {% block logo %}
@@ -31,14 +31,21 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ poll.question }}</h1>
 
-    <ul>
-        {% for choice in poll.choice_set.all %}
-            <li>{{ choice.choice_text }} -- {{ choice.votes.count }} {% trans "vote" %}{{ choice.votes|pluralize }}</li>
-        {% endfor %}
-    </ul>
-
+    <div class="row">
+        <div class="span6">
+            <h1>{{ poll.question }}</h1>
+            <ul class="unstyled">
+                {% for choice in poll.choice_set.all %}
+                    <li>{{ choice.choice_text }} ({{ choice.votes.count }}) {% trans "vote" %}{{ choice.votes|pluralize }}</li>
+                    <div class="progress progress-success">
+                        <div class="bar" style="width: {% widthratio choice.votes.count votes_total 100 %}%"></div>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
     <hr />
     <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">&laquo; {% trans "Go back" %}</a>
 {% endblock %}

@@ -11,26 +11,34 @@
 
 {% block content %}
 
-    <div class="row">
-        <div class="span8">
-            <h3>{% trans "View event" %}</h3>
+<style type="text/css">
+        #map img { 
+            max-width: none;  
+        }
+</style>
 
-            {% if request.user in get_place.admins.all or request.user in get_place.mods.all %}
-                {% if perms.spaces.change_event %}
-                    <div id="tools">
-                        <a href="{% url 'edit-event' get_place.url event.id %}">Edit</a> |
-                        {% if perms.spaces.delete_event %}
-                            <a href="{% url 'delete-event' get_place.url event.id %}">Delete</a>
-                        {% endif %}
-                    </div>
+    <div class="row">
+        <div class="span6">
+            <h3>{{ event.title }}
+            {% if perms.spaces.change_event %}
+                <a href="{% url 'edit-event' get_place.url event.id %}" title="{% trans 'Edit' %}">
+                    <i class="icon-edit" style="font-size:16px;"></i>
+                </a>
+                {% if perms.spaces.delete_event %}
+                    <a href="{% url 'delete-event' get_place.url event.id %}" title="{% trans 'Delete' %}">
+                        <i class="icon-trash" style="font-size:16px;"></i>
+                    </a>
                 {% endif %}
             {% endif %}
-
-            <h1>{{ event.title }}</h1><br />
+            </h3>
             <p>{{ event.location }}, {{ event.event_date }} - {{ event.event_type}}</p><br /><br />
-
             <p>{{ event.description|safe }}</p><br /><br />
-            
+        </div>
+
+        <div class="span6">
+            {% if event.latitude and event.longitude %}
+                <div id="map" style="width:550px;height:300px;border:1px solid #AAA;"></div>
+            {% endif %}           
             <p>{% trans "Attendees" %}:
                 {% for attendant in event.user.all %}
                     <a href="{% url 'profile_public' attendant.username %}">
@@ -41,12 +49,15 @@
                         {% endif %}
                     </a>
                 {% endfor %}
-            </p>
+            </p>           
         </div>
-        
-        <div class="span4">
-            <p>This is empty!</p>
-        </div>
+
     </div>
 
+{% endblock %}
+
+{% block extrajsbottom %}
+    <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/map_tools.js"></script>
+    <script type="text/javascript">viewMap( {{ event.latitude }}, {{ event.longitude }} );</script>
 {% endblock %}

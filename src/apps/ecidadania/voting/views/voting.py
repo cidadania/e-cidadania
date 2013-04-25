@@ -259,7 +259,18 @@ def validate_voting(request, space_url, token):
     error page.
     """
     space = get_object_or_404(Space, url=space_url)
-    try:
-        token = ConfirmVote.object.get(token=token)
-    except:
-        return HttpResponse("Couldn't find the token for validation.")
+
+    if has_operation_permission(request.user, space,
+    "proposals.change_proposal", allow=['admins', 'mods', 'users']):
+        try:
+            tk = get_object_or_404(ConfirmVote, token=token)
+            prop = get_object_or_404(Proposal, pk=tk.proposal.id)
+            prop.votes.add(request.user)
+            return HttpResponse("Your vote has been validated.")
+        except:
+            return HttpResponse("Error V01: Couldn't find the token for validation or the token has already been used.")
+        tk.delete()
+
+    else:
+        return HttpResponse("Error V02: Couldn't emit the vote. You're not \
+            allowed.")

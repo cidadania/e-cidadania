@@ -221,7 +221,7 @@ class ProposalField(models.Model):
 
     """
 
-    proposalset= models.ForeignKey(ProposalSet, help_text=_('Customizing \
+    proposalset = models.ForeignKey(ProposalSet, help_text=_('Customizing \
         proposal form for a proposal set'), unique=False)
     field_name = models.CharField(max_length=100, choices=OPTIONAL_FIELDS, help_text=_('Additional field that needed to added to the proposal \
         form'))

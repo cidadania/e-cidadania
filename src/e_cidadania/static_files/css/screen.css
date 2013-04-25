@@ -9,11 +9,16 @@
 
 /* HTML TAGS DEFINITION */
 
-body {
+html, body {
     background: #FAFAFA;
     font-family: 'Duru Sans', Verdana, "Lucida Sans", Arial;
     font-size: 12px;
     color: #000;
+    padding: 0;
+    margin: 0;
+    cursor: default;
+    height: 100%;
+    margin-bottom: -85px;
 }
 
 a {
@@ -32,11 +37,24 @@ textarea {
 hr { /* This hr replaces the bootstrap one */
     border-bottom: 1px solid #DDD;
 }
+
+#footer {
+    -webkit-box-shadow: inset 0px 5px 6px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0px 5px 6px 0px rgba(0, 0, 0, 0.5);
+}
 /* END HTML TAGS DEFINITION */
 
 /* COMMON CUSTOMIZATIONS */
 .hidden {
     display: none;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin-bottom: -40px;
+    padding-bottom: 15px;
 }
 
 .error {
@@ -62,6 +80,11 @@ hr { /* This hr replaces the bootstrap one */
     color: #222;
 }
 
+/* Fix bootstrap tooltip nowrap */
+.tooltip-inner {
+    white-space: normal;
+}
+
 #logo {
     float: left;
     /* The logo image must be 75px height */
@@ -81,14 +104,11 @@ hr { /* This hr replaces the bootstrap one */
 }
 
 .mainfooter {
-    position: fixed;
-    bottom: 0;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 100%;
-    margin: auto;
+    margin-top: 25px;
+    padding: 15px 15px;
+    width: auto;
     color: #EEE;
-    background: #000;
+    background: url("../assets/bg.png") repeat-x;
     opacity: 0.8;
     border: none;
     font-size: 10px;
@@ -715,7 +735,7 @@ table {
   color: #006DCC;
 }
 .votes {
-  visibility:hidden;
+  display: none;
 }
 
 /* Empty class for jqueryui-datepicker translate fix */

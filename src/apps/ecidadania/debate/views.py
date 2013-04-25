@@ -151,6 +151,7 @@ def edit_debate(request, space_url, debate_id):
                     pk=debate_id)
 
                 row = row_formset.save(commit=False)
+
                 for form in row:
                     form.debate = instance
                     form.save()
@@ -199,7 +200,7 @@ def create_note(request, space_url):
     place = get_object_or_404(Space, url=space_url)
 
     if request.method == "POST" and request.is_ajax:
-        if has_operation_permission(request.user, place, 'note.add_note',
+        if has_operation_permission(request.user, place, 'debate.add_note',
         allow=['admins', 'mods', 'users']):
             if note_form.is_valid():
                 note_form_uncommited = note_form.save(commit=False)
@@ -261,9 +262,9 @@ def update_note(request, space_url):
                             mimetype="application/json")
 
     if request.method == "POST" and request.is_ajax:
-        if has_operation_permission(request.user, place, 'note.change_note',
+        note = get_object_or_404(Note, pk=request.POST['noteid'])
+        if has_operation_permission(request.user, place, 'debate.change_note',
         allow=['admins', 'mods']) or request.user == note.author:
-            note = get_object_or_404(Note, pk=request.POST['noteid'])
             note_form = UpdateNoteForm(request.POST or None, instance=note)
             if note_form.is_valid():
                 note_form_uncommited = note_form.save(commit=False)
@@ -293,7 +294,7 @@ def update_position(request, space_url):
     place = get_object_or_404(Space, url=space_url)
 
     if request.method == "POST" and request.is_ajax:
-        if has_operation_permission(request.user, place, 'note.change_note',
+        if has_operation_permission(request.user, place, 'debate.change_note',
         allow=['admins', 'mods']) or request.user == note.author:
             if position_form.is_valid():
                 position_form_uncommited = position_form.save(commit=False)
@@ -319,7 +320,7 @@ def delete_note(request, space_url):
     note = get_object_or_404(Note, pk=request.POST['noteid'])
     place = get_object_or_404(Space, url=space_url)
 
-    if has_operation_permission(request.user, place, 'note.delete_note',
+    if has_operation_permission(request.user, place, 'debate.delete_note',
     allow=['admins', 'mods']) or note.author == request.user:
         ctype = ContentType.objects.get_for_model(Note)
         all_comments = Comment.objects.filter(is_public=True,

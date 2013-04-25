@@ -33,7 +33,7 @@ from django.forms.models import modelformset_factory, inlineformset_factory
 from django.core.exceptions import ObjectDoesNotExist
 from helpers.cache import get_or_insert_object_in_cache
 from django.core.urlresolvers import reverse
-from django.db.models import Count
+from django.db.models import Count, Sum
 
 from core.spaces.models import Space
 from core.spaces import url_names as urln
@@ -137,13 +137,23 @@ class ViewPollResults(DetailView):
     template_name = 'voting/poll_results.html'
 
     def get_object(self):
-        poll = get_object_or_404(Poll, pk=self.kwargs['pk'])
-        return poll
+        self.poll = get_object_or_404(Poll, pk=self.kwargs['pk'])
+        return self.poll
 
     def get_context_data(self, **kwargs):
         context = super(ViewPollResults, self).get_context_data(**kwargs)
         space = get_object_or_404(Space, url=self.kwargs['space_url'])
+        total_votes = Choice.objects.filter(poll=self.poll)
+
+        # This fuckin' shitty logic should be removed from here, maybe there's
+        # a way to do this with django. The thing is to obtain all the votes
+        # from each choice and 'sum them all!'
+        v = 0
+        for vote in total_votes:
+            v += vote.votes.count()
+
         context['get_place'] = space
+        context['votes_total'] = v
         return context
 
 
@@ -160,7 +170,7 @@ def edit_poll(request, space_url, poll_id):
     if has_operation_permission(request.user, place, 'voting.change_poll',
                                 allow=['admins', 'mods']):
 
-        ChoiceFormSet = inlineformset_factory(Poll, Choice)
+        ChoiceFormSet = inlineformset_factory(Poll, Choice, extra=1)
         instance = Poll.objects.get(pk=poll_id)
         poll_form = PollForm(request.POST or None, instance=instance)
         choice_form = ChoiceFormSet(request.POST or None, instance=instance,
@@ -174,10 +184,12 @@ def edit_poll(request, space_url, poll_id):
 
                 saved_poll = poll_form_uncommited.save()
 
-                for form in choice_form.forms:
-                    choice = form.save(commit=False)
-                    choice.poll = instance
-                    choice.save()
+                choices = choice_form.save(commit=False)
+
+                for form in choices:
+                    form.poll = instance
+                    form.save()
+
                 return HttpResponseRedirect(reverse(urln.SPACE_INDEX,
                 kwargs={'space_url': place.url}))
 

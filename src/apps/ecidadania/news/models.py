@@ -44,8 +44,7 @@ class Post(models.Model):
     space = models.ForeignKey(Space, verbose_name=_('Publish in'),
                                    blank=True, null=True,
             help_text=_('If you want to post to the index leave this blank'))
-    post_tags = TagField(help_text=_('Insert here relevant words related with \
-                                     the post'))
+    post_tags = TagField(help_text=_('Insert here relevant words related with the post'))
     views = models.IntegerField(_('Views'), blank=True, null=True)
 
     class Meta:

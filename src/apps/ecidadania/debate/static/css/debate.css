@@ -70,7 +70,6 @@ div.comment-bubble > img {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-    width: 100%;
 }
  
 div#note-comment #id_name, div#note-comment #id_email, div#note-comment #id_url, div#note-comment #id_honeypot {

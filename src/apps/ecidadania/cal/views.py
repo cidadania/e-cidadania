@@ -35,35 +35,38 @@ def calendar(request, space_url, year, month):
     :Context: calendar, nextmonth, prevmonth, get_place
     :Returns: Localized HTML Calendar
     """
-    # Avoid people writing wrong numbers or any program errors.
-    if int(month) not in range(1, 13):
-        return render_to_response('cal/error.html',
-                                  context_instance=RequestContext(request))
+    space = get_object_or_404(Space, url=space_url)
 
-    place = get_object_or_404(Space, url=space_url)
-    events = Event.objects.order_by('event_date') \
-                              .filter(space=place,
-                                      event_date__year=year,
-                                      event_date__month=month)
+    if request.user.has_perm('spaces.view_space', space):
+        # Avoid people writing wrong numbers or any program errors.
+        if int(month) not in range(1, 13):
+            return render_to_response('cal/error.html',
+                context_instance=RequestContext(request))
 
-    cur_year, cur_month = int(year), int(month)
-    next_month = cur_month + 1
-    prev_month = cur_month - 1
+        place = get_object_or_404(Space, url=space_url)
+        events = Event.objects.order_by('event_date').filter(space=place,
+            event_date__year=year, event_date__month=month)
 
-    cur_lang = translation.get_language()
-    cur_locale = translation.to_locale(cur_lang) + '.UTF-8'  # default encoding with django
-    cal = EventCalendar(events, settings.FIRST_WEEK_DAY).formatmonth(cur_year, cur_month)
+        cur_year, cur_month = int(year), int(month)
+        next_month = cur_month + 1
+        prev_month = cur_month - 1
 
-    # This code is quite strange, it worked like a charm, but one day it returned
-    # a "too many values to unpack" error, and then just by removing the locale
-    # declaration it worked, but the best thing is... it still translates the calendar!
-    # For gods sake someone explain me this black magic.
+        cur_lang = translation.get_language()
+        cur_locale = translation.to_locale(cur_lang) + '.UTF-8'  # default encoding with django
+        cal = EventCalendar(events, settings.FIRST_WEEK_DAY).formatmonth(cur_year, cur_month)
 
-    # cal = EventCalendar(meetings, settings.FIRST_WEEK_DAY, cur_locale).formatmonth(cur_year, cur_month)
+        # This code is quite strange, it worked like a charm, but one day it returned
+        # a "too many values to unpack" error, and then just by removing the locale
+        # declaration it worked, but the best thing is... it still translates the calendar!
+        # For gods sake someone explain me this black magic.
 
-    return render_to_response('cal/calendar.html',
-                              {'calendar': mark_safe(cal),
-                               'nextmonth': next_month,
-                               'prevmonth': prev_month,
-                               'get_place': place},
-                               context_instance=RequestContext(request))
+        # cal = EventCalendar(meetings, settings.FIRST_WEEK_DAY, cur_locale).formatmonth(cur_year, cur_month)
+
+        return render_to_response('cal/calendar.html',
+                                  {'calendar': mark_safe(cal),
+                                   'nextmonth': next_month,
+                                   'prevmonth': prev_month,
+                                   'get_place': place},
+                                   context_instance=RequestContext(request))
+    else:
+        return render_to_response('not_allowed.html', context_instance=RequestContext(request))

@@ -66,7 +66,7 @@ def has_space_permission(user, space, allow=[]):
         if user in group.all():
             return True
         else:
-            pass
+            return False
 
 
 def has_all_permissions(user):

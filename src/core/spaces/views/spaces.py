@@ -347,7 +347,7 @@ class DeleteSpace(DeleteView):
             request.user.has_perm('admin_space'), space)):
             return super(DeleteSpace, self).dispatch(request, *args, **kwargs)
         else:
-            return Http403
+            raise Http403
 
     def get_object(self):
         # We declare space_url as global so we can access it on the decorator.
@@ -424,6 +424,13 @@ class EditRole(UpdateView):
     model = Space
     template_name = 'spaces/user_groups.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        if (request.user.has_perm('change_space') and
+            request.user.has_perm('admin_space')):
+            return super(EditRole, self).dispatch(request, *args, **kwargs)
+        else:
+            raise Http403
+
     def get_success_url(self):
         global space = self.kwargs['space_url']
         return reverse(urln.SPACE_INDEX, kwargs={'space_url': space})
@@ -437,8 +444,3 @@ class EditRole(UpdateView):
         context['get_place'] = get_object_or_404(Space,
             url=self.kwargs['space_url'])
         return context
-
-    @method_decorator(permission_required_or_403('spaces.change_space', (Space, space_url)))
-    @method_decorator(permission_required_or_403('spaces.admin_space', (Space, space_url)))
-    def dispatch(self, *args, **kwargs):
-        return super(EditRole, self).dispatch(*args, **kwargs)

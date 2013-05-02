@@ -31,7 +31,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.comments.models import Comment
 from django.db.models import Count
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, Http403
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 
 from core.spaces import url_names as urln
 from core.spaces.models import Space, Entity, Document, Event
@@ -95,27 +95,27 @@ def create_space(request):
 
             # Assign permissions to the user so he can chenge everything in the
             # space
-            assign_perm('view_space', request.user, new_space)
-            assign_perm('change_space', request.user, new_space)
-            assign_perm('delete_space', request.user, new_space)
-            assign_perm('admin_space', request.user, new_space)
+            assign_perm('view_space', request.user, space)
+            assign_perm('change_space', request.user, space)
+            assign_perm('delete_space', request.user, space)
+            assign_perm('admin_space', request.user, space)
 
             if DEBUG:
                 # This will tell us if the user got the right permissions for
                 # the object
                 un = request.user.username
                 u = ObjectPermissionChecker(request.user)  # Avoid unnecesary queries for the permission checks
-                print """Space permissions for user %s:
+                print """Space permissions for user '%s':
                 View: %s
                 Change: %s
                 Delete: %s
                 Admin: %s
                 Mod: %s
-                """ % (un, u.has_perm('view_space', new_space),
-                    u.has_perm('change_space', new_space),
-                    u.has_perm('delete_space', new_space),
-                    u.has_perm('admin_space', new_space),
-                    u.has_perm('mod_space', new_space))
+                """ % (un, u.has_perm('view_space', space),
+                    u.has_perm('change_space', space),
+                    u.has_perm('delete_space', space),
+                    u.has_perm('admin_space', space),
+                    u.has_perm('mod_space', space))
 
             return HttpResponseRedirect(reverse(urln.SPACE_INDEX,
                 kwargs={'space_url': space.url}))
@@ -155,55 +155,29 @@ class ViewSpaceIndex(DetailView):
         .. note:: Take in mind that the dispatch method takes **request** as a
                   parameter.
         """
-        space = get_object_or_404(Space, self.kwargs['space_url'])
+        space = get_object_or_404(Space, url=kwargs['space_url'])
 
-        if space.is_public:
+        if space.public:
             if request.user.is_anonymous():
                 messages.info(self.request, _("Hello anonymous user. Remember \
                     that this space is public to view, but you must \
                     <a href=\"/accounts/register\">register</a> or \
                     <a href=\"/accounts/login\">login</a> to participate."))
 
-             return super(ViewSpaceIndex, self).dispatch(request, *args, **kwargs)
+            return super(ViewSpaceIndex, self).dispatch(request, *args, **kwargs)
 
         if request.user.has_perm('view_space', space):
             return super(ViewSpaceIndex, self).dispatch(request, *args, **kwargs)
         else:
-            raise Http403
+            return HttpResponseForbidden()
         
         
 
     def get_object(self):
         # Makes sure the space ins't already in the cache before hitting
         # the database
-        global space_url = self.kwargs['space_url']
-        space_object = get_or_insert_object_in_cache(Space, space_url,
-            url=space_url)
-
-        if space_object.public or has_all_permissions(self.request.user):
-            if self.request.user.is_anonymous():
-                messages.info(self.request, _("Hello anonymous user. Remember \
-                    that this space is public to view, but you must \
-                    <a href=\"/accounts/register\">register</a> or \
-                    <a href=\"/accounts/login\">login</a> to participate."))
-            return space_object
-
-        # Check if the user is in the admitted user groups of the space
-        if has_space_permission(self.request.user, space_object,
-                                allow=['admins', 'mods', 'users']):
-            return space_object
-
-        # If the user does not meet any of the conditions, it's not allowed to
-        # enter the space
-        if self.request.user.is_anonymous():
-            messages.info(self.request, _("You're an anonymous user. You must \
-                <a href=\"/accounts/register\">register</a> or \
-                <a href=\"/accounts/login\">login</a> to access here."))
-        else:
-            messages.warning(self.request, _("You're not registered to this \
-            space."))
-
-        self.template_name = 'not_allowed.html'
+        space_url = self.kwargs['space_url']
+        space_object = get_or_insert_object_in_cache(Space, space_url, url=space_url)
         return space_object
 
     # Get extra context data
@@ -273,8 +247,6 @@ class ViewSpaceIndex(DetailView):
 # (class-based view) since it manipulates two forms at the same time. Apparently
 # that creates some trouble in the django API. See this ticket:
 # https://code.djangoproject.com/ticket/16256
-@permission_required_or_403('spaces.change_space', (Space, space_url))
-@permission_required_or_403('spaces.admin_space', (Space, space_url))
 def edit_space(request, space_url):
 
     """
@@ -294,7 +266,8 @@ def edit_space(request, space_url):
     """
     place = get_object_or_404(Space, url=space_url)
 
-    if has_space_permission(request.user, place, allow=['admins']):
+    if (request.user.has_perm('change_space', place) and
+        request.user.has_perm('admin_space', place)):
         form = SpaceForm(request.POST or None, request.FILES or None,
             instance=place)
         entity_forms = EntityFormSet(request.POST or None, request.FILES
@@ -340,25 +313,18 @@ class DeleteSpace(DeleteView):
     success_url = '/'
 
     def dispatch(self, request, *args, **kwargs):
-        space_url = self.kwargs['space_url']
-        space = get_object_or_404(Space, url=space_url)
+        space = get_object_or_404(Space, url=kwargs['space_url'])
 
         if (request.user.has_perm('delete_space', space) and
-            request.user.has_perm('admin_space'), space)):
+            request.user.has_perm('admin_space', space)):
             return super(DeleteSpace, self).dispatch(request, *args, **kwargs)
         else:
-            raise Http403
+            return HttpResponseForbidden()
 
     def get_object(self):
-        # We declare space_url as global so we can access it on the decorator.
-        # Fucking CBV's they're a PITA
-        global space_url = self.kwargs['space_url']
+        space_url = self.kwargs['space_url']
         space = get_object_or_404(Space, url=space_url)
-        if self.request.user in space.admins.all():
-            return space
-        else:
-            self.template_name = 'not_allowed.html'
-            return space
+        return space
 
 
 class ListSpaces(ListView):
@@ -425,14 +391,15 @@ class EditRole(UpdateView):
     template_name = 'spaces/user_groups.html'
 
     def dispatch(self, request, *args, **kwargs):
-        if (request.user.has_perm('change_space') and
-            request.user.has_perm('admin_space')):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+        if (request.user.has_perm('change_space', space) and
+            request.user.has_perm('admin_space', space)):
             return super(EditRole, self).dispatch(request, *args, **kwargs)
         else:
-            raise Http403
+            return HttpResponseForbidden()
 
     def get_success_url(self):
-        global space = self.kwargs['space_url']
+        space = self.kwargs['space_url']
         return reverse(urln.SPACE_INDEX, kwargs={'space_url': space})
 
     def get_object(self):

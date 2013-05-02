@@ -84,9 +84,9 @@ class Space(models.Model):
         verbose_name_plural = _('Spaces')
         get_latest_by = 'date'
         permissions = (
-            ('view', 'Can view this space.'),
-            ('admin', 'Can administrate this space.'),
-            ('mod', 'Can moderate this space.')
+            ('view_space', 'Can view this space.'),
+            ('admin_space', 'Can administrate this space.'),
+            ('mod_space', 'Can moderate this space.')
         )
 
     def __unicode__(self):

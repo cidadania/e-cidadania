@@ -71,8 +71,6 @@ def add_new_debate(request, space_url):
     """
     place = get_object_or_404(Space, url=space_url)
 
-    if request.user.has_perm('add_debate')
-
     if has_space_permission(request.user, place, allow=['admins']) \
             or has_all_permissions(request.user):
 

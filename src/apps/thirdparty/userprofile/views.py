@@ -348,10 +348,6 @@ def register(request):
             EmailValidation.objects.add(user=newuser, email=newuser.email)
             newuser.save()
 
-            # Add the user to the space administrators group
-            u_group = Group.objects.get(name="Creators")
-            newuser.groups.add(u_group)
-
             return HttpResponseRedirect('%scomplete/' % request.path_info)
     else:
         form = RegistrationForm()

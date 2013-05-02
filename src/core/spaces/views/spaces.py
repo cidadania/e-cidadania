@@ -339,11 +339,15 @@ class DeleteSpace(DeleteView):
     context_object_name = 'get_place'
     success_url = '/'
 
-    @permission_required_or_403('spaces.delete_space', (Space, space_url))
-    @permission_required_or_403('spaces.admin_space', (Space, space_url))
     def dispatch(self, request, *args, **kwargs):
-        
-        return super(DeleteSpace, self).dispatch(request, *args, **kwargs)
+        space_url = self.kwargs['space_url']
+        space = get_object_or_404(Space, url=space_url)
+
+        if (request.user.has_perm('delete_space', space) and
+            request.user.has_perm('admin_space'), space)):
+            return super(DeleteSpace, self).dispatch(request, *args, **kwargs)
+        else:
+            return Http403
 
     def get_object(self):
         # We declare space_url as global so we can access it on the decorator.

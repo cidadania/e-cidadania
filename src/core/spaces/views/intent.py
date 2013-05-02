@@ -74,6 +74,7 @@ def add_intent(request, space_url):
         'heading': heading}, context_instance=RequestContext(request))
 
 
+@login_required
 class ValidateIntent(DetailView):
 
     """

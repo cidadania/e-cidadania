@@ -62,6 +62,12 @@ class YearlyPosts(YearArchiveView):
     paginate_by = 12
     date_field = 'pub_date'
 
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(YearlyPosts, self).dispatch(request, *args, **kwargs)
+
     def get_queryset(self):
         """
         We use the get queryset function to get only the posts relevant to
@@ -94,6 +100,12 @@ class MonthlyPosts(MonthArchiveView):
     paginate_by = 12
     date_field = 'pub_date'
 
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(MonthlyPosts, self).dispatch(request, *args, **kwargs)
+
     def get_queryset(self):
         """
         We use the get queryset function to get only the posts relevant to
@@ -121,6 +133,12 @@ class ListPosts(ArchiveIndexView):
     date_field = 'pub_date'
     paginate_by = 12
     allow_empty = True
+
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(ListPosts, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         """

@@ -31,7 +31,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.comments.models import Comment
 from django.db.models import Count
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.core.exceptions import PermissionDenied
+from django.http import HttpResponseRedirect
 
 from core.spaces import url_names as urln
 from core.spaces.models import Space, Entity, Document, Event
@@ -169,9 +170,7 @@ class ViewSpaceIndex(DetailView):
         if request.user.has_perm('view_space', space):
             return super(ViewSpaceIndex, self).dispatch(request, *args, **kwargs)
         else:
-            return HttpResponseForbidden()
-        
-        
+            raise PermissionDenied
 
     def get_object(self):
         # Makes sure the space ins't already in the cache before hitting
@@ -319,7 +318,7 @@ class DeleteSpace(DeleteView):
             request.user.has_perm('admin_space', space)):
             return super(DeleteSpace, self).dispatch(request, *args, **kwargs)
         else:
-            return HttpResponseForbidden()
+            raise PermissionDenied
 
     def get_object(self):
         space_url = self.kwargs['space_url']
@@ -396,7 +395,7 @@ class EditRole(UpdateView):
             request.user.has_perm('admin_space', space)):
             return super(EditRole, self).dispatch(request, *args, **kwargs)
         else:
-            return HttpResponseForbidden()
+            raise PermissionDenied
 
     def get_success_url(self):
         space = self.kwargs['space_url']

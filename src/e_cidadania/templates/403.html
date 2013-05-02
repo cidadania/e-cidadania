@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Not allowed" %}{% endblock %}
+    
+{% block content %}
+
+    <div class="row">
+        <div class="span12">
+            <h4>{% trans "You are not allowed to access here." %}</h4>
+            {% if not user.is_anonymous %}
+            <br />
+            <a href="{{ get_place.get_absolute_url }}intent/" class="btn" >{% trans "I want to participate" %}</a>
+            {% endif %}
+            <p>{% trans "You can go <a href='/'>back to home</a> or <a href='/accounts/'>back to your profile</a>" %}</p>
+        </div>
+    </div>
+{% endblock %}

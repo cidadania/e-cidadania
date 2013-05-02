@@ -45,6 +45,8 @@ from django.core.urlresolvers import reverse
 from django.db import connection
 from django.forms.models import modelformset_factory, inlineformset_factory
 
+from guardian.shortcuts import assign_perm
+
 from apps.ecidadania.debate import url_names as urln
 from apps.ecidadania.debate.models import Debate, Note, Row, Column
 from apps.ecidadania.debate.forms import DebateForm, UpdateNoteForm, \
@@ -68,6 +70,8 @@ def add_new_debate(request, space_url):
     :context: form, rowform, colform, get_place, debateid
     """
     place = get_object_or_404(Space, url=space_url)
+
+    if request.user.has_perm('add_debate')
 
     if has_space_permission(request.user, place, allow=['admins']) \
             or has_all_permissions(request.user):
@@ -106,6 +110,13 @@ def add_new_debate(request, space_url):
                 for form in column:
                     form.debate = debate_instance
                     form.save()
+
+                # Assign the permissions to the creator of the debate and the
+                # space administrators
+                assign_perm('view_debate', request.user, saved_debate)
+                assign_perm('change_debate', request.user, saved_debate)
+                assign_perm('delete_debate', request.user, saved_debate)
+                assign_perm('move_note', request.user)
 
                 return HttpResponseRedirect(reverse(urln.DEBATE_VIEW,
                     kwargs={'space_url': space_url,

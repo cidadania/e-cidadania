@@ -18,9 +18,6 @@
                 <li {% if request.user.is_anonymous %}class="active"{% endif %}>
                     <a href="#all" data-toggle="tab">{% trans "All spaces" %}</a>
                 </li>
-                <li>
-                    <a href="#public" data-toggle="tab">{% trans "Public spaces" %}</a>
-                </li>
             </ul>
 
             <div class="tab-content">
@@ -37,16 +34,6 @@
                     </div>
                 {% endif %}
                 <div class="tab-pane {% if request.user.is_anonymous %}active{% endif %}" id="all">
-                    {% for space in all_spaces %}
-                        <div id="spaceitem">
-                            <p class="spacetitle"><a href="{{ space.get_absolute_url }}">{{ space.name }}</a></p>
-                            <p class="spacedesc">{{ space.description|removetags:"p"|safe }}</p>
-                        </div>
-                    {% empty %}
-                        <p>{% trans "There are no spaces." %}</p>
-                    {% endfor %}
-                </div>
-                <div class="tab-pane" id="public">
                     {% for space in public_spaces %}
                         <div id="spaceitem">
                             <p class="spacetitle"><a href="{{ space.get_absolute_url }}">{{ space.name }}</a></p>

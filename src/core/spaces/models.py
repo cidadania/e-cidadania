@@ -85,6 +85,8 @@ class Space(models.Model):
         get_latest_by = 'date'
         permissions = (
             ('view', 'Can view this space.'),
+            ('admin', 'Can administrate this space.'),
+            ('mod', 'Can moderate this space.')
         )
 
     def __unicode__(self):

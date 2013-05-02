@@ -42,7 +42,7 @@ def index_view(request):
     (it's loaded only once).
     """
     pub = Post.objects.filter(pub_index=True).order_by('-pub_date')
-    space_list = Space.objects.all()
+    space_list = Space.objects.filter(public=True)
     recent_spaces = Space.objects.all().order_by('-date')[:5]
     page_list = StaticPage.objects.filter(show_footer=True).order_by('-order')
 

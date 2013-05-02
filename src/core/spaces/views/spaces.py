@@ -23,7 +23,7 @@ from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic import FormView
 from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.decorators import permission_required, login_required
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.contrib import messages
 from django.template import RequestContext
@@ -31,7 +31,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.comments.models import Comment
 from django.db.models import Count
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http403
 
 from core.spaces import url_names as urln
 from core.spaces.models import Space, Entity, Document, Event
@@ -42,18 +42,20 @@ from apps.ecidadania.proposals.models import Proposal, ProposalSet
 from apps.ecidadania.staticpages.models import StaticPage
 from apps.ecidadania.debate.models import Debate
 from apps.ecidadania.voting.models import Poll, Voting
-from helpers.cache import get_or_insert_object_in_cache
+from e_cidadania.settings import DEBUG
 
+from helpers.cache import get_or_insert_object_in_cache
 from operator import itemgetter
 from guardian.shortcuts import assign_perm
+from guardian.core import ObjectPermissionChecker
+from guardian.decorators import permission_required_or_403
+
 
 # Please take in mind that the create_space view can't be replaced by a CBV
 # (class-based view) since it manipulates two forms at the same time. Apparently
 # that creates some trouble in the django API. See this ticket:
 # https://code.djangoproject.com/ticket/16256
-
-
-@permission_required('spaces.add_space')
+@login_required
 def create_space(request):
 
     """
@@ -61,8 +63,12 @@ def create_space(request):
     is an attached EntityFormset to save the entities related to the space.
     Only site administrators are allowed to create spaces.
 
+    .. note:: Since everyone can have the ability to create spaces, instead
+              of checking for the add_space permission we just ask for login.
+
     :attributes: - space_form: empty SpaceForm instance
                  - entity_forms: empty EntityFormSet
+    :permissions required: login_required
     :rtype: Space object, multiple entity objects.
     :context: form, entityformset
     """
@@ -92,6 +98,24 @@ def create_space(request):
             assign_perm('view_space', request.user, new_space)
             assign_perm('change_space', request.user, new_space)
             assign_perm('delete_space', request.user, new_space)
+            assign_perm('admin_space', request.user, new_space)
+
+            if DEBUG:
+                # This will tell us if the user got the right permissions for
+                # the object
+                un = request.user.username
+                u = ObjectPermissionChecker(request.user)  # Avoid unnecesary queries for the permission checks
+                print """Space permissions for user %s:
+                View: %s
+                Change: %s
+                Delete: %s
+                Admin: %s
+                Mod: %s
+                """ % (un, u.has_perm('view_space', new_space),
+                    u.has_perm('change_space', new_space),
+                    u.has_perm('delete_space', new_space),
+                    u.has_perm('admin_space', new_space),
+                    u.has_perm('mod_space', new_space))
 
             return HttpResponseRedirect(reverse(urln.SPACE_INDEX,
                 kwargs={'space_url': space.url}))
@@ -110,16 +134,49 @@ class ViewSpaceIndex(DetailView):
     the configured modules in the space.
 
     :attributes: space_object, place
+    :permissions required: space.view_space
     :rtype: Object
     :context: get_place, entities, documents, proposals, publication
     """
     context_object_name = 'get_place'
     template_name = 'spaces/space_index.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        """
+        We get the current space and user, first we check if the space is
+        public, if so, we check if the user is anonymous and leave a message,
+        after that we return the view. If the space is not public we check
+        for the view permission of the object, if the user doesn't have it we
+        return a 403. Since dispatch is run before anything, this checks are
+        made before obtaining the object. If the user doesn't have the
+        permission we return a 403 code, which is handled by
+        django-guardian and returns a template.
+
+        .. note:: Take in mind that the dispatch method takes **request** as a
+                  parameter.
+        """
+        space = get_object_or_404(Space, self.kwargs['space_url'])
+
+        if space.is_public:
+            if request.user.is_anonymous():
+                messages.info(self.request, _("Hello anonymous user. Remember \
+                    that this space is public to view, but you must \
+                    <a href=\"/accounts/register\">register</a> or \
+                    <a href=\"/accounts/login\">login</a> to participate."))
+
+             return super(ViewSpaceIndex, self).dispatch(request, *args, **kwargs)
+
+        if request.user.has_perm('view_space', space):
+            return super(ViewSpaceIndex, self).dispatch(request, *args, **kwargs)
+        else:
+            raise Http403
+        
+        
+
     def get_object(self):
         # Makes sure the space ins't already in the cache before hitting
         # the database
-        space_url = self.kwargs['space_url']
+        global space_url = self.kwargs['space_url']
         space_object = get_or_insert_object_in_cache(Space, space_url,
             url=space_url)
 
@@ -216,7 +273,8 @@ class ViewSpaceIndex(DetailView):
 # (class-based view) since it manipulates two forms at the same time. Apparently
 # that creates some trouble in the django API. See this ticket:
 # https://code.djangoproject.com/ticket/16256
-@permission_required('spaces.change_space')
+@permission_required_or_403('spaces.change_space', (Space, space_url))
+@permission_required_or_403('spaces.admin_space', (Space, space_url))
 def edit_space(request, space_url):
 
     """
@@ -229,6 +287,7 @@ def edit_space(request, space_url):
                  - form: SpaceForm instance.
                  - form_uncommited: form instance before commiting to the DB,
                    so we can modify the data.
+    :permissions required: spaces.change_space, spaces.admin_space
     :param space_url: Space URL
     :rtype: HTML Form
     :context: form, get_place
@@ -273,36 +332,29 @@ class DeleteSpace(DeleteView):
     This does not delete the space related content. Only the site
     administrators can delete a space.
 
+    :attributes: space_url
+    :permissions required: spaces.delete_space, spaces.admin_space
     :rtype: Confirmation
     """
     context_object_name = 'get_place'
     success_url = '/'
 
-    @method_decorator(permission_required('spaces.delete_space'))
-    def dispatch(self, *args, **kwargs):
-        return super(DeleteSpace, self).dispatch(*args, **kwargs)
+    @permission_required_or_403('spaces.delete_space', (Space, space_url))
+    @permission_required_or_403('spaces.admin_space', (Space, space_url))
+    def dispatch(self, request, *args, **kwargs):
+        
+        return super(DeleteSpace, self).dispatch(request, *args, **kwargs)
 
     def get_object(self):
-        space = get_object_or_404(Space, url=self.kwargs['space_url'])
+        # We declare space_url as global so we can access it on the decorator.
+        # Fucking CBV's they're a PITA
+        global space_url = self.kwargs['space_url']
+        space = get_object_or_404(Space, url=space_url)
         if self.request.user in space.admins.all():
             return space
         else:
             self.template_name = 'not_allowed.html'
             return space
-
-
-# class GoToSpace(RedirectView):
-
-#     """
-#     Sends the user to the selected space. This view only accepts GET petitions.
-#     GoToSpace is a django generic :class:`RedirectView`.
-
-#     :Attributes: **self.place** - Selected space object
-#     :rtype: Redirect
-#     """
-#     def get_redirect_url(self, **kwargs):
-#         self.place = get_object_or_404(Space,name = self.request.GET['spaces'])
-#         return '/spaces/%s' % self.place.url
 
 
 class ListSpaces(ListView):
@@ -312,6 +364,11 @@ class ListSpaces(ListView):
     view. The users associated to a private spaces will see it, but not the
     other private spaces. ListSpaces is a django generic :class:`ListView`.
 
+    .. note:: Permissions on this view are used only to filter the spaces list
+              but the view itself is public.
+
+    :attributes: space_url
+    :permissions required: spaces.view_space
     :rtype: Object list
     :contexts: object_list
     """
@@ -335,9 +392,9 @@ class ListSpaces(ListView):
 
         if not current_user.is_anonymous():
             for space in self.all_spaces:
-                if has_space_permission(current_user, space,
-                                        allow=['users', 'admins', 'mods']):
+                if current_user.has_perm('view_space', space):
                     user_spaces.add(space.pk)
+
             user_spaces = Space.objects.filter(pk__in=user_spaces)
             return self.public_spaces | user_spaces
 
@@ -345,7 +402,6 @@ class ListSpaces(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ListSpaces, self).get_context_data(**kwargs)
-        context['all_spaces'] = self.all_spaces
         context['public_spaces'] = self.public_spaces
         return context
 
@@ -356,6 +412,7 @@ class EditRole(UpdateView):
     This view allows the administrator to edit the roles for every user in the
     platform.
 
+    :permissions required: spaces.change_space, spaces.admin_space
     .. versionadded: 0.1.5
     """
 
@@ -364,7 +421,7 @@ class EditRole(UpdateView):
     template_name = 'spaces/user_groups.html'
 
     def get_success_url(self):
-        space = self.kwargs['space_url']
+        global space = self.kwargs['space_url']
         return reverse(urln.SPACE_INDEX, kwargs={'space_url': space})
 
     def get_object(self):
@@ -377,6 +434,7 @@ class EditRole(UpdateView):
             url=self.kwargs['space_url'])
         return context
 
-    @method_decorator(permission_required('spaces.change_space'))
+    @method_decorator(permission_required_or_403('spaces.change_space', (Space, space_url)))
+    @method_decorator(permission_required_or_403('spaces.admin_space', (Space, space_url)))
     def dispatch(self, *args, **kwargs):
         return super(EditRole, self).dispatch(*args, **kwargs)

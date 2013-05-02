@@ -24,6 +24,7 @@ from guardian.admin import GuardedModelAdmin
 
 from apps.ecidadania.voting.models import Poll, Choice, Voting, ConfirmVote
 
+
 class ChoiceInline(admin.TabularInline):
         model = Choice
 

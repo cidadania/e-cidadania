@@ -26,6 +26,7 @@ from django.contrib.auth.decorators import permission_required
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
+from django.core.exceptions import PermissionDenied
 
 from core.spaces import url_names as urln
 from core.spaces.models import Space
@@ -66,6 +67,8 @@ class YearlyPosts(YearArchiveView):
 
         if request.user.has_perm('view_space', space):
             return super(YearlyPosts, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_queryset(self):
         """
@@ -104,6 +107,8 @@ class MonthlyPosts(MonthArchiveView):
 
         if request.user.has_perm('view_space', space):
             return super(MonthlyPosts, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_queryset(self):
         """
@@ -138,6 +143,8 @@ class ListPosts(ArchiveIndexView):
 
         if request.user.has_perm('view_space', space):
             return super(ListPosts, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_queryset(self):
         """

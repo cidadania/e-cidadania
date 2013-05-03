@@ -28,6 +28,7 @@ from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.core.mail import send_mail
 from django.contrib import messages
+from django.core.exceptions import PermissionDenied
 
 from e_cidadania import settings
 from core.spaces.models import Space, Intent

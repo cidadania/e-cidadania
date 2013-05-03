@@ -26,6 +26,7 @@ from django.contrib.auth.decorators import permission_required
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
+from django.core.exceptions import PermissionDenied
 from guardian.shortcuts import assign_perm
 
 from core.spaces import url_names as urln
@@ -67,7 +68,7 @@ class AddEvent(FormView):
         form_uncommited.space = self.space
         form_uncommited.save()
         form.save_m2m()
-        print form
+
         # Assign all the permissions
         assign_perm('view_event', self.request.user, self.space)
         assign_perm('change_event', self.request.user, self.space)

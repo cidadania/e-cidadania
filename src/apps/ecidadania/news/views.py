@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
 # This file is part of e-cidadania.
 #
@@ -29,6 +29,8 @@ from django.views.generic import FormView
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.core.exceptions import PermissionDenied
+from guardian.shortcuts import assign_perm
 
 from core.spaces import url_names as urln
 from core.spaces.models import Space
@@ -45,11 +47,21 @@ class AddPost(FormView):
 
     .. versionadded: 0.1
 
+    :permissions required: admin_space, mod_space
     :parameters: space_url
     :context: get_place
     """
     form_class = NewsForm
     template_name = 'news/post_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if (request.user.has_perm('admin_space', space) or
+            request.user.has_perm('mod_space', space)):
+            return super(AddPost, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_success_url(self):
         space = self.kwargs['space_url']
@@ -69,18 +81,24 @@ class AddPost(FormView):
         context['get_place'] = self.space
         return context
 
-    @method_decorator(permission_required('news.add_post'))
-    def dispatch(self, *args, **kwargs):
-        return super(AddPost, self).dispatch(*args, **kwargs)
-
 
 class ViewPost(DetailView):
 
     """
     View a specific post.
+
+    :permissions required: view_space
     """
     context_object_name = 'news'
     template_name = 'news/post_detail.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(ViewPost, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_object(self):
         post = Post.objects.get(pk=self.kwargs['post_id'])
@@ -106,11 +124,21 @@ class EditPost(UpdateView):
     """
     Edit an existent post.
 
+    :permissions required: admin_space, mod_space
     :parameters: space_url, post_id
     :context: get_place
     """
     model = Post
     template_name = 'news/post_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if (request.user.has_perm('admin_space', space) or
+            request.user.has_perm('mod_space', space)):
+            return super(EditPost, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_success_url(self):
         space = self.kwargs['space_url']
@@ -125,10 +153,6 @@ class EditPost(UpdateView):
         context['get_place'] = get_object_or_404(Space, url=self.kwargs['space_url'])
         return context
 
-    @method_decorator(permission_required('news.change_post'))
-    def dispatch(self, *args, **kwargs):
-        return super(EditPost, self).dispatch(*args, **kwargs)
-
 
 class DeletePost(DeleteView):
 
@@ -137,6 +161,15 @@ class DeletePost(DeleteView):
     administrators or site admins.
     """
     context_object_name = "get_place"
+
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if (request.user.has_perm('admin_space', space) or
+            request.user.has_perm('mod_space', space)):
+            return super(DeletePost, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_success_url(self):
         space = self.kwargs['space_url']

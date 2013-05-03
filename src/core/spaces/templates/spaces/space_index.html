@@ -66,36 +66,32 @@ are all of them :/
                 <li class="pull-right">
                     <a href="{% url 'space-feed' get_place.url %}"><i class="icon-rss" style="font-size:16px;"></i> RSS</a>
                 </li>
-                {% if "admin_space" in space_perms %}
+                {% if "admin_space" in space_perms or "mod_space" in space_perms %}
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Administration" %} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            {% if perms.news.add_post %}
-                                <li><a href="{% url 'add-post' get_place.url %}" title="{% trans 'Add new post' %}">
-                                    <i class="icon-plus" style="font-size:16px;"></i> {% trans 'Add new post' %}
-                                </a></li>
-                            {% endif %}
-                            <li class="divider"></li>
-                            {% if perms.spaces.change_space %}
+                            {% if "admin_space" in space_perms %}
                                 <li><a href="{% url 'edit-space' get_place.url %}" title="{% trans 'Edit space' %}">
                                     <i class="icon-edit" style="font-size:16px;"></i> {% trans 'Edit space' %}
+                                </a></li>
+                                <li><a href="{% url 'delete-space' get_place.url %}" title="{% trans 'Delete space' %}">
+                                    <i class="icon-trash" style="font-size:16px;"></i> {% trans 'Delete space' %}
                                 </a></li>
                                 <li><a href="{% url 'edit-roles' get_place.url %}" title="{% trans 'Edit user roles' %}">
                                     <i class="icon-edit" style="font-size:16px;"></i> {% trans 'Edit user roles' %}
                                 </a></li>
-                                {% if perms.spaces.delete_space %}
-                                <li><a href="{% url 'delete-space' get_place.url %}" title="{% trans 'Delete space' %}">
-                                    <i class="icon-trash" style="font-size:16px;"></i> {% trans 'Delete space' %}
-                                </a></li>
-                                {% endif %}
                                 <li class="divider"></li>
-                                <li><a href="{% url 'add_fields' get_place.url %}" title="{% trans 'Add form field'%}">
-                                    <i class="icon-plus" style="font-size:16px;"></i> {% trans 'Add form fields '%}
-                                </a></li>
-                                <li><a href="{% url 'delete_fields' get_place.url %}" title="{% trans 'Delete form field'%}">
-                                    <i class="icon-trash" style="font-size:16px;"></i> {% trans 'Delete form field '%}
-                                </a></li>
                             {% endif %}
+                            <li><a href="{% url 'add-post' get_place.url %}" title="{% trans 'Add new post' %}">
+                                <i class="icon-plus" style="font-size:16px;"></i> {% trans 'Add new post' %}
+                            </a></li>
+                            <li class="divider"></li>
+                            <li><a href="{% url 'add_fields' get_place.url %}" title="{% trans 'Add form field'%}">
+                                <i class="icon-plus" style="font-size:16px;"></i> {% trans 'Add form fields '%}
+                            </a></li>
+                            <li><a href="{% url 'delete_fields' get_place.url %}" title="{% trans 'Delete form field'%}">
+                                <i class="icon-trash" style="font-size:16px;"></i> {% trans 'Delete form field '%}
+                            </a></li>
                         </ul>
                     </li>
                 {% endif %}

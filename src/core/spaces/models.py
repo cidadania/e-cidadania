@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
 # This file is part of e-cidadania.
 #
@@ -49,7 +49,7 @@ class Space(models.Model):
                      underscore. This will be the accesible URL'))
     description = models.TextField(_('Description'),
         default=_('Write here your description.'))
-    date = models.DateTimeField(_('Date of creation'), auto_now_add=True)
+    pub_date = models.DateTimeField(_('Date of creation'), auto_now_add=True)
     author = models.ForeignKey(User, blank=True, null=True,
         verbose_name=_('Space creator'), help_text=_('Select a user that \
         will be marked as creator of the space'))
@@ -82,7 +82,7 @@ class Space(models.Model):
         ordering = ['name']
         verbose_name = _('Space')
         verbose_name_plural = _('Spaces')
-        get_latest_by = 'date'
+        get_latest_by = 'pub_date'
         permissions = (
             ('view_space', 'Can view this space.'),
             ('admin_space', 'Can administrate this space.'),

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
 # This file is part of e-cidadania.
 #
@@ -48,9 +48,10 @@ class Post(models.Model):
     views = models.IntegerField(_('Views'), blank=True, null=True)
 
     class Meta:
-        permissions = (
-            ('view', 'Can view the post'),
-        )
+        ordering = ['title']
+        verbose_name = _('Post')
+        verbose_name_plural = _('Posts')
+        get_latest_by = 'pub_date'
 
     def __unicode__(self):
         return self.title

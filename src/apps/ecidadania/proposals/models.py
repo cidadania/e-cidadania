@@ -119,7 +119,9 @@ class ProposalSet(models.Model):
         verbose_name_plural = _('Proposal sets')
         get_latest_by = 'pub_date'
         permissions = (
-            ('view', 'Can view the ProposalSet'),
+            ('view_proposalset', 'Can view the ProposalSet'),
+            ('admin_proposalset', 'Can administrate the ProposalSet'),
+            ('mod_proposalset', 'Can moderate the ProposalSet'),
         )
 
     @models.permalink
@@ -198,7 +200,9 @@ class Proposal(BaseProposalAbstractModel):
         verbose_name_plural = _('Proposals')
         get_latest_by = 'pub_date'
         permissions = (
-            ('view', 'Can view the proposal'),
+            ('view_proposal', 'Can view the Proposal'),
+            ('admin_proposal', 'Can administrate the Proposal'),
+            ('mod_proposal', 'Can moderate the Proposal'),
         )
 
     @models.permalink

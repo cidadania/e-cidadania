@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
 # This file is part of e-cidadania.
 #
@@ -17,14 +17,11 @@
 # You should have received a copy of the GNU General Public License
 # along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
 
-from django.views.generic.base import RedirectView
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-from django.views.generic import FormView
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import permission_required, login_required
-from django.shortcuts import render_to_response, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib import messages
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
@@ -38,7 +35,6 @@ from helpers.cache import get_or_insert_object_in_cache
 from operator import itemgetter
 from guardian.shortcuts import assign_perm
 from guardian.core import ObjectPermissionChecker
-from guardian.decorators import permission_required_or_403
 
 from core.spaces import url_names as urln
 from core.spaces.models import Space, Entity, Document, Event
@@ -234,9 +230,6 @@ class ViewSpaceIndex(DetailView):
         context['votings'] = Voting.objects.filter(space=place.id)
         context['polls'] = Poll.objects.filter(space=place.id)
         # True if the request.user has admin rights on this space
-        context['user_is_admin'] = (self.request.user in place.admins.all()
-            or self.request.user in place.mods.all()
-            or self.request.user.is_staff or self.request.user.is_superuser)
         context['polls'] = Poll.objects.filter(space=place.id)
         return context
 

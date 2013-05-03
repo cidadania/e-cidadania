@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load guardian_tags %}
 {% load comments %}
+
+{% comment %}
+We load here the permissions for all the necessary objects in this template, which I think
+are all of them :/
+{% endcomment %}
+
+{% get_obj_perms request.user for get_place as "space_perms" %}
+
 
 {% block title %}{{ get_place.name }} - {% trans "Index" %}{% endblock %}
 {% block logo %}<a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ get_place.logo }}" /></a>{% endblock %}
@@ -49,18 +58,15 @@
                 {% if get_place.mod_voting %}
                     <li><a href="#voting" data-toggle="tab">{% trans "Voting" %}</a></li>
                 {% endif %}
-                {% comment %}
-                This has to be replaced, don't be lazy.
-                {% endcomment %}
-                {% if user not in get_place.admins.all or user not in get_place.mods.all or user not in get_place.users.all %}
-                <li class="pull-right">
-                    <a href="{% url 'add-intent' get_place.url %}"><i class="icon-plus" style="font-size:16px;"></i> {% trans "Join!" %}</a>
-                </li>
+                {% if get_place.public and request.user.is_anonymous %}
+                    <li class="pull-right">
+                        <a href="{% url 'add-intent' get_place.url %}"><i class="icon-plus" style="font-size:16px;"></i> {% trans "Join!" %}</a>
+                    </li>
                 {% endif %}
                 <li class="pull-right">
                     <a href="{% url 'space-feed' get_place.url %}"><i class="icon-rss" style="font-size:16px;"></i> RSS</a>
                 </li>
-                {% if user_is_admin %}
+                {% if "admin_space" in space_perms %}
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Administration" %} <b class="caret"></b></a>
                         <ul class="dropdown-menu">

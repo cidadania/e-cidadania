@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
 # This file is part of e-cidadania.
 #
@@ -21,8 +21,6 @@ from django.views.generic.base import RedirectView
 from django.views.generic.list import ListView
 from django.views.generic.dates import ArchiveIndexView, MonthArchiveView, \
     YearArchiveView
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import permission_required
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse

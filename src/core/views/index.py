@@ -1,7 +1,6 @@
-#/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
 # This file is part of e-cidadania.
 #
@@ -20,16 +19,12 @@
 
 
 from django.contrib import messages
-from django.contrib.syndication.views import Feed
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 
-from apps.ecidadania.news.forms import NewsForm
-from apps.ecidadania.news.models import Post
-from apps.ecidadania.staticpages.models import StaticPage
 from core.spaces.models import Space
 from e_cidadania import settings
 
@@ -66,30 +61,3 @@ def index_view(request):
                               context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect(reverse('profile_overview'))
-
-
-class IndexEntriesFeed(Feed):
-
-    """
-    Creates an RSS feed out of the news posts in the index page.
-
-    :rtype: RSS Feed
-    :context: None
-
-    .. versionadded:: 0.1b
-    """
-    title = _('e-cidadania news')
-    link = '/news/'
-    description = _('Updates on the main e-cidadania site.')
-
-    def items(self):
-        """
-        Get all the posts published publicly.
-        """
-        return Post.objects.all().order_by('-pub_date')[:10]
-
-    def item_title(self, item):
-        return item.title
-
-    def item_description(self, item):
-        return item.description

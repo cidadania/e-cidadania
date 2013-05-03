@@ -1,7 +1,6 @@
-#/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
 # This file is part of e-cidadania.
 #
@@ -21,10 +20,13 @@
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.shortcuts import render_to_response
 from django.template import RequestContext, loader, Context
+from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
+
 from e_cidadania import settings
 
 
+@login_required
 def invite(request):
 
     """

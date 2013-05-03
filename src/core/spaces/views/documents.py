@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
 # This file is part of e-cidadania.
 #
@@ -20,8 +20,6 @@
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic import FormView
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import permission_required
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
@@ -30,7 +28,6 @@ from django.core.exceptions import PermissionDenied
 from core.spaces import url_names as urln
 from core.spaces.models import Space, Document
 from core.spaces.forms import SpaceForm, DocForm
-from core.permissions import has_space_permission, has_all_permissions
 
 
 class AddDocument(FormView):
@@ -118,7 +115,7 @@ class DeleteDocument(DeleteView):
     """
     Returns a confirmation page before deleting the current document.
 
-    :permission_required: admin_space, mod_space
+    :permissions required: admin_space, mod_space
     :rtype: Confirmation
     :context: get_place
     """

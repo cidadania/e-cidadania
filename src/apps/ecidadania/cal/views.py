@@ -21,6 +21,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.utils.safestring import mark_safe
 from django.template import RequestContext
 from django.utils import translation
+from django.core.exceptions import PermissionDenied
 
 from core.spaces.models import Event, Space
 from apps.ecidadania.cal.models import EventCalendar
@@ -37,7 +38,7 @@ def calendar(request, space_url, year, month):
     """
     space = get_object_or_404(Space, url=space_url)
 
-    if request.user.has_perm('spaces.view_space', space):
+    if request.user.has_perm('view_space', space):
         # Avoid people writing wrong numbers or any program errors.
         if int(month) not in range(1, 13):
             return render_to_response('cal/error.html',
@@ -69,4 +70,4 @@ def calendar(request, space_url, year, month):
                                    'get_place': place},
                                    context_instance=RequestContext(request))
     else:
-        return render_to_response('not_allowed.html', context_instance=RequestContext(request))
+        raise PermissionDenied

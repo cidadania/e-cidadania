@@ -206,7 +206,9 @@ class Event(models.Model):
         verbose_name_plural = _('Events')
         get_latest_by = 'event_date'
         permissions = (
-            ('view', 'Can view this event'),
+            ('view_event', 'Can view this event'),
+            ('admin_event', 'Can administrate this event'),
+            ('mod_event', 'Can moderate this event'),
         )
 
     def __unicode__(self):

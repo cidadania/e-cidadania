@@ -34,22 +34,21 @@ from django.core.urlresolvers import reverse
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
 
+from helpers.cache import get_or_insert_object_in_cache
+from operator import itemgetter
+from guardian.shortcuts import assign_perm
+from guardian.core import ObjectPermissionChecker
+from guardian.decorators import permission_required_or_403
+
 from core.spaces import url_names as urln
 from core.spaces.models import Space, Entity, Document, Event
 from core.spaces.forms import SpaceForm, EntityFormSet, RoleForm
-from core.permissions import has_space_permission, has_all_permissions
 from apps.ecidadania.news.models import Post
 from apps.ecidadania.proposals.models import Proposal, ProposalSet
 from apps.ecidadania.staticpages.models import StaticPage
 from apps.ecidadania.debate.models import Debate
 from apps.ecidadania.voting.models import Poll, Voting
 from e_cidadania.settings import DEBUG
-
-from helpers.cache import get_or_insert_object_in_cache
-from operator import itemgetter
-from guardian.shortcuts import assign_perm
-from guardian.core import ObjectPermissionChecker
-from guardian.decorators import permission_required_or_403
 
 
 # Please take in mind that the create_space view can't be replaced by a CBV

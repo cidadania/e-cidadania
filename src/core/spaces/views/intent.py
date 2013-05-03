@@ -32,7 +32,6 @@ from django.contrib import messages
 from e_cidadania import settings
 from core.spaces.models import Space, Intent
 from helpers.cache import get_or_insert_object_in_cache
-from core.permissions import has_space_permission, has_all_permissions
 
 
 @login_required
@@ -74,7 +73,6 @@ def add_intent(request, space_url):
         'heading': heading}, context_instance=RequestContext(request))
 
 
-@login_required
 class ValidateIntent(DetailView):
 
     """
@@ -88,6 +86,12 @@ class ValidateIntent(DetailView):
     context_object_name = 'get_place'
     template_name = 'spaces/validate_intent.html'
     status = _("The requested intent does not exist!")
+
+    def dispatch(self, reques, *args, **kwargs):
+        if request.user.is_authenticated:
+            return super(ValidateIntent, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_object(self):
         # Makes sure the space ins't already in the cache before hitting the

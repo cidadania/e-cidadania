@@ -43,6 +43,10 @@ class AddDocument(FormView):
     form_class = DocForm
     template_name = 'spaces/document_form.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        
+        return super(AddDocument, self).dispatch(*args, **kwargs)
+
     def get_success_url(self):
         space = self.kwargs['space_url']
         return reverse(urln.SPACE_INDEX, kwargs={'space_url': space})
@@ -64,10 +68,6 @@ class AddDocument(FormView):
             space, allow=['admins', 'mods']) or has_all_permissions(
                 self.request.user))
         return context
-
-    @method_decorator(permission_required('spaces.add_document'))
-    def dispatch(self, *args, **kwargs):
-        return super(AddDocument, self).dispatch(*args, **kwargs)
 
 
 class EditDocument(UpdateView):

@@ -26,12 +26,12 @@ from django.contrib.auth.decorators import permission_required
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
+from guardian.shortcuts import assign_perm
 
 from core.spaces import url_names as urln
 from core.spaces.models import Space, Event
 from core.spaces.forms import SpaceForm, EventForm
 from helpers.cache import get_or_insert_object_in_cache
-from core.permissions import has_space_permission, has_all_permissions
 
 
 class AddEvent(FormView):
@@ -40,11 +40,21 @@ class AddEvent(FormView):
     Returns an empty MeetingForm to create a new Meeting. Space and author
     fields are automatically filled with the request data.
 
+    :permissions required: admin_space, mod_space
     :rtype: HTML Form
     :context: form, get_place
     """
     form_class = EventForm
     template_name = 'spaces/event_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if (request.user.has_perm('admin_space', space) or
+            request.user.has_perm('mod_space', space)):
+            return super(AddEvent, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_success_url(self):
         space = self.kwargs['space_url']
@@ -57,6 +67,12 @@ class AddEvent(FormView):
         form_uncommited.space = self.space
         form_uncommited.save()
         form.save_m2m()
+        print form
+        # Assign all the permissions
+        assign_perm('view_event', self.request.user, self.space)
+        assign_perm('change_event', self.request.user, self.space)
+        assign_perm('delete_event', self.request.user, self.space)
+        assign_perm('admin_event', self.request.user, self.space)
 
         return super(AddEvent, self).form_valid(form)
 
@@ -79,19 +95,22 @@ class ViewEvent(DetailView):
     """
     View the content of a event.
 
+    :permissions required: view_space
     :rtype: Object
     :context: event, get_place
     """
     context_object_name = 'event'
     template_name = 'spaces/event_detail.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(ViewEvent, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
     def get_object(self):
-        space_url = self.kwargs['space_url']
-
-        if self.request.user.is_anonymous():
-            self.template_name = 'not_allowed.html'
-            return get_object_or_404(Space, url=space_url)
-
         return get_object_or_404(Event, pk=self.kwargs['event_id'])
 
     def get_context_data(self, **kwargs):
@@ -100,21 +119,30 @@ class ViewEvent(DetailView):
             url=self.kwargs['space_url'])
         return context
 
-    @method_decorator(permission_required('spaces.view_event'))
-    def dispatch(self, *args, **kwargs):
-        return super(ViewEvent, self).dispatch(*args, **kwargs)
-
 
 class EditEvent(UpdateView):
 
     """
     Returns a MeetingForm filled with the current Meeting data to be edited.
 
+    :permissions required: admin_space, admin_event, mod_space, change_event
     :rtype: HTML Form
     :context: event, get_place
     """
     model = Event
     template_name = 'spaces/event_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+        event = get_object_or_404(Event, pk=kwargs['event_id'])
+
+        if (request.user.has_perm('admin_space', space) or
+            request.user.has_perm('mod_space', space) or
+            (request.user.has_perm('admin_event', event) and
+             request.user.has_perm('change_event', event))):
+            return super(EditEvent, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_object(self):
         cur_event = get_object_or_404(Event, pk=self.kwargs['event_id'])
@@ -140,19 +168,28 @@ class EditEvent(UpdateView):
                 self.request.user))
         return context
 
-    @method_decorator(permission_required('spaces.change_event'))
-    def dispatch(self, *args, **kwargs):
-        return super(EditEvent, self).dispatch(*args, **kwargs)
-
 
 class DeleteEvent(DeleteView):
 
     """
     Returns a confirmation page before deleting the Meeting object.
 
+    :permissions required: admin_space, mod_space, admin_event, delete_event
     :rtype: Confirmation
     :context: get_place
     """
+
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+        event = get_object_or_404(Event, url=kwargs['event_id'])
+
+        if (request.user.has_perm('admin_space', space) or
+            request.user.has_perm('mod_space'), space or
+            (request.user.has_perm('admin_event', event) and
+             request.user.has_perm('delete_event', event))):
+            return super(DeleteEvent, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_object(self):
         return get_object_or_404(Event, pk=self.kwargs['event_id'])
@@ -167,21 +204,25 @@ class DeleteEvent(DeleteView):
             url=self.kwargs['space_url'])
         return context
 
-    @method_decorator(permission_required('spaces.delete_event'))
-    def dispatch(self, *args, **kwargs):
-        return super(DeleteEvent, self).dispatch(*args, **kwargs)
-
 
 class ListEvents(ListView):
 
     """
     List all the events attached to a space.
 
+    :permissions required: view_space
     :rtype: Object list
     :context: event_list, get_place
     """
     paginate_by = 25
     context_object_name = 'event_list'
+
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+        if request.user.has_perm('view_space', space):
+            return super(ListEvents, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_queryset(self):
         place = get_object_or_404(Space, url=self.kwargs['space_url'])

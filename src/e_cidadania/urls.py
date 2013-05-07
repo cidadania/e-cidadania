@@ -26,7 +26,6 @@ from django.conf import settings
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from core.views.index import IndexEntriesFeed
 from core.views.news import ListNews
 from core.views.news import AddPost
 from core.views.news import EditPost
@@ -79,9 +78,6 @@ urlpatterns += patterns('',
 
     url(r'^news/(?P<post_id>\w+)/$', ViewPost.as_view(),
                                     name='view-site-post'),
-
-    # RSS Feed for the index news ONLY
-    url(r'^rss/$', IndexEntriesFeed(), name='site-feed'),
 
     #(r'^api/', include('e_cidadania.apps.api.urls')),
 

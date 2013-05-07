@@ -60,7 +60,7 @@ class SpaceAdmin(GuardedModelAdmin):
     :list fields: name, description, date
     :search fields: name
     """
-    list_display = ('name', 'description', 'date')
+    list_display = ('name', 'description', 'pub_date')
     search_fields = ('name',)
 
     fieldsets = [

@@ -36,16 +36,10 @@ def index_view(request):
     because using direct_to_template in urls.py doesn't refresh the content
     (it's loaded only once).
     """
-    pub = Post.objects.filter(pub_index=True).order_by('-pub_date')
     space_list = Space.objects.filter(public=True)
-    recent_spaces = Space.objects.all().order_by('-date')[:5]
-    page_list = StaticPage.objects.filter(show_footer=True).order_by('-order')
 
     extra_context = {
-        'publication': pub,
         'spaces': space_list,
-        'recent_spaces': recent_spaces,
-        'page': page_list,
         'version': settings.__version__,
         'status': settings.__status__,
         'debug_mode': settings.DEBUG,

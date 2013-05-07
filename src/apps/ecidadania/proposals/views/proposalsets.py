@@ -92,7 +92,7 @@ class AddProposalInSet(FormView):
         self.field = ProposalField.objects.filter(proposalset=self.kwargs['set_id'])
         context['get_place'] = self.space
         context['form_field'] = [f_name.field_name for f_name in self.field]
-        return contextç
+        return context
 
 
 def add_proposal_field(request, space_url):

@@ -45,12 +45,9 @@
 	        <ul class="dropdown-menu">
 	            {% if user.is_staff %}
 	                <li><a href="{% url 'admin:index' %}">{% trans "Administration" %}</a></li>
-                    <li><a href="{% url 'add-site-post' %}">{% trans "Add news" %}</a></li>
     	            <li class="divider"></li>
 	            {% endif %}
-                {% if perms.spaces.add_space %}
-                    <li><a href="{% url 'create-space' %}">{% trans "Create new space" %}</a></li>
-                {% endif %}
+                <li><a href="{% url 'create-space' %}">{% trans "Create new space" %}</a></li>
 	            <li><a href="{% url 'profile_edit_personal' %}">{% trans "Edit profile" %}</a></li>
 	            <li class="divider"></li>
 	            <li><a href="{% url 'logout' %}">{% trans "Logout" %}</a></li>

@@ -33,7 +33,7 @@ from django.http import HttpResponseRedirect
 
 from helpers.cache import get_or_insert_object_in_cache
 from operator import itemgetter
-from guardian.shortcuts import assign_perm
+from guardian.shortcuts import assign_perm, get_users_with_perms
 from guardian.core import ObjectPermissionChecker
 
 from core.spaces import url_names as urln
@@ -285,7 +285,8 @@ def edit_space(request, space_url):
                     'get_place': place, 'entityformset': entity_forms},
                     context_instance=RequestContext(request))
 
-    raise PermissionDenied
+    else:
+        raise PermissionDenied
 
 
 class DeleteSpace(DeleteView):
@@ -349,6 +350,8 @@ class ListSpaces(ListView):
         # operand.
         current_user = self.request.user
         user_spaces = set()
+        all_spaces = Space.objects.all()
+        public_spaces = Spaces.objects.filter(public=True)
 
         if not current_user.is_anonymous():
             for space in self.all_spaces:
@@ -366,38 +369,35 @@ class ListSpaces(ListView):
         return context
 
 
-class EditRole(UpdateView):
+def edit_roles(request, space_url):
 
     """
-    This view allows the administrator to edit the roles for every user in the
-    platform.
-
-    :permissions required: spaces.change_space, spaces.admin_space
-    .. versionadded: 0.1.5
     """
 
-    form_class = RoleForm
-    model = Space
-    template_name = 'spaces/user_groups.html'
+    space = get_object_or_404(Space, url=space_url)
 
-    def dispatch(self, request, *args, **kwargs):
-        space = get_object_or_404(Space, url=kwargs['space_url'])
-        if (request.user.has_perm('change_space', space) and
-            request.user.has_perm('admin_space', space)):
-            return super(EditRole, self).dispatch(request, *args, **kwargs)
+    if request.user.has_perm('admin_space', space):
+        if request.method == 'POST':
+            pass
+            # Get all the content sent by the ajax comm and save it!
         else:
-            raise PermissionDenied
+            space_users = get_users_with_perms(space, with_superusers=True)
+            admins = set()
+            mods = set()
+            users = set()
+            for user in space_users:
+                if user.has_perm('admin_space'):
+                    admins.add(user)
+                elif user.has_perm('mod_space'):
+                    mods.add(user)
+                else:
+                    # We omit the check for "view_space" because the space_users
+                    # variable is already filtered to show only the users with permissions
+                    # on that object and users shows all the users in the space.
+                    users.add(user)
 
-    def get_success_url(self):
-        space = self.kwargs['space_url']
-        return reverse(urln.SPACE_INDEX, kwargs={'space_url': space})
-
-    def get_object(self):
-        cur_space = get_object_or_404(Space, url=self.kwargs['space_url'])
-        return cur_space
-
-    def get_context_data(self, **kwargs):
-        context = super(EditRole, self).get_context_data(**kwargs)
-        context['get_place'] = get_object_or_404(Space,
-            url=self.kwargs['space_url'])
-        return context
+            return render_to_response('spaces/user_groups.html',
+                {'get_place': space, 'user_admins': admins, 'user_mods': mods,
+                 'user_users': users}, context_instance=RequestContext(request))
+    else:
+        raise PermissionDenied

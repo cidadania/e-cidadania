@@ -1,6 +1,6 @@
 /*
     debate_board.js - Javascript containing the engine for the debate
-                           system.
+    system.
                            
     License: GPLv3
     Copyright: 2011 Cidadania S. Coop. Galega

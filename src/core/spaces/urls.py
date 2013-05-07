@@ -24,7 +24,7 @@ access to '/spaces/'.
 from django.conf.urls import *
 
 from core.spaces.views.spaces import ViewSpaceIndex, ListSpaces, \
-    DeleteSpace, EditRole
+    DeleteSpace
 from core.spaces.views.documents import ListDocs, DeleteDocument, \
     AddDocument, EditDocument
 from core.spaces.views.events import ListEvents, DeleteEvent, ViewEvent, \
@@ -140,7 +140,7 @@ urlpatterns += patterns('',
 
     # url(_(r'^go/'), GoToSpace.as_view(), name=GOTO_SPACE),
 
-    url(r'^(?P<space_url>\w+)/roles/', EditRole.as_view(),
+    url(r'^(?P<space_url>\w+)/roles/', 'core.spaces.views.spaces.edit_roles',
         name=EDIT_ROLES),
 
     url(r'^(?P<space_url>\w+)/$', ViewSpaceIndex.as_view(),

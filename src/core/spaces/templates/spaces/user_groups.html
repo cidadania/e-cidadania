@@ -16,44 +16,55 @@
 {% block content %}
 
 <div class="row">
+    <div class="span12">
         <h3>{% trans "Edit roles for" %} {{ get_place.name }}</h3>
 
-        <form class="form" enctype="" action="" method="post">{% csrf_token %}
-
-            {% if form.non_field_errors %}
-                {% for error in form.non_field_errors %}
-                    <span class="help-inline">{{ error|escape }}</span>
-                {% endfor %}
-            {% endif %}
-
-            {% for field in form %}
-                <div class="span4">
-                    <div class="control-group {% if field.errors %}error{% endif%}">
-                        <label>{{ field.label }}</label>
-                        <div class="controls">
-                            <div class="input-prepend">
-                                {{ field }}
-                                {% if field.help_text %}
-                                    <span class="add-on"><a href="#" rel="tooltip" title="{{ field.help_text }}"><i class="icon-question-sign"></i></a></span>
-                                {% endif %}
-                            </div>
-                            {% if field.errors %}
-                                <p class="help-block">
-                                    {% for error in field.errors %}
-                                        {{ error|escape }}
-                                    {% endfor %}
-                                </p>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-
-            <hr>
-            <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">&laquo; {% trans "Cancel" %}</a>
-            <input class="btn btn-small btn-primary" type="submit" value="{% trans 'Save' %}" />
-
+        <h6>{% trans "Add new user to" %} {{ get_place.name }} </h6>
+        <form class="form-search">
+            <input type="text" class="input-medium search-query">
+            <button type="submit" class="btn">Search</button>
         </form>
+        
+        <hr>
+    </div>
 </div>
 
+<div class="row">
+    <div class="span4">
+        <h6>{% trans "Administrators in" %} {{ get_place.name }}</h6>
+        <ul id="admins" class="connectedSortable unstyled">
+            {% for u in user_admins %}
+                <li class="ui-state-default">{{ u.username }} {% if u.get_profile.name %}({{ u.get_profile.name }}){% endif %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="span4"> 
+        <h6>{% trans "Moderators in" %} {{ get_place.name }}</h6>
+        <ul id="mods" class="connectedSortable unstyled">
+            {% for u in user_mods %}
+                <li class="ui-state-default">{{ u.username }} {% if u.get_profile.name %}({{ u.get_profile.name }}){% endif %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="span4">
+        <h6>{% trans "Users in" %} {{ get_place.name }}</h6>
+        <ul id="users" class="connectedSortable unstyled">
+            {% for u in user_users %}
+                <li class="ui-state-default">{{ u.username }} {% if u.get_profile.name %}({{ u.get_profile.name }}){% endif %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block extrajsbottom %}
+<script>
+    $(function() {
+        $( "#users, #admins, #mods" ).sortable({
+            connectWith: ".connectedSortable"
+        }).disableSelection();
+    });
+</script>
 {% endblock %}

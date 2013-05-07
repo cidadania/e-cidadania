@@ -29,6 +29,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.decorators import method_decorator
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+from guardian.shortcuts import assign_perm
+from guardian.decorators import permission_required_or_403
+from django.core.exceptions import PermissionDenied
 
 from apps.ecidadania.proposals import url_names as urln_prop
 from core.spaces import url_names as urln_space
@@ -53,21 +56,18 @@ class ViewProposal(DetailView):
     context_object_name = 'proposal'
     template_name = 'proposals/proposal_detail.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(ViewProposal, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
     def get_object(self):
         prop_id = self.kwargs['prop_id']
-        space_url = self.kwargs['space_url']
         proposal = get_object_or_404(Proposal, pk=prop_id)
-        place = get_object_or_404(Space, url=space_url)
-
-        if place.public:
-            return proposal
-        elif has_space_permission(self.request.user, place,
-            allow=['admins', 'mods', 'users']) \
-                or has_all_permissions(self.request.user):
-            return proposal
-        else:
-            self.template_name = 'not_allowed.html'
-            return Proposal.objects.none()
+        return proposal
 
     def get_context_data(self, **kwargs):
         context = super(ViewProposal, self).get_context_data(**kwargs)
@@ -95,12 +95,13 @@ def support_proposal(request, space_url):
     Increment support votes for the proposal in 1. We porform some permission
     checks, for example, the user has to be inside any of the user groups of
     the space.
+
+    :permissions required: view_space
     """
     prop = get_object_or_404(Proposal, pk=request.POST['propid'])
     space = get_object_or_404(Space, url=space_url)
 
-    if has_operation_permission(request.user, space,
-    "proposals.change_proposal", allow=['admins', 'mods', 'users']):
+    if request.user.has_perm('view_space', space):
         try:
             prop.support_votes.add(request.user)
             return HttpResponse(" Support vote emmited.")
@@ -109,32 +110,4 @@ def support_proposal(request, space_url):
                 add the user to the count. Contact support and tell them the \
                 error code.")
     else:
-        return HttpResponse("Error P02: Couldn't emit the vote. You're not \
-            allowed.")
-
-# @require_POST
-# def vote_proposal(request, space_url):
-
-#     """
-#     Send email to user to validate vote before is calculated.
-#     :attributes: - prop: current proposal
-#     :rtype: multiple entity objects.
-#     """
-#     prop = get_object_or_404(Proposal, pk=request.POST['propid'])
-#     try:
-#          intent = ConfirmVote.objects.get(user=request.user, proposal=prop)
-#     except ConfirmVote.DoesNotExist:
-#         token = hashlib.md5("%s%s%s" % (request.user, prop,
-#                             datetime.datetime.now())).hexdigest()
-#         intent = ConfirmVote(user=request.user, proposal=prop, token=token)
-#         intent.save()
-#         subject = _("New vote validation request")
-#         body = _("Hello {0}, \n \
-#                  You are getting this email because you wanted to support proposal {1}.\n\
-#                  Please click on the link below to vefiry your vote.\n {2} \n \
-#                  Thank you for your vote."
-#                  .format(request.user.username, prop.title,
-#                  intent.get_approve_url()))
-#         send_mail(subject=subject, message=body,
-#                    from_email="noreply@ecidadania.org",
-#                    recipient_list=[request.user.email])
+        raise PermissionDenied

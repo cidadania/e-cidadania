@@ -285,8 +285,7 @@ def edit_space(request, space_url):
                     'get_place': place, 'entityformset': entity_forms},
                     context_instance=RequestContext(request))
 
-    return render_to_response('not_allowed.html',
-        context_instance=RequestContext(request))
+    raise PermissionDenied
 
 
 class DeleteSpace(DeleteView):

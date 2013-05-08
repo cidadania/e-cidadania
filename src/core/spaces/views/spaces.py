@@ -29,11 +29,12 @@ from django.contrib.comments.models import Comment
 from django.db.models import Count
 from django.core.urlresolvers import reverse
 from django.core.exceptions import PermissionDenied
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.models import User
 
 from helpers.cache import get_or_insert_object_in_cache
 from operator import itemgetter
-from guardian.shortcuts import assign_perm, get_users_with_perms
+from guardian.shortcuts import assign_perm, get_users_with_perms, remove_perm, get_perms
 from guardian.core import ObjectPermissionChecker
 
 from core.spaces import url_names as urln
@@ -372,23 +373,55 @@ class ListSpaces(ListView):
 def edit_roles(request, space_url):
 
     """
+    The edit_role function works to provide a way for space administrators to
+    modify the users roles inside a space, at the space level.
+
+    It basically works as an AJAX communication where the frontend sends to key
+    values: userid and perm, containing the user ID and the permission code,
+    which later we compare with the permissions dictionary. If the user has the
+    permission we go to the next one and so on.
+
+    There is a special perm code called "delete" that triggers the deletion of
+    all the permissions for the current user on the current space.
+
+    :ajax keys: userid, perm
+    :returns: HTML
+    :versionadded: 0.1.9
     """
 
     space = get_object_or_404(Space, url=space_url)
+    perm_dict = {
+        'admins': ['admin_space', 'view_space'],
+        'mods': ['mod_space', 'view_space'],
+        'users': ['view_space',]
+    }
 
     if request.user.has_perm('admin_space', space):
         if request.method == 'POST':
-            pass
-            # Get all the content sent by the ajax comm and save it!
+            user = get_object_or_404(User, pk = request.POST['userid'])
+            cur_user_perms = get_perms(user, space)
+
+            if request.POST['perm'] == "delete":
+                for p in cur_user_perms:
+                    remove_perm(p, user, space)
+                return HttpResponse('Permissions deleted.')
+            else:
+                perm = perm_dict[request.POST['perm']]
+                for p in perm:
+                    if p in cur_user_perms:
+                        pass
+                    else:
+                        assign_perm(p, user, space)
+                return HttpResponse('Permissions assigned.')
         else:
             space_users = get_users_with_perms(space, with_superusers=True)
             admins = set()
             mods = set()
             users = set()
             for user in space_users:
-                if user.has_perm('admin_space'):
+                if user.has_perm('admin_space', space):
                     admins.add(user)
-                elif user.has_perm('mod_space'):
+                elif user.has_perm('mod_space', space):
                     mods.add(user)
                 else:
                     # We omit the check for "view_space" because the space_users

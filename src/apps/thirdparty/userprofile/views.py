@@ -42,6 +42,7 @@ from django.contrib.auth.models import User, SiteProfileNotAvailable, Group
 from django.template import RequestContext
 from django.conf import settings
 from django.db.models import Q
+from guardian.shortcuts import get_objects_for_user
 
 from apps.ecidadania.proposals.models import Proposal
 from apps.thirdparty.userprofile.forms import AvatarForm, AvatarCropForm, \
@@ -145,8 +146,7 @@ def overview(request):
     # AFTER TESTING
     proposals = Proposal.objects.annotate(models.Count('support_votes')).filter(author=request.user.id).order_by('pub_date')
     profile, created = Profile.objects.get_or_create(user=request.user)
-    spaces = Space.objects.filter(Q(admins__id=request.user.id) | Q(mods__id=request.user.id) | Q(users__id=request.user.id))
-
+    spaces = get_objects_for_user(request.user, 'view_space', klass=Space)
     validated = False
     try:
         email = EmailValidation.objects.get(user=request.user).email

@@ -406,13 +406,16 @@ def edit_roles(request, space_url):
                     remove_perm(p, user, space)
                 return HttpResponse('Permissions deleted.')
             else:
-                perm = perm_dict[request.POST['perm']]
-                for p in perm:
-                    if p in cur_user_perms:
-                        pass
-                    else:
-                        assign_perm(p, user, space)
-                return HttpResponse('Permissions assigned.')
+                try:
+                    perm = perm_dict[request.POST['perm']]
+                    for p in perm:
+                        if p in cur_user_perms:
+                            pass
+                        else:
+                            assign_perm(p, user, space)
+                    return HttpResponse('Permissions assigned.')
+                except:
+                    return HttpResponse('Permission code not valid.')
         else:
             space_users = get_users_with_perms(space, with_superusers=True)
             admins = set()

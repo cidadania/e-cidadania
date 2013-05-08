@@ -27,40 +27,45 @@
     </div>
 </div>
 
-<hr>
+<div class="alert fade in">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    {% trans "<strong>Remember:</strong> All the administrative users of e-cidadania will be listed as users of your participation process." %}
+</div>
 
 <div class="row">
-    <div class="span3">
+    <div class="span4">
         <h6>{% trans "Administrators in" %} {{ get_place.name }}</h6>
         <ul id="admins" class="connectedSortable unstyled">
             {% for u in user_admins %}
-                <li id="{{ u.id }}" class="ui-state-default">{{ u.username }}{% if u.get_profile.name %} ({{ u.get_profile.name }}){% endif %}</li>
+                <li id="{{ u.id }}" class="ui-state-default">
+                    {{ u.username }}{% if u.get_profile.name %} ({{ u.get_profile.name }}){% endif %}
+                    <a href="#" class="pull-right delete" title="{% trans 'Delete user' %} {{ u.username }}"><i class="icon-remove"></i></a>
+                </li>
             {% endfor %}
         </ul>
     </div>
 
-    <div class="span3"> 
+    <div class="span4"> 
         <h6>{% trans "Moderators in" %} {{ get_place.name }}</h6>
         <ul id="mods" class="connectedSortable unstyled">
             {% for u in user_mods %}
-                <li id="{{ u.id }}" class="ui-state-default">{{ u.username }}{% if u.get_profile.name %} ({{ u.get_profile.name }}){% endif %}</li>
+                <li id="{{ u.id }}" class="ui-state-default">
+                    {{ u.username }}{% if u.get_profile.name %} ({{ u.get_profile.name }}){% endif %}
+                    <a href="#" class="pull-right delete" title="{% trans 'Delete user' %} {{ u.username }}"><i class="icon-remove"></i></a>
+                </li>
             {% endfor %}
         </ul>
     </div>
 
-    <div class="span3">
+    <div class="span4">
         <h6>{% trans "Users in" %} {{ get_place.name }}</h6>
         <ul id="users" class="connectedSortable unstyled">
             {% for u in user_users %}
-                <li id="{{ u.id }}" class="ui-state-default">{{ u.username }}{% if u.get_profile.name %} ({{ u.get_profile.name }}){% endif %}</li>
+                <li id="{{ u.id }}" class="ui-state-default">
+                    {{ u.username }}{% if u.get_profile.name %} ({{ u.get_profile.name }}){% endif %}
+                    <a href="#" class="pull-right delete" title="{% trans 'Delete user' %} {{ u.username }}"><i class="icon-remove"></i></a>
+                </li>
             {% endfor %}
-        </ul>
-    </div>
-
-    <div class="span3">
-        <h6>{% trans "Leave elements here to delete them" %}</h6>
-        <ul id="delete" class="connectedSortable unstyled">
-            <li><img src="{{ STATIC_URL }}assets/icons/trash.png" /></li>
         </ul>
     </div>
 </div>

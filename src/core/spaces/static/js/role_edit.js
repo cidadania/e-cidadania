@@ -11,16 +11,51 @@ var errorTitle = gettext("An error has ocurred.");
 var errorMsg = gettext("Couldn't add/change user permissions.");
 var saveTitle = gettext("Changes saved");
 var saveMsg = gettext("The changes have been saved successfully.");
+var confirmDelete = gettext('Are you sure?');
 
 var alertIcon = 'http://ecidadania.org/static/assets/icons/alert.png';
 var saveIcon = "http://files.softicons.com/download/toolbar-icons/crystal-office-icon-set-by-mediajon/png/48x48/checkmark.png";
 
-function makeSortable() {
+function deleteUserFromSpace() {
     /*
-        makeSortable() - Makes every element with id starting by 'sortable'
-        sortable through the connectedSortable class lists. It uses jQuery
-        Sortable. This function has to be called whenever a new element is on
-        the page (note, table column or row) to make the new elements sortable.
+        deleteUserFromSpace() - Sends the deletion command to the backend along
+        with the user ID for deleting all the permissions for that user in the
+        current space.
+    */
+
+    $(".delete").click(function(event) {
+        event.preventDefault();
+        var answer = confirm(confirmDelete);
+        var userID = $(this).parent().attr("id");
+
+        if (answer) {
+            $.ajax({
+                type: "POST",
+                url: ".", /* Send to the same url */
+                data: {
+                    userid: userID,
+                    perm: "delete"
+                }
+            }).done(function(jqXHR, textStatus) {
+                $.gritter.add({
+                    title: saveTitle,
+                    text: saveMsg,
+                    image: saveIcon
+                });
+            }).fail(function(jqXHR, textStatus) {
+                $.gritter.add({
+                    title: errorTitle,
+                    text: errorMsg,
+                    image: alertIcon
+                });
+            });
+        };
+    });
+}
+
+function changeUserPermissions() {
+    /*
+        changeUserPermission() - Handles the user permissions.
     */
     
     // Get all the div elements starting by sortable
@@ -66,5 +101,6 @@ function makeSortable() {
 
 $(document).ready(function() {
     // Activate sortables
-    makeSortable();
+    changeUserPermissions();
+    deleteUserFromSpace();
 });

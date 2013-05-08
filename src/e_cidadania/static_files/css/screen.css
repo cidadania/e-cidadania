@@ -756,6 +756,10 @@ table {
     height: 20px;
     background: #EEE;
 }
+
+.delete {
+    color: red;
+}
 /* END ROLES */
 
 /************************************************

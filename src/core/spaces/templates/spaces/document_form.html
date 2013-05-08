@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load guardian_tags %}
 
 {% comment %}
 The way to validate in this form if it is an edit or an add request is to
@@ -25,14 +26,18 @@ automatically if found in the data models.
 
 {% block content %}
 
+{% get_obj_perms request.user for get_place as "space_perms" %}
+
 <div class="row">
-    <div class="span12">
-        {% if form.title.value %}
-            <h3>{% trans "Edit document" %} {{ form.title.value }}</h3>
-        {% else %}
-            <h3>{% trans "Upload new document" %}</h3>
-        {% endif %}
-        <form class="form-horizontal" enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+
+    <form class="form-horizontal" enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+    
+        <div class="span12">
+            {% if form.title.value %}
+                <h3>{% trans "Edit document" %} {{ form.title.value }}</h3>
+            {% else %}
+                <h3>{% trans "Upload new document" %}</h3>
+            {% endif %}    
 
             {% if form.non_field_errors %}
                 {% for error in form.non_field_errors %}
@@ -41,7 +46,7 @@ automatically if found in the data models.
             {% endif %}
 
             <div class="control-group {% if form.title.errors %}error{% endif%}">
-                <label>{{ form.title.label }}</label>
+                <label class="control-label">{{ form.title.label }}</label>
                 <div class="controls">
                     <div class="input-append">
                         {{ form.title }}
@@ -60,7 +65,7 @@ automatically if found in the data models.
             </div>
 
             <div class="control-group {% if form.docfile.errors %}error{% endif%}">
-                <label>{{ form.docfile.label }}
+                <label class="control-label">{{ form.docfile.label }}
                     {% if form.docfile.help_text %}
                         <a href="#" rel="tooltip" title="{{ form.docfile.help_text }}"><i class="icon-question-sign"></i></a>
                     {% endif %}
@@ -77,53 +82,62 @@ automatically if found in the data models.
                 </div>
             </div>
 
-            {% if request.user.is_staff %}
             <hr>
-            <h3>{% trans "Staff members options" %}</h3>
-            <div class="control-group {% if form.space.errors %}error{% endif%}">
-                <label>{{ form.space.label }}</label>
-                <div class="controls">
-                    <div class="input-prepend">
-                        {{ form.space }}
-                        {% if form.space.help_text %}
-                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.space.help_text }}"><i class="icon-question-sign"></i></a></span>
-                        {% endif %}
-                    </div>
-                    {% if form.space.errors %}
-                    <p class="help-block">
-                        {% for error in form.space.errors %}
-                        {{ error|escape }}
-                        {% endfor %}
-                    </p>
-                    {% endif %}
-                </div>
-            </div>
 
-            <div class="control-group {% if form.author.errors %}error{% endif%}">
-                <label>{{ form.author.label }}</label>
-                <div class="controls">
-                    <div class="input-prepend">
-                        {{ form.author }}
-                        {% if form.author.help_text %}
-                            <span class="add-on"><a href="#" rel="tooltip" title="{{ form.author.help_text }}"><i class="icon-question-sign"></i></a></span>
+            {% if "admin_space" in space_perms %}
+                <h3>{% trans "Staff members options" %}</h3>
+                
+                <div class="alert alert-error fade in">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {% trans "<strong>Warning:</strong> Changes made here can affect the way the participative process works. Proceed with care. If you're not sure please leave it as-is." %}
+                </div>
+            
+                <div class="control-group {% if form.space.errors %}error{% endif%}">
+                    <label class="control-label">{{ form.space.label }}</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            {{ form.space }}
+                            {% if form.space.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.space.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.space.errors %}
+                            <p class="help-block">
+                                {% for error in form.space.errors %}
+                                    {{ error|escape }}
+                                {% endfor %}
+                            </p>
                         {% endif %}
                     </div>
-                    {% if form.author.errors %}
-                    <p class="help-block">
-                        {% for error in form.author.errors %}
-                        {{ error|escape }}
-                        {% endfor %}
-                    </p>
-                    {% endif %}
                 </div>
-            </div>
+
+                <div class="control-group {% if form.author.errors %}error{% endif%}">
+                    <label class="control-label">{{ form.author.label }}</label>
+                    <div class="controls">
+                        <div class="input-prepend">
+                            {{ form.author }}
+                            {% if form.author.help_text %}
+                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.author.help_text }}"><i class="icon-question-sign"></i></a></span>
+                            {% endif %}
+                        </div>
+                        {% if form.author.errors %}
+                            <p class="help-block">
+                                {% for error in form.author.errors %}
+                                    {{ error|escape }}
+                                {% endfor %}
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
             {% endif %}
-            <hr />
+
+            <hr>
             <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">&laquo; {% trans "Go back" %}</a>
             <input class="btn btn-small btn-primary" type="submit" value="{% trans 'Upload' %}" />
 
-        </form>
-    </div>
+            <br><br>
+        </div>
+    </form>
 </div>
 
 {% endblock %}

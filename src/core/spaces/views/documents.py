@@ -47,7 +47,7 @@ class AddDocument(FormView):
 
         if (request.user.has_perm('admin_space', space) or
             request.user.has_perm('mod_space', space)):
-            return super(AddDocument, self).dispatch(*args, **kwargs)
+            return super(AddDocument, self).dispatch(request, *args, **kwargs)
         else:
             raise PermissionDenied
 

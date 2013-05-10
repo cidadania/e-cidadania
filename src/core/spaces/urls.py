@@ -143,6 +143,9 @@ urlpatterns += patterns('',
     url(r'^(?P<space_url>\w+)/roles/', 'core.spaces.views.spaces.edit_roles',
         name=EDIT_ROLES),
 
+    url(r'^(?P<space_url>\w+)/search_user/',
+        'core.spaces.views.spaces.search_user', name=SEARCH_USER),
+
     url(r'^(?P<space_url>\w+)/$', ViewSpaceIndex.as_view(),
         name=SPACE_INDEX),
 

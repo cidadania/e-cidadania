@@ -20,10 +20,8 @@
         <h3>{% trans "Edit roles for" %} {{ get_place.name }}</h3>
 
         <h6>{% trans "Add new user to" %} {{ get_place.name }} </h6>
-        <form class="form-search">
-            <input type="text" class="input-medium search-query">
-            <button type="submit" class="btn">Search</button>
-        </form>        
+        <input id="user-search" type="text" class="input-medium search-query" placeholder="{% trans 'Put the exact username here' %}">
+        <a href="#" id="user-search-btn" class="btn">{% trans "Add user" %}</a>
     </div>
 </div>
 

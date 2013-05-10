@@ -397,7 +397,7 @@ def edit_roles(request, space_url):
     }
 
     if request.user.has_perm('admin_space', space):
-        if request.method == 'POST':
+        if request.method == 'POST' and request.is_ajax():
             user = get_object_or_404(User, pk = request.POST['userid'])
             cur_user_perms = get_perms(user, space)
 
@@ -435,5 +435,22 @@ def edit_roles(request, space_url):
             return render_to_response('spaces/user_groups.html',
                 {'get_place': space, 'user_admins': admins, 'user_mods': mods,
                  'user_users': users}, context_instance=RequestContext(request))
+    else:
+        raise PermissionDenied
+
+
+def search_user(request, space_url):
+
+    """
+    """
+    space = get_object_or_404(Space, url=space_url)
+
+    if request.user.has_perm('admin_space', space):
+        if request.method == 'POST' and request.is_ajax():
+            user = get_object_or_404(User, username=request.POST['uname'])
+            assign_perm('view_space', user, space)
+            return HttpResponse(user.id)
+        else:
+            return HttpResponse("Wrong petition.")
     else:
         raise PermissionDenied

@@ -39,6 +39,8 @@ GOTO_SPACE = 'goto-space'
 
 EDIT_ROLES = 'edit-roles'
 
+SEARCH_USER = 'search-user'
+
 # News
 # Notes: SPACE_NEWS is held only for backwards compatibility, it should be
 # removed when every reverse is cleaned

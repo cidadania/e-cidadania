@@ -417,7 +417,7 @@ def edit_roles(request, space_url):
                 except:
                     return HttpResponse('Permission code not valid.')
         else:
-            space_users = get_users_with_perms(space, with_superusers=True)
+            space_users = get_users_with_perms(space, with_superusers=False)
             admins = set()
             mods = set()
             users = set()

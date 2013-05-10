@@ -51,10 +51,13 @@ class Debate(models.Model):
     author = models.ForeignKey(User, blank=True, null=True)
     start_date = models.DateField(_('Start date'))
     end_date = models.DateField(_('End date'))
+    private = models.BooleanField(_('Private'), help_text=_('Set the debate as private so only the accepted users can participate in it.'))
 
     class Meta:
         permissions = (
-            ('view', 'Can view the debate'),
+            ('view_debate', 'Can view the debate'),
+            ('admin_debate', 'Can administrate the debate'),
+            ('mod_debate', 'Can moderate the debate'),
         )
 
     def __unicode__(self):

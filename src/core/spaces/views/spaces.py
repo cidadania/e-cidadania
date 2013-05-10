@@ -393,12 +393,12 @@ def edit_roles(request, space_url):
     perm_dict = {
         'admins': ['admin_space', 'view_space'],
         'mods': ['mod_space', 'view_space'],
-        'users': ['view_space',]
+        'users': ['view_space', ]
     }
 
     if request.user.has_perm('admin_space', space):
         if request.method == 'POST' and request.is_ajax():
-            user = get_object_or_404(User, pk = request.POST['userid'])
+            user = get_object_or_404(User, pk=request.POST['userid'])
             cur_user_perms = get_perms(user, space)
 
             if request.POST['perm'] == "delete":

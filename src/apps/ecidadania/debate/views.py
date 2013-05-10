@@ -24,24 +24,21 @@ These are the views that control the debates.
 import json
 import datetime
 
-from django.views.generic.base import TemplateView, RedirectView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-from django.contrib.auth.models import User, Group
+from django.views.decorators.http import require_http_methods
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.comments import *
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.comments.forms import CommentForm
-from django.utils.decorators import method_decorator
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
+from django.core.serializers.json import DjangoJSONEncoder
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 from django.forms.formsets import formset_factory, BaseFormSet
-from django.core.exceptions import ObjectDoesNotExist
-from django.core.serializers.json import DjangoJSONEncoder
-from django.core.urlresolvers import reverse
 from django.db import connection
 from django.forms.models import modelformset_factory, inlineformset_factory
 
@@ -57,7 +54,6 @@ from core.permissions import has_space_permission, has_all_permissions, \
 from helpers.cache import get_or_insert_object_in_cache
 
 
-@permission_required('debate.add_debate')
 def add_new_debate(request, space_url):
 
     """
@@ -71,8 +67,8 @@ def add_new_debate(request, space_url):
     """
     place = get_object_or_404(Space, url=space_url)
 
-    if has_space_permission(request.user, place, allow=['admins']) \
-            or has_all_permissions(request.user):
+    if (request.user.has_perm('admin_space', place) or
+        request.user.has_perm('mod_space', place)):
 
         RowFormSet = inlineformset_factory(Debate, Row, extra=1)
         ColumnFormSet = inlineformset_factory(Debate, Column, extra=1)
@@ -89,15 +85,15 @@ def add_new_debate(request, space_url):
             current_debate_id = 1
 
         if request.method == 'POST':
-            if debate_form.is_valid() and row_formset.is_valid() \
-                    and column_formset.is_valid():
+            if (debate_form.is_valid() and row_formset.is_valid() and
+                column_formset.is_valid()):
+
                 debate_form_uncommited = debate_form.save(commit=False)
                 debate_form_uncommited.space = place
                 debate_form_uncommited.author = request.user
 
                 saved_debate = debate_form_uncommited.save()
-                debate_instance = get_object_or_404(Debate,
-                    pk=current_debate_id)
+                debate_instance = get_object_or_404(Debate, pk=current_debate_id)
 
                 row = row_formset.save(commit=False)
                 for form in row:
@@ -112,6 +108,7 @@ def add_new_debate(request, space_url):
                 # Assign the permissions to the creator of the debate and the
                 # space administrators
                 assign_perm('view_debate', request.user, saved_debate)
+                assign_perm('admin_debate', request.user, saved_debate)
                 assign_perm('change_debate', request.user, saved_debate)
                 assign_perm('delete_debate', request.user, saved_debate)
                 assign_perm('move_note', request.user)
@@ -127,26 +124,30 @@ def add_new_debate(request, space_url):
                                'get_place': place,
                                      'debateid': current_debate_id},
             context_instance=RequestContext(request))
-    return render_to_response('not_allowed.html',
-                              context_instance=RequestContext(request))
+    else:
+        raise PermissionDenied
 
 
-@permission_required('debate.change_debate')
 def edit_debate(request, space_url, debate_id):
 
+    """
+    """
     pk = debate_id
     place = get_object_or_404(Space, url=space_url)
+    instance = Debate.objects.get(pk=debate_id)
 
-    if has_operation_permission(request.user, place, 'debate.change_debate',
-                                allow=['admins', 'mods']):
+    if (request.user.has_perm('admin_space', place) or
+        request.user.has_perm('admin_debate', instance) or
+        request.user == instance.author):
 
         RowFormSet = inlineformset_factory(Debate, Row, extra=1)
         ColumnFormSet = inlineformset_factory(Debate, Column, extra=1)
 
-        instance = Debate.objects.get(pk=debate_id)
         debate_form = DebateForm(request.POST or None, instance=instance)
-        row_formset = RowFormSet(request.POST or None, instance=instance, prefix="rowform")
-        column_formset = ColumnFormSet(request.POST or None, instance=instance, prefix="colform")
+        row_formset = RowFormSet(request.POST or None, instance=instance,
+                                                       prefix="rowform")
+        column_formset = ColumnFormSet(request.POST or None, instance=instance,
+                                                             prefix="colform")
 
         if request.method == 'POST':
             if debate_form.is_valid() and row_formset.is_valid() \
@@ -181,17 +182,17 @@ def edit_debate(request, space_url, debate_id):
                                    'get_place': place,
                                            'debateid': debate_id},
                                   context_instance=RequestContext(request))
-    return render_to_response('not_allowed.html',
-                              context_instance=RequestContext(request))
+    else:
+        raise PermissionDenied
 
 
-def get_debates(request):
+# def get_debates(request):
 
-    """
-    Get all debates and serve them through JSON.
-    """
-    data = [debate.title for debate in Debate.objects.order_by('title')]
-    return render_to_response(json.dumps(data), content_type='application/json')
+#     """
+#     Get all debates and serve them through JSON.
+#     """
+#     data = [debate.title for debate in Debate.objects.order_by('title')]
+#     return render_to_response(json.dumps(data), content_type='application/json')
 
 
 def create_note(request, space_url):
@@ -208,9 +209,14 @@ def create_note(request, space_url):
     note_form = NoteForm(request.POST or None)
     place = get_object_or_404(Space, url=space_url)
 
-    if request.method == "POST" and request.is_ajax:
-        if has_operation_permission(request.user, place, 'debate.add_note',
-        allow=['admins', 'mods', 'users']):
+    if request.method == "POST" and request.is_ajax():
+        debate = get_object_or_404(Debate, pk=request.POST['debateid'])
+
+        # This is not the best approach, but I don't want to think in
+        # another solution right now, we need this and we need it now
+        if ((debate.private and request.user.has_perm('view_debate', debate)) or
+            (not debate.private and request.user.has_perm('view_space', place))):
+
             if note_form.is_valid():
                 note_form_uncommited = note_form.save(commit=False)
                 note_form_uncommited.author = request.user
@@ -230,12 +236,13 @@ def create_note(request, space_url):
                 response_data['title'] = note_form_uncommited.title
                 msg = "The note has been created."
                 return HttpResponse(json.dumps(response_data),
-                                    mimetype="application/json")
-
+                                mimetype="application/json")
             else:
                 msg = "The note form didn't validate. This fields gave errors: " + str(note_form.errors)
         else:
-            msg = "The petition was not POST."
+            raise PermissionDenied
+    else:
+        msg = "The petition was not POST."
 
     return HttpResponse(json.dumps(msg), mimetype="application/json")
 
@@ -248,32 +255,50 @@ def update_note(request, space_url):
     editing.
     """
 
+    # Shit double validation here due to the fact that we can't get the note ID
+    # until the JS code sends us the GET or POST signals
     place = get_object_or_404(Space, url=space_url)
 
-    if request.method == "GET" and request.is_ajax:
+    if request.method == "GET" and request.is_ajax():
         note = get_object_or_404(Note, pk=request.GET['noteid'])
-        ctype = ContentType.objects.get_for_model(Note)
-        latest_comments = Comment.objects.filter(is_public=True,
-            is_removed=False, content_type=ctype, object_pk=note.id) \
-            .order_by('-submit_date')[:5]
-        form = CommentForm(target_object=note)
+        debate = get_object_or_404(Debate, pk=note.debate.id)
 
-        response_data = {}
-        response_data['title'] = note.title
-        response_data['message'] = note.message
-        response_data['author'] = {'name': note.author.username}
-        response_data['comments'] = [{'username': c.user.username,
-            'comment': c.comment,
-            'submit_date': c.submit_date} for c in latest_comments]
-        response_data["form_html"] = form.as_p()
+        if (request.user.has_perm('admin_space', place) or
+            request.user.has_perm('mod_space', place) or
+            request.user.has_perm('admin_debate', debate) or
+            request.user.has_perm('mod_debate', debate) or
+            request.user == note.author):
 
-        return HttpResponse(json.dumps(response_data, cls=DjangoJSONEncoder),
+            ctype = ContentType.objects.get_for_model(Note)
+            latest_comments = Comment.objects.filter(is_public=True,
+                is_removed=False, content_type=ctype, object_pk=note.id) \
+                .order_by('-submit_date')[:5]
+            form = CommentForm(target_object=note)
+
+            response_data = {}
+            response_data['title'] = note.title
+            response_data['message'] = note.message
+            response_data['author'] = {'name': note.author.username}
+            response_data['comments'] = [{'username': c.user.username,
+                'comment': c.comment,
+                'submit_date': c.submit_date} for c in latest_comments]
+            response_data["form_html"] = form.as_p()
+
+            return HttpResponse(json.dumps(response_data, cls=DjangoJSONEncoder),
                             mimetype="application/json")
+        else:
+            raise PermissionDenied
 
     if request.method == "POST" and request.is_ajax:
         note = get_object_or_404(Note, pk=request.POST['noteid'])
-        if has_operation_permission(request.user, place, 'debate.change_note',
-        allow=['admins', 'mods']) or request.user == note.author:
+        debate = get_object_or_404(Debate, pk=note.debate.id)
+
+        if (request.user.has_perm('admin_space', place) or
+            request.user.has_perm('mod_space', place) or
+            request.user.has_perm('admin_debate', debate) or
+            request.user.has_perm('mod_debate', debate) or
+            request.user == note.author):
+
             note_form = UpdateNoteForm(request.POST or None, instance=note)
             if note_form.is_valid():
                 note_form_uncommited = note_form.save(commit=False)
@@ -287,7 +312,7 @@ def update_note(request, space_url):
                 msg = "The form is not valid, check field(s): " + note_form.errors
             return HttpResponse(msg)
         else:
-            msg = "There was some error in the petition."
+            raise PermissionDenied
     return HttpResponse(msg)
 
 
@@ -298,13 +323,19 @@ def update_position(request, space_url):
     reloading all the note form with all the data, we use the partial form
     "UpdateNotePosition" which only handles the column and row of the note.
     """
-    note = get_object_or_404(Note, pk=request.POST['noteid'])
     position_form = UpdateNotePosition(request.POST or None, instance=note)
     place = get_object_or_404(Space, url=space_url)
 
     if request.method == "POST" and request.is_ajax:
-        if has_operation_permission(request.user, place, 'debate.change_note',
-        allow=['admins', 'mods']) or request.user == note.author:
+        note = get_object_or_404(Note, pk=request.POST['noteid'])
+        debate = get_object_or_404(Debate, pk=note.debate.id)
+
+        if (request.user.has_perm('admin_space', place) or
+            request.user.has_perm('mod_space', place) or
+            request.user.has_perm('admin_debate', debate) or
+            request.user.has_perm('mod_debate', debate) or
+            request.user == note.author):
+
             if position_form.is_valid():
                 position_form_uncommited = position_form.save(commit=False)
                 position_form_uncommited.column = get_object_or_404(Column,
@@ -316,8 +347,7 @@ def update_position(request, space_url):
             else:
                 msg = "There has been an error validating the form."
         else:
-            msg = "There was some error in the petition."
-
+            raise PermissionDenied
     return HttpResponse(msg)
 
 
@@ -329,8 +359,12 @@ def delete_note(request, space_url):
     note = get_object_or_404(Note, pk=request.POST['noteid'])
     place = get_object_or_404(Space, url=space_url)
 
-    if has_operation_permission(request.user, place, 'debate.delete_note',
-    allow=['admins', 'mods']) or note.author == request.user:
+    if (request.user.has_perm('admin_space', place) or
+        request.user.has_perm('mod_space', place) or
+        request.user.has_perm('admin_debate', debate) or
+        request.user.has_perm('mod_debate', debate) or
+        request.user == note.author):
+
         ctype = ContentType.objects.get_for_model(Note)
         all_comments = Comment.objects.filter(is_public=True,
                 is_removed=False, content_type=ctype,
@@ -341,7 +375,7 @@ def delete_note(request, space_url):
         return HttpResponse("The note has been deleted.")
 
     else:
-        return HttpResponse("You're not the author of the note. Can't delete.")
+        return PermissionDenied
 
 
 class ViewDebate(DetailView):
@@ -352,6 +386,23 @@ class ViewDebate(DetailView):
     """
     context_object_name = 'debate'
     template_name = 'debate/debate_view.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        debate = get_object_or_404(Debate, pk=kwargs['debate_id'])
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if debate.private:
+            if (request.user.has_perm('admin_space', place) or
+                request.user.has_perm('mod_space', place) or
+                request.user.has_perm('view_debate', debate)):
+                return super(ViewDebate, self).dispatch(request, *args, **kwargs)
+            else:
+                raise PermissionDenied
+        else:
+            if request.user.has_perm('view_space', space):
+                return super(ViewDebate, self).dispatch(request, *args, **kwargs)
+            else:
+                raise PermissionDenied
 
     def get_object(self):
         key = self.kwargs['debate_id']
@@ -406,15 +457,18 @@ class ListDebates(ListView):
     """
     paginate_by = 10
 
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            super(ListDebates, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
     def get_queryset(self):
         key = self.kwargs['space_url']
         current_space = get_or_insert_object_in_cache(Space, key, url=key)
         debates = Debate.objects.filter(space=current_space)
-
-        # Here must go a validation so a user registered to the space
-        # can always see the debate list. While an anonymous or not
-        # registered user can't see anything unless the space is public
-
         return debates
 
     def get_context_data(self, **kwargs):
@@ -432,6 +486,18 @@ class DeleteDebate(DeleteView):
     administrators or site admins.
     """
     context_object_name = "get_place"
+
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+        debate = get_object_or_404(Debate, pk=kwargs['debate_id'])
+
+        if (request.user.has_perm('admin_space', space) or
+            request.user.has_perm('mod_space', space) or
+            request.user.has_perm('admin_debate', debate) or
+            request.user == debate.author):
+            return super(DeleteDebate, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_success_url(self):
         space = self.kwargs['space_url']

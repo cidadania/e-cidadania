@@ -67,21 +67,12 @@ class AddEvent(FormView):
         form_uncommited.save()
         form.save_m2m()
 
-        # Assign all the permissions
-        assign_perm('view_event', self.request.user, self.space)
-        assign_perm('change_event', self.request.user, self.space)
-        assign_perm('delete_event', self.request.user, self.space)
-        assign_perm('admin_event', self.request.user, self.space)
-
         return super(AddEvent, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super(AddEvent, self).get_context_data(**kwargs)
         place = get_object_or_404(Space, url=self.kwargs['space_url'])
         context['get_place'] = place
-        context['user_is_admin'] = (has_space_permission(self.request.user,
-            place, allow=['admins', 'mods']) or has_all_permissions(
-                self.request.user))
         return context
 
 
@@ -132,9 +123,7 @@ class EditEvent(UpdateView):
         event = get_object_or_404(Event, pk=kwargs['event_id'])
 
         if (request.user.has_perm('admin_space', space) or
-            request.user.has_perm('mod_space', space) or
-            (request.user.has_perm('admin_event', event) and
-             request.user.has_perm('change_event', event))):
+            request.user.has_perm('mod_space', space)):
             return super(EditEvent, self).dispatch(request, *args, **kwargs)
         else:
             raise PermissionDenied
@@ -158,9 +147,6 @@ class EditEvent(UpdateView):
         context = super(EditEvent, self).get_context_data(**kwargs)
         space = get_object_or_404(Space, url=self.kwargs['space_url'])
         context['get_place'] = space
-        context['user_is_admin'] = (has_space_permission(self.request.user,
-            space, allow=['admins', 'mods']) or has_all_permissions(
-                self.request.user))
         return context
 
 
@@ -179,9 +165,7 @@ class DeleteEvent(DeleteView):
         event = get_object_or_404(Event, url=kwargs['event_id'])
 
         if (request.user.has_perm('admin_space', space) or
-            request.user.has_perm('mod_space'), space or
-            (request.user.has_perm('admin_event', event) and
-             request.user.has_perm('delete_event', event))):
+            request.user.has_perm('mod_space', space)):
             return super(DeleteEvent, self).dispatch(request, *args, **kwargs)
         else:
             raise PermissionDenied

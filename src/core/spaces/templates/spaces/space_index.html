@@ -102,18 +102,7 @@
                                 <p><strong>{% trans "Description:" %}</strong> {{ get_place.description|removetags:'p'|safe }}</p>
                             {% endif %}
                             <p><strong>{% trans "Current status:" %}</strong> Not implemented</p>
-                            <p><strong><a href="#myModal" role="button" data-toggle="modal">{% trans "Participants:" %}</a></strong> {{ get_place.users.count|add:get_place.admins.count|add:get_place.mods.count }}</p>
-                            <div class="modal hide fade" id="myModal">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                                    <h3>{% trans "Participants for" %} {{ get_place.name }}</h3>
-                                </div>
-                                <div class="modal-body">
-                                    <p>{% trans "Administrators:" %} {{ get_place.admins.count }}</p>
-                                    <p>{% trans "Moderators:" %} {{ get_place.mods.count }}</p>
-                                    <p>{% trans "Users:" %} {{ get_place.users.count }}</p>
-                                </div>
-                            </div>
+                            <p><strong>{% trans "Participants:" %}</strong> Not implemented</p>
                             <hr />
                             <h4>{% trans "Recent activity" %}</h4>
                             
@@ -234,7 +223,7 @@
                             <ul class="unstyled">
                                 {% for voting in votings %}    
                                     <li><a href="{% url 'view-voting' get_place.url voting.id %}">{{ voting.title }}</a></li>
-                                    {% if "admin_space" or "mod_space" in space_perms or request.user == voting.author %}
+                                    {% if "admin_space" or "mod_space" in space_perms %}
                                         <a href="{% url 'edit-voting' get_place.url voting.id %}" title="{% trans 'Edit' %}">
                                             <i class="icon-edit" style="font-size:16px;"></i>
                                         </a>
@@ -483,12 +472,10 @@
                             <ul class="unstyled">
                                 {% for doc in documents %}
                                     <li><a href="{{ doc.docfile.url }}">{{ doc.title }} ({{ doc.get_file_ext }}, {{ doc.get_file_size }})</a>
-                                    {% if perms.spaces.change_document %}
+                                    {% if "admin_space" or "mod_space" in space_perms %}
                                         <a href="{% url 'edit-document' get_place.url doc.id %}" title="{% trans 'Edit document' %}">
                                             <i class="icon-edit" style="font-size:16px;"></i>
                                         </a>
-                                    {% endif %}
-                                    {% if perms.spaces.delete_document %}
                                         <a href="{% url 'delete-document' get_place.url doc.id %}" title="{% trans 'Delete document' %}">
                                             <i class="icon-trash" style="font-size:16px;"></i>
                                         </a>
@@ -503,12 +490,10 @@
                             {% if "admin_space" or "mod_space" in space_perms %}
                                 <h4>{% trans "Administration" %}</h4>
                                 <ul class="unstyled">
-                                    {% if perms.spaces.add_document %}
-                                        <li><a href="{% url 'add-document' get_place.url %}" title="{% trans 'Add new document' %}">
-                                                <i class="icon-plus" style="font-size:16px;"></i> {% trans "Add documents"%}
-                                            </a>
-                                        </li>
-                                    {% endif %}
+                                    <li><a href="{% url 'add-document' get_place.url %}" title="{% trans 'Add new document' %}">
+                                            <i class="icon-plus" style="font-size:16px;"></i> {% trans "Add documents"%}
+                                        </a>
+                                    </li>
                                 </ul>
                             {% endif %}
                             <h4>{% trans "Actions" %}</h4>
@@ -549,11 +534,9 @@
                             {% if "admin_space" or "mod_space" in space_perms %}
                                 <h4>{% trans "Administration" %}</h4>
                                 <ul class="unstyled">
-                                    {% if perms.spaces.add_event %}
-                                        <li><a href="{% url 'add-event' get_place.url %}" title="{% trans 'Add new event' %}">
-                                            <i class="icon-plus" style="font-size:16px;"></i> {% trans "Add event"%}
-                                        </a></li>
-                                    {% endif %}
+                                    <li><a href="{% url 'add-event' get_place.url %}" title="{% trans 'Add new event' %}">
+                                        <i class="icon-plus" style="font-size:16px;"></i> {% trans "Add event"%}
+                                    </a></li>
                                 </ul>
                             {% endif %}
                             <h4>{% trans "Actions" %}</h4>
@@ -571,12 +554,12 @@
     {% for e in entities %}
         {% if e.logo %}
             <a href="{{ e.website }}"><img src="{{ MEDIA_URL }}/{{ e.logo }}" alt="Logo"/></a>
+        {% else %}
+            {% if e.website %}
+                <a href="{{ e.website }}">{{ e.name }}</a> -
             {% else %}
-                {% if e.website %}
-                    <a href="{{ e.website }}">{{ e.name }}</a> -
-                {% else %}
-                    {{ e.name }} -
-                {% endif %}
+                {{ e.name }} -
+            {% endif %}
         {% endif %}
     {% endfor %}
 </br></br>

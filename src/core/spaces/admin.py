@@ -73,8 +73,6 @@ class SpaceAdmin(GuardedModelAdmin):
         (_('Modules'), {'fields':
             ('mod_cal', 'mod_docs', 'mod_news', 'mod_proposals',
             'mod_debate')}),
-        (_('Staff'), {'fields':
-            [('admins', 'mods', 'users')]}),
     ]
 
     inlines = [

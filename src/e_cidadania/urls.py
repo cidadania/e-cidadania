@@ -26,12 +26,6 @@ from django.conf import settings
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from core.views.news import ListNews
-from core.views.news import AddPost
-from core.views.news import EditPost
-from core.views.news import DeletePost
-from core.views.news import ViewPost
-
 admin.autodiscover()
 
 # We put here the dictionary with all the packages for translatin JavaScript code
@@ -65,22 +59,6 @@ urlpatterns += patterns('',
     # Explore
     url(r'^explore/$', 'core.views.explore.explore', name='explore'),
 
-    # News (this view of news is only for the index)
-    url(r'^news/$', ListNews.as_view(), name='list-site-news'),
-
-    url(r'^news/add/$', AddPost.as_view(), name='add-site-post'),
-
-    url(r'^news/(?P<post_id>\w+)/delete/$', DeletePost.as_view(),
-                                            name='delete-site-post'),
-
-    url(r'^news/(?P<post_id>\w+)/edit/$', EditPost.as_view(),
-                                          name='edit-site-post'),
-
-    url(r'^news/(?P<post_id>\w+)/$', ViewPost.as_view(),
-                                    name='view-site-post'),
-
-    #(r'^api/', include('e_cidadania.apps.api.urls')),
-
     # This urls is for the django comments system
     url(r'^comments/', include('django.contrib.comments.urls')),
 
@@ -93,12 +71,9 @@ urlpatterns += patterns('',
     # with the index view
     url(r'^(?P<slug>[\w\-]+)/', include('apps.ecidadania.staticpages.urls')),
 
-    # WARNING: This URLs aren't supposed to be here, but apparently on development
-    # they are needed
-
     # This url is for comments
 
-    url(r'^comments/', include('django.contrib.comments.urls')),
+    #url(r'^comments/', include('django.contrib.comments.urls')),
 )
 
 if settings.DEBUG:

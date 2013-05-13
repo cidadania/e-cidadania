@@ -1,4 +1,3 @@
 PIL
 python-dateutil==1.5
-pyyaml
-django-guardian
+django-guardian==1.1.0.beta

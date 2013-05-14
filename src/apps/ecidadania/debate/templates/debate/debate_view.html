@@ -53,8 +53,21 @@
                 <div id="debate-number" class="hidden">{{ debate.pk }}</div>
                 <div id="last-note" class="hidden">{{ lastnote }}</div>
 
-                <span class="btn btn-primary btn-small" id="new-note" onclick="createNote()">{% trans "Add new note" %}</span>
-                <div id="sortable-dispatcher"></div>
+                {% if "admin_debate" or "mod_debate" in debate_perms or "admin_space" or "mod_space" in space_perms or request_user == note.author %}
+                    <div class="dropdown">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cogs icon-large" style="margin: 4px 0px 0px -4px;"></i></button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            {% if "admin_debate" in debate_perms %}
+                                <li><a tabindex="-1" href="#"><i class="icon-group icon-large"></i> {% trans "Edit user roles" %}</a></li>
+                            {% endif %}
+                            <li><a tabindex="-1" href="{% url 'edit-debate' get_place.url debate.pk %}"><i class="icon-edit icon-large"></i> {% trans "Edit debate" %}</a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href="{% url 'delete-debate' get_place.url debate.pk %}"><i class="icon-trash icon-large"></i> {% trans "Delete debate" %}</a></li>
+                        </ul>
+                        <span class="btn btn-primary btn-normal" id="new-note" onclick="createNote()">{% trans "New note" %}</span>
+                        <div id="sortable-dispatcher"></div>
+                    </div>
+                {% endif %}
 
                 <div id="debate">
                     {% with debate.pk as debate_pk %}
@@ -87,10 +100,8 @@
                                                             <span id="view-note" style="float:left;">
                                                                 <a href="#" class="nounderline" onclick="viewNote(this)" data-toggle="modal" data-target="#view-current-note" title="{% trans 'View' %}"><i class="icon-eye-open" style="font-size:12px;"></i></a>
                                                             </span>
-                                                            {% if "admin_debate" or "admin_space" or "mod_space" or "mod_debate" in space_perms or request_user == note.author %}
+                                                            {% if "admin_debate" or "mod_debate" in debate_perms or "admin_space" or "mod_space" in space_perms or request_user == note.author %}
                                                                 <div class="deletenote" style="float:right;"><a href="#" onclick="deleteNote(this)" id="deletenote" title="{% trans 'Delete note' %}"><i class="icon-remove" style="font-size:12px;"></i></a></div>
-                                                            {% endif %}
-                                                            {% if "admin_debate" or "admin_space" or "mod_space" or "mod_debate" in space_perms or request_user == note.author %}
                                                                 <span id="edit-note" style="float:right;">
                                                                     <a href="#" class="nounderline" onclick="editNote(this)" data-toggle="modal" data-target="#edit-current-note" title="{% trans 'Edit' %}"><i class="icon-pencil" style="font-size:12px;"></i></a>
                                                                 </span>

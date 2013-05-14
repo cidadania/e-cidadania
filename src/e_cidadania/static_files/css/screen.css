@@ -716,6 +716,12 @@ table {
 #debate table a.delete-row, #debate table a.add-row {
     display:none;
 }
+
+.debateinfo {
+    margin-top: 20px;
+    text-align: center;
+    margin: auto;
+}
 /* END DEBATE */
 
 /* VOTES AND POLLS */

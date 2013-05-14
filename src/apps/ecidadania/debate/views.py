@@ -107,11 +107,10 @@ def add_new_debate(request, space_url):
 
                 # Assign the permissions to the creator of the debate and the
                 # space administrators
-                assign_perm('view_debate', request.user, saved_debate)
-                assign_perm('admin_debate', request.user, saved_debate)
-                assign_perm('change_debate', request.user, saved_debate)
-                assign_perm('delete_debate', request.user, saved_debate)
-                assign_perm('move_note', request.user)
+                assign_perm('view_debate', request.user, debate_instance)
+                assign_perm('admin_debate', request.user, debate_instance)
+                assign_perm('change_debate', request.user, debate_instance)
+                assign_perm('delete_debate', request.user, debate_instance)
 
                 return HttpResponseRedirect(reverse(urln.DEBATE_VIEW,
                     kwargs={'space_url': space_url,
@@ -323,12 +322,12 @@ def update_position(request, space_url):
     reloading all the note form with all the data, we use the partial form
     "UpdateNotePosition" which only handles the column and row of the note.
     """
-    position_form = UpdateNotePosition(request.POST or None, instance=note)
     place = get_object_or_404(Space, url=space_url)
 
     if request.method == "POST" and request.is_ajax:
         note = get_object_or_404(Note, pk=request.POST['noteid'])
         debate = get_object_or_404(Debate, pk=note.debate.id)
+        position_form = UpdateNotePosition(request.POST or None, instance=note)
 
         if (request.user.has_perm('admin_space', place) or
             request.user.has_perm('mod_space', place) or
@@ -349,6 +348,7 @@ def update_position(request, space_url):
         else:
             raise PermissionDenied
     return HttpResponse(msg)
+    
 
 
 def delete_note(request, space_url):

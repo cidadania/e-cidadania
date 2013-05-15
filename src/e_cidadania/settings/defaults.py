@@ -43,13 +43,13 @@ GUARDIAN_RENDER_403 = True
 
 # Languages for the platform.
 LANGUAGES = (
-    ('es_ES', 'Español'),
-    ('en_GB', 'English'),
-    ('gl_ES', 'Galego'),
-    ('fr_FR', 'Français'),
-    ('mk_MK', 'Makedonski'),
-    ('pt_BR', 'Português'),
-    ('hi_IN', 'Hindi'),
+    ('es-es', 'Español'),
+    ('en-gb', 'English'),
+    ('gl-es', 'Galego'),
+    ('fr-fr', 'Français'),
+    ('mk-mk', 'Makedonski'),
+    ('pt-br', 'Português'),
+    ('hi-in', 'Hindi'),
 )
 
 LOCALE_PATHS = (

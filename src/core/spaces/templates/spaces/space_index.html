@@ -552,13 +552,25 @@
     </br></br>
 
     {% for e in entities %}
-        {% if e.logo %}
-            <a href="{{ e.website }}"><img src="{{ MEDIA_URL }}/{{ e.logo }}" alt="Logo"/></a>
-        {% else %}
-            {% if e.website %}
-                <a href="{{ e.website }}">{{ e.name }}</a> -
+        {% if not forloop.last %}
+            {% if e.logo %}
+                <a href="{{ e.website }}"><img src="{{ MEDIA_URL }}/{{ e.logo }}" alt="Logo"/></a>
             {% else %}
-                {{ e.name }} -
+                {% if e.website %}
+                    <a href="{{ e.website }}">{{ e.name }}</a> -
+                {% else %}
+                    {{ e.name }} -
+                {% endif %}
+            {% endif %}
+        {% else %}
+            {% if e.logo %}
+                <a href="{{ e.website }}"><img src="{{ MEDIA_URL }}/{{ e.logo }}" alt="Logo"/></a>
+            {% else %}
+                {% if e.website %}
+                    <a href="{{ e.website }}">{{ e.name }}</a>
+                {% else %}
+                    {{ e.name }}
+                {% endif %}
             {% endif %}
         {% endif %}
     {% endfor %}

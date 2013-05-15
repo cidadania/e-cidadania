@@ -83,7 +83,6 @@ class SpaceAdmin(GuardedModelAdmin):
         if not change:
             obj.author = request.user
         obj.save()
-        obj.users.add(request.user)
 
     def send_email(self, request, queryset):
         user_emails = queryset.objects.values('email')

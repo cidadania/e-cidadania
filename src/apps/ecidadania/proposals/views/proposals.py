@@ -79,7 +79,6 @@ class AddProposal(FormView):
         form_uncommited.space = space
         form_uncommited.author = self.request.user
         form_uncommited.save()
-
         return super(AddProposal, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -115,6 +114,14 @@ class EditProposal(UpdateView):
             return super(EditProposal, self).dispatch(request, *args, **kwargs)
         else:
             raise PermissionDenied
+
+    def form_valid(self, form):
+        space = get_object_or_404(Space, url=self.kwargs['space_url'])
+        form_uncommited = form.save(commit=False)
+        form_uncommited.space = space
+        form_uncommited.author = self.request.user
+        form_uncommited.save()
+        return super(EditProposal, self).form_valid(form)
 
     def get_success_url(self):
         space = self.kwargs['space_url']

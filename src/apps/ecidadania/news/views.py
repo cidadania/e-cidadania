@@ -140,6 +140,14 @@ class EditPost(UpdateView):
         else:
             raise PermissionDenied
 
+    def form_valid(self, form):
+        self.space = get_object_or_404(Space, url=self.kwargs['space_url'])
+        form_uncommited = form.save(commit=False)
+        form_uncommited.author = self.request.user
+        form_uncommited.space = self.space
+        form_uncommited.save()
+        return super(EditPost, self).form_valid(form)
+
     def get_success_url(self):
         space = self.kwargs['space_url']
         return reverse(urln.SPACE_INDEX, kwargs={'space_url': space})

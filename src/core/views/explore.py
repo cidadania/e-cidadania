@@ -33,7 +33,7 @@ def explore(request):
 
     .. versionadded:: 0.1.8
     """
-    spaces = Space.objects.all()
+    spaces = Space.objects.all().filter(public=True)
     recent_spaces = Space.objects.all().order_by('-date')[:5]
     news = Post.objects.filter(space__public=True).order_by('-pub_date')
 

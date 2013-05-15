@@ -5,47 +5,18 @@
 {% block content %}
 
 <div class="row">
-    <div class="span3 well">
-        <h4>{% trans "Recent processes" %}</h4>
-        <ul class="unstyled">
-            {% for s in latest_spaces %}
-                <li class="nostyle"><a href="{{ s.get_absolute_url }}">{{ s.name }}</a><br>
-                    {{ s.description }}</li>
-            {% empty %}
-                <li class="nostyle">{% trans "There are no recent spaces." %}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="span4 well">
+    <div class="span5 well">
         <h4>{% trans "Public processes" %}</h4>
         <ul class="unstyled">
             {% for s in spaces %}
-                {% if s.public %}
-                    <li class="nostyle"><a href="{{ s.get_absolute_url }}">{{ s.name }}</a><br>
-                    {{ s.description }}</li>
-                {% endif %}
+                <li class="nostyle"><a href="{{ s.get_absolute_url }}">{{ s.name }}</a><br>
+                {{ s.description }}</li>
             {% empty %}
                 <li class="nostyle">{% trans "There are no recent spaces." %}</li>
             {% endfor %}
         </ul>
-    </div>
-    <div class="span3 well">
-        <h4>{% trans "Private processes" %}</h4>
-        <ul class="unstyled">
-            {% for s in spaces %}
-                {% if not s.public %}
-                    <li class="nostyle"><a href="{{ s.get_absolute_url }}">{{ s.name }}</a><br>
-                    {{ s.description }}</li>
-                {% endif %}
-            {% empty %}
-                <li class="nostyle">{% trans "There are no recent spaces." %}</li>
-            {% endfor %}
-        </ul>
-    </div>
-</div>
 
-<div class="row">
-    <div class="span5 well">
+
         <h4>{% trans "Latest news from public processes" %}</h4>
         <ul class="unstyled">
             {% for p in news %}

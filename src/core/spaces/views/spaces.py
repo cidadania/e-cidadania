@@ -29,7 +29,8 @@ from django.contrib.comments.models import Comment
 from django.db.models import Count
 from django.core.urlresolvers import reverse
 from django.core.exceptions import PermissionDenied
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, \
+    HttpResponseNotFound, HttpResponseBadRequest, HttpResponseServerError
 from django.contrib.auth.models import User
 
 from helpers.cache import get_or_insert_object_in_cache
@@ -403,8 +404,12 @@ def edit_roles(request, space_url):
 
             if request.POST['perm'] == "delete":
                 for p in cur_user_perms:
-                    remove_perm(p, user, space)
-                return HttpResponse('Permissions deleted.')
+                    try:
+                        remove_perm(p, user, space)
+                    except:
+                        return HttpResponseServerError(_("Couldn't delete user permissions."))
+                return HttpResponse(_('Permissions deleted. User removed from space.'))
+
             else:
                 try:
                     perm = perm_dict[request.POST['perm']]
@@ -412,10 +417,13 @@ def edit_roles(request, space_url):
                         if p in cur_user_perms:
                             pass
                         else:
-                            assign_perm(p, user, space)
-                    return HttpResponse('Permissions assigned.')
+                            try:
+                                assign_perm(p, user, space)
+                            except:
+                                return HttpResponseServerError(_("The permissions couldn't be assigned."))
+                    return HttpResponse(_('Permissions assigned.'))
                 except:
-                    return HttpResponse('Permission code not valid.')
+                    return HttpResponseBadRequest('Permission code not valid.')
         else:
             space_users = get_users_with_perms(space, with_superusers=False)
             admins = set()
@@ -447,10 +455,13 @@ def search_user(request, space_url):
 
     if request.user.has_perm('admin_space', space):
         if request.method == 'POST' and request.is_ajax():
-            user = get_object_or_404(User, username=request.POST['uname'])
-            assign_perm('view_space', user, space)
-            return HttpResponse(user.id)
+            try:
+                user = User.objects.get(username=request.POST['uname'])
+                assign_perm('view_space', user, space)
+                return HttpResponse(user.id)
+            except:
+                return HttpResponseNotFound(_('The user does not exist.'))
         else:
-            return HttpResponse("Wrong petition.")
+            return HttpResponseBadRequest(_("Wrong petition."))
     else:
         raise PermissionDenied

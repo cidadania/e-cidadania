@@ -8,7 +8,6 @@
 */
 
 var errorTitle = gettext("An error has ocurred.");
-var errorMsg = gettext("Couldn't add/change user permissions.");
 var saveTitle = gettext("Changes saved");
 var saveMsg = gettext("The changes have been saved successfully.");
 var confirmDelete = gettext('Are you sure?');
@@ -38,16 +37,16 @@ function searchUser() {
             }
         }).success(function(data, textStatus, jqXHR) {
             $.gritter.add({
-                title: "User added to users group",
-                text: "The user has been added successfully to the users list.",
+                title: userTitle,
+                text: userMsg,
                 image: saveIcon,
                 time: 4000
             });
             $("ul#users").append("<li id='" + data + "' class='ui-state-default'>" + userName + "<a href='#' class='pull-right delete' title='" + userDel + " " + userName + "'><i class='icon-remove'></i></a><li>");
-        }).fail(function(jqXHR, textStatus) {
+        }).error(function(jqXHR, textStatus, error) {
             $.gritter.add({
                 title: errorTitle,
-                text: errorMsg,
+                text: jqXHR.responseText,
                 image: alertIcon
             });
         });
@@ -75,17 +74,17 @@ function deleteUserFromSpace() {
                     userid: userID,
                     perm: "delete"
                 }
-            }).done(function(jqXHR, textStatus) {
+            }).success(function(data, jqXHR, textStatus) {
                 $.gritter.add({
                     title: saveTitle,
-                    text: saveMsg,
+                    text: data,
                     image: saveIcon
                 });
                 currentEl.parent().remove();
-            }).fail(function(jqXHR, textStatus) {
+            }).error(function(jqXHR, textStatus, error) {
                 $.gritter.add({
                     title: errorTitle,
-                    text: errorMsg,
+                    text: jqXHR.responseText,
                     image: alertIcon
                 });
             });
@@ -124,16 +123,16 @@ function changeUserPermissions() {
                     userid: userID,
                     perm: perm,
                 }
-            }).done(function(jqXHR, textStatus) {
+            }).success(function(data, jqXHR, textStatus) {
                 $.gritter.add({
                     title: saveTitle,
-                    text: saveMsg,
+                    text: data,
                     image: saveIcon
                 });
-            }).fail(function(jqXHR, textStatus) {
+            }).fail(function(jqXHR, textStatus, error) {
                 $.gritter.add({
                     title: errorTitle,
-                    text: errorMsg,
+                    text: jqXHR.responseText,
                     image: alertIcon
                 });
             });

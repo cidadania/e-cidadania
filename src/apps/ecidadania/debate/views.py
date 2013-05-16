@@ -237,13 +237,11 @@ def create_note(request, space_url):
                 return HttpResponse(json.dumps(response_data),
                                 mimetype="application/json")
             else:
-                msg = "The note form didn't validate. This fields gave errors: " + str(note_form.errors)
+                return HttpResponseBadRequest(_("The note form didn't validate. This fields gave errors: ") + str(note_form.errors))
         else:
             raise PermissionDenied
     else:
-        msg = "The petition was not POST."
-
-    return HttpResponse(json.dumps(msg), mimetype="application/json")
+        return HttpResponseBadRequest(_("The petition was not POST."))
 
 
 def update_note(request, space_url):
@@ -306,13 +304,11 @@ def update_note(request, space_url):
                 note_form_uncommited.last_mod_author = request.user
 
                 note_form_uncommited.save()
-                msg = "The note has been updated."
             else:
-                msg = "The form is not valid, check field(s): " + note_form.errors
-            return HttpResponse(msg)
+                return HttpResponseBadRequest(_("The form is not valid, check field(s): ") + note_form.errors)
         else:
             raise PermissionDenied
-    return HttpResponse(msg)
+    return HttpResponseBadRequest(_("Bad request"))
 
 
 def update_position(request, space_url):
@@ -342,12 +338,11 @@ def update_position(request, space_url):
                 position_form_uncommited.row = get_object_or_404(Row,
                                                 pk=request.POST['row'])
                 position_form_uncommited.save()
-                msg = "The note has been updated."
             else:
-                msg = "There has been an error validating the form."
+                return HttpResponseBadRequest(_("There has been an error validating the form."))
         else:
             raise PermissionDenied
-    return HttpResponse(msg)
+    return HttpResponseBadRequest(_("The petition was not POST."))
 
 
 def delete_note(request, space_url):

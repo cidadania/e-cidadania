@@ -77,7 +77,7 @@ function createNote() {
         }
     });
 
-    request.done(function (note) {
+    request.success(function (note) {
             $("#sortable-dispatcher").hide().append("<div id='" + note.id + "' class='note mine'>" +
             "<div class='handler'><span id='view-note' style='float:left;'>" +
             "<a href='#' class='nounderline' onclick='viewNote(this)' data-toggle='modal' data-target='#view-current-note' title='" + view + "'><i class='icon-eye-open' style='font-size:12px;''></i></a>" +
@@ -88,10 +88,10 @@ function createNote() {
         showControls();
     });
 
-    request.fail(function (jqXHR, textStatus) {
+    request.error(function (jqXHR, textStatus, error) {
         $.gritter.add({
             title: errorMsg,
-            text: errorCreate + ' ' + textStatus,
+            text: jqXHR.responseText,
             image: alertIcon
         });
     });
@@ -110,7 +110,7 @@ function viewNote(obj) {
         data: { noteid: noteID }
     });
 
-    request.done(function(note) {
+    request.success(function(note) {
         $('h3#view-note-title').text(note.title);
         $('p#view-note-desc').html(note.message);
         $('span#view-note-author').text(note.author.name);
@@ -128,11 +128,11 @@ function viewNote(obj) {
         $('form#form_comments div.kopce').html(note.form_html);
    });
 
-    request.fail(function (jqXHR, textStatus) {
+    request.error(function (jqXHR, textStatus, error) {
         $('#view-current-note').modal('hide');
         $.gritter.add({
             title: errorMsg,
-            text: errorGetNote + ' ' + textStatus,
+            text: jqXHR.responseText,
             image: alertIcon
         });
     });
@@ -151,7 +151,7 @@ function editNote(obj) {
         data: { noteid: noteID }
     });
 
-    request.done(function(note) {
+    request.success(function(note) {
         $("input[name='notename']").val(note.title);
         wysieditor.data("wysihtml5").editor.setValue(note.message, true);
         // If for some reason the WYSIHTML5 editor fails, it will fallback
@@ -160,11 +160,11 @@ function editNote(obj) {
         $("#last-edited-note").text(noteID);
     });
 
-    request.fail(function (jqXHR, textStatus) {
+    request.error(function (jqXHR, textStatus, error) {
         $('#edit-current-note').modal('hide');
         $.gritter.add({
             title: errorMsg,
-            text: errorGetNote + ' ' + textStatus,
+            text: jqXHR.responseText,
             image: alertIcon
         });
     });
@@ -189,17 +189,17 @@ function saveNote() {
         }
     });
 
-    request.done(function(msg) {
+    request.success(function(msg) {
         $('#edit-current-note').modal('hide');
         var newTitle = $("input[name='notename']").val();
         $("div#" + noteID + " > p").text(newTitle);
     });
 
-    request.fail(function(jqXHR, textStatus) {
+    request.error(function(jqXHR, textStatus, error) {
         $('#edit-current-note').modal('hide');
         $.gritter.add({
             title: errorMsg,
-            text: errorSave + ' ' + textStatus,
+            text: jqXHR.responseText,
             image: alertIcon
         });
     })
@@ -271,10 +271,10 @@ function makeSortable() {
                     column: position[0],
                     row: position[1]
                 }
-            }).fail(function(jqXHR, textStatus) {
+            }).error(function(jqXHR, textStatus, error) {
                 $.gritter.add({
                     title: errorMsg,
-                    text: errorSavePos + ' ' + textStatus,
+                    text: jqXHR.responseText,
                     image: alertIcon
                 });
             });

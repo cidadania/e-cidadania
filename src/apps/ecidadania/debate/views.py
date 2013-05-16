@@ -348,7 +348,6 @@ def update_position(request, space_url):
         else:
             raise PermissionDenied
     return HttpResponse(msg)
-    
 
 
 def delete_note(request, space_url):

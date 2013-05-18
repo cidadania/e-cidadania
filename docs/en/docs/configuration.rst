@@ -5,8 +5,7 @@ The e-cidadania platform is almost ready-to-use after unpacking, but you will
 have to edit the `settings.py` file if you want to install it in production. We
 explain here all the settings realted with the initial configuration of
 e-cidadania. If you want more detailed information about the settings, please
-take a look at the official django documentation at
-`http://docs.djangoproject.com`_
+take a look at the official `django documentation <http://docs.djangoproject.com>`_
 
 The e-cidadania setting have been splitted into four major files::
 

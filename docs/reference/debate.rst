@@ -41,8 +41,6 @@
 
 .. autofunction:: add_new_debate(request, space_name)
 
-.. autofunction:: get_debates(request)
-
 .. autofunction:: create_note(request, space_name)
 
 .. autofunction:: update_note(request, space_name)

@@ -10,7 +10,7 @@ sys.path.append(main_dir)
 from config.all import *
 
 language = 'en'
-html_logo = '../images/logos/logo-en.png'
+#html_logo = '../images/logos/logo-en.png'
 latex_logo = '../images/logos/logo-en.png'
 latex_documents = [
   ('index', 'e-cidadania.tex', u'Documentation',

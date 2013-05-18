@@ -103,8 +103,6 @@ Spaces views
 .. autoclass:: DeleteSpace(DeleteView)
     :members:
 
-.. autoclass:: EditRole(UpdateView)
-    :members:
 
 .. autofunction:: edit_space(request, space_name)
 

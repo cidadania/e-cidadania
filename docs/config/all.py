@@ -172,6 +172,10 @@ html_show_copyright = False
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'e-cidadaniadoc'
 
+html_theme_options = {
+    'navbar_class': "navbar navbar-inverse",
+    'navbar_fixed_top': "true",
+}
 
 # -- Options for LaTeX output --------------------------------------------------
 

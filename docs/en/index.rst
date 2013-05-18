@@ -31,6 +31,7 @@ Installation & Configuration
     :maxdepth: 2
 
     docs/installation
+    docs/installfaq
     docs/configuration
     docs/deployment
 

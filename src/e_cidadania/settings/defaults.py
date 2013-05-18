@@ -27,8 +27,8 @@ Plase refer to the 'configuration' section of the documentation for guidance.
 import os
 
 # e-cidadania version and current status
-__version__ = "0.1.8"
-__status__ = "beta"
+__version__ = "0.1.9"
+__status__ = "alpha"
 
 # Get the current working directory so we can fill automatically other variables.
 cwd = os.path.dirname(os.path.realpath(__file__)).strip('settings')

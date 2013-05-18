@@ -45,14 +45,14 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'e-cidadania'
-copyright = u'2010-2012, Cidadania S. Coop. Galega'
+copyright = u'2011-2013, Cidadania S. Coop. Galega'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = '0.1.8 beta'
+version = '0.1.9 alpha'
 
 # The full version, including alpha/beta/rc tags.
 #release = 'final'

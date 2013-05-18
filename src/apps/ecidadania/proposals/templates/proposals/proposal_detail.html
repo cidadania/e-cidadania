@@ -32,10 +32,10 @@
                 }
             });
 
-            request.fail(function(jqXHR, textStatus) {
+            request.error(function(jqXHR, textStatus, error) {
                 $.gritter.add({
                     title:"Coulnd't vote the proposal",
-                    text:"There has been an error." + textStatus,
+                    text: jqXHR.responseText,
                     icon:"http://ecidadania.org/static/assets/icons/alert.png",
                     expires: 0
                 });

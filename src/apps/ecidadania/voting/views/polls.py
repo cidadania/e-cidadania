@@ -30,7 +30,7 @@ from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.forms.models import modelformset_factory, inlineformset_factory
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from helpers.cache import get_or_insert_object_in_cache
 from django.core.urlresolvers import reverse
 from django.db.models import Count, Sum
@@ -61,8 +61,8 @@ def add_poll(request, space_url):
     choice_form = ChoiceFormSet(request.POST or None, prefix="choiceform",
         queryset=Choice.objects.none())
 
-    if (has_operation_permission(request.user, space, 'voting.add_poll',
-                                 allow=['admins', 'mods'])):
+    if (request.user.has_perm('admin_space', space) or
+        request.user.has_perm('mod_space')):
         if request.method == 'POST':
             if poll_form.is_valid() and choice_form.is_valid():
                 poll_form_uncommited = poll_form.save(commit=False)
@@ -85,8 +85,7 @@ def add_poll(request, space_url):
             'choiceform': choice_form, 'get_place': space},
             context_instance=RequestContext(request))
 
-    return render_to_response('not_allowed.html',
-        context_instance=RequestContext(request))
+    raise PermissionDenied
 
 
 class ViewPoll(DetailView):
@@ -99,6 +98,14 @@ class ViewPoll(DetailView):
     """
     context_object_name = 'poll'
     template_name = 'voting/poll_detail.html'
+
+    def dispatch(self, request, *Args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(ViewPoll, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_object(self):
         poll = get_object_or_404(Poll, pk=self.kwargs['pk'])
@@ -136,6 +143,14 @@ class ViewPollResults(DetailView):
     context_object_name = 'poll'
     template_name = 'voting/poll_results.html'
 
+    def dispatch(self, request, *Args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(ViewPollResults, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
     def get_object(self):
         self.poll = get_object_or_404(Poll, pk=self.kwargs['pk'])
         return self.poll
@@ -167,8 +182,8 @@ def edit_poll(request, space_url, poll_id):
     """
     place = get_object_or_404(Space, url=space_url)
 
-    if has_operation_permission(request.user, place, 'voting.change_poll',
-                                allow=['admins', 'mods']):
+    if (request.user.has_perm('admin_space', place) or
+        request.user.has_perm('mod_space', place)):
 
         ChoiceFormSet = inlineformset_factory(Poll, Choice, extra=1)
         instance = Poll.objects.get(pk=poll_id)
@@ -200,9 +215,7 @@ def edit_poll(request, space_url, poll_id):
                                   'pollid': poll_id, },
                                  context_instance=RequestContext(request))
     else:
-        return render_to_response('not_allowed.html',
-            context_instance=RequestContext(request))
-
+        raise PermissionDenied
 
 class DeletePoll(DeleteView):
 
@@ -212,17 +225,22 @@ class DeletePoll(DeleteView):
     """
     context_object_name = "get_place"
 
+    def dispatch(self, request, *Args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if (request.user.has_perm('admin_space', space) or
+            request.user.has_perm('mod_space', space)):
+            return super(DeletePoll, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
     def get_success_url(self):
         space = self.kwargs['space_url']
         return '/spaces/%s' % (space)
 
     def get_object(self):
         space = get_object_or_404(Space, url=self.kwargs['space_url'])
-        if has_operation_permission(self.request.user, space,
-                                    'voting.delete_poll', allow=['admins']):
-            return get_object_or_404(Poll, pk=self.kwargs['poll_id'])
-        else:
-            self.template_name = 'not_allowed.html'
+        return get_object_or_404(Poll, pk=self.kwargs['poll_id'])
 
     def get_context_data(self, **kwargs):
         context = super(DeletePoll, self).get_context_data(**kwargs)
@@ -239,15 +257,18 @@ class ListPolls(ListView):
     """
     paginate_by = 10
 
+    def dispatch(self, request, *Args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(ListPolls, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
     def get_queryset(self):
         key = self.kwargs['space_url']
         current_space = get_or_insert_object_in_cache(Space, key, url=key)
         polls = Poll.objects.filter(space=current_space)
-
-        # Here must go a validation so a user registered to the space
-        # can always see the poll list. While an anonymous or not
-        # registered user can't see anything unless the space is public
-
         return polls
 
     def get_context_data(self, **kwargs):
@@ -276,8 +297,7 @@ def vote_poll(request, poll_id, space_url):
             'error_message': "You didn't select a choice.",
         }, context_instance=RequestContext(request))
 
-    if request.method == 'POST' and has_space_permission(request.user, space,
-    allow=['admins', 'mods', 'users']):
+    if request.user.has_perm('view_space', space) and request.method == 'POST':
         poll.participants.add(request.user)
         choice.votes.add(request.user)
         return render_to_response('voting/poll_results.html',
@@ -285,5 +305,4 @@ def vote_poll(request, poll_id, space_url):
             select a choice."}, context_instance=RequestContext(request))
 
     else:
-        return HttpResponse("Error P02: Couldn't emit the vote. You're not \
-            allowed.")
+        raise PermissionDenied

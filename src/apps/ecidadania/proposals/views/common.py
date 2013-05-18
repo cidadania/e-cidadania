@@ -27,7 +27,7 @@ from django.db.models import Count
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.utils.decorators import method_decorator
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import get_object_or_404
 from guardian.shortcuts import assign_perm
 from guardian.decorators import permission_required_or_403
@@ -104,10 +104,7 @@ def support_proposal(request, space_url):
     if request.user.has_perm('view_space', space):
         try:
             prop.support_votes.add(request.user)
-            return HttpResponse(" Support vote emmited.")
         except:
-            return HttpResponse("Error P01: Couldn't emit the vote. Couldn't \
-                add the user to the count. Contact support and tell them the \
-                error code.")
+            return HttpResponseServerError(_("Couldn't emit the vote."))
     else:
         raise PermissionDenied

@@ -19,7 +19,7 @@
 
 import defaults
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 __version__ = defaults.__version__

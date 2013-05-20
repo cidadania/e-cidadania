@@ -59,16 +59,18 @@ def create_space(request):
     """
     Returns a SpaceForm form to fill with data to create a new space. There
     is an attached EntityFormset to save the entities related to the space.
-    Only site administrators are allowed to create spaces.
+    Every user in the platform is allowed to create spaces. Once it's created
+    we assign the administration permissions to the user, along with some
+    others for the sake of functionality.
 
     .. note:: Since everyone can have the ability to create spaces, instead
               of checking for the add_space permission we just ask for login.
 
-    :attributes: - space_form: empty SpaceForm instance
-                 - entity_forms: empty EntityFormSet
+    :attributes:           - space_form: empty SpaceForm instance
+                           - entity_forms: empty EntityFormSet
     :permissions required: login_required
-    :rtype: Space object, multiple entity objects.
-    :context: form, entityformset
+    :rtype:                Space object, multiple entity objects.
+    :context:              form, entityformset
     """
     space_form = SpaceForm(request.POST or None, request.FILES or None)
     entity_forms = EntityFormSet(request.POST or None, request.FILES or None,
@@ -128,13 +130,17 @@ class ViewSpaceIndex(DetailView):
 
     """
     Returns the index page for a space. The access to spaces is restricted and
-    filtered in the get_object method. This view gathers information from all
-    the configured modules in the space.
+    filtered in the dispatch method. This view gathers information from all
+    the configured modules in the space and also makes some calculations to
+    gather most commented posts, most interesting content, etc.
 
-    :attributes: space_object, place
+
+    :attributes:           - space_object/space/place: current space instance
     :permissions required: space.view_space
-    :rtype: Object
-    :context: get_place, entities, documents, proposals, publication
+    :rtype:                Object
+    :context: get_place, entities, documents, proposals, proposalsets,
+              publication, mostviewed, mostcommented, mostcommentedproposal,
+              page, messages, debates, events, votings, polls, participants.
     """
     context_object_name = 'get_place'
     template_name = 'spaces/space_index.html'
@@ -231,8 +237,6 @@ class ViewSpaceIndex(DetailView):
                                                 .order_by('-event_date')
         context['votings'] = Voting.objects.filter(space=place.id)
         context['polls'] = Poll.objects.filter(space=place.id)
-        # True if the request.user has admin rights on this space
-        context['polls'] = Poll.objects.filter(space=place.id)
         context['participants'] = get_users_with_perms(place)
         return context
 
@@ -246,17 +250,17 @@ def edit_space(request, space_url):
     """
     Returns a form filled with the current space data to edit. Access to
     this view is restricted only to site and space administrators. The filter
-    for space administrators is given by the change_space permission and their
-    belonging to that space.
+    for space administrators is given by the change_space and admin_space
+    permission and their belonging to that space.
 
-    :attributes: - place: current space intance.
-                 - form: SpaceForm instance.
-                 - form_uncommited: form instance before commiting to the DB,
-                   so we can modify the data.
+    :attributes:           - place: current space intance.
+                           - form: SpaceForm instance.
+                           - form_uncommited: form instance before commiting to
+                             the DB, so we can modify the data.
     :permissions required: spaces.change_space, spaces.admin_space
-    :param space_url: Space URL
-    :rtype: HTML Form
-    :context: form, get_place
+    :param space_url:      Space URL
+    :rtype:                HTML Form
+    :context:              form, get_place, entityformset
     """
     place = get_object_or_404(Space, url=space_url)
 
@@ -297,11 +301,11 @@ class DeleteSpace(DeleteView):
     """
     Returns a confirmation page before deleting the space object completely.
     This does not delete the space related content. Only the site
-    administrators can delete a space.
+    administrators or the space administrators can delete a space.
 
-    :attributes: space_url
+    :attributes:           space_url
     :permissions required: spaces.delete_space, spaces.admin_space
-    :rtype: Confirmation
+    :rtype:                Confirmation
     """
     context_object_name = 'get_place'
     success_url = '/'

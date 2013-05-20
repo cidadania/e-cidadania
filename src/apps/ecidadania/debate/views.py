@@ -455,7 +455,7 @@ class ListDebates(ListView):
         space = get_object_or_404(Space, url=kwargs['space_url'])
 
         if request.user.has_perm('view_space', space):
-            super(ListDebates, self).dispatch(request, *args, **kwargs)
+            return super(ListDebates, self).dispatch(request, *args, **kwargs)
         else:
             raise PermissionDenied
 

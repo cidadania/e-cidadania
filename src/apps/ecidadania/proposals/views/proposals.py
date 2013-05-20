@@ -199,6 +199,7 @@ class ListProposals(ListView):
             raise PermissionDenied
 
     def get_queryset(self):
+        place = get_object_or_404(Space, url=self.kwargs['space_url'])
         objects = Proposal.objects.annotate(Count('support_votes')).filter(space=place.id).order_by('pub_date')
         return objects
 

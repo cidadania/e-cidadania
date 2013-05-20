@@ -1,16 +1,13 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% with get_place.name as space_name %}
-{% with get_place.url as space_url %}
-
-{% block title %}{% trans "Debates in " %}{{ space_name }}{% endblock %}
+{% block title %}{% trans "Debates in " %}{{ get_place.name }}{% endblock %}
 
 {% block content %}
 
     <div class="row">
         <div class="span12">
-            <h3>{% trans "Debates in" %} {{ space_name }}</h3>
+            <h3>{% trans "Debates in" %} {{ get_place.name }}</h3>
 
             {% for debate in object_list %}
                 <div id="spaceitem">
@@ -37,13 +34,13 @@
             <div class="pagination">
                 <span class="page-links">
                     {% if page_obj.has_previous %}
-                        <a href="{% url 'list-debates' space_url %}?page={{ page_obj.previous_page_number }}">&laquo; {% trans "previous" %} | </a>
+                        <a href="{% url 'list-debates' get_place.url %}?page={{ page_obj.previous_page_number }}">&laquo; {% trans "previous" %} | </a>
                     {% endif %}
                     <span class="page-current">
                         {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}
                     </span>
                     {% if page_obj.has_next %}
-                        <a href="{% url 'list-debates' space_url %}?page={{ page_obj.next_page_number }}"> | {% trans "next" %} &raquo;</a>
+                        <a href="{% url 'list-debates' get_place.url %}?page={{ page_obj.next_page_number }}"> | {% trans "next" %} &raquo;</a>
                     {% endif %}
                 </span>
             </div>
@@ -52,6 +49,4 @@
     </div>
 
 {% endblock %}
-{% endwith %}
-{% endwith %}
 

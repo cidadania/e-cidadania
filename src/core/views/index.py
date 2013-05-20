@@ -47,7 +47,7 @@ def index_view(request):
     }
 
     if request.user.is_anonymous():
-        messages.info(request, _("Hi! It seems that it's your first time \
+        messages.warning(request, _("Hi! It seems that it's your first time \
         here. Maybe you want to <a href=\"/accounts/register\">register</a> \
         or <a href=\"/accounts/login/\">login</a> if you have an account."))
 

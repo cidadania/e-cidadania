@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="{{ STATIC_URL }}/css/font-awesome.css" media="screen" />
         <link rel="stylesheet" href="{{ STATIC_URL }}/css/jquery.gritter.css" media="screen" />
         <link rel="stylesheet" media="screen" href="{{ STATIC_URL }}/css/screen.css"/>
-        <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Duru+Sans'>
+        <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700'>
         {% block extracss %}
         {% endblock %}
         <!-- End load CSS -->
@@ -58,7 +58,7 @@
         
         {% if messages %}
             {% for message in messages %}
-                <div class="alert fade in {% if message.tags %}alert-{{ message.tags }}{% endif %}" style="margin-top:40px;">
+                <div class="ealert alert fade in {% if message.tags %}alert-{{ message.tags }}{% endif %}">
                     <a class="close" data-dismiss="alert" href="#">x</a>
                     {{ message|safe }}
                 </div>

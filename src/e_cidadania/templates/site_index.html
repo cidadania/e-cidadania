@@ -18,36 +18,10 @@
 
     <div class="row centered" style="margin-top: 80px;">
 
-        <div class="span7" style="background:#000000;opacity:0.8;color:#EEEEEE;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;">
+        <div class="span7" style="font-size:1em;background:#000000;opacity:0.8;color:#EEEEEE;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;">
             <div style="padding:25px;">
+                <h3>No pierdas el hilo</h3>
                 <p>{% trans "Would you like the debates and decisions to be more inclusive? Well done and integrative proposals where participation is always a nice and enriching experience? We too, that's why we created e-cidadania." %}</p>
-
-                <h5>{% trans "Latest participative processes" %}</h5>
-                <ul class="unstyled">
-                    {% for space in spaces %}
-                        <li><a href="{{ space.get_absolute_url }}" rel="popover"
-                               data-content="{{ space.description|removetags:'p'|safe }}"
-                               data-title="{{ space.name }}" data-trigger="hover">{{ space.name }}</a>
-                            {% if space.public %}
-                                <span class="label label-success">{% trans "Public" %}</span>
-                            {% else %}
-                                <span class="label label-important">{% trans "Private" %}</span>
-                            {% endif %}
-                        </li>
-                    {% empty %}
-                        <li>{% trans "There are no processes." %}</li>
-                    {% endfor %}
-                    <script>
-                        $(function () {
-                            $("a[rel=popover]").popover({
-                                offset: 10,
-                                trigger: 'hover'
-                            })
-                        })
-                    </script>
-                    <br />
-                    <li>&raquo;<a href="{% url 'list-spaces' %}">{% trans "View all the processes" %}</a></li>
-                </ul>
             </div>
         </div>
 
@@ -61,11 +35,11 @@
                         <div class="input-append">
                             <input id="id_password" name="password" class="span2" type="password" id="inputPassword" placeholder="Password"><button class="btn btn-success" type="submit">{% trans "Sign in" %}</button>
                         </div>
+                        <div style="font-size:0.8em;">
+                            <a href="http://ecidadania.org/accounts/password/reset/">{% trans "Forgot your password?" %}</a> | 
+                            <a href="{% url 'invite' %}">{% trans "Invite someone!" %}</a>
+                        </div>
                     </form>
-                    <div style="font-size:0.8em;">
-                        <a href="http://ecidadania.org/accounts/password/reset/">{% trans "Forgot your password?" %}</a> | 
-                        <a href="{% url 'invite' %}">{% trans "Invite someone!" %}</a>
-                    </div>
                 </div>
             </div>
 
@@ -76,9 +50,8 @@
                         <input type="text" id="id_username" name="username" placeholder="Username">
                         <input type="text" id="id_email" name="email" placeholder="E-Mail">
                         <input type="password" id="id_password1" name="password1" placeholder="Password">
-                        <div class="input-append">
-                            <input class="span2" type="password" id="id_password2" name="password2" placeholder="Repeat password"><button class="btn btn-primary" type="submit">{% trans "Register" %}</button>
-                        </div>
+                        <input type="password" id="id_password2" name="password2" placeholder="Repeat password">
+                        <button class="btn btn-primary" type="submit">{% trans "Register" %}</button>
                     </form>
                 </div>
             </div>

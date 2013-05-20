@@ -353,7 +353,7 @@ class ListSpaces(ListView):
         current_user = self.request.user
         user_spaces = set()
         all_spaces = Space.objects.all()
-        public_spaces = Spaces.objects.filter(public=True)
+        public_spaces = Space.objects.filter(public=True)
 
         if not current_user.is_anonymous():
             for space in self.all_spaces:

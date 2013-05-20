@@ -289,9 +289,9 @@
                             {% if "admin_space" or "mod_space" in space_perms %}
                                 <h4>{% trans "Administration" %}</h4>
                                 <ul class="unstyled">
-                                    <li><a href="{% url 'add-post' get_place.url %}" title="{% trans 'Add new post' %}">
-                                        <i class="icon-plus" style="font-size:16px;"></i> {% trans 'Add new post' %}
-                                    </a></li>
+                                    <li><i class="icon-plus" style="font-size:16px;"></i>
+                                        <a href="{% url 'add-post' get_place.url %}" title="{% trans 'Add new post' %}">{% trans 'Add new post' %}</a>
+                                    </li>
                                 </ul>
                             {% endif %}
                             <h4>{% trans "Most viewed" %}</h4>
@@ -352,9 +352,9 @@
                             {% if "admin_space" or "mod_space" in space_perms %}
                                 <h4>{% trans "Administration" %}</h4>
                                 <ul class="unstyled">
-                                    <li><a href="{% url 'add-debate' get_place.url %}" title="{% trans 'Add debate' %}">
-                                        <i class="icon-plus" style="font-size:16px;"></i> {% trans "Add debate" %}
-                                    </a></li>
+                                    <li><i class="icon-plus" style="font-size:16px;"></i>
+                                        <a href="{% url 'add-debate' get_place.url %}" title="{% trans 'Add debate' %}">{% trans "Add debate" %}</a>
+                                    </li>
                                 </ul>
                             {% endif %}
                             <h4>{% trans "Actions" %}</h4>
@@ -433,10 +433,8 @@
                         <div class="span4">
                             {% if "view_space" in space_perms %}
                                 <ul class="unstyled">
-                                    <li>
-                                        <a href="{% url 'select_set' get_place.url %}" title="{% trans 'Add new proposal' %}">
-                                            <i class="icon-plus" style="font-size:16px;"></i> {% trans 'Add new proposal' %}
-                                        </a>
+                                    <li><i class="icon-plus" style="font-size:16px;"></i>
+                                        <a href="{% url 'select_set' get_place.url %}" title="{% trans 'Add new proposal' %}">{% trans 'Add new proposal' %}</a>
                                     </li>
                                 </ul>
                             {% endif %}
@@ -444,15 +442,15 @@
                                 <h4>{% trans "Administration" %}</h4>
                                 <ul class="unstyled">
                                     {% if "admin_space" or "mod_space" in space_perms %}
-                                        <li><a href="{% url 'add-proposalset' get_place.url %}" title="{% trans 'Add proposal set' %}">
-                                            <i class="icon-plus" style="font-size:16px;"></i> {% trans "Add proposal set" %}
-                                        </a></li>
+                                        <li><i class="icon-plus" style="font-size:16px;"></i>
+                                            <a href="{% url 'add-proposalset' get_place.url %}" title="{% trans 'Add proposal set' %}">{% trans "Add proposal set" %}</a>
+                                        </li>
                                     {% endif %}
                                 </ul>
                                 <ul class="unstyled">
-                                    <li><a href="{% url 'merge_proposal' get_place.url %}" title="{% trans 'Merge proposal' %}">
-                                        <i class="icon-plus" style="font-size:16px;"></i> {% trans "Create merged proposal" %}
-                                    </a></li>
+                                    <li><i class="icon-plus" style="font-size:16px;"></i>
+                                        <a href="{% url 'merge_proposal' get_place.url %}" title="{% trans 'Merge proposal' %}">{% trans "Create merged proposal" %}</a>
+                                    </li>
                                 </ul>
                             {% endif %}
                             <h4>{% trans "Actions" %}</h4>
@@ -490,9 +488,8 @@
                             {% if "admin_space" or "mod_space" in space_perms %}
                                 <h4>{% trans "Administration" %}</h4>
                                 <ul class="unstyled">
-                                    <li><a href="{% url 'add-document' get_place.url %}" title="{% trans 'Add new document' %}">
-                                            <i class="icon-plus" style="font-size:16px;"></i> {% trans "Add documents"%}
-                                        </a>
+                                    <li><i class="icon-plus" style="font-size:16px;"></i>
+                                        <a href="{% url 'add-document' get_place.url %}" title="{% trans 'Add new document' %}">{% trans "Add documents"%}</a>
                                     </li>
                                 </ul>
                             {% endif %}
@@ -534,9 +531,9 @@
                             {% if "admin_space" or "mod_space" in space_perms %}
                                 <h4>{% trans "Administration" %}</h4>
                                 <ul class="unstyled">
-                                    <li><a href="{% url 'add-event' get_place.url %}" title="{% trans 'Add new event' %}">
-                                        <i class="icon-plus" style="font-size:16px;"></i> {% trans "Add event"%}
-                                    </a></li>
+                                    <li><i class="icon-plus" style="font-size:16px;"></i>
+                                        <a href="{% url 'add-event' get_place.url %}" title="{% trans 'Add new event' %}">{% trans "Add event"%}</a>
+                                    </li>
                                 </ul>
                             {% endif %}
                             <h4>{% trans "Actions" %}</h4>

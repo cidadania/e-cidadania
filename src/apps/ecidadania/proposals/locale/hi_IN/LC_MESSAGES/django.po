@@ -1,36 +1,37 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Vishrut Mehta <vishrut.mehta009@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
-"POT-Creation-Date: 2013-03-13 09:31+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: 2013-03-06 10:41+0000\n"
 "Last-Translator: vishrut009 <vishrut.mehta009@gmail.com>\n"
-"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/language/hi_IN/)\n"
+"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/"
+"language/hi_IN/)\n"
+"Language: hi_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hi_IN\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:61
+#: admin.py:64
 msgid "Location"
 msgstr "स्थान"
 
-#: admin.py:64
+#: admin.py:67
 msgid "Relations"
 msgstr "संबंध"
 
-#: admin.py:67
+#: admin.py:70
 msgid "Other"
 msgstr "अन्य"
 
-#: admin.py:70
+#: admin.py:73
 msgid "Options"
 msgstr "विकल्प"
 
@@ -54,99 +55,99 @@ msgstr "विषय से"
 msgid "Tags"
 msgstr "टैग"
 
-#: models.py:50 models.py:159
+#: models.py:50 models.py:165
 msgid "Latitude"
 msgstr "अक्षांश"
 
-#: models.py:51 models.py:161
+#: models.py:51 models.py:167
 msgid "Longitude"
 msgstr "देशान्तर"
 
-#: models.py:67
+#: models.py:68
 msgid "object ID"
 msgstr "आईडी वस्तु"
 
-#: models.py:97
+#: models.py:98
 msgid "Name"
 msgstr "नाम"
 
-#: models.py:98 models.py:148
+#: models.py:99 models.py:154
 msgid "Max: 200 characters"
 msgstr "अधिकतम: 200 वर्ण"
 
-#: models.py:111
+#: models.py:112
 msgid "Select the debate associated with this proposal set"
 msgstr "इस प्रस्ताव सेट के साथ जुड़े बहस का चयन करें"
 
-#: models.py:117
+#: models.py:118
 msgid "Proposal set"
 msgstr "प्रस्ताव सेट"
 
-#: models.py:118
+#: models.py:119
 msgid "Proposal sets"
 msgstr "प्रस्ताव सेट"
 
-#: models.py:145
+#: models.py:151
 msgid "Code"
 msgstr "कोड"
 
-#: models.py:147
+#: models.py:153
 msgid "Title"
 msgstr "शीर्षक"
 
-#: models.py:150
+#: models.py:156
 msgid "Proposal set in which the         proposal resides"
 msgstr "प्रस्ताव सेट में जो प्रस्ताव"
 
-#: models.py:152
+#: models.py:158
 msgid "Description"
 msgstr "विवरण"
 
-#: models.py:155
+#: models.py:161
 msgid "Change the user that will         figure as the author"
 msgstr "उपयोगकर्ता है कि लेखक के रूप में लगाना होगा बदलें"
 
-#: models.py:157
+#: models.py:163
 msgid "Insert here relevant words related with         the proposal"
 msgstr "यहाँ प्रासंगिक प्रस्ताव के साथ संबंधित शब्दों डालें"
 
-#: models.py:160 models.py:162
+#: models.py:166 models.py:168
 msgid "Specify it in decimal"
 msgstr "यह दशमलव में निर्दिष्ट"
 
-#: models.py:170
+#: models.py:176
 msgid "Select proposals from the list"
 msgstr "सूची से प्रस्तावों का चयन करें"
 
-#: models.py:174
+#: models.py:180
 msgid "Support votes from"
 msgstr "सहायता से वोट"
 
-#: models.py:175
+#: models.py:181
 msgid "Votes from"
 msgstr "से वोट"
 
-#: models.py:193
+#: models.py:199
 msgid "Proposal"
 msgstr "प्रस्ताव"
 
-#: models.py:194
+#: models.py:200
 msgid "Proposals"
 msgstr "प्रस्तावों"
 
-#: models.py:217
+#: models.py:228
 msgid "Customizing         proposal form for a proposal set"
 msgstr "एक प्रस्ताव सेट के लिए प्रस्ताव प्रपत्र को अनुकूलित"
 
-#: models.py:219
+#: models.py:230
 msgid "Additional field that needed to added to the proposal         form"
 msgstr "अतिरिक्त क्षेत्र है कि प्रस्ताव फार्म जोड़ा की जरूरत"
 
-#: models.py:226
+#: models.py:237
 msgid "ProposalField"
 msgstr "प्रस्ताव फील्ड"
 
-#: models.py:227
+#: models.py:238
 msgid "ProposalFields"
 msgstr "प्रस्ताव फील्ड्स"
 
@@ -160,7 +161,7 @@ msgstr "प्रस्ताव सेट का चयन करें"
 #: templates/proposals/mergedproposal_in_set.html:58
 #: templates/proposals/proposal_add_fields.html:92
 #: templates/proposals/proposal_confirm_delete.html:26
-#: templates/proposals/proposal_form.html:150
+#: templates/proposals/proposal_form.html:146
 #: templates/proposals/proposal_form_in_set.html:153
 #: templates/proposals/proposal_list.html:63
 #: templates/proposals/proposal_merged.html:156
@@ -201,7 +202,9 @@ msgstr "प्रस्ताव हटाएँ"
 #: templates/proposals/proposal_confirm_delete.html:23
 msgid ""
 "Are you sure you want to delete this proposal? This action cannot be undone."
-msgstr "क्या आप सुनिश्चित करें कि आप इस प्रस्ताव को नष्ट करना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा सकता."
+msgstr ""
+"क्या आप सुनिश्चित करें कि आप इस प्रस्ताव को नष्ट करना चाहते हैं? इस क्रिया को पूर्ववत नहीं "
+"किया जा सकता."
 
 #: templates/proposals/proposal_confirm_delete.html:27
 #: templates/proposals/proposal_list.html:35
@@ -215,6 +218,15 @@ msgstr "हटाना"
 #: templates/proposals/proposal_detail.html:5
 msgid "View proposal"
 msgstr "प्रस्ताव देखें"
+
+#: templates/proposals/proposal_detail.html:64
+msgid "Thanks for supporting!"
+msgstr ""
+
+#: templates/proposals/proposal_detail.html:64
+#, fuzzy
+msgid "supported!"
+msgstr "समर्थन"
 
 #: templates/proposals/proposal_detail.html:64
 #: templates/proposals/proposal_list.html:42
@@ -265,7 +277,7 @@ msgstr "नए प्रस्ताव जोड़ें"
 msgid "If you want to add location information please click 'Show map'"
 msgstr "यदि आप स्थान जानकारी जोड़ना चाहते नक्शा दिखाएँ 'क्लिक करें"
 
-#: templates/proposals/proposal_form.html:151
+#: templates/proposals/proposal_form.html:147
 #: templates/proposals/proposal_form_in_set.html:154
 #: templates/proposals/proposal_merged.html:157
 msgid "Publish"
@@ -340,7 +352,9 @@ msgstr "प्रस्ताव सेट हटाएँ"
 msgid ""
 "Are you sure you want to delete this proposal set? This action cannot be "
 "undone."
-msgstr "क्या आप यकीन है कि आप इस प्रस्ताव सेट हटाना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा सकता."
+msgstr ""
+"क्या आप यकीन है कि आप इस प्रस्ताव सेट हटाना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा "
+"सकता."
 
 #: templates/proposals/proposalset_detail.html:5
 msgid "View Proposal Set"
@@ -392,3 +406,7 @@ msgstr "यदि आप स्वतंत्र प्रस्तावों
 #: templates/proposals/proposalset_select_form.html:59
 msgid "Click here"
 msgstr "यहाँ क्लिक करें"
+
+#: views/common.py:108
+msgid "Couldn't emit the vote."
+msgstr ""

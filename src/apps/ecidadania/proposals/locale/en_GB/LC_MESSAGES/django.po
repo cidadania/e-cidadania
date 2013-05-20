@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-13 09:31+0100\n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,19 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: admin.py:61
+#: admin.py:64
 msgid "Location"
 msgstr ""
 
-#: admin.py:64
+#: admin.py:67
 msgid "Relations"
 msgstr ""
 
-#: admin.py:67
+#: admin.py:70
 msgid "Other"
 msgstr ""
 
-#: admin.py:70
+#: admin.py:73
 msgid "Options"
 msgstr ""
 
@@ -54,99 +54,99 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
-#: models.py:50 models.py:159
+#: models.py:50 models.py:165
 msgid "Latitude"
 msgstr ""
 
-#: models.py:51 models.py:161
+#: models.py:51 models.py:167
 msgid "Longitude"
 msgstr ""
 
-#: models.py:67
+#: models.py:68
 msgid "object ID"
 msgstr ""
 
-#: models.py:97
+#: models.py:98
 msgid "Name"
 msgstr ""
 
-#: models.py:98 models.py:148
+#: models.py:99 models.py:154
 msgid "Max: 200 characters"
 msgstr ""
 
-#: models.py:111
+#: models.py:112
 msgid "Select the debate associated with this proposal set"
 msgstr ""
 
-#: models.py:117
+#: models.py:118
 msgid "Proposal set"
 msgstr ""
 
-#: models.py:118
+#: models.py:119
 msgid "Proposal sets"
 msgstr ""
 
-#: models.py:145
+#: models.py:151
 msgid "Code"
 msgstr ""
 
-#: models.py:147
+#: models.py:153
 msgid "Title"
 msgstr ""
 
-#: models.py:150
+#: models.py:156
 msgid "Proposal set in which the         proposal resides"
 msgstr ""
 
-#: models.py:152
+#: models.py:158
 msgid "Description"
 msgstr ""
 
-#: models.py:155
+#: models.py:161
 msgid "Change the user that will         figure as the author"
 msgstr ""
 
-#: models.py:157
+#: models.py:163
 msgid "Insert here relevant words related with         the proposal"
 msgstr ""
 
-#: models.py:160 models.py:162
+#: models.py:166 models.py:168
 msgid "Specify it in decimal"
 msgstr ""
 
-#: models.py:170
+#: models.py:176
 msgid "Select proposals from the list"
 msgstr ""
 
-#: models.py:174
+#: models.py:180
 msgid "Support votes from"
 msgstr ""
 
-#: models.py:175
+#: models.py:181
 msgid "Votes from"
 msgstr ""
 
-#: models.py:193
+#: models.py:199
 msgid "Proposal"
 msgstr ""
 
-#: models.py:194
+#: models.py:200
 msgid "Proposals"
 msgstr ""
 
-#: models.py:217
+#: models.py:228
 msgid "Customizing         proposal form for a proposal set"
 msgstr ""
 
-#: models.py:219
+#: models.py:230
 msgid "Additional field that needed to added to the proposal         form"
 msgstr ""
 
-#: models.py:226
+#: models.py:237
 msgid "ProposalField"
 msgstr ""
 
-#: models.py:227
+#: models.py:238
 msgid "ProposalFields"
 msgstr ""
 
@@ -160,7 +160,7 @@ msgstr ""
 #: templates/proposals/mergedproposal_in_set.html:58
 #: templates/proposals/proposal_add_fields.html:92
 #: templates/proposals/proposal_confirm_delete.html:26
-#: templates/proposals/proposal_form.html:150
+#: templates/proposals/proposal_form.html:146
 #: templates/proposals/proposal_form_in_set.html:153
 #: templates/proposals/proposal_list.html:63
 #: templates/proposals/proposal_merged.html:156
@@ -217,6 +217,14 @@ msgid "View proposal"
 msgstr ""
 
 #: templates/proposals/proposal_detail.html:64
+msgid "Thanks for supporting!"
+msgstr ""
+
+#: templates/proposals/proposal_detail.html:64
+msgid "supported!"
+msgstr ""
+
+#: templates/proposals/proposal_detail.html:64
 #: templates/proposals/proposal_list.html:42
 #: templates/proposals/proposalset_detail.html:57
 msgid "support"
@@ -265,7 +273,7 @@ msgstr ""
 msgid "If you want to add location information please click 'Show map'"
 msgstr ""
 
-#: templates/proposals/proposal_form.html:151
+#: templates/proposals/proposal_form.html:147
 #: templates/proposals/proposal_form_in_set.html:154
 #: templates/proposals/proposal_merged.html:157
 msgid "Publish"
@@ -391,4 +399,8 @@ msgstr ""
 
 #: templates/proposals/proposalset_select_form.html:59
 msgid "Click here"
+msgstr ""
+
+#: views/common.py:108
+msgid "Couldn't emit the vote."
 msgstr ""

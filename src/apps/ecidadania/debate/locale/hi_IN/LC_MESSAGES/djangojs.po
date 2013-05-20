@@ -1,22 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Savita Seetaraman <savita.seetaraman5@gmail.com>, 2013.
 # Vishrut Mehta <vishrut.mehta009@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
-"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: 2013-03-14 07:32+0000\n"
 "Last-Translator: savitats <savita.seetaraman5@gmail.com>\n"
-"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/language/hi_IN/)\n"
+"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/"
+"language/hi_IN/)\n"
+"Language: hi_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hi_IN\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: static/js/debate_board.js:12
@@ -32,6 +33,7 @@ msgid "Edit"
 msgstr "संपादित करें"
 
 #: static/js/debate_board.js:15 static/js/debate_board.js.c:27
+#: static/js/debate_board_expired.js:14
 msgid "View"
 msgstr "देखना"
 
@@ -47,7 +49,7 @@ msgstr "स्तंभ या पंक्ति को हटाया नह�
 msgid "Couldn't create note."
 msgstr "नोट बनाने के लिए नहीं किया जा सका."
 
-#: static/js/debate_board.js:19
+#: static/js/debate_board.js:19 static/js/debate_board_expired.js:12
 msgid "Couldn't get note data."
 msgstr "नोट डेटा नहीं मिल सकी."
 
@@ -75,7 +77,7 @@ msgstr "स्तंभ या पंक्ति नहीं बना सक�
 msgid "Are you sure?"
 msgstr "तुम्हें यकीन है?"
 
-#: static/js/debate_board.js:26
+#: static/js/debate_board.js:26 static/js/debate_board_expired.js:13
 msgid "Comment"
 msgstr "टिप्पणी"
 
@@ -83,12 +85,14 @@ msgstr "टिप्पणी"
 msgid "Delete note"
 msgstr "नोट हटाना"
 
-#: static/js/debate_board.js:30
+#: static/js/debate_board.js:30 static/js/debate_board_expired.js:15
 msgid "Caution"
 msgstr "सावधानी"
 
-#: static/js/debate_board.js:31
+#: static/js/debate_board.js:31 static/js/debate_board_expired.js:16
 msgid ""
 "You are adding too much columns. We put no limit,     but too many columns "
 "will be a problem in smaller screens."
-msgstr "आप बहुत ज्यादा कॉलम जोड़ रहे हैं. हम कोई सीमा नहीं रखा है, लेकिन बहुत अधिक कॉलम छोटे परदे में एक समस्या हो जाएगी."
+msgstr ""
+"आप बहुत ज्यादा कॉलम जोड़ रहे हैं. हम कोई सीमा नहीं रखा है, लेकिन बहुत अधिक कॉलम छोटे "
+"परदे में एक समस्या हो जाएगी."

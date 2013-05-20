@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: templates/403.html:4 templates/not_allowed.html:4
+msgid "Not allowed"
+msgstr ""
+
+#: templates/403.html:10 templates/not_allowed.html:10
+msgid "You are not allowed to access here."
+msgstr ""
+
+#: templates/403.html:13 templates/not_allowed.html:13
+msgid "I want to participate"
+msgstr ""
+
+#: templates/403.html:15 templates/not_allowed.html:15
+#: templates/space_intent.html:12
+msgid ""
+"You can go <a href='/'>back to home</a> or <a href='/accounts/'>back to your "
+"profile</a>"
+msgstr ""
 
 #: templates/404.html:9
 msgid "Nooo...!"
@@ -40,47 +59,23 @@ msgid ""
 "to the index."
 msgstr ""
 
-#: templates/base.html:38
-msgid "Your browser is too old"
-msgstr ""
-
-#: templates/base.html:41
-msgid ""
-"\n"
-"                    You can continue navigation under your risk, but it "
-"appears that your browser is too old for the\n"
-"                    features we use in e-cidadania. Please consider updating "
-"your browser or downloading a new one\n"
-"                    like Chrome, Opera, Safari or Firefox.\n"
-"                "
-msgstr ""
-
 #: templates/explore.html:9
-msgid "Recent processes"
+msgid "Public processes"
 msgstr ""
 
-#: templates/explore.html:15 templates/explore.html.py:28
-#: templates/explore.html:41
+#: templates/explore.html:15
 msgid "There are no recent spaces."
 msgstr ""
 
 #: templates/explore.html:20
-msgid "Public processes"
-msgstr ""
-
-#: templates/explore.html:33
-msgid "Private processes"
-msgstr ""
-
-#: templates/explore.html:49
 msgid "Latest news from public processes"
 msgstr ""
 
-#: templates/explore.html:54
+#: templates/explore.html:25
 msgid "There are no posts."
 msgstr ""
 
-#: templates/explore.html:59
+#: templates/explore.html:30
 msgid "What we say in twitter"
 msgstr ""
 
@@ -169,88 +164,46 @@ msgstr ""
 msgid "Administration"
 msgstr ""
 
-#: templates/menu.html:48
-msgid "Add news"
-msgstr ""
-
-#: templates/menu.html:52
+#: templates/menu.html:50
 msgid "Create new space"
 msgstr ""
 
-#: templates/menu.html:54
+#: templates/menu.html:51
 msgid "Edit profile"
 msgstr ""
 
-#: templates/menu.html:56
+#: templates/menu.html:53
 msgid "Logout"
-msgstr ""
-
-#: templates/not_allowed.html:4
-msgid "Not allowed"
-msgstr ""
-
-#: templates/not_allowed.html:10
-msgid "You are not allowed to access here."
-msgstr ""
-
-#: templates/not_allowed.html:13
-msgid "I want to participate"
-msgstr ""
-
-#: templates/not_allowed.html:15 templates/space_intent.html:12
-msgid ""
-"You can go <a href='/'>back to home</a> or <a href='/accounts/'>back to your "
-"profile</a>"
 msgstr ""
 
 #: templates/site_index.html:5
 msgid "e-cidadania"
 msgstr ""
 
-#: templates/site_index.html:23
+#: templates/site_index.html:24
 msgid ""
 "Would you like the debates and decisions to be more inclusive? Well done and "
 "integrative proposals where participation is always a nice and enriching "
 "experience? We too, that's why we created e-cidadania."
 msgstr ""
 
-#: templates/site_index.html:25
-msgid "Latest participative processes"
-msgstr ""
-
-#: templates/site_index.html:32
-msgid "Public"
-msgstr ""
-
-#: templates/site_index.html:34
-msgid "Private"
-msgstr ""
-
-#: templates/site_index.html:38
-msgid "There are no processes."
-msgstr ""
-
-#: templates/site_index.html:49
-msgid "View all the processes"
-msgstr ""
-
-#: templates/site_index.html:62
+#: templates/site_index.html:36
 msgid "Sign in"
 msgstr ""
 
-#: templates/site_index.html:66
+#: templates/site_index.html:39
 msgid "Forgot your password?"
 msgstr ""
 
-#: templates/site_index.html:67
+#: templates/site_index.html:40
 msgid "Invite someone!"
 msgstr ""
 
-#: templates/site_index.html:74
+#: templates/site_index.html:48
 msgid "First time here? Register!"
 msgstr ""
 
-#: templates/site_index.html:80
+#: templates/site_index.html:54
 msgid "Register"
 msgstr ""
 

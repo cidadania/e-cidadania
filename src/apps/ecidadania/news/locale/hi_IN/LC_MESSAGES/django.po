@@ -1,82 +1,90 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Vishrut Mehta <vishrut.mehta009@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
-"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: 2013-03-10 13:06+0000\n"
 "Last-Translator: vishrut009 <vishrut.mehta009@gmail.com>\n"
-"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/language/hi_IN/)\n"
+"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/"
+"language/hi_IN/)\n"
+"Language: hi_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hi_IN\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:37
+#: admin.py:40
 msgid "Other data"
 msgstr "अन्य डेटा"
 
-#: models.py:33
+#: models.py:34
 msgid "Title"
 msgstr "शीर्षक"
 
-#: models.py:34
+#: models.py:35
 msgid "Max: 200 characters"
 msgstr "अधिकतम: 200 वर्ण"
 
-#: models.py:35
+#: models.py:36
 msgid "Description"
 msgstr "विवरण"
 
-#: models.py:36
+#: models.py:37
 msgid "Date"
 msgstr "दिनांक"
 
-#: models.py:37
+#: models.py:38
 msgid "Last update"
 msgstr "अंतिम अपडेट"
 
-#: models.py:38
+#: models.py:39
 msgid "Author"
 msgstr "लेखक"
 
-#: models.py:39
+#: models.py:40
 msgid ""
 "Change the user that will figure as the                                   "
 "author"
 msgstr "उपयोगकर्ता है कि लेखक के रूप में लगाना होगा बदलें"
 
-#: models.py:41
+#: models.py:42
 msgid "Publish in index"
 msgstr "सूचकांक में प्रकाशित"
 
-#: models.py:42
+#: models.py:43
 msgid "This will publish the post in the main site page"
 msgstr "यह मुख्य साइट पेज में पोस्ट प्रकाशित करेंगे"
 
-#: models.py:43
+#: models.py:44
 msgid "Publish in"
 msgstr "में प्रकाशित"
 
-#: models.py:45
+#: models.py:46
 msgid "If you want to post to the index leave this blank"
 msgstr "यदि आप सूचकांक करने के लिए पोस्ट करना चाहते हैं इसे खाली छोड़ दें"
 
-#: models.py:46
-msgid ""
-"Insert here relevant words related with"
-"                                      the post"
+#: models.py:47
+#, fuzzy
+msgid "Insert here relevant words related with the post"
 msgstr "यहाँ डालें प्रासंगिक पोस्ट के साथ संबंधित शब्दों"
 
 #: models.py:48
 msgid "Views"
 msgstr "दृष्टिकोण"
+
+#: models.py:52
+msgid "Post"
+msgstr ""
+
+#: models.py:53
+msgid "Posts"
+msgstr ""
 
 #: templates/news/news_list.html:4
 msgid "News list"
@@ -125,7 +133,10 @@ msgid ""
 "\n"
 "        Archive for %(m)s %(y)s\n"
 "    "
-msgstr "\n        Archive for %(m)s %(y)s\n    "
+msgstr ""
+"\n"
+"        Archive for %(m)s %(y)s\n"
+"    "
 
 #: templates/news/post_archive_month.html:38
 #, python-format
@@ -133,7 +144,10 @@ msgid ""
 "\n"
 "                    Archive for %(m)s %(y)s\n"
 "                "
-msgstr "\n                    Archive for %(m)s %(y)s\n                "
+msgstr ""
+"\n"
+"                    Archive for %(m)s %(y)s\n"
+"                "
 
 #: templates/news/post_archive_year.html:5
 #, python-format
@@ -141,7 +155,10 @@ msgid ""
 "\n"
 "        Archive for %(y)s\n"
 "    "
-msgstr "\n        Archive for %(y)s\n    "
+msgstr ""
+"\n"
+"        Archive for %(y)s\n"
+"    "
 
 #: templates/news/post_archive_year.html:38
 #, python-format
@@ -149,7 +166,10 @@ msgid ""
 "\n"
 "                    Archive for %(y)s\n"
 "                "
-msgstr "\n                    Archive for %(y)s\n                "
+msgstr ""
+"\n"
+"                    Archive for %(y)s\n"
+"                "
 
 #: templates/news/post_confirm_delete.html:4
 msgid "Delete news"
@@ -162,14 +182,17 @@ msgstr "पोस्ट हटाएँ"
 #: templates/news/post_confirm_delete.html:34
 msgid ""
 "Are you sure you want to delete this post? This action cannot be undone."
-msgstr "क्या आप यकीन है कि तुम इस संदेश को हटाना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा सकता."
+msgstr ""
+"क्या आप यकीन है कि तुम इस संदेश को हटाना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा "
+"सकता."
 
 #: templates/news/post_confirm_delete.html:38
-#: templates/news/post_detail.html:40 templates/news/post_detail_index.html:40
+#: templates/news/post_detail_index.html:40
 msgid "Delete"
 msgstr "हटाना"
 
-#: templates/news/post_detail.html:35 templates/news/post_detail_index.html:35
+#: templates/news/post_detail.html:34 templates/news/post_detail.html.py:39
+#: templates/news/post_detail_index.html:35
 msgid "Edit"
 msgstr "संपादित करें"
 

@@ -1,22 +1,44 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 #   <tamara.atanasoska20@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
-"POT-Creation-Date: 2013-03-11 10:51+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: 2013-03-13 09:04+0000\n"
 "Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
-"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/ecidadania/language/mk_MK/)\n"
+"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/"
+"ecidadania/language/mk_MK/)\n"
+"Language: mk_MK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: mk_MK\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
+
+#: templates/403.html:4 templates/not_allowed.html:4
+msgid "Not allowed"
+msgstr "Не е дозволено"
+
+#: templates/403.html:10 templates/not_allowed.html:10
+msgid "You are not allowed to access here."
+msgstr "Пристапот овде не ви е дозволен."
+
+#: templates/403.html:13 templates/not_allowed.html:13
+msgid "I want to participate"
+msgstr "Сакам да учествувам"
+
+#: templates/403.html:15 templates/not_allowed.html:15
+#: templates/space_intent.html:12
+msgid ""
+"You can go <a href='/'>back to home</a> or <a href='/accounts/'>back to your "
+"profile</a>"
+msgstr ""
+"Можете да одите <a href='/'>назад до насловна</a> или <a href='/"
+"accounts/'>назад до вашиот профил</a>"
 
 #: templates/404.html:9
 msgid "Nooo...!"
@@ -38,34 +60,27 @@ msgstr "Ова не требаше да се случи! Што нарави !?"
 msgid ""
 "We will send the spaguetti squad to repair this. Meanwhile you can go back "
 "to the index."
-msgstr "Ќе го испратиме тимот да го поправи ова. Во меѓувреме може да се вратите на првата страница."
+msgstr ""
+"Ќе го испратиме тимот да го поправи ова. Во меѓувреме може да се вратите на "
+"првата страница."
 
 #: templates/explore.html:9
-msgid "Recent processes"
-msgstr "Скорешни процеси"
+msgid "Public processes"
+msgstr "Јавни процеси"
 
-#: templates/explore.html:15 templates/explore.html.py:28
-#: templates/explore.html:41
+#: templates/explore.html:15
 msgid "There are no recent spaces."
 msgstr "Нема скорешни работни површини."
 
 #: templates/explore.html:20
-msgid "Public processes"
-msgstr "Јавни процеси"
-
-#: templates/explore.html:33
-msgid "Private processes"
-msgstr "Приватни процеси"
-
-#: templates/explore.html:49
 msgid "Latest news from public processes"
 msgstr "Најнови весто од јавните процеси"
 
-#: templates/explore.html:54
+#: templates/explore.html:25
 msgid "There are no posts."
 msgstr "Нема објави."
 
-#: templates/explore.html:59
+#: templates/explore.html:30
 msgid "What we say in twitter"
 msgstr "Што велиме на twitter"
 
@@ -90,19 +105,26 @@ msgid ""
 "If you want to invite more than one person, you will have to write their "
 "adresses separated by commas. Example: this@that.com, foo@bar.net, "
 "black@white.org"
-msgstr "Ако сакате да поканите повеќе од една личност, мора да ги впишете нивните адреси одделени со запирки. Пример: this@that.com, foo@bar.net, black@white.org"
+msgstr ""
+"Ако сакате да поканите повеќе од една личност, мора да ги впишете нивните "
+"адреси одделени со запирки. Пример: this@that.com, foo@bar.net, black@white."
+"org"
 
 #: templates/invite.html:24
 msgid ""
 "Hi!, I would like you to join e-cidadania, the participative democracy "
 "platform for citizens."
-msgstr "Здраво, те поканувам да и се приклучип на e-cidadania, платформата за партиципативно граѓанство."
+msgstr ""
+"Здраво, те поканувам да и се приклучип на e-cidadania, платформата за "
+"партиципативно граѓанство."
 
 #: templates/invite.html:25
 msgid ""
 "You can write here whatever text you want for your invitation, or leave it "
 "by default."
-msgstr "Можете да напишете каков сакате текст како ваша покана, или да го оставите предефинираниот."
+msgstr ""
+"Можете да напишете каков сакате текст како ваша покана, или да го оставите "
+"предефинираниот."
 
 #: templates/invite.html:26
 msgid "Submit"
@@ -110,9 +132,11 @@ msgstr "Понесете"
 
 #: templates/invite.html:31
 msgid ""
-"To send invitations via e-mail you have to be <a "
-"href='/accounts/login/'>logged in</a>."
-msgstr "За да испратите пораки преку e-mail мора да бидете <a href='/accounts/login/'>најавени</a>."
+"To send invitations via e-mail you have to be <a href='/accounts/"
+"login/'>logged in</a>."
+msgstr ""
+"За да испратите пораки преку e-mail мора да бидете <a href='/accounts/"
+"login/'>најавени</a>."
 
 #: templates/invite_done.html:11
 msgid "The email(s) have been sent"
@@ -154,88 +178,49 @@ msgstr "Мојот профил"
 msgid "Administration"
 msgstr "Администрација"
 
-#: templates/menu.html:48
-msgid "Add news"
-msgstr "Додадете вести"
-
-#: templates/menu.html:52
+#: templates/menu.html:50
 msgid "Create new space"
 msgstr "Креирајте нова работна површина"
 
-#: templates/menu.html:54
+#: templates/menu.html:51
 msgid "Edit profile"
 msgstr "Измени профил"
 
-#: templates/menu.html:56
+#: templates/menu.html:53
 msgid "Logout"
 msgstr "Одјава"
-
-#: templates/not_allowed.html:4
-msgid "Not allowed"
-msgstr "Не е дозволено"
-
-#: templates/not_allowed.html:10
-msgid "You are not allowed to access here."
-msgstr "Пристапот овде не ви е дозволен."
-
-#: templates/not_allowed.html:13
-msgid "I want to participate"
-msgstr "Сакам да учествувам"
-
-#: templates/not_allowed.html:15 templates/space_intent.html:12
-msgid ""
-"You can go <a href='/'>back to home</a> or <a href='/accounts/'>back to your"
-" profile</a>"
-msgstr "Можете да одите <a href='/'>назад до насловна</a> или <a href='/accounts/'>назад до вашиот профил</a>"
 
 #: templates/site_index.html:5
 msgid "e-cidadania"
 msgstr "e-cidadania"
 
-#: templates/site_index.html:23
+#: templates/site_index.html:24
 msgid ""
-"Would you like the debates and decisions to be more inclusive? Well done and"
-" integrative proposals where participation is always a nice and enriching "
+"Would you like the debates and decisions to be more inclusive? Well done and "
+"integrative proposals where participation is always a nice and enriching "
 "experience? We too, that's why we created e-cidadania."
-msgstr "Дали би сакале дебатите и одлуките да бидат по инклузивни? Добро структуирани и целосни предлози како учеството е секогаш добро искуство? И ние, затоа и ја креиравме e-cidadania."
+msgstr ""
+"Дали би сакале дебатите и одлуките да бидат по инклузивни? Добро "
+"структуирани и целосни предлози како учеството е секогаш добро искуство? И "
+"ние, затоа и ја креиравме e-cidadania."
 
-#: templates/site_index.html:25
-msgid "Latest participative processes"
-msgstr "Послени партиципативни процеси"
-
-#: templates/site_index.html:32
-msgid "Public"
-msgstr "Јавно"
-
-#: templates/site_index.html:34
-msgid "Private"
-msgstr "Приватно"
-
-#: templates/site_index.html:38
-msgid "There are no processes."
-msgstr "Нема процеси."
-
-#: templates/site_index.html:49
-msgid "View all the processes"
-msgstr "Види ги сите процеси"
-
-#: templates/site_index.html:62
+#: templates/site_index.html:36
 msgid "Sign in"
 msgstr "Најава"
 
-#: templates/site_index.html:66
+#: templates/site_index.html:39
 msgid "Forgot your password?"
 msgstr "Ја заборавивте лозинката?"
 
-#: templates/site_index.html:67
+#: templates/site_index.html:40
 msgid "Invite someone!"
 msgstr "Поканете некој!"
 
-#: templates/site_index.html:74
+#: templates/site_index.html:48
 msgid "First time here? Register!"
 msgstr "Прв пат овде? Регистрирај се!"
 
-#: templates/site_index.html:80
+#: templates/site_index.html:54
 msgid "Register"
 msgstr "Регистрирај се"
 
@@ -246,7 +231,9 @@ msgstr "Учествувај"
 #: templates/space_intent.html:11
 msgid ""
 "If the administrator approves your request, you will be notified by email"
-msgstr "Ако администраторот го одобри вашето побарување, ќе бидете известени по email "
+msgstr ""
+"Ако администраторот го одобри вашето побарување, ќе бидете известени по "
+"email "
 
 #: templates/comments/approve.html:4
 msgid "Approve a comment"
@@ -268,7 +255,9 @@ msgstr "Ви благодариме за одобрувањето"
 #: templates/comments/flagged.html:7
 msgid ""
 "Thanks for taking the time to improve the quality of discussion on our site"
-msgstr "Ви благодариме што одвоивте време за да го подобрите квалитетот на дискусијата на нашата страница"
+msgstr ""
+"Ви благодариме што одвоивте време за да го подобрите квалитетот на "
+"дискусијата на нашата страница"
 
 #: templates/comments/delete.html:4
 msgid "Remove a comment"
@@ -378,8 +367,11 @@ msgstr "Некој ти пратил порака за да се приклуч�
 #, python-format
 msgid ""
 "\n"
-"                                        <a href=\"http://ecidadania.org\">e-cidadania</a> is an e-democracy platform for citizen participation. More clearly, it's for direct democracy in every one if its shapes,\n"
-"                                        from 99%% movement, 15M to official participative budgets. The message that was sent to you follows:\n"
+"                                        <a href=\"http://ecidadania.org\">e-"
+"cidadania</a> is an e-democracy platform for citizen participation. More "
+"clearly, it's for direct democracy in every one if its shapes,\n"
+"                                        from 99%% movement, 15M to official "
+"participative budgets. The message that was sent to you follows:\n"
 "                                        "
 msgstr ""
 
@@ -387,7 +379,10 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"You have been invited to join e-cidadania, an e-democracy platform for citizen participation. More clearly, it's for direct democracy in every one of its shapes, from 99%% movement, 15M to official participative budgets. The message that was sent to you follows:\n"
+"You have been invited to join e-cidadania, an e-democracy platform for "
+"citizen participation. More clearly, it's for direct democracy in every one "
+"of its shapes, from 99%% movement, 15M to official participative budgets. "
+"The message that was sent to you follows:\n"
 msgstr ""
 
 #: templates/invite/invite_plain.txt:9
@@ -399,3 +394,27 @@ msgid ""
 "If you have any questions dont hesitate and send us a mail to "
 "support@ecidadania.org."
 msgstr "Ако имате било какви прашања пишете на support@ecidadania.org."
+
+#~ msgid "Recent processes"
+#~ msgstr "Скорешни процеси"
+
+#~ msgid "Private processes"
+#~ msgstr "Приватни процеси"
+
+#~ msgid "Add news"
+#~ msgstr "Додадете вести"
+
+#~ msgid "Latest participative processes"
+#~ msgstr "Послени партиципативни процеси"
+
+#~ msgid "Public"
+#~ msgstr "Јавно"
+
+#~ msgid "Private"
+#~ msgstr "Приватно"
+
+#~ msgid "There are no processes."
+#~ msgstr "Нема процеси."
+
+#~ msgid "View all the processes"
+#~ msgstr "Види ги сите процеси"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,64 +18,70 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: admin.py:37
+#: admin.py:40
 msgid "Other data"
 msgstr ""
 
-#: models.py:33
+#: models.py:34
 msgid "Title"
 msgstr ""
 
-#: models.py:34
+#: models.py:35
 msgid "Max: 200 characters"
 msgstr ""
 
-#: models.py:35
+#: models.py:36
 msgid "Description"
 msgstr ""
 
-#: models.py:36
+#: models.py:37
 msgid "Date"
 msgstr ""
 
-#: models.py:37
+#: models.py:38
 msgid "Last update"
 msgstr ""
 
-#: models.py:38
+#: models.py:39
 msgid "Author"
 msgstr ""
 
-#: models.py:39
+#: models.py:40
 msgid ""
 "Change the user that will figure as the                                   "
 "author"
 msgstr ""
 
-#: models.py:41
+#: models.py:42
 msgid "Publish in index"
 msgstr ""
 
-#: models.py:42
+#: models.py:43
 msgid "This will publish the post in the main site page"
 msgstr ""
 
-#: models.py:43
+#: models.py:44
 msgid "Publish in"
 msgstr ""
 
-#: models.py:45
+#: models.py:46
 msgid "If you want to post to the index leave this blank"
 msgstr ""
 
-#: models.py:46
-msgid ""
-"Insert here relevant words related with                                      "
-"the post"
+#: models.py:47
+msgid "Insert here relevant words related with the post"
 msgstr ""
 
 #: models.py:48
 msgid "Views"
+msgstr ""
+
+#: models.py:52
+msgid "Post"
+msgstr ""
+
+#: models.py:53
+msgid "Posts"
 msgstr ""
 
 #: templates/news/news_list.html:4
@@ -165,11 +171,12 @@ msgid ""
 msgstr ""
 
 #: templates/news/post_confirm_delete.html:38
-#: templates/news/post_detail.html:40 templates/news/post_detail_index.html:40
+#: templates/news/post_detail_index.html:40
 msgid "Delete"
 msgstr ""
 
-#: templates/news/post_detail.html:35 templates/news/post_detail_index.html:35
+#: templates/news/post_detail.html:34 templates/news/post_detail.html.py:39
+#: templates/news/post_detail_index.html:35
 msgid "Edit"
 msgstr ""
 

@@ -1,60 +1,61 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 #   <tamara.atanasoska20@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
-"POT-Creation-Date: 2013-03-13 09:31+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: 2013-01-16 13:42+0000\n"
 "Last-Translator: tamara <tamara.atanasoska20@gmail.com>\n"
-"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/ecidadania/language/mk_MK/)\n"
+"Language-Team: Macedonian (Macedonia) (http://www.transifex.com/projects/p/"
+"ecidadania/language/mk_MK/)\n"
+"Language: mk_MK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: mk_MK\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
-#: admin.py:38
+#: admin.py:41
 msgid "Description"
 msgstr "Опис"
 
-#: admin.py:41
+#: admin.py:44
 msgid "Options"
 msgstr "Опции"
 
-#: models.py:30
+#: models.py:31
 msgid "Page Title"
 msgstr "Наслов на страницата"
 
-#: models.py:31
+#: models.py:32
 msgid "URL"
 msgstr "URL"
 
-#: models.py:32
+#: models.py:33
 msgid "Content"
 msgstr "Содржина"
 
-#: models.py:33
+#: models.py:34
 msgid "Show in footer"
 msgstr "Покажи во футер"
 
-#: models.py:34
+#: models.py:35
 msgid "Author"
 msgstr "Автор"
 
-#: models.py:36
+#: models.py:37
 msgid "Last update"
 msgstr "Последна промена"
 
-#: models.py:37
+#: models.py:38
 msgid "Order"
 msgstr "Ред"
 
-#: models.py:41
+#: models.py:42
 msgid "Static Pages"
 msgstr "Статични страници"
 

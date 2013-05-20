@@ -273,7 +273,7 @@ tempalte shows the help_text automatically if found in the data models.
            
                 <hr />
                 <a href="{{ get_place.get_absolute_url }}" class="btn btn-small btn-danger">&laquo; {% trans "Cancel" %}</a>
-                <input class="btn btn-small btn-primary" type="submit" value="{% trans 'Create' %}" />
+                <input class="btn btn-small btn-primary" type="submit" value="{% if get_place %}{% trans "Edit" %}{% else %}{% trans "Create" %}{% endif %}" />
     
             </form>
         </div>

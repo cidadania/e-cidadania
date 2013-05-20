@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load wysiwyg %}
 
 {% comment %}
@@ -153,6 +154,6 @@ automatically if found in the data models.
 
 {% block extrajsbottom %}
     <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/map_tools.js"></script>
+    <script type="text/javascript" src="{% static 'js/map_tools.js' %}"></script>
     <script type="text/javascript">clickMap();startMap();toggleMap();</script>
 {% endblock %}

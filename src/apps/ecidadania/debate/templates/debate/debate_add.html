@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load wysiwyg %}
 
 {% comment %}
@@ -26,8 +27,8 @@ automatically if found in the data models.
 {% endblock %}
 
 {% block extrajs %}
-    <script src="{{ STATIC_URL }}/js/jquery.formset.js" type="text/javascript"></script>
-    <script src="{{ STATIC_URL }}/js/debate_board.js" type="text/javascript"></script>
+    <script src="{% static 'js/jquery.formset.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/debate_board.js' %}" type="text/javascript"></script>
     <script type="text/javascript">
         $(function() {
             $('#ajaxform thead tr').formset();
@@ -42,7 +43,7 @@ automatically if found in the data models.
     {% if form.title.value %}
         <h3>{% trans "Edit debate" %} {{ form.title.value }}</h3>
     {% else %}
-        <h3>{% trans "Create new debate" %} <a data-toggle="modal" id="debate-tutorial" href="#myModal" ><img src="{{ STATIC_URL }}/assets/icons/question.png" /></a>
+        <h3>{% trans "Create new debate" %} <a data-toggle="modal" id="debate-tutorial" href="#myModal" ><img src="{% static 'assets/icons/question.png' %}" /></a>
 </h3>
         <div class="modal hide fade" id="myModal">
             <div class="modal-header">

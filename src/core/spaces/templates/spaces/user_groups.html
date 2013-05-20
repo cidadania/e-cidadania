@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load wysiwyg %}
 
 {% block title %}
@@ -65,5 +66,5 @@
 {% endblock %}
 
 {% block extrajsbottom %}
-    <script src="{{ STATIC_URL }}/js/role_edit.js" type="text/javascript"></script>
+    <script src="{% static 'js/role_edit.js' %}" type="text/javascript"></script>
 {% endblock %}

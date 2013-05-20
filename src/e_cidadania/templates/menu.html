@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load static from staticfiles %}
 <ul class="nav">
     <li class="active"><a href="{% url 'explore' %}">{% trans "Explore" %}</a></li>
     <li><a href="http://blog.ecidadania.org">{% trans "Blog" %}</a></li>
@@ -12,7 +13,7 @@
     {% endif %}
     <li class="dropdown">
     
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ STATIC_URL }}/assets/flags/{{ request.LANGUAGE_CODE }}.gif" alt="{% trans 'Language' %}" title="{% trans 'Language' %}" /><b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'assets/flags/'|add:request.LANGUAGE_CODE|add:'.gif' %}" alt="{% trans 'Language' %}" title="{% trans 'Language' %}" /><b class="caret"></b></a>
         <ul class="dropdown-menu">
             {% for lang in LANGUAGES %}
                 <li>
@@ -20,7 +21,7 @@
                         <input name="next" type="hidden" value="{{ request.get_full_path }}" />
                         <input type="hidden" name="language" value="{{ lang.0 }}" />
                         <a href="#" onclick="document.setLang{{ lang.1 }}.submit();return false;">
-                            <img style="margin-left:10px;" src="{{ STATIC_URL }}/assets/flags/{{ lang.0 }}.gif" title="{{ lang.1 }}" alt="{{ lang.1 }}"/>
+                            <img style="margin-left:10px;" src="{% static 'assets/flags/'|add:lang.0|add:'.gif' %}" title="{{ lang.1 }}" alt="{{ lang.1 }}"/>
                             {{ lang.1 }}
                         </a>
                     </form>

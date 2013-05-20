@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 
 {% block title %}{% trans "Debates in " %}{{ get_place.name }}{% endblock %}
 
@@ -14,10 +15,10 @@
                     <h6 class="spacetitle"><a href="{{ debate.get_absolute_url }}">{{ debate.title }}</a></h6>
 		    <div id="tools">
 			{% if perms.debate.change_debate %}
-			<a href="{% url 'edit-debate' get_place.url debate.id %}"><img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/></a>
+			<a href="{% url 'edit-debate' get_place.url debate.id %}"><img src="{% static 'assets/icons/edit16.png' %}" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/></a>
 			{% endif %}
 			{% if perms.debate.delete_debate %}
-			<a href="{% url 'delete-debate' get_place.url debate.id %}"><img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/></a>
+			<a href="{% url 'delete-debate' get_place.url debate.id %}"><img src="{% static 'assets/icons/delete16.png' %}" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/></a>
 			{% endif %}
 		    </div>
 

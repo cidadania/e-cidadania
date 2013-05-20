@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load wysiwyg %}
 {% load comments %}
 {% with debate.title as debate_title %}
@@ -111,7 +112,7 @@
         </div>
     </div>
 
-    <script src="{{ STATIC_URL }}/js/debate_board_expired.js" type="text/javascript"></script>
+    <script src="{% static 'js/debate_board_expired.js' %}" type="text/javascript"></script>
 	<script>
         $(function() {
             $(".note").popover({

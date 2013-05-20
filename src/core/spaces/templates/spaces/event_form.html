@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load wysiwyg %}
 
 {% comment %}
@@ -147,7 +148,7 @@ automatically if found in the data models.
             <div id="map" style="width:900px;height:500px;border:1px solid #AAA;" class="hidden" data-show="no"></div>
 
             <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
-            <script type="text/javascript" src="{{ STATIC_URL }}js/map_tools.js"></script>   
+            <script type="text/javascript" src="{% static 'js/map_tools.js' %}"></script>   
             <script type="text/javascript">clickMap();startMap();toggleMap();</script> 
 
             {% if user_is_admin %}
@@ -238,7 +239,7 @@ automatically if found in the data models.
 {% endblock %}
 
 {% block extrajsbottom %}
-<script type="text/javascript" src="{{ STATIC_URL }}/js/jqueryui-timepicker.js"></script>
+<script type="text/javascript" src="{% static 'js/jqueryui-timepicker.js' %}"></script>
 <script type="text/javascript">
     $('#datetimepicker').datetimepicker();
 </script>

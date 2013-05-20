@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load wysiwyg %}
 {% load comments %}
 {% load guardian_tags %}
 
 {% block extracss %}
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}/css/debate.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/debate.css' %}"/>
 {% endblock %}
 
 {% with debate.title as debate_title %}
@@ -189,7 +190,7 @@
             </div>
         </div>
 
-        <script src="{{ STATIC_URL }}/js/debate_board.js" type="text/javascript"></script>
+        <script src="{% static 'js/debate_board.js' %}" type="text/javascript"></script>
         <script>
             $(function() {
                 $(".note").popover({

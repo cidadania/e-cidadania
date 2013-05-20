@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load guardian_tags %}
 {% load comments %}
-
-
 
 {% block title %}{{ get_place.name }} - {% trans "Index" %}{% endblock %}
 {% block logo %}<a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}{{ get_place.logo }}" /></a>{% endblock %}
@@ -14,7 +13,7 @@
 {% endblock %}
 
 {% block extrajs %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jqueryui-datepicker-{{ LANGUAGE_CODE }}.js"></script>
+    <script type="text/javascript" src="{% static 'js/jqueryui-datepicker-'|add:LANGUAGE_CODE|add:'.js' %}"></script>
     <script type="text/javascript">
         $.datepicker.setDefaults({
             onSelect: function(dateText) {

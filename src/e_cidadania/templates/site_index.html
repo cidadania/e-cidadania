@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load cache %}
 
 {% block title %}{% trans "e-cidadania" %}{% endblock %}
@@ -10,7 +11,7 @@
 {% block extrajs %}
     <style type="text/css">
         body {
-            background: url("{{ STATIC_URL }}/assets/background.jpg");
+            background: url("{% static 'assets/background.jpg' %}");
         }
     </style>
 {% endblock %}

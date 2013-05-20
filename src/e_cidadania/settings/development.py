@@ -63,6 +63,9 @@ FIXTURE_DIRS = (
     (cwd + '/e_cidadania/fixtures/'),
 )
 
+# Not needed with debug, but just in case we set it to all.
+ALLOWED_HOSTS = ['*']
+
 # Debug toolbar settings. By default is commented, if you want to activate it,
 # you will have to install django-debug toolbar and uncomment all this section.
 # INTERNAL_IPS = ('127.0.0.1',)

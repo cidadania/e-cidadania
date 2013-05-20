@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load comments %}
 
 {% block title %}{% trans "View proposal" %} {{ proposal.title }} {% endblock %}
@@ -91,7 +92,7 @@
     </div>
 
     <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/map_tools.js"></script>
+    <script type="text/javascript" src="{% static 'js/map_tools.js' %}"></script>
     <script type="text/javascript">toggleMap();viewMap( {{ proposal.latitude }}, {{ proposal.longitude }} );</script>
 
 {% endblock %}

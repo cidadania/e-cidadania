@@ -47,8 +47,8 @@ MANAGERS = ADMINS
 
 # Change this to your working domain! If this variable is empty, django
 # will return an error 500
-ALLOWED_HOSTS = ['*'] # This allows any host. INSECURE!
-#ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['*'] # This allows any host. INSECURE!
+ALLOWED_HOSTS = []
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '8nwcwmtau*bnu0u=shmdkda^-tpn55ch%qeqc8xn#-77r8c*0a'

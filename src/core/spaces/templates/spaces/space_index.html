@@ -102,7 +102,7 @@
                                 <p><strong>{% trans "Description:" %}</strong> {{ get_place.description|removetags:'p'|safe }}</p>
                             {% endif %}
                             <p><strong>{% trans "Current status:" %}</strong> Not implemented</p>
-                            <p><strong>{% trans "Participants:" %}</strong> Not implemented</p>
+                            <p><strong>{% trans "Participants:" %}</strong> {{ participants.count }}</p>
                             <hr />
                             <h4>{% trans "Recent activity" %}</h4>
                             

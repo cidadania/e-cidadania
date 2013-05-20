@@ -233,6 +233,7 @@ class ViewSpaceIndex(DetailView):
         context['polls'] = Poll.objects.filter(space=place.id)
         # True if the request.user has admin rights on this space
         context['polls'] = Poll.objects.filter(space=place.id)
+        context['participants'] = get_users_with_perms(place)
         return context
 
 

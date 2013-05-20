@@ -5,67 +5,65 @@
 {% block robots %}noindex,nofollow{% endblock %}
 
 <script type="text/javascript">
-	$(function() {
-	//avatar
-		$("a.delavatar").click(function() {
-			$.getJSON($(this).attr("href"), function(data) {
-				if (data.success) {
-					$("img#avatarimg").attr("src", "/{{ generic96 }}");
-					$("p#avatardelete").remove();
-				}
-			});
-			return false;
-		});
-	});
+    $(function() {
+    //avatar
+        $("a.delavatar").click(function() {
+            $.getJSON($(this).attr("href"), function(data) {
+                if (data.success) {
+                    $("img#avatarimg").attr("src", "/{{ generic96 }}");
+                    $("p#avatardelete").remove();
+                }
+            });
+            return false;
+        });
+    });
 </script>
 
 {% block content %}
-	<form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-	    {% csrf_token %}
-		{% if form.errors %}
-			{% for error,desc in form.errors.items %}
-				<p class="error">{{desc|join:"; "}}</p>
-			{% endfor %}
-		{% endif %}
-		<fieldset>
-		    {% load avatars %}
-            <div class="center">
-		    <img class="border" id="avatarimg" src="{% avatar 96 %}" />
-            {% if user.get_profile.has_avatar %}
-                <p id="avatardelete" style="text-align: center;">
-                    <a href="{{ request.path_info }}delete/" class="delavatar">{% trans "Delete" %}</a>
-                </p>
-            {% endif %}
-	        </div>
-			
-			<legend>{% trans "Choose the location of your avatar" %}</legend>
-			<ul>
-			<li>
-				<label for="id_photo">{% trans "Select an image from disk" %}:</label>
-				<p>{{ form.photo }}
-				<input type="submit" value="{% trans 'Done' %}" />
-				</p>
-			</li>
-			<li>
-				<label for="id_url">{% trans "Select an image from a remote URL. Put the URL on the input below and we'll retrieve the image for you" %}:</label>
-				<p>{{ form.url }}
-				<input type="submit" value="{% trans 'Done' %}" />
-				</p>
-			</li>
-			{% if AVATAR_WEBSEARCH %}
-			<li>
-				<a class="large" href="{{ request.path_info }}search/">{% trans "Search for an image on Picasa Web" %}</a>
-			</li>
-			{% endif %}
-			</ul>
-		</fieldset>
-		</form>
-{% endblock %}
 
-{% block content-related %}
-  <div class="box">
-    <h3>{% trans "Avatar selection page" %}</h3>
-		<p>{% trans "You have several options to select the image you want as avatar on your profile" %}.</p>
-  </div>
+    <div class="row">
+        <legend>{% trans "Choose the location of your avatar" %}</legend>
+
+        <form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">{% csrf_token %}
+        {% if form.errors %}
+            {% for error,desc in form.errors.items %}
+                <p class="error">{{desc|join:"; "}}</p>
+            {% endfor %}
+        {% endif %}
+
+        <fieldset>
+            {% load avatars %}
+
+            <div class="span2">
+                <img class="border" id="avatarimg" src="{% avatar 96 %}" />
+                {% if user.get_profile.has_avatar %}
+                    <p id="avatardelete" style="text-align: center;">
+                        <a href="{{ request.path_info }}delete/" class="delavatar">{% trans "Delete" %}</a>
+                    </p>
+                {% endif %}
+            </div>
+
+        <div class="span10">
+            <ul class="unstyled">
+                <li><label for="id_photo">{% trans "Select an image from disk" %}:</label>
+                    <p>{{ form.photo }}
+                        <input type="submit" value="{% trans 'Done' %}" />
+                    </p>
+                </li>
+                
+                <li><label for="id_url">{% trans "Select an image from a remote URL. Put the URL on the input below and we'll retrieve the image for you" %}:</label>
+                    <p>{{ form.url }}
+                        <input type="submit" value="{% trans 'Done' %}" />
+                    </p>
+                </li>
+                
+                {% if AVATAR_WEBSEARCH %}
+                    <li>
+                        <a class="large" href="{{ request.path_info }}search/">{% trans "Search for an image on Picasa Web" %}</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
 
 {% endblock %}

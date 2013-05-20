@@ -79,12 +79,6 @@ TEST_APPS = (
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = ['tests.unit_tests', '-s', '--cov-report', 'term-missing']
 
-try:
-    import tests.nose_plugins
-    print "MOLA"
-except:
-    print "SHIT"
-
 NOSE_PLUGINS = [
     'tests.nose_plugins.DatabaseFlushPlugin',
 ]

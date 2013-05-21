@@ -42,7 +42,6 @@ from django.contrib.sites.models import get_current_site
 
 from e_cidadania import settings
 from core.spaces.models import Space
-from core.permissions import has_all_permissions, has_space_permission, has_operation_permission
 from apps.ecidadania.voting.models import *
 from apps.ecidadania.voting.forms import *
 from apps.ecidadania.proposals.models import Proposal, ProposalSet

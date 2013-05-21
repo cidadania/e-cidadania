@@ -37,8 +37,6 @@ from django.db.models import Count, Sum
 
 from core.spaces.models import Space
 from core.spaces import url_names as urln
-from core.permissions import has_all_permissions, has_space_permission, \
-    has_operation_permission
 from apps.ecidadania.voting import url_names as urln_voting
 from apps.ecidadania.voting.models import Choice, Poll
 from apps.ecidadania.voting.forms import PollForm, ChoiceFormSet

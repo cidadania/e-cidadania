@@ -49,8 +49,6 @@ from apps.ecidadania.debate.models import Debate, Note, Row, Column
 from apps.ecidadania.debate.forms import DebateForm, UpdateNoteForm, \
     NoteForm, RowForm, ColumnForm, UpdateNotePosition
 from core.spaces.models import Space
-from core.permissions import has_space_permission, has_all_permissions, \
-    has_operation_permission
 from helpers.cache import get_or_insert_object_in_cache
 
 

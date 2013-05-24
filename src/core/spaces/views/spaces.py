@@ -428,7 +428,7 @@ def edit_roles(request, space_url):
                                 return HttpResponseServerError(_("The permissions couldn't be assigned."))
                     return HttpResponse(_('Permissions assigned.'))
                 except:
-                    return HttpResponseBadRequest('Permission code not valid.')
+                    return HttpResponseBadRequest(_('Permission code not valid.'))
         else:
             space_users = get_users_with_perms(space, with_superusers=False)
             admins = set()

@@ -391,7 +391,7 @@ def edit_roles(request, space_url):
     all the permissions for the current user on the current space.
 
     :ajax keys: userid, perm
-    :returns: HTML
+    :returns: reponses
     :versionadded: 0.1.9
     """
 
@@ -455,6 +455,12 @@ def edit_roles(request, space_url):
 def search_user(request, space_url):
 
     """
+    Simple search user mechanishm, it makes a query to django with the strict
+    user name, it it doesn't match, it returns an error.
+
+    :ajax keys: uname
+    :returns: user ID
+    .. versionadded:: 0.1.9
     """
     space = get_object_or_404(Space, url=space_url)
 

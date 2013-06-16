@@ -1,3 +1,4 @@
+src/e_cidadania/settings/development.py
 *.pyc
 ._*
 .DS*

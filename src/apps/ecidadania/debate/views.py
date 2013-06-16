@@ -24,6 +24,7 @@ These are the views that control the debates.
 import json
 import datetime
 
+from django.utils.translation import ugettext_lazy as _
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
@@ -35,7 +36,7 @@ from django.contrib.comments.forms import CommentForm
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 from django.forms.formsets import formset_factory, BaseFormSet
@@ -284,7 +285,7 @@ def update_note(request, space_url):
         else:
             raise PermissionDenied
 
-    if request.method == "POST" and request.is_ajax:
+    elif request.method == "POST" and request.is_ajax():
         note = get_object_or_404(Note, pk=request.POST['noteid'])
         debate = get_object_or_404(Debate, pk=note.debate.id)
 
@@ -302,11 +303,14 @@ def update_note(request, space_url):
                 note_form_uncommited.last_mod_author = request.user
 
                 note_form_uncommited.save()
+
+                return HttpResponse(_("Note saved"))
             else:
                 return HttpResponseBadRequest(_("The form is not valid, check field(s): ") + note_form.errors)
         else:
             raise PermissionDenied
-    return HttpResponseBadRequest(_("Bad request"))
+    else:
+        return HttpResponseBadRequest(_("Bad request"))
 
 
 def update_position(request, space_url):
@@ -318,7 +322,7 @@ def update_position(request, space_url):
     """
     place = get_object_or_404(Space, url=space_url)
 
-    if request.method == "POST" and request.is_ajax:
+    if request.method == "POST" and request.is_ajax():
         note = get_object_or_404(Note, pk=request.POST['noteid'])
         debate = get_object_or_404(Debate, pk=note.debate.id)
         position_form = UpdateNotePosition(request.POST or None, instance=note)
@@ -336,11 +340,14 @@ def update_position(request, space_url):
                 position_form_uncommited.row = get_object_or_404(Row,
                                                 pk=request.POST['row'])
                 position_form_uncommited.save()
+
+                return HttpResponse(_("Note updated"))
             else:
                 return HttpResponseBadRequest(_("There has been an error validating the form."))
         else:
             raise PermissionDenied
-    return HttpResponseBadRequest(_("The petition was not POST."))
+    else:
+        return HttpResponseBadRequest(_("The petition was not POST."))
 
 
 def delete_note(request, space_url):
@@ -367,7 +374,7 @@ def delete_note(request, space_url):
         return HttpResponse("The note has been deleted.")
 
     else:
-        return PermissionDenied
+        raise PermissionDenied
 
 
 class ViewDebate(DetailView):

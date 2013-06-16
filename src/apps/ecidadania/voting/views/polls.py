@@ -43,7 +43,6 @@ from apps.ecidadania.voting.forms import PollForm, ChoiceFormSet
 from apps.ecidadania.proposals.models import Proposal
 
 
-@permission_required('voting.add_poll')
 def add_poll(request, space_url):
 
     """

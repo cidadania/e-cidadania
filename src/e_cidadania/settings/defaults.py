@@ -32,7 +32,7 @@ __status__ = "alpha"
 
 # Get the current working directory so we can fill automatically other variables.
 cwd = os.path.dirname(os.path.realpath(__file__)).strip('settings')
-# print "Current working dir: %s" % cwd
+#print "Current working dir: %s" % cwd
 
 # Extending the user profile a bit more
 AUTH_PROFILE_MODULE = "accounts.UserProfile"

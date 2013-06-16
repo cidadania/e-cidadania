@@ -22,12 +22,12 @@ from e_cidadania.settings.defaults import *
 
 # Registration mail settings. Please use a different mail server and account
 # during development than in production.
-# EMAIL_HOST = ""
-# EMAIL_PORT= 25
-# EMAIL_HOST_USER= ""
-# EMAIL_HOST_PASSWORD= ""
+#EMAIL_HOST = "mail.ecidadania.org"
+#EMAIL_PORT= 25
+#EMAIL_HOST_USER= ""
+#EMAIL_HOST_PASSWORD= ""
 #DEFAULT_FROM_EMAIL = ""
-# EMAIL_USE_TLS = True
+#EMAIL_USE_TLS = True
 
 # Time and zone configuration
 TIME_ZONE = 'Europe/London'
@@ -43,7 +43,7 @@ CACHES = {
 
 # Who will we alert?
 ADMINS = (
-    ('YourAdmin', 'user@host.com'),
+    ('Oscar', 'oscar.carballal@gmail.com'),
 )
 MANAGERS = ADMINS
 

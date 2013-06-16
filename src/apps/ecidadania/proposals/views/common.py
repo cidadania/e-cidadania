@@ -103,6 +103,7 @@ def support_proposal(request, space_url):
     if request.user.has_perm('view_space', space):
         try:
             prop.support_votes.add(request.user)
+            return HttpResponse(_('Vote added'))
         except:
             return HttpResponseServerError(_("Couldn't emit the vote."))
     else:

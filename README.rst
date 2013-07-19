@@ -27,10 +27,14 @@ If you don't want to create an isolated development environment:
     sudo pip install -r requirements.txt
 
 * Configure *src/e_cidadania/settings/production.py* to you desire.
-* Set *src/e_cidadania/settings/__init__.py* DEBUG to False 
+* Set *src/e_cidadania/settings/__init__.py* DEBUG to False
 * Generate the database with::
 
     python manage.py syncdb
+
+* Make all the south migrations::
+
+    pytohn manage.py migrate
 
 * Copy all the static files::
 

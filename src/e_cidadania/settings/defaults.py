@@ -26,7 +26,7 @@ import os
 
 # e-cidadania version and current status
 __version__ = "0.1.9"
-__status__ = "alpha"
+__status__ = "beta"
 
 # Get the current working directory so we can fill automatically other variables.
 cwd = os.path.dirname(os.path.realpath(__file__)).strip('settings')
@@ -175,6 +175,8 @@ ECIDADANIA_MODULES = (
     'apps.ecidadania.cal',
     'extras.custom_stuff',
     'apps.ecidadania.voting',
+    'apps.ecidadania.api',
+    'apps.ecidadania.reports',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -211,5 +213,5 @@ INSTALLED_APPS = DJANGO_APPS + THIRDPARTY_APPS + ECIDADANIA_MODULES
 
 # Activate the new url syntax in django 1.3 which will be
 # compatible till 1.5
-import django.template
-django.template.add_to_builtins('django.templatetags.future')
+# import django.template
+# django.template.add_to_builtins('django.templatetags.future')

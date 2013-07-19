@@ -86,5 +86,5 @@ if has_south:
         },
     )]
 
-    add_introspection_rules([], ["^smart_selects\.db_fields\.ChainedForeignKey"])
-    add_introspection_rules(rules_grouped, ["^smart_selects\.db_fields\.GroupedForeignKey"])
+    add_introspection_rules([], ["^apps\.thirdparty\.smart_selects\.db_fields\.ChainedForeignKey"])
+    add_introspection_rules(rules_grouped, ["^apps\.thirdparty\.smart_selects\.db_fields\.GroupedForeignKey"])

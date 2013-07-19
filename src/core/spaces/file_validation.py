@@ -56,3 +56,20 @@ class ContentTypeRestrictedFileField(FileField):
             pass
 
         return data
+
+try:
+    from south.modelsinspector import add_introspection_rules
+except:
+    pass
+else:
+    rules = [
+        (
+            (ContentTypeRestrictedFileField,), [],
+            {
+                "content_types": ["content_types", {"default": None}],
+                "max_upload_size": ["max_upload_size", {"default": None}],
+            }
+        ),
+    ]
+    # Modify this string, there should be the path to this class
+    add_introspection_rules(rules, ["^core\.spaces\.file_validation\.ContentTypeRestrictedFileField"])

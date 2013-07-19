@@ -21,6 +21,12 @@ from django.db.models.fields.files import ImageField
 from django.db.models import signals
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+try:
+    from south.modelsinspector import add_introspection_rules
+    # Add some simple introspection for the StdImageField
+    add_introspection_rules([], ["^core\.spaces\.fields\.StdImageField"])
+except ImportError:
+    sys.exit("South is not available! Please install south to make this work.")
 
 
 class ThumbnailField:

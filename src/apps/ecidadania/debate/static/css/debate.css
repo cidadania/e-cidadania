@@ -70,9 +70,22 @@ div.comment-bubble > img {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-    width: 100%;
 }
  
 div#note-comment #id_name, div#note-comment #id_email, div#note-comment #id_url, div#note-comment #id_honeypot {
     visibility: hidden;
+}
+
+/* This is for repairing the mess that min-height:100%; is causing, and position the freewidth block */
+.mainfooter {
+    margin-top: 0;
+}
+
+.wrap {
+    min-height: 0;
+}
+
+#footer {
+    position: absolute;
+    width: 100%;
 }

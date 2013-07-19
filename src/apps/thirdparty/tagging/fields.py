@@ -1,6 +1,9 @@
 """
 A custom Model Field for tagging.
 """
+
+import sys
+
 from django.db.models import signals
 from django.db.models.fields import CharField
 from django.utils.translation import ugettext_lazy as _
@@ -9,7 +12,11 @@ from apps.thirdparty.tagging import settings
 from apps.thirdparty.tagging.models import Tag
 from apps.thirdparty.tagging.utils import edit_string_for_tags
 from apps.thirdparty.tagging import forms
-
+try:
+    from south.modelsinspector import add_introspection_rules
+    add_introspection_rules([], ["^apps\.thirdparty\.tagging\.fields\.TagField"])
+except ImportError:
+    sys.exit("South is not available! Please install south to make this work.")
 
 class TagField(CharField):
     """

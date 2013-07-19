@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load comments %}
 
 {% block title %}{% trans "View proposal" %} {{ proposal.title }} {% endblock %}
@@ -32,10 +33,10 @@
                 }
             });
 
-            request.fail(function(jqXHR, textStatus) {
+            request.error(function(jqXHR, textStatus, error) {
                 $.gritter.add({
                     title:"Coulnd't vote the proposal",
-                    text:"There has been an error." + textStatus,
+                    text: jqXHR.responseText,
                     icon:"http://ecidadania.org/static/assets/icons/alert.png",
                     expires: 0
                 });
@@ -61,7 +62,7 @@
             <div class="row proposal-wrapper">
                 <div class="span1">
                     <p style="line-height:30px;font-size:30px;margin-left:5px;">{{ proposal.support_votes.count }}</p>
-                    <button style="margin-left:-15px;" onclick="upvote({{ proposal.id }})" class="btn btn-small" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{% trans 'Thanks for supporting!' %}" {% if user in proposal.support_votes.all %}disabled="disabled"{% endif %}>{% trans "support" %}</button>
+                    <button style="margin-left:-15px;" onclick="upvote({{ proposal.id }})" class="btn btn-small" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{% trans 'Thanks for supporting!' %}" {% if user in proposal.support_votes.all %}disabled="disabled"{% endif %}>{% if user in proposal.support_votes.all %}{% trans "supported!" %}{% else %}{% trans "support" %}{% endif %}</button>
                 </div>
                 <div class="span10">
                     <div class="proposal-title">{{ proposal.title }}</div>
@@ -70,7 +71,7 @@
                     {% if proposal.latitude and proposal.longitude %}
                         <a id="showmap" class="btn btn-default" style="margin-bottom:15px;">{% trans "Show map" %}</a>
                         <div id="map" style="width:700px;height:400px;border:1px solid #AAA;" class="hidden"></div>
-                        {% endif %}                      
+                        {% endif %}
                     {% if merged_proposal %}
                     <h3>{% trans "Merged Proposal" %}</h3>
                     <div class="proposal-title">
@@ -91,7 +92,7 @@
     </div>
 
     <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/map_tools.js"></script>
+    <script type="text/javascript" src="{% static 'js/map_tools.js' %}"></script>
     <script type="text/javascript">toggleMap();viewMap( {{ proposal.latitude }}, {{ proposal.longitude }} );</script>
 
 {% endblock %}

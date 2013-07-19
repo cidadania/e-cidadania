@@ -5,20 +5,54 @@
 * Sphinx stylesheet -- Twitter Bootstrap theme.
 */
 
-body {
-  padding-top: 52px;
+.navbar-inverse .brand {
+  color: #FFF;
 }
 
-.navbar .brand {
-  color: #FFF;
-  text-shadow: #777 2px 2px 3px;
+.page-top {
+  top: 0px;
 }
+
+{% if theme_navbar_fixed_top == 'true' %}
+body {
+{% if theme_bootswatch_theme %}
+  padding-top: 50px;
+{% else %}
+  padding-top: 40px;
+{% endif %}
+}
+.page-top {
+{% if theme_bootswatch_theme %}
+  top: 50px;
+{% else %}
+  top: 40px;
+{% endif %}
+}
+
+.navbar-inner {
+  padding-left:  12px !important;
+  padding-right: 12px !important;
+}
+{% endif %}
+
 
 {%- block sidebarlogo %}
   {%- if logo %}
-.navbar h3 a, .navbar .brand {
-  background: transparent url("{{ logo }}") no-repeat 22px 3px;
-  padding-left: 62px;
+@media (min-width: 980px) {
+  .navbar h3 a, .navbar .brand {
+    background: transparent url("{{ logo }}") no-repeat 22px 3px;
+    padding-left: 62px;
+  }
 }
   {%- endif %}
 {%- endblock %}
+
+table {
+  border: 0;
+}
+
+.footer {
+  width: 100%;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}

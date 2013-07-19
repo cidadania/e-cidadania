@@ -1,21 +1,19 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2013 Clione Software
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
-# This file is part of e-cidadania.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-# e-cidadania is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
-# e-cidadania is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 """
 e-cidadania administration models for django-admin. This administration models
@@ -26,10 +24,12 @@ from django.contrib import admin
 from django.http import HttpResponse
 from django.utils.translation import ugettext_lazy as _
 
+from guardian.admin import GuardedModelAdmin
+
 from core.spaces.models import Space, Entity, Document, Event, Intent
 
 
-class EntityAdmin(admin.ModelAdmin):
+class EntityAdmin(GuardedModelAdmin):
 
     """
     Entities administration model.
@@ -49,7 +49,7 @@ class EntityInline(admin.TabularInline):
     model = Entity
 
 
-class SpaceAdmin(admin.ModelAdmin):
+class SpaceAdmin(GuardedModelAdmin):
 
     """
     Administration view for django admin to create spaces. The save() method
@@ -58,7 +58,7 @@ class SpaceAdmin(admin.ModelAdmin):
     :list fields: name, description, date
     :search fields: name
     """
-    list_display = ('name', 'description', 'date')
+    list_display = ('name', 'description', 'pub_date')
     search_fields = ('name',)
 
     fieldsets = [
@@ -71,8 +71,6 @@ class SpaceAdmin(admin.ModelAdmin):
         (_('Modules'), {'fields':
             ('mod_cal', 'mod_docs', 'mod_news', 'mod_proposals',
             'mod_debate')}),
-        (_('Staff'), {'fields':
-            [('admins', 'mods', 'users')]}),
     ]
 
     inlines = [
@@ -83,13 +81,12 @@ class SpaceAdmin(admin.ModelAdmin):
         if not change:
             obj.author = request.user
         obj.save()
-        obj.users.add(request.user)
 
     def send_email(self, request, queryset):
         user_emails = queryset.objects.values('email')
 
 
-class IntentAdmin(admin.ModelAdmin):
+class IntentAdmin(GuardedModelAdmin):
 
     """
     This is the administrative view to manage the request from users to
@@ -104,7 +101,7 @@ class IntentAdmin(admin.ModelAdmin):
     ]
 
 
-class DocumentAdmin(admin.ModelAdmin):
+class DocumentAdmin(GuardedModelAdmin):
 
     """
     Administration view to upload/modify documents. The save() method is
@@ -127,7 +124,7 @@ class DocumentAdmin(admin.ModelAdmin):
         obj.save()
 
 
-class EventAdmin(admin.ModelAdmin):
+class EventAdmin(GuardedModelAdmin):
 
     """
     Meetings administration model.

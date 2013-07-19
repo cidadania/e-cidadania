@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,60 +18,89 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: models.py:42 models.py:111
+#: models.py:44 models.py:122
 msgid "Title"
 msgstr ""
 
-#: models.py:43
+#: models.py:45
 msgid "Description"
 msgstr ""
 
-#: models.py:44
+#: models.py:46
 msgid "Theme"
 msgstr ""
 
-#: models.py:47 models.py:114
+#: models.py:49 models.py:125
 msgid "Date created"
 msgstr ""
 
-#: models.py:48
+#: models.py:50
 msgid "Last update"
 msgstr ""
 
-#: models.py:50
+#: models.py:52
 msgid "Start date"
 msgstr ""
 
-#: models.py:51
+#: models.py:53
 msgid "End date"
 msgstr ""
 
-#: models.py:80 models.py:93
+#: models.py:54
+msgid "Private"
+msgstr ""
+
+#: models.py:54
+msgid ""
+"Set the debate as private so only the accepted users can participate in it."
+msgstr ""
+
+#: models.py:90 models.py:104
 msgid "Criteria"
 msgstr ""
 
-#: models.py:112
+#: models.py:123
 msgid "Message"
 msgstr ""
 
-#: models.py:117
+#: models.py:128
 msgid "Last modification time"
 msgstr ""
 
+#: views.py:240
+msgid "The note form didn't validate. This fields gave errors: "
+msgstr ""
+
+#: views.py:244 views.py:345
+msgid "The petition was not POST."
+msgstr ""
+
+#: views.py:308
+msgid "The form is not valid, check field(s): "
+msgstr ""
+
+#: views.py:311
+msgid "Bad request"
+msgstr ""
+
+#: views.py:342
+msgid "There has been an error validating the form."
+msgstr ""
+
 #: templates/debate/debate_add.html:14 templates/debate/debate_add.html:43
+#: templates/debate/debate_view.html:63
 msgid "Edit debate"
 msgstr ""
 
 #: templates/debate/debate_add.html:16 templates/debate/debate_add.html:45
-#: templates/debate/debate_add_simple.html:4
 msgid "Create new debate"
 msgstr ""
 
-#: templates/debate/debate_add.html:49
+#: templates/debate/debate_add.html:50
 msgid "How to create a debate"
 msgstr ""
 
-#: templates/debate/debate_add.html:52
+#: templates/debate/debate_add.html:53
 msgid ""
 "To create a debate, you must fill the fields with any criteria necessary for "
 "it,\n"
@@ -81,27 +110,27 @@ msgid ""
 "instructions."
 msgstr ""
 
-#: templates/debate/debate_add.html:58
+#: templates/debate/debate_add.html:59
 msgid "Close"
 msgstr ""
 
-#: templates/debate/debate_add.html:66
+#: templates/debate/debate_add.html:67
 msgid "Remove column"
 msgstr ""
 
-#: templates/debate/debate_add.html:67
+#: templates/debate/debate_add.html:68
 msgid "Add column"
 msgstr ""
 
-#: templates/debate/debate_add.html:69
+#: templates/debate/debate_add.html:70
 msgid "Remove row"
 msgstr ""
 
-#: templates/debate/debate_add.html:70
+#: templates/debate/debate_add.html:71
 msgid "Add row"
 msgstr ""
 
-#: templates/debate/debate_add.html:113 templates/debate/debate_view.html:106
+#: templates/debate/debate_add.html:113
 msgid "Add new note"
 msgstr ""
 
@@ -110,24 +139,20 @@ msgid "Change color"
 msgstr ""
 
 #: templates/debate/debate_add.html:118
-#: templates/debate/debate_add_simple.html:60
 msgid "Other debate data"
 msgstr ""
 
-#: templates/debate/debate_add.html:223
-#: templates/debate/debate_add_simple.html:121
-#: templates/debate/debate_view.html:140
+#: templates/debate/debate_add.html:242 templates/debate/debate_view.html:160
 msgid "Cancel"
 msgstr ""
 
-#: templates/debate/debate_add.html:224
-#: templates/debate/debate_add_simple.html:120
-#: templates/debate/debate_view.html:141
+#: templates/debate/debate_add.html:243 templates/debate/debate_view.html:161
 msgid "Save"
 msgstr ""
 
 #: templates/debate/debate_confirm_delete.html:4
 #: templates/debate/debate_confirm_delete.html:21
+#: templates/debate/debate_view.html:65
 msgid "Delete debate"
 msgstr ""
 
@@ -137,40 +162,86 @@ msgid ""
 msgstr ""
 
 #: templates/debate/debate_confirm_delete.html:26
-#: templates/debate/debate_list.html:34
+#: templates/debate/debate_list.html:31
 msgid "Go back"
 msgstr ""
 
 #: templates/debate/debate_confirm_delete.html:27
-#: templates/debate/debate_list.html:23
+#: templates/debate/debate_list.html:20
 msgid "Delete"
 msgstr ""
 
-#: templates/debate/debate_list.html:7
+#: templates/debate/debate_expired_view.html:6
+#: templates/debate/debate_view.html:12
+msgid "View debate"
+msgstr ""
+
+#: templates/debate/debate_expired_view.html:25
+#: templates/debate/debate_view.html:31
+msgid "Description:"
+msgstr ""
+
+#: templates/debate/debate_expired_view.html:26
+#: templates/debate/debate_view.html:32
+msgid "Theme:"
+msgstr ""
+
+#: templates/debate/debate_expired_view.html:31
+#: templates/debate/debate_view.html:37
+msgid "Start date:"
+msgstr ""
+
+#: templates/debate/debate_expired_view.html:31
+#: templates/debate/debate_expired_view.html:32
+#: templates/debate/debate_view.html:37 templates/debate/debate_view.html:38
+msgid "No date"
+msgstr ""
+
+#: templates/debate/debate_expired_view.html:32
+#: templates/debate/debate_view.html:38
+msgid "End date:"
+msgstr ""
+
+#: templates/debate/debate_expired_view.html:78
+#: templates/debate/debate_view.html:102
+msgid "View"
+msgstr ""
+
+#: templates/debate/debate_expired_view.html:83
+#: templates/debate/debate_view.html:113
+msgid "comments"
+msgstr ""
+
+#: templates/debate/debate_expired_view.html:105
+#: templates/debate/debate_view.html:172
+msgid "Author:"
+msgstr ""
+
+#: templates/debate/debate_list.html:4
 msgid "Debates in "
 msgstr ""
 
-#: templates/debate/debate_list.html:13
+#: templates/debate/debate_list.html:10
 msgid "Debates in"
 msgstr ""
 
-#: templates/debate/debate_list.html:20 templates/debate/debate_view.html:85
+#: templates/debate/debate_list.html:17 templates/debate/debate_view.html:107
 msgid "Edit"
 msgstr ""
 
-#: templates/debate/debate_list.html:30
+#: templates/debate/debate_list.html:27
 msgid "There are no debates."
 msgstr ""
 
-#: templates/debate/debate_list.html:40
+#: templates/debate/debate_list.html:37
 msgid "previous"
 msgstr ""
 
-#: templates/debate/debate_list.html:43
+#: templates/debate/debate_list.html:40
 msgid "of"
 msgstr ""
 
-#: templates/debate/debate_list.html:46
+#: templates/debate/debate_list.html:43
 msgid "next"
 msgstr ""
 
@@ -181,8 +252,8 @@ msgstr ""
 
 #: templates/debate/debate_outdated.html:17
 msgid ""
-"It seems that the debate you're trying to access is either <strong>not "
-"started</strong> or it <strong>expired</strong>."
+"It seems that the debate you're trying to access has <strong>not started</"
+"strong>."
 msgstr ""
 
 #: templates/debate/debate_outdated.html:20
@@ -193,62 +264,34 @@ msgstr ""
 msgid "Finished on:"
 msgstr ""
 
-#: templates/debate/debate_view.html:6
-msgid "View debate"
+#: templates/debate/debate_view.html:61
+msgid "Edit user roles"
 msgstr ""
 
-#: templates/debate/debate_view.html:25
-msgid "Description:"
+#: templates/debate/debate_view.html:67
+msgid "New note"
 msgstr ""
 
-#: templates/debate/debate_view.html:26
-msgid "Theme:"
-msgstr ""
-
-#: templates/debate/debate_view.html:31
-msgid "Start date:"
-msgstr ""
-
-#: templates/debate/debate_view.html:31 templates/debate/debate_view.html:32
-msgid "No date"
-msgstr ""
-
-#: templates/debate/debate_view.html:32
-msgid "End date:"
-msgstr ""
-
-#: templates/debate/debate_view.html:78
-msgid "View"
-msgstr ""
-
-#: templates/debate/debate_view.html:81
+#: templates/debate/debate_view.html:105
 msgid "Delete note"
 msgstr ""
 
-#: templates/debate/debate_view.html:91
-msgid "comments"
-msgstr ""
-
-#: templates/debate/debate_view.html:112
+#: templates/debate/debate_view.html:132
 msgid "Edit note"
 msgstr ""
 
-#: templates/debate/debate_view.html:120
+#: templates/debate/debate_view.html:140
 msgid "100 characters"
 msgstr ""
 
-#: templates/debate/debate_view.html:152
-msgid "Author:"
-msgstr ""
-
-#: templates/debate/debate_view.html:158
+#: templates/debate/debate_view.html:178
 msgid "Comment"
 msgstr ""
 
-#: templates/debate/debate_view.html:162
+#: templates/debate/debate_view.html:182
 msgid "Submit"
 msgstr ""
 
-#: templates/debate/debate_view.html:163
+#: templates/debate/debate_view.html:183
 msgid "Preview"
 msgstr ""

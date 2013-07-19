@@ -1,21 +1,19 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2013 Clione Software
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
-# This file is part of e-cidadania.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-# e-cidadania is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
-# e-cidadania is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 """
 Default settings for the e-cidadania project. This settings can be overriden by
@@ -27,17 +25,19 @@ Plase refer to the 'configuration' section of the documentation for guidance.
 import os
 
 # e-cidadania version and current status
-__version__ = "0.1.8"
+__version__ = "0.1.9"
 __status__ = "beta"
 
 # Get the current working directory so we can fill automatically other variables.
 cwd = os.path.dirname(os.path.realpath(__file__)).strip('settings')
-# print "Current working dir: %s" % cwd
+#print "Current working dir: %s" % cwd
 
 # Extending the user profile a bit more
 AUTH_PROFILE_MODULE = "accounts.UserProfile"
 ACCOUNT_ACTIVATION_DAYS = 2
 LOGIN_REDIRECT_URL = '/accounts/'
+ANONYMOUS_USER_ID = -1
+GUARDIAN_RENDER_403 = True
 
 # Languages for the platform.
 LANGUAGES = (
@@ -120,6 +120,11 @@ MIDDLEWARE_CLASSES = (
     #'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',  # this is default
+    'guardian.backends.ObjectPermissionBackend',
+)
+
 ROOT_URLCONF = 'e_cidadania.urls'
 APPEND_SLASH = True
 
@@ -154,6 +159,8 @@ THIRDPARTY_APPS = (
     'apps.thirdparty.smart_selects',
     'apps.thirdparty.userprofile',
     'apps.thirdparty.tagging',
+    'guardian',
+    'south',
 )
 
 ECIDADANIA_MODULES = (
@@ -168,6 +175,8 @@ ECIDADANIA_MODULES = (
     'apps.ecidadania.cal',
     'extras.custom_stuff',
     'apps.ecidadania.voting',
+    'apps.ecidadania.api',
+    'apps.ecidadania.reports',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -204,5 +213,5 @@ INSTALLED_APPS = DJANGO_APPS + THIRDPARTY_APPS + ECIDADANIA_MODULES
 
 # Activate the new url syntax in django 1.3 which will be
 # compatible till 1.5
-import django.template
-django.template.add_to_builtins('django.templatetags.future')
+# import django.template
+# django.template.add_to_builtins('django.templatetags.future')

@@ -1,36 +1,32 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2013 Clione Software
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
-# This file is part of e-cidadania.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-# e-cidadania is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
-# e-cidadania is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 from django.views.generic.base import RedirectView
 from django.views.generic.list import ListView
 from django.views.generic.dates import ArchiveIndexView, MonthArchiveView, \
     YearArchiveView
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import permission_required
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
+from django.core.exceptions import PermissionDenied
 
 from core.spaces import url_names as urln
 from core.spaces.models import Space
 from apps.ecidadania.news.models import Post
-from core.permissions import has_space_permission, has_all_permissions
 
 
 class RedirectArchive(RedirectView):
@@ -61,6 +57,14 @@ class YearlyPosts(YearArchiveView):
     make_object_list = True
     paginate_by = 12
     date_field = 'pub_date'
+
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(YearlyPosts, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_queryset(self):
         """
@@ -94,6 +98,14 @@ class MonthlyPosts(MonthArchiveView):
     paginate_by = 12
     date_field = 'pub_date'
 
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(MonthlyPosts, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
     def get_queryset(self):
         """
         We use the get queryset function to get only the posts relevant to
@@ -121,6 +133,14 @@ class ListPosts(ArchiveIndexView):
     date_field = 'pub_date'
     paginate_by = 12
     allow_empty = True
+
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(ListPosts, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_queryset(self):
         """

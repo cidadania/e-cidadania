@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load comments %}
 
 {% block title %}{{ news.title }}{% endblock %}
@@ -7,7 +8,7 @@
     {% if get_place %}
         <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
     {% else %}
-        <a href="/"><img src="{{ STATIC_URL }}/assets/logos/index.png" /></a>
+        <a href="/"><img src="{% static 'assets/logos/index.png' %}" /></a>
     {% endif %}
 {% endblock %}
 
@@ -15,7 +16,7 @@
     {% if get_place %}
         <img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />
     {% else %}
-        <img src="{{ STATIC_URL }}/assets/banners/index.png" />
+        <img src="{% static 'assets/banners/index.png' %}" />
     {% endif %}
 {% endblock %}
 
@@ -32,12 +33,12 @@
             <h2 class="posttitle"><a href="{{ news.get_absolute_url }}">{{ news.title }}</a>
                 {% if perms.news.change_post %}
                     <a href="{% url 'edit-site-post' news.id %}">
-                        <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/>
+                        <img src="{% static 'assets/icons/edit16.png' %}" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/>
                     </a>
                 {% endif %}
                 {% if perms.news.delete_post %}
                     <a href="{% url 'delete-site-post' news.id %}">
-                        <img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/>
+                        <img src="{% static 'assets/icons/delete16.png' %}" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/>
                     </a>
                 {% endif %}
             </h2>

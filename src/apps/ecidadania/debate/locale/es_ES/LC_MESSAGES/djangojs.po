@@ -1,21 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Oscar Carballal <oscar.carballal@cidadania.coop>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
-"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: 2013-03-11 11:11+0000\n"
 "Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
 "Language-Team: Spanish (Spain) <ecidadania-es@freelists.org>\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: static/js/debate_board.js:12
@@ -31,6 +31,7 @@ msgid "Edit"
 msgstr "Editar"
 
 #: static/js/debate_board.js:15 static/js/debate_board.js.c:27
+#: static/js/debate_board_expired.js:14
 msgid "View"
 msgstr "Ver"
 
@@ -46,7 +47,7 @@ msgstr "No se pudo eliminar la columna o fila."
 msgid "Couldn't create note."
 msgstr "No se ha podido crear la nota."
 
-#: static/js/debate_board.js:19
+#: static/js/debate_board.js:19 static/js/debate_board_expired.js:12
 msgid "Couldn't get note data."
 msgstr "No se ha podido recuperar la nota."
 
@@ -74,7 +75,7 @@ msgstr "No se pudo crear la fila o columna."
 msgid "Are you sure?"
 msgstr "¿Estás seguro?"
 
-#: static/js/debate_board.js:26
+#: static/js/debate_board.js:26 static/js/debate_board_expired.js:13
 msgid "Comment"
 msgstr "Comentario"
 
@@ -82,12 +83,14 @@ msgstr "Comentario"
 msgid "Delete note"
 msgstr "Eliminar nota"
 
-#: static/js/debate_board.js:30
+#: static/js/debate_board.js:30 static/js/debate_board_expired.js:15
 msgid "Caution"
 msgstr "Precaución"
 
-#: static/js/debate_board.js:31
+#: static/js/debate_board.js:31 static/js/debate_board_expired.js:16
 msgid ""
 "You are adding too much columns. We put no limit,     but too many columns "
 "will be a problem in smaller screens."
-msgstr "Estás añadiendo demasiadas columnas. No ponemos límite, pero demasiadas columnas pueden ser un problema en pantallas pequeñas."
+msgstr ""
+"Estás añadiendo demasiadas columnas. No ponemos límite, pero demasiadas "
+"columnas pueden ser un problema en pantallas pequeñas."

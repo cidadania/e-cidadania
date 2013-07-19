@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load wysiwyg %}
 
 {% comment %}
@@ -25,11 +26,6 @@ automatically if found in the data models.
 {% endblock %}
 
 {% block content %}
-<style type="text/css">
-        #map img { 
-            max-width: none;  
-        }   
-</style>
 
 <div class="row">
     <div class="span12">
@@ -73,7 +69,7 @@ automatically if found in the data models.
                         {% if form.title.value %}
                             {{ form.event_date }}
                         {% else %}
-                            <input type="text" name="event_date" id="datepicker" class="hasDatePicker notranslate">
+                            <input type="text" name="event_date" id="datetimepicker" class="notranslate">
                         {% endif %}
                         {% if form.event_date.help_text %}
                             <span class="add-on"><a href="#" rel="tooltip" title="{{ form.event_date.help_text }}"><i class="icon-question-sign"></i></a></span>
@@ -152,7 +148,7 @@ automatically if found in the data models.
             <div id="map" style="width:900px;height:500px;border:1px solid #AAA;" class="hidden" data-show="no"></div>
 
             <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
-            <script type="text/javascript" src="{{ STATIC_URL }}js/map_tools.js"></script>   
+            <script type="text/javascript" src="{% static 'js/map_tools.js' %}"></script>   
             <script type="text/javascript">clickMap();startMap();toggleMap();</script> 
 
             {% if user_is_admin %}
@@ -242,3 +238,14 @@ automatically if found in the data models.
 </br>
 {% endblock %}
 
+{% block extrajsbottom %}
+<script type="text/javascript" src="{% static 'js/jqueryui-timepicker.js' %}"></script>
+<script type="text/javascript">
+    $('#datetimepicker').datetimepicker();
+</script>
+<style type="text/css">
+        #map img { 
+            max-width: none;  
+        }   
+</style>
+{% endblock %}

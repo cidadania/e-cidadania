@@ -1,22 +1,19 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2013 Clione Software
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
-# This file is part of e-cidadania.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-# e-cidadania is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
-# e-cidadania is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
-
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 """
 Common functions and classes for proposals and proposal sets.
 """
@@ -27,13 +24,15 @@ from django.db.models import Count
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.utils.decorators import method_decorator
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import get_object_or_404
+from guardian.shortcuts import assign_perm
+from guardian.decorators import permission_required_or_403
+from django.core.exceptions import PermissionDenied
 
 from apps.ecidadania.proposals import url_names as urln_prop
 from core.spaces import url_names as urln_space
 from core.spaces.models import Space
-from core.permissions import has_space_permission, has_all_permissions, has_operation_permission
 from apps.ecidadania.proposals.models import Proposal
 
 
@@ -53,21 +52,18 @@ class ViewProposal(DetailView):
     context_object_name = 'proposal'
     template_name = 'proposals/proposal_detail.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(ViewProposal, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
     def get_object(self):
         prop_id = self.kwargs['prop_id']
-        space_url = self.kwargs['space_url']
         proposal = get_object_or_404(Proposal, pk=prop_id)
-        place = get_object_or_404(Space, url=space_url)
-
-        if place.public:
-            return proposal
-        elif has_space_permission(self.request.user, place,
-            allow=['admins', 'mods', 'users']) \
-                or has_all_permissions(self.request.user):
-            return proposal
-        else:
-            self.template_name = 'not_allowed.html'
-            return Proposal.objects.none()
+        return proposal
 
     def get_context_data(self, **kwargs):
         context = super(ViewProposal, self).get_context_data(**kwargs)
@@ -95,46 +91,17 @@ def support_proposal(request, space_url):
     Increment support votes for the proposal in 1. We porform some permission
     checks, for example, the user has to be inside any of the user groups of
     the space.
+
+    :permissions required: view_space
     """
     prop = get_object_or_404(Proposal, pk=request.POST['propid'])
     space = get_object_or_404(Space, url=space_url)
 
-    if has_operation_permission(request.user, space,
-    "proposals.change_proposal", allow=['admins', 'mods', 'users']):
+    if request.user.has_perm('view_space', space):
         try:
             prop.support_votes.add(request.user)
-            return HttpResponse(" Support vote emmited.")
+            return HttpResponse(_('Vote added'))
         except:
-            return HttpResponse("Error P01: Couldn't emit the vote. Couldn't \
-                add the user to the count. Contact support and tell them the \
-                error code.")
+            return HttpResponseServerError(_("Couldn't emit the vote."))
     else:
-        return HttpResponse("Error P02: Couldn't emit the vote. You're not \
-            allowed.")
-
-# @require_POST
-# def vote_proposal(request, space_url):
-
-#     """
-#     Send email to user to validate vote before is calculated.
-#     :attributes: - prop: current proposal
-#     :rtype: multiple entity objects.
-#     """
-#     prop = get_object_or_404(Proposal, pk=request.POST['propid'])
-#     try:
-#          intent = ConfirmVote.objects.get(user=request.user, proposal=prop)
-#     except ConfirmVote.DoesNotExist:
-#         token = hashlib.md5("%s%s%s" % (request.user, prop,
-#                             datetime.datetime.now())).hexdigest()
-#         intent = ConfirmVote(user=request.user, proposal=prop, token=token)
-#         intent.save()
-#         subject = _("New vote validation request")
-#         body = _("Hello {0}, \n \
-#                  You are getting this email because you wanted to support proposal {1}.\n\
-#                  Please click on the link below to vefiry your vote.\n {2} \n \
-#                  Thank you for your vote."
-#                  .format(request.user.username, prop.title,
-#                  intent.get_approve_url()))
-#         send_mail(subject=subject, message=body,
-#                    from_email="noreply@ecidadania.org",
-#                    recipient_list=[request.user.email])
+        raise PermissionDenied

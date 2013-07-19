@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load wysiwyg %}
 
 {% comment %}
@@ -21,7 +22,7 @@ tempalte shows the help_text automatically if found in the data models.
     {% if get_place %}
         <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
     {% else %}
-        <a href="/"><img src="{{ STATIC_URL }}/assets/logos/index.png" /></a>
+        <a href="/"><img src="{% static 'assets/logos/index.png' %}" /></a>
     {% endif %}
 {% endblock %}
 
@@ -29,7 +30,7 @@ tempalte shows the help_text automatically if found in the data models.
     {% if get_place %}
         <img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />
     {% else %}
-        <img src="{{ STATIC_URL }}/assets/banners/index.png" />
+        <img src="{% static 'assets/banners/index.png' %}" />
     {% endif %}
 {% endblock %}
 
@@ -103,7 +104,7 @@ tempalte shows the help_text automatically if found in the data models.
                                 <span class="add-on"><a href="#" rel="tooltip" title="{{ form.description.help_text }}"><i class="icon-question-sign"></i></a></span>
                             {% endif %}
                         </div>
-                        {% if form.name.errors %}
+                        {% if form.description.errors %}
                             <p class="help-block">
                                 {% for error in form.description.errors %}
                                     {{ error|escape }}
@@ -167,63 +168,6 @@ tempalte shows the help_text automatically if found in the data models.
                     </div>
                 </div>
 
-                <div class="control-group {% if form.admins.errors %}error{% endif%}">
-                    <label class="control-label">{{ form.admins.label }}</label>
-                    <div class="controls">
-                        <div class="input-prepend">
-                            {{ form.admins }}
-                            {% if form.admins.help_text %}
-                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.admins.help_text }}"><i class="icon-question-sign"></i></a></span>
-                            {% endif %}
-                        </div>
-                        {% if form.admins.errors %}
-                            <p class="help-block">
-                                {% for error in form.admins.errors %}
-                                    {{ error|escape }}
-                                {% endfor %}
-                            </p>
-                        {% endif %}
-                    </div>
-                </div>
-            
-                <div class="control-group {% if form.mods.errors %}error{% endif%}">
-                    <label class="control-label">{{ form.mods.label }}</label>
-                    <div class="controls">
-                        <div class="input-prepend">
-                            {{ form.mods }}
-                            {% if form.mods.help_text %}
-                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.mods.help_text }}"><i class="icon-question-sign"></i></a></span>
-                            {% endif %}
-                        </div>
-                        {% if form.mods.errors %}
-                        <p class="help-block">
-                            {% for error in form.mods.errors %}
-                                {{ error|escape }}
-                            {% endfor %}
-                        </p>
-                        {% endif %}
-                    </div>
-                </div>
-                
-                <div class="control-group {% if form.users.errors %}error{% endif%}">
-                    <label class="control-label">{{ form.users.label }}</label>
-                    <div class="controls">
-                        <div class="input-prepend">
-                            {{ form.users }}
-                            {% if form.users.help_text %}
-                                <span class="add-on"><a href="#" rel="tooltip" title="{{ form.users.help_text }}"><i class="icon-question-sign"></i></a></span>
-                            {% endif %}
-                        </div>
-                        {% if form.users.errors %}
-                        <p class="help-block">
-                            {% for error in form.users.errors %}
-                                {{ error|escape }}
-                            {% endfor %}
-                        </p>
-                        {% endif %}
-                    </div>
-                </div>
-
                 <div class="control-group {% if form.public.errors %}error{% endif%}">
                     <label class="control-label" class="control-label">{{ form.public.label }}
                         {% if form.public.help_text %}
@@ -273,7 +217,12 @@ tempalte shows the help_text automatically if found in the data models.
                     <div class="control-group {% if entity.name.errors %}error{% endif%}">
                         <label class="control-label">{{ entity.name.label }}</label>
                         <div class="controls">
-                            {{ entity.name }}
+                            <div class="input-prepend">
+                                {{ entity.name }}
+                                {% if entity.name.help_text %}
+                                    <span class="add-on"><a href="#" rel="tooltip" title="{{ entity.name.help_text }}"><i class="icon-question-sign"></i></a></span>
+                                {% endif %}
+                            </div>
                             {% if entity.name.errors %}
                                 <p class="help-block">
                                     {% for error in entity.name.errors %}
@@ -287,7 +236,12 @@ tempalte shows the help_text automatically if found in the data models.
                     <div class="control-group {% if entity.website.errors %}error{% endif%}">
                         <label class="control-label">{{ entity.website.label }}</label>
                         <div class="controls">
-                            {{ entity.website }}
+                            <div class="input-prepend">
+                                {{ entity.website }}
+                                {% if entity.website.help_text %}
+                                    <span class="add-on"><a href="#" rel="tooltip" title="{{ entity.website.help_text }}"><i class="icon-question-sign"></i></a></span>
+                                {% endif %}
+                            </div>
                             {% if entity.website.errors %}
                                 <p class="help-block">
                                     {% for error in entity.website.errors %}
@@ -301,7 +255,12 @@ tempalte shows the help_text automatically if found in the data models.
                     <div class="control-group {% if entity.logo.errors %}error{% endif%}">
                         <label class="control-label">{{ entity.logo.label }}</label>
                         <div class="controls">
-                            {{ entity.logo }}
+                            <div class="input-prepend">
+                                {{ entity.logo }}
+                                {% if entity.logo.help_text %}
+                                    <span class="add-on"><a href="#" rel="tooltip" title="{{ entity.logo.help_text }}"><i class="icon-question-sign"></i></a></span>
+                                {% endif %}
+                            </div>
                             {% if entity.logo.errors %}
                                 <p class="help-block">
                                     {% for error in entity.logo.errors %}
@@ -315,7 +274,7 @@ tempalte shows the help_text automatically if found in the data models.
            
                 <hr />
                 <a href="{{ get_place.get_absolute_url }}" class="btn btn-small btn-danger">&laquo; {% trans "Cancel" %}</a>
-                <input class="btn btn-small btn-primary" type="submit" value="{% trans 'Create' %}" />
+                <input class="btn btn-small btn-primary" type="submit" value="{% if get_place %}{% trans "Edit" %}{% else %}{% trans "Create" %}{% endif %}" />
     
             </form>
         </div>

@@ -1,103 +1,108 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Piyush Bansal <piyush.devel@gmail.com>, 2013.
 # Vishrut Mehta <vishrut.mehta009@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
-"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: 2013-03-14 16:23+0000\n"
 "Last-Translator: vishrut009 <vishrut.mehta009@gmail.com>\n"
-"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/language/hi_IN/)\n"
+"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/"
+"language/hi_IN/)\n"
+"Language: hi_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hi_IN\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: models.py:31
+#: models.py:32
 msgid "Users"
 msgstr "उपयोगकर्ता"
 
-#: models.py:32
+#: models.py:33
 msgid "Fixed"
 msgstr "फिक्स्ड"
 
-#: models.py:33
+#: models.py:34
 msgid "No ponderation"
 msgstr "नहीं तोलना"
 
-#: models.py:48
+#: models.py:49
 msgid "Question"
 msgstr "प्रश्न"
 
-#: models.py:49
+#: models.py:50
 msgid "Max: 200 characters"
 msgstr "अधिकतम: 200 वर्ण"
 
-#: models.py:50
+#: models.py:51
 msgid "Date"
 msgstr "दिनांक"
 
-#: models.py:51 models.py:107
+#: models.py:52 models.py:117
 msgid "Last update"
 msgstr "अंतिम अपडेट"
 
-#: models.py:52
+#: models.py:53
 msgid "Author"
 msgstr "लेखक"
 
-#: models.py:53
+#: models.py:54
 msgid "Change the user that will figure as the         author"
 msgstr "उपयोगकर्ता है कि लेखक के रूप में लगाना होगा बदलें"
 
-#: models.py:56
+#: models.py:57
 msgid "Publish in"
 msgstr "में प्रकाशित"
 
-#: models.py:57
+#: models.py:58
 msgid "If you want to post to the index leave this         blank"
 msgstr "यदि आप सूचकांक करने के लिए पोस्ट करना चाहते हैं इसे खाली छोड़ दें"
 
-#: models.py:59
+#: models.py:60
 msgid "Insert here relevant words related with         the poll"
 msgstr "यहाँ डालें प्रासंगिक चुनाव के साथ संबंधित शब्दों"
 
-#: models.py:61 models.py:109
+#: models.py:62 models.py:119
 msgid "Start date"
 msgstr "प्रारंभ दिनांक"
 
-#: models.py:62 models.py:110
+#: models.py:63 models.py:120
 msgid "End date"
 msgstr "समाप्ति तिथि"
 
-#: models.py:86
+#: models.py:96
 msgid "Choice"
 msgstr "पसन्द"
 
-#: models.py:86
+#: models.py:96
 msgid "Enter choice to be voted upon"
 msgstr "विकल्प दर्ज करें जिस पर मतदान दर्ज किया"
 
-#: models.py:102
+#: models.py:112
 msgid "Title"
 msgstr "शीर्षक"
 
-#: models.py:103
+#: models.py:113
 msgid "Description"
 msgstr "विवरण"
 
-#: models.py:106
+#: models.py:116
 msgid "Date created"
 msgstr "तिथि बनाया"
 
-#: models.py:111
+#: models.py:121
 msgid "Ponderation"
 msgstr "तोलन"
+
+#: models.py:126
+msgid "Maximum votes per person"
+msgstr ""
 
 #: templates/voting/poll_confirm_delete.html:6
 msgid "View poll "
@@ -110,12 +115,14 @@ msgstr "जनमत हटाना"
 #: templates/voting/poll_confirm_delete.html:37
 msgid ""
 "Are you sure you want to delete this poll? This action cannot be undone."
-msgstr "क्या आपको यकीन है कि आप इस जनमत को हटाना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा सकता."
+msgstr ""
+"क्या आपको यकीन है कि आप इस जनमत को हटाना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा "
+"सकता."
 
 #: templates/voting/poll_confirm_delete.html:40
-#: templates/voting/poll_detail.html:49 templates/voting/poll_edit.html:187
-#: templates/voting/poll_form.html:223 templates/voting/poll_list.html:64
-#: templates/voting/poll_results.html:43
+#: templates/voting/poll_detail.html:52 templates/voting/poll_edit.html:187
+#: templates/voting/poll_form.html:236 templates/voting/poll_list.html:64
+#: templates/voting/poll_results.html:50
 #: templates/voting/voting_confirm_delete.html:40
 #: templates/voting/voting_form.html:217 templates/voting/voting_list.html:64
 msgid "Go back"
@@ -138,26 +145,30 @@ msgstr "इनके द्वारा निर्मित:"
 msgid "Created on:"
 msgstr "पर बनाया गया:"
 
-#: templates/voting/poll_detail.html:50
+#: templates/voting/poll_detail.html:39
+msgid "This poll ends on:"
+msgstr ""
+
+#: templates/voting/poll_detail.html:53
 msgid "Vote"
 msgstr "वोट"
 
 #: templates/voting/poll_edit.html:10 templates/voting/poll_edit.html.py:53
-#: templates/voting/poll_form.html:46
+#: templates/voting/poll_form.html:58
 msgid "Edit poll"
 msgstr "जनमत संपादित"
 
-#: templates/voting/poll_edit.html:145 templates/voting/poll_form.html:181
+#: templates/voting/poll_edit.html:145 templates/voting/poll_form.html:194
 #: templates/voting/voting_form.html:175
 msgid "Staff members options"
 msgstr "स्टाफ विकल्पों के सदस्यों"
 
-#: templates/voting/poll_edit.html:188 templates/voting/poll_form.html:224
+#: templates/voting/poll_edit.html:188 templates/voting/poll_form.html:237
 #: templates/voting/voting_form.html:218
 msgid "Publish"
 msgstr "प्रकाशित करना"
 
-#: templates/voting/poll_form.html:10 templates/voting/poll_form.html.py:48
+#: templates/voting/poll_form.html:10 templates/voting/poll_form.html.py:60
 msgid "Create new poll"
 msgstr "नया जनमत बनाएँ"
 
@@ -189,9 +200,9 @@ msgstr "अगला"
 msgid "Results"
 msgstr "परिणाम"
 
-#: templates/voting/poll_results.html:38
+#: templates/voting/poll_results.html:40
 #: templates/voting/voting_detail.html:92
-#: templates/voting/voting_detail.html:113
+#: templates/voting/voting_detail.html:114
 msgid "vote"
 msgstr "वोट"
 
@@ -207,7 +218,9 @@ msgstr "मतदान प्रक्रिया को हटाएँ"
 msgid ""
 "Are you sure you want to delete this voting process? This action cannot be "
 "undone."
-msgstr "क्या आप सुनिश्चित करें कि आप इस मतदान प्रक्रिया को नष्ट करने के लिए करना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा सकता."
+msgstr ""
+"क्या आप सुनिश्चित करें कि आप इस मतदान प्रक्रिया को नष्ट करने के लिए करना चाहते हैं? इस "
+"क्रिया को पूर्ववत नहीं किया जा सकता."
 
 #: templates/voting/voting_detail.html:67
 msgid "Description:"
@@ -233,7 +246,7 @@ msgstr "प्रस्ताव सेट"
 msgid "linked to"
 msgstr "से जुड़ा हुआ"
 
-#: templates/voting/voting_detail.html:106
+#: templates/voting/voting_detail.html:107
 msgid "Unlinked proposals:"
 msgstr "अनलिंक कर दिया है प्रस्तावों:"
 
@@ -253,13 +266,23 @@ msgstr "मतदान सूची"
 msgid "Voting archive"
 msgstr "वोटिंग संग्रह"
 
-#: views/voting.py:245
+#: views/voting.py:276
 msgid "Validate your vote"
 msgstr "मान्य अपने वोट"
 
-#: views/voting.py:246
+#: views/voting.py:277
 #, python-format
 msgid ""
 "You voted recently on a process in our platform, please validate your vote "
 "following this link: %s"
-msgstr "आप हमारे मंच में एक प्रक्रिया पर हाल ही में मतदान किया, इस लिंक के बाद अपने वोट को मान्य करें:% s"
+msgstr ""
+"आप हमारे मंच में एक प्रक्रिया पर हाल ही में मतदान किया, इस लिंक के बाद अपने वोट को मान्य "
+"करें:% s"
+
+#: views/voting.py:281
+msgid "Couldn't send the email."
+msgstr ""
+
+#: views/voting.py:283
+msgid "Request is not POST."
+msgstr ""

@@ -1,83 +1,95 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 #  <hugo.deslongchamps@googlemail.com>, 2013.
 #   <hugo.deslongchamps@googlemail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
-"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: 2013-02-13 14:10+0000\n"
 "Last-Translator: hugodeslongchamps <hugo.deslongchamps@googlemail.com>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/ecidadania/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/projects/p/ecidadania/"
+"language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: admin.py:37
+#: admin.py:40
 msgid "Other data"
 msgstr "Autres Données"
 
-#: models.py:33
+#: models.py:34
 msgid "Title"
 msgstr "Titre"
 
-#: models.py:34
+#: models.py:35
 msgid "Max: 200 characters"
 msgstr "Max: 200 caractères"
 
-#: models.py:35
+#: models.py:36
 msgid "Description"
 msgstr "Description"
 
-#: models.py:36
+#: models.py:37
 msgid "Date"
 msgstr "Date"
 
-#: models.py:37
+#: models.py:38
 msgid "Last update"
 msgstr "Dernière actualisation"
 
-#: models.py:38
+#: models.py:39
 msgid "Author"
 msgstr "Ateur"
 
-#: models.py:39
+#: models.py:40
 msgid ""
 "Change the user that will figure as the                                   "
 "author"
-msgstr "Changer l'utilisateur qui figurera comme l'auteur de                                   "
+msgstr ""
+"Changer l'utilisateur qui figurera comme l'auteur "
+"de                                   "
 
-#: models.py:41
+#: models.py:42
 msgid "Publish in index"
 msgstr "Publier l'index"
 
-#: models.py:42
+#: models.py:43
 msgid "This will publish the post in the main site page"
 msgstr "Ceci publiera ce post sur la page principale du site"
 
-#: models.py:43
+#: models.py:44
 msgid "Publish in"
 msgstr "Publier sur"
 
-#: models.py:45
+#: models.py:46
 msgid "If you want to post to the index leave this blank"
 msgstr "Si vous voulez poster sur l'indexe, laissez ceci vide"
 
-#: models.py:46
-msgid ""
-"Insert here relevant words related with"
-"                                      the post"
-msgstr "Inserer ici les mots en relation avec                                     le post"
+#: models.py:47
+#, fuzzy
+msgid "Insert here relevant words related with the post"
+msgstr ""
+"Inserer ici les mots en relation avec                                     le "
+"post"
 
 #: models.py:48
 msgid "Views"
 msgstr "Vues"
+
+#: models.py:52
+msgid "Post"
+msgstr ""
+
+#: models.py:53
+msgid "Posts"
+msgstr ""
 
 #: templates/news/news_list.html:4
 msgid "News list"
@@ -126,7 +138,10 @@ msgid ""
 "\n"
 "        Archive for %(m)s %(y)s\n"
 "    "
-msgstr "\n        Archive de %(m)s %(y)s\n    "
+msgstr ""
+"\n"
+"        Archive de %(m)s %(y)s\n"
+"    "
 
 #: templates/news/post_archive_month.html:38
 #, python-format
@@ -134,7 +149,10 @@ msgid ""
 "\n"
 "                    Archive for %(m)s %(y)s\n"
 "                "
-msgstr "\n                    Archive de %(m)s %(y)s\n                "
+msgstr ""
+"\n"
+"                    Archive de %(m)s %(y)s\n"
+"                "
 
 #: templates/news/post_archive_year.html:5
 #, python-format
@@ -142,7 +160,10 @@ msgid ""
 "\n"
 "        Archive for %(y)s\n"
 "    "
-msgstr "\n        Archive de %(y)s\n    "
+msgstr ""
+"\n"
+"        Archive de %(y)s\n"
+"    "
 
 #: templates/news/post_archive_year.html:38
 #, python-format
@@ -150,7 +171,10 @@ msgid ""
 "\n"
 "                    Archive for %(y)s\n"
 "                "
-msgstr "\n                    Archive de %(y)s\n                "
+msgstr ""
+"\n"
+"                    Archive de %(y)s\n"
+"                "
 
 #: templates/news/post_confirm_delete.html:4
 msgid "Delete news"
@@ -163,14 +187,17 @@ msgstr "Supprimer le post"
 #: templates/news/post_confirm_delete.html:34
 msgid ""
 "Are you sure you want to delete this post? This action cannot be undone."
-msgstr "Etes-vous sûr de vouloir supprimer ce poste? Cette action ne peut être défaite."
+msgstr ""
+"Etes-vous sûr de vouloir supprimer ce poste? Cette action ne peut être "
+"défaite."
 
 #: templates/news/post_confirm_delete.html:38
-#: templates/news/post_detail.html:40 templates/news/post_detail_index.html:40
+#: templates/news/post_detail_index.html:40
 msgid "Delete"
 msgstr "Supprimer"
 
-#: templates/news/post_detail.html:35 templates/news/post_detail_index.html:35
+#: templates/news/post_detail.html:34 templates/news/post_detail.html.py:39
+#: templates/news/post_detail_index.html:35
 msgid "Edit"
 msgstr "Editer"
 

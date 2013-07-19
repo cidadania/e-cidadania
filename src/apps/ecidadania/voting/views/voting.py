@@ -1,26 +1,24 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2013 Clione Software
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
-# This file is part of e-cidadania.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-# e-cidadania is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
-# e-cidadania is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 import hashlib
 
 from django.core.mail import send_mail
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404, HttpResponseServerError
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required, permission_required
@@ -30,8 +28,6 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic import FormView
 from django.template import RequestContext
-from django.views.generic.create_update import create_object
-from django.views.generic.create_update import update_object
 from django.contrib.auth.models import User
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.forms.models import modelformset_factory, inlineformset_factory
@@ -44,7 +40,6 @@ from django.contrib.sites.models import get_current_site
 
 from e_cidadania import settings
 from core.spaces.models import Space
-from core.permissions import has_all_permissions, has_space_permission, has_operation_permission
 from apps.ecidadania.voting.models import *
 from apps.ecidadania.voting.forms import *
 from apps.ecidadania.proposals.models import Proposal, ProposalSet
@@ -64,6 +59,15 @@ class AddVoting(FormView):
     form_class = VotingForm
     template_name = 'voting/voting_form.html'
 
+    def dispatch(self, request, *Args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if (request.user.has_perm('admin_space', space) or
+            request.user.has_perm('mod_space', space)):
+            return super(AddVoting, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
     def get_form_kwargs(self):
         """
         This send the current space to the form so we can change the
@@ -80,15 +84,12 @@ class AddVoting(FormView):
 
     def form_valid(self, form):
         self.space = get_object_or_404(Space, url=self.kwargs['space_url'])
-        if has_operation_permission(self.request.user, self.space, 'voting.add_voting', allow=['admins', 'mods']):
-            form_uncommited = form.save(commit=False)
-            form_uncommited.author = self.request.user
-            form_uncommited.space = self.space
-            form_uncommited.save()
-            form.save_m2m()
-            return super(AddVoting, self).form_valid(form)
-        else:
-            template_name = 'not_allowed.html'
+        form_uncommited = form.save(commit=False)
+        form_uncommited.author = self.request.user
+        form_uncommited.space = self.space
+        form_uncommited.save()
+        form.save_m2m()
+        return super(AddVoting, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super(AddVoting, self).get_context_data(**kwargs)
@@ -107,6 +108,14 @@ class ViewVoting(DetailView):
     """
     context_object_name = 'voting'
     template_name = 'voting/voting_detail.html'
+
+    def dispatch(self, request, *Args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(ViewVoting, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_object(self):
         return Voting.objects.get(pk=self.kwargs['voting_id'])
@@ -140,15 +149,21 @@ class EditVoting(UpdateView):
     model = Voting
     template_name = 'voting/voting_form.html'
 
+    def dispatch(self, request, *Args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if (request.user.has_perm('admin_space', space) or
+            request.user.has_perm('mod_space', space)):
+            return super(EditVoting, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
     def get_success_url(self):
         return '/spaces/' + self.space.url
 
     def get_object(self):
         self.space = get_object_or_404(Space, url=self.kwargs['space_url'])
-        if has_operation_permission(self.request.user, self.space, 'voting.change_voting', allow=['admins', 'mods']):
-            return get_object_or_404(Voting, pk=self.kwargs['voting_id'])
-        else:
-            self.template_name = 'not_allowed.html'
+        return get_object_or_404(Voting, pk=self.kwargs['voting_id'])
 
     def get_context_data(self, **kwargs):
         context = super(EditVoting, self).get_context_data(**kwargs)
@@ -164,16 +179,22 @@ class DeleteVoting(DeleteView):
     """
     context_object_name = "get_place"
 
+    def dispatch(self, request, *Args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if (request.user.has_perm('admin_space', space) or
+            request.user.has_perm('mod_space', space)):
+            return super(DeleteVoting, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
     def get_success_url(self):
         space = self.kwargs['space_url']
         return '/spaces/%s' % (space)
 
     def get_object(self):
         self.space = get_object_or_404(Space, url=self.kwargs['space_url'])
-        if has_operation_permission(self.request.user, self.space, 'voting.delete_voting', allow=['admins', 'mods']):
-            return get_object_or_404(Voting, pk=self.kwargs['voting_id'])
-        else:
-            self.template_name = 'not_allowed.html'
+        return get_object_or_404(Voting, pk=self.kwargs['voting_id'])
 
     def get_context_data(self, **kwargs):
 
@@ -195,6 +216,14 @@ class ListVotings(ListView):
     .. versionadded:: 0.1.7 beta
     """
     paginate_by = 10
+
+    def dispatch(self, request, *Args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(ListVotings, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_queryset(self):
         key = self.kwargs['space_url']
@@ -225,7 +254,7 @@ def vote_voting(request, space_url):
     space = get_object_or_404(Space, url=space_url)
     voteform = VoteForm(request.POST)
 
-    if has_operation_permission(request.user, space, 'voting.change_voting', allow=['admins', 'mods', 'users']):
+    if request.user_has_perm('view_space', space):
         if request.method == 'POST' and voteform.is_valid():
             # Generate the objetct
             token = hashlib.md5("%s%s%s" % (request.user, space,
@@ -243,13 +272,14 @@ def vote_voting(request, space_url):
             user_email = request.user.email
             subject = _("Validate your vote")
             body = _("You voted recently on a process in our platform, please validate your vote following this link: %s") % full_url
-            send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [user_email])
-
-            return HttpResponse("Vote emmited")
-
+            try:
+                send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [user_email])
+            except:
+                return HttpResponseServerError(_("Couldn't send the email."))
+        else:
+            return HttpResponseBadRequest(_("Request is not POST."))
     else:
-        return HttpResponse("Error P02: Couldn't emit the vote. You're not \
-            allowed.")
+        raise PermissionDenied
 
 
 def validate_voting(request, space_url, token):
@@ -261,7 +291,18 @@ def validate_voting(request, space_url, token):
     error page.
     """
     space = get_object_or_404(Space, url=space_url)
-    try:
-        token = ConfirmVote.object.get(token=token)
-    except:
-        return HttpResponse("Couldn't find the token for validation.")
+    tk = get_object_or_404(ConfirmVote, token=token)
+
+    if (request.user.has_perm('admin_space', space) or
+        request.user.has_perm('mod_space', space) or
+        request.user == tk.user):
+        try:
+            prop = get_object_or_404(Proposal, pk=tk.proposal.id)
+            prop.votes.add(request.user)
+            return HttpResponse("Your vote has been validated.")
+        except:
+            return HttpResponse("Error V01: Couldn't find the token for validation or the token has already been used.")
+        tk.delete()
+
+    else:
+        raise PermissionDenied

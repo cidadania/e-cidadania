@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load wysiwyg %}
 
 {% comment %}
@@ -15,7 +16,7 @@ This is a form to edit the fields of the form. You can also add new fields to th
     {% if get_place %}
         <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
     {% else %}
-        <a href="{% url 'site-index' %}"><img src="{{ STATIC_URL }}/assets/logos/index.png" /></a>
+        <a href="{% url 'site-index' %}"><img src="{% static 'assets/logos/index.png' %}" /></a>
     {% endif %}
 {% endblock %}
 
@@ -23,13 +24,13 @@ This is a form to edit the fields of the form. You can also add new fields to th
     {% if get_place %}
         <img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />
     {% else %}
-        <img src="{{ STATIC_URL }}/assets/banners/index.png" />
+        <img src="{% static 'assets/banners/index.png' %}" />
     {% endif %}
 {% endblock %}
 
 {% block extrajs %}
-    <script src="{{ STATIC_URL }}/js/jquery.formset.js" type="text/javascript"></script>
-    <script src="{{ STATIC_URL }}/js/poll_choice.js" type="text/javascript"></script>
+    <script src="{% static 'js/jquery.formset.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/poll_choice.js' %}" type="text/javascript"></script>
     <script type="text/javascript">
         $(function() {
             $('#ajaxform thead tr').formset();
@@ -105,7 +106,7 @@ This is a form to edit the fields of the form. You can also add new fields to th
                 <label>{{ choice.choice_text.label }}</label>
                 <div class="controls">
                     <div class="input-append">
-                            {{ choice.choice_text }}
+                        {{ choice.choice_text }}
                         {% if choice.choice_text.help_text %}
                         <span class="add-on"><a href="#" rel="tooltip" title="{{ choice.choice_text.help_text }}"><i class="icon-question-sign"></i></a></span>
                         {% endif %}

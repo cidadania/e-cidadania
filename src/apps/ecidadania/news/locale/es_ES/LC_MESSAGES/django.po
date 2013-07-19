@@ -1,82 +1,89 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Oscar Carballal <oscar.carballal@cidadania.coop>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
-"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: 2012-12-17 12:08+0000\n"
 "Last-Translator: Oscar Carballal <oscar.carballal@cidadania.coop>\n"
 "Language-Team: Spanish (Spain) <ecidadania-es@freelists.org>\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin.py:37
+#: admin.py:40
 msgid "Other data"
 msgstr "Otros datos"
 
-#: models.py:33
+#: models.py:34
 msgid "Title"
 msgstr "Título"
 
-#: models.py:34
+#: models.py:35
 msgid "Max: 200 characters"
 msgstr "Máximo: 200 caracteres"
 
-#: models.py:35
+#: models.py:36
 msgid "Description"
 msgstr "Descripción"
 
-#: models.py:36
+#: models.py:37
 msgid "Date"
 msgstr "Fecha"
 
-#: models.py:37
+#: models.py:38
 msgid "Last update"
 msgstr "Última actualización"
 
-#: models.py:38
+#: models.py:39
 msgid "Author"
 msgstr "Autor"
 
-#: models.py:39
+#: models.py:40
 msgid ""
 "Change the user that will figure as the                                   "
 "author"
 msgstr "Cambiar el usuario que figura como autor"
 
-#: models.py:41
+#: models.py:42
 msgid "Publish in index"
 msgstr "Publicar en el indice"
 
-#: models.py:42
+#: models.py:43
 msgid "This will publish the post in the main site page"
 msgstr "Esto publicará el post en la página principal del sitio"
 
-#: models.py:43
+#: models.py:44
 msgid "Publish in"
 msgstr "Publicar en"
 
-#: models.py:45
+#: models.py:46
 msgid "If you want to post to the index leave this blank"
 msgstr "Si quieres publicarlo en la página principal deja esto en blanco"
 
-#: models.py:46
-msgid ""
-"Insert here relevant words related with"
-"                                      the post"
+#: models.py:47
+#, fuzzy
+msgid "Insert here relevant words related with the post"
 msgstr "Introduce aquí las palabras relevantes relacionadas con el post"
 
 #: models.py:48
 msgid "Views"
 msgstr "Vistas"
+
+#: models.py:52
+msgid "Post"
+msgstr ""
+
+#: models.py:53
+msgid "Posts"
+msgstr ""
 
 #: templates/news/news_list.html:4
 msgid "News list"
@@ -125,7 +132,9 @@ msgid ""
 "\n"
 "        Archive for %(m)s %(y)s\n"
 "    "
-msgstr "\nArchivo de %(m)s %(y)s"
+msgstr ""
+"\n"
+"Archivo de %(m)s %(y)s"
 
 #: templates/news/post_archive_month.html:38
 #, python-format
@@ -133,7 +142,9 @@ msgid ""
 "\n"
 "                    Archive for %(m)s %(y)s\n"
 "                "
-msgstr "\nArchivo de %(m)s %(y)s"
+msgstr ""
+"\n"
+"Archivo de %(m)s %(y)s"
 
 #: templates/news/post_archive_year.html:5
 #, python-format
@@ -141,7 +152,9 @@ msgid ""
 "\n"
 "        Archive for %(y)s\n"
 "    "
-msgstr "\nArchivo de %(y)s"
+msgstr ""
+"\n"
+"Archivo de %(y)s"
 
 #: templates/news/post_archive_year.html:38
 #, python-format
@@ -149,7 +162,9 @@ msgid ""
 "\n"
 "                    Archive for %(y)s\n"
 "                "
-msgstr "\nArchivo de %(y)s"
+msgstr ""
+"\n"
+"Archivo de %(y)s"
 
 #: templates/news/post_confirm_delete.html:4
 msgid "Delete news"
@@ -162,14 +177,17 @@ msgstr "Eliminar post"
 #: templates/news/post_confirm_delete.html:34
 msgid ""
 "Are you sure you want to delete this post? This action cannot be undone."
-msgstr "¿Estás seguro de querer eliminar esta entrada? Esta acción no se puede deshacer."
+msgstr ""
+"¿Estás seguro de querer eliminar esta entrada? Esta acción no se puede "
+"deshacer."
 
 #: templates/news/post_confirm_delete.html:38
-#: templates/news/post_detail.html:40 templates/news/post_detail_index.html:40
+#: templates/news/post_detail_index.html:40
 msgid "Delete"
 msgstr "Eliminar"
 
-#: templates/news/post_detail.html:35 templates/news/post_detail_index.html:35
+#: templates/news/post_detail.html:34 templates/news/post_detail.html.py:39
+#: templates/news/post_detail_index.html:35
 msgid "Edit"
 msgstr "Editar"
 

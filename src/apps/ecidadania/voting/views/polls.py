@@ -1,21 +1,19 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2013 Clione Software
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
-# This file is part of e-cidadania.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-# e-cidadania is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
-# e-cidadania is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 import datetime
 
@@ -27,27 +25,22 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.template import RequestContext
-from django.views.generic.create_update import create_object
-from django.views.generic.create_update import update_object
 from django.contrib.auth.models import User
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.forms.models import modelformset_factory, inlineformset_factory
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from helpers.cache import get_or_insert_object_in_cache
 from django.core.urlresolvers import reverse
-from django.db.models import Count
+from django.db.models import Count, Sum
 
 from core.spaces.models import Space
 from core.spaces import url_names as urln
-from core.permissions import has_all_permissions, has_space_permission, \
-    has_operation_permission
 from apps.ecidadania.voting import url_names as urln_voting
 from apps.ecidadania.voting.models import Choice, Poll
 from apps.ecidadania.voting.forms import PollForm, ChoiceFormSet
 from apps.ecidadania.proposals.models import Proposal
 
 
-@permission_required('voting.add_poll')
 def add_poll(request, space_url):
 
     """
@@ -63,8 +56,8 @@ def add_poll(request, space_url):
     choice_form = ChoiceFormSet(request.POST or None, prefix="choiceform",
         queryset=Choice.objects.none())
 
-    if (has_operation_permission(request.user, space, 'voting.add_poll',
-                                 allow=['admins', 'mods'])):
+    if (request.user.has_perm('admin_space', space) or
+        request.user.has_perm('mod_space')):
         if request.method == 'POST':
             if poll_form.is_valid() and choice_form.is_valid():
                 poll_form_uncommited = poll_form.save(commit=False)
@@ -87,8 +80,7 @@ def add_poll(request, space_url):
             'choiceform': choice_form, 'get_place': space},
             context_instance=RequestContext(request))
 
-    return render_to_response('not_allowed.html',
-        context_instance=RequestContext(request))
+    raise PermissionDenied
 
 
 class ViewPoll(DetailView):
@@ -101,6 +93,14 @@ class ViewPoll(DetailView):
     """
     context_object_name = 'poll'
     template_name = 'voting/poll_detail.html'
+
+    def dispatch(self, request, *Args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(ViewPoll, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_object(self):
         poll = get_object_or_404(Poll, pk=self.kwargs['pk'])
@@ -138,14 +138,32 @@ class ViewPollResults(DetailView):
     context_object_name = 'poll'
     template_name = 'voting/poll_results.html'
 
+    def dispatch(self, request, *Args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(ViewPollResults, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
     def get_object(self):
-        poll = get_object_or_404(Poll, pk=self.kwargs['pk'])
-        return poll
+        self.poll = get_object_or_404(Poll, pk=self.kwargs['pk'])
+        return self.poll
 
     def get_context_data(self, **kwargs):
         context = super(ViewPollResults, self).get_context_data(**kwargs)
         space = get_object_or_404(Space, url=self.kwargs['space_url'])
+        total_votes = Choice.objects.filter(poll=self.poll)
+
+        # This fuckin' shitty logic should be removed from here, maybe there's
+        # a way to do this with django. The thing is to obtain all the votes
+        # from each choice and 'sum them all!'
+        v = 0
+        for vote in total_votes:
+            v += vote.votes.count()
+
         context['get_place'] = space
+        context['votes_total'] = v
         return context
 
 
@@ -159,10 +177,10 @@ def edit_poll(request, space_url, poll_id):
     """
     place = get_object_or_404(Space, url=space_url)
 
-    if has_operation_permission(request.user, place, 'voting.change_poll',
-                                allow=['admins', 'mods']):
+    if (request.user.has_perm('admin_space', place) or
+        request.user.has_perm('mod_space', place)):
 
-        ChoiceFormSet = inlineformset_factory(Poll, Choice)
+        ChoiceFormSet = inlineformset_factory(Poll, Choice, extra=1)
         instance = Poll.objects.get(pk=poll_id)
         poll_form = PollForm(request.POST or None, instance=instance)
         choice_form = ChoiceFormSet(request.POST or None, instance=instance,
@@ -176,10 +194,12 @@ def edit_poll(request, space_url, poll_id):
 
                 saved_poll = poll_form_uncommited.save()
 
-                for form in choice_form.forms:
-                    choice = form.save(commit=False)
-                    choice.poll = instance
-                    choice.save()
+                choices = choice_form.save(commit=False)
+
+                for form in choices:
+                    form.poll = instance
+                    form.save()
+
                 return HttpResponseRedirect(reverse(urln.SPACE_INDEX,
                 kwargs={'space_url': place.url}))
 
@@ -190,9 +210,7 @@ def edit_poll(request, space_url, poll_id):
                                   'pollid': poll_id, },
                                  context_instance=RequestContext(request))
     else:
-        return render_to_response('not_allowed.html',
-            context_instance=RequestContext(request))
-
+        raise PermissionDenied
 
 class DeletePoll(DeleteView):
 
@@ -202,17 +220,22 @@ class DeletePoll(DeleteView):
     """
     context_object_name = "get_place"
 
+    def dispatch(self, request, *Args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if (request.user.has_perm('admin_space', space) or
+            request.user.has_perm('mod_space', space)):
+            return super(DeletePoll, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
     def get_success_url(self):
         space = self.kwargs['space_url']
         return '/spaces/%s' % (space)
 
     def get_object(self):
         space = get_object_or_404(Space, url=self.kwargs['space_url'])
-        if has_operation_permission(self.request.user, space,
-                                    'voting.delete_poll', allow=['admins']):
-            return get_object_or_404(Poll, pk=self.kwargs['poll_id'])
-        else:
-            self.template_name = 'not_allowed.html'
+        return get_object_or_404(Poll, pk=self.kwargs['poll_id'])
 
     def get_context_data(self, **kwargs):
         context = super(DeletePoll, self).get_context_data(**kwargs)
@@ -229,15 +252,18 @@ class ListPolls(ListView):
     """
     paginate_by = 10
 
+    def dispatch(self, request, *Args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if request.user.has_perm('view_space', space):
+            return super(ListPolls, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
     def get_queryset(self):
         key = self.kwargs['space_url']
         current_space = get_or_insert_object_in_cache(Space, key, url=key)
         polls = Poll.objects.filter(space=current_space)
-
-        # Here must go a validation so a user registered to the space
-        # can always see the poll list. While an anonymous or not
-        # registered user can't see anything unless the space is public
-
         return polls
 
     def get_context_data(self, **kwargs):
@@ -266,8 +292,7 @@ def vote_poll(request, poll_id, space_url):
             'error_message': "You didn't select a choice.",
         }, context_instance=RequestContext(request))
 
-    if request.method == 'POST' and has_space_permission(request.user, space,
-    allow=['admins', 'mods', 'users']):
+    if request.user.has_perm('view_space', space) and request.method == 'POST':
         poll.participants.add(request.user)
         choice.votes.add(request.user)
         return render_to_response('voting/poll_results.html',
@@ -275,5 +300,4 @@ def vote_poll(request, poll_id, space_url):
             select a choice."}, context_instance=RequestContext(request))
 
     else:
-        return HttpResponse("Error P02: Couldn't emit the vote. You're not \
-            allowed.")
+        raise PermissionDenied

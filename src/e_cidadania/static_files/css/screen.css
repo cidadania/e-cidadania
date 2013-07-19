@@ -9,37 +9,66 @@
 
 /* HTML TAGS DEFINITION */
 
-body {
-	background: #FAFAFA;
-	padding: 0;
-	margin: 0;
-	font-family: 'Duru Sans', Verdana, "Lucida Sans", Arial;
-	font-size: 12px;
-	color: #000;
-	cursor: default;
+html, body {
+    background: #FAFAFA;
+    font-family: 'PT Sans Caption', Verdana, "Lucida Sans", Arial;
+    font-size: 12px;
+    color: #000;
+    padding: 0;
+    margin: 0;
+    cursor: default;
+    height: 100%;
+    margin-bottom: -85px;
 }
 
 a {
-	text-decoration: none;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 img {
-	border: none;
+    border: none;
 }
 
 textarea {
     width: 510px;
     margin: 10px;
 }
-/* END HTML TAGS DEFINITION */
 
-/* COMMON CUSTOMIZATIONS */
 hr { /* This hr replaces the bootstrap one */
     border-bottom: 1px solid #DDD;
 }
 
+#footer {
+    -webkit-box-shadow: inset 0px 5px 6px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0px 5px 6px 0px rgba(0, 0, 0, 0.5);
+}
+/* END HTML TAGS DEFINITION */
+
+/* COMMON CUSTOMIZATIONS */
+.well {
+    padding: 20px 0px 0px 20px;
+}
+
+.ealert {
+    width: 800px;
+    margin: 40px -425px;
+    left: 50%;
+    position: absolute;
+}
 .hidden {
     display: none;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin-bottom: -40px;
+    padding-bottom: 15px;
 }
 
 .error {
@@ -65,6 +94,11 @@ hr { /* This hr replaces the bootstrap one */
     color: #222;
 }
 
+/* Fix bootstrap tooltip nowrap */
+.tooltip-inner {
+    white-space: normal;
+}
+
 #logo {
     float: left;
     /* The logo image must be 75px height */
@@ -84,14 +118,11 @@ hr { /* This hr replaces the bootstrap one */
 }
 
 .mainfooter {
-    position: fixed;
-    bottom: 0;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 100%;
-    margin: auto;
+    margin-top: 25px;
+    padding: 15px 15px;
+    width: auto;
     color: #EEE;
-    background: #000;
+    background: url("../assets/bg.png") repeat-x;
     opacity: 0.8;
     border: none;
     font-size: 10px;
@@ -119,12 +150,12 @@ hr { /* This hr replaces the bootstrap one */
 /* END COMMON CUSTOMIZATIONS */
 
 /* BOOTSTRAP OVERRIDES */
-.modal {
+/*.modal {
     width: 700px;
     height: 500px;
     margin: -250px 0 0 -350px;
     overflow: auto;
-}
+}*/
 /* END BOOTSTRAP OVERRIDES */
 
 /* MAIN INDEX */
@@ -501,11 +532,11 @@ td.filled ul li a {
 }
 
 #debate td, th {
-  	border-width: 1px;
-	border-spacing: 0px;
-	border-style: inset;
-	border-color: #CCC;
-	border-collapse: collapse;
+    border-width: 1px;
+    border-spacing: 0px;
+    border-style: inset;
+    border-color: #CCC;
+    border-collapse: collapse;
 }
 
 tbody td {
@@ -699,6 +730,12 @@ table {
 #debate table a.delete-row, #debate table a.add-row {
     display:none;
 }
+
+.debateinfo {
+    margin-top: 20px;
+    text-align: center;
+    margin: auto;
+}
 /* END DEBATE */
 
 /* VOTES AND POLLS */
@@ -718,7 +755,7 @@ table {
   color: #006DCC;
 }
 .votes {
-  visibility:hidden;
+  display: none;
 }
 
 /* Empty class for jqueryui-datepicker translate fix */
@@ -727,6 +764,23 @@ table {
 }
 
 /*^END VOTES AND POLLS */
+
+/* ROLES */
+.ui-state-default {
+    padding: 5px;
+    margin: 5px;
+}
+
+.user-placeholder {
+    width: 100%;
+    height: 20px;
+    background: #EEE;
+}
+
+.delete {
+    color: red;
+}
+/* END ROLES */
 
 /************************************************
  PATCH FOR FONT-AWESOME WITH BOOTSTRAP 2.2.1

@@ -1,38 +1,35 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2013 Clione Software
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
-# This file is part of e-cidadania.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-# e-cidadania is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
-# e-cidadania is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 import datetime
 import hashlib
 
 from django.views.generic.detail import DetailView
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import permission_required, login_required
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.core.mail import send_mail
 from django.contrib import messages
+from django.core.exceptions import PermissionDenied
 
 from e_cidadania import settings
 from core.spaces.models import Space, Intent
 from helpers.cache import get_or_insert_object_in_cache
-from core.permissions import has_space_permission, has_all_permissions
 
 
 @login_required
@@ -87,6 +84,12 @@ class ValidateIntent(DetailView):
     context_object_name = 'get_place'
     template_name = 'spaces/validate_intent.html'
     status = _("The requested intent does not exist!")
+
+    def dispatch(self, reques, *args, **kwargs):
+        if request.user.is_authenticated:
+            return super(ValidateIntent, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_object(self):
         # Makes sure the space ins't already in the cache before hitting the

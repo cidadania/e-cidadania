@@ -1,21 +1,19 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2013 Clione Software
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
-# This file is part of e-cidadania.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-# e-cidadania is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
-# e-cidadania is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 """
 Proposal data models are the ones to store the data inside the DB.
@@ -118,6 +116,11 @@ class ProposalSet(models.Model):
         verbose_name = _('Proposal set')
         verbose_name_plural = _('Proposal sets')
         get_latest_by = 'pub_date'
+        permissions = (
+            ('view_proposalset', 'Can view the ProposalSet'),
+            ('admin_proposalset', 'Can administrate the ProposalSet'),
+            ('mod_proposalset', 'Can moderate the ProposalSet'),
+        )
 
     @models.permalink
     def get_absolute_url(self):
@@ -194,6 +197,11 @@ class Proposal(BaseProposalAbstractModel):
         verbose_name = _('Proposal')
         verbose_name_plural = _('Proposals')
         get_latest_by = 'pub_date'
+        permissions = (
+            ('view_proposal', 'Can view the Proposal'),
+            ('admin_proposal', 'Can administrate the Proposal'),
+            ('mod_proposal', 'Can moderate the Proposal'),
+        )
 
     @models.permalink
     def get_absolute_url(self):
@@ -215,7 +223,7 @@ class ProposalField(models.Model):
 
     """
 
-    proposalset= models.ForeignKey(ProposalSet, help_text=_('Customizing \
+    proposalset = models.ForeignKey(ProposalSet, help_text=_('Customizing \
         proposal form for a proposal set'), unique=False)
     field_name = models.CharField(max_length=100, choices=OPTIONAL_FIELDS, help_text=_('Additional field that needed to added to the proposal \
         form'))

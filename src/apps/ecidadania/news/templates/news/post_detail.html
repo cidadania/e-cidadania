@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load comments %}
 
 {% block title %}{{ news.title }}{% endblock %}
@@ -7,7 +8,7 @@
     {% if get_place %}
         <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
     {% else %}
-        <a href="/"><img src="{{ STATIC_URL }}/assets/logos/index.png" /></a>
+        <a href="/"><img src="{% static 'assets/logos/index.png' %}" /></a>
     {% endif %}
 {% endblock %}
 
@@ -15,7 +16,7 @@
     {% if get_place %}
         <img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />
     {% else %}
-        <img src="{{ STATIC_URL }}/assets/banners/index.png" />
+        <img src="{% static 'assets/banners/index.png' %}" />
     {% endif %}
 {% endblock %}
 
@@ -31,13 +32,13 @@
         <div class="span8">
             <h2 class="posttitle"><a href="{{ news.get_absolute_url }}">{{ news.title }}</a>
                 {% if perms.news.change_post %}
-                    <a href="{% url 'edit-post' get_place.url news.id %}">
-                        <img src="{{ STATIC_URL }}/assets/icons/edit16.png" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}"/>
+                    <a href="{% url 'edit-post' get_place.url news.id %}" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}">
+                        <i class="icon-edit" style="font-size:16px;"></i> 
                     </a>
                 {% endif %}
                 {% if perms.news.delete_post %}
-                    <a href="{% url 'delete-post' get_place.url news.id %}">
-                        <img src="{{ STATIC_URL }}/assets/icons/delete16.png" alt="{% trans 'Delete' %}" title="{% trans 'Delete' %}"/>
+                    <a href="{% url 'delete-post' get_place.url news.id %}" alt="{% trans 'Edit' %}" title="{% trans 'Edit' %}">
+                        <i class="icon-trash" style="font-size:16px;"></i>
                     </a>
                 {% endif %}
             </h2>
@@ -53,6 +54,32 @@
             <h4>{% trans "Recent posts" %}</h4>
             <h4>{% trans "Related posts" %}</h4>
             <h4>{% trans "Share this post" %}</h4>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="ecidadania">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+            <div class="fb-like" data-send="false" data-width="450" data-show-faces="false"></div>
+
+            <!-- Inserta esta etiqueta donde quieras que aparezca Botón +1. -->
+            <div class="g-plusone" data-size="medium"></div>
+
+            <!-- Inserta esta etiqueta después de la última etiqueta de Botón +1. -->
+            <script type="text/javascript">
+              window.___gcfg = {lang: 'es'};
+
+              (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://apis.google.com/js/plusone.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+              })();
+            </script>
         </div>
     </div>
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-13 09:31+0100\n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,43 +18,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: admin.py:38
+#: admin.py:41
 msgid "Description"
 msgstr ""
 
-#: admin.py:41
+#: admin.py:44
 msgid "Options"
 msgstr ""
 
-#: models.py:30
+#: models.py:31
 msgid "Page Title"
 msgstr ""
 
-#: models.py:31
+#: models.py:32
 msgid "URL"
 msgstr ""
 
-#: models.py:32
+#: models.py:33
 msgid "Content"
 msgstr ""
 
-#: models.py:33
+#: models.py:34
 msgid "Show in footer"
 msgstr ""
 
-#: models.py:34
+#: models.py:35
 msgid "Author"
 msgstr ""
 
-#: models.py:36
+#: models.py:37
 msgid "Last update"
 msgstr ""
 
-#: models.py:37
+#: models.py:38
 msgid "Order"
 msgstr ""
 
-#: models.py:41
+#: models.py:42
 msgid "Static Pages"
 msgstr ""
 

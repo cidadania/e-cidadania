@@ -1,21 +1,19 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2013 Clione Software
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
-# This file is part of e-cidadania.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-# e-cidadania is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
-# e-cidadania is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 from datetime import datetime
 
@@ -49,7 +47,7 @@ class Space(models.Model):
                      underscore. This will be the accesible URL'))
     description = models.TextField(_('Description'),
         default=_('Write here your description.'))
-    date = models.DateTimeField(_('Date of creation'), auto_now_add=True)
+    pub_date = models.DateTimeField(_('Date of creation'), auto_now_add=True)
     author = models.ForeignKey(User, blank=True, null=True,
         verbose_name=_('Space creator'), help_text=_('Select a user that \
         will be marked as creator of the space'))
@@ -60,15 +58,6 @@ class Space(models.Model):
     public = models.BooleanField(_('Public space'), help_text=_("This will \
         make the space visible to everyone, but registration will be \
         necessary to participate."))
-    # theme = models.CharField(_('Theme'), m)
-    admins = models.ManyToManyField(User, related_name="space_admins", verbose_name=_('Administrators'), help_text=_('Please select the \
-        users that will be administrators of this space'), blank=True,
-        null=True)
-    mods = models.ManyToManyField(User, related_name="space_mods",
-        verbose_name=_('Moderators'), help_text=_('Please select the users \
-        that will be moderators of this space.'), blank=True, null=True)
-    users = models.ManyToManyField(User, related_name="space_users", verbose_name=_('Users'), help_text=_('Please select the users that \
-        can participate on this space'), blank=True, null=True)
 
 # Modules
     mod_debate = models.BooleanField(_('Debate'))
@@ -82,9 +71,11 @@ class Space(models.Model):
         ordering = ['name']
         verbose_name = _('Space')
         verbose_name_plural = _('Spaces')
-        get_latest_by = 'date'
+        get_latest_by = 'pub_date'
         permissions = (
-            ('view', 'Can view this space.'),
+            ('view_space', 'Can view this space.'),
+            ('admin_space', 'Can administrate this space.'),
+            ('mod_space', 'Can moderate this space.')
         )
 
     def __unicode__(self):
@@ -183,7 +174,7 @@ class Event(models.Model):
     event_author = models.ForeignKey(User, verbose_name=_('Created by'),
         blank=True, null=True, related_name='meeting_author',
         help_text=_('Select the user that will be designated as author.'))
-    event_date = models.DateField(verbose_name=_('Event date'),
+    event_date = models.DateTimeField(verbose_name=_('Event date'),
         help_text=_('Select the date where the event is celebrated.'))
     description = models.TextField(_('Description'), blank=True, null=True)
     location = models.TextField(_('Location'), blank=True, null=True)
@@ -193,7 +184,7 @@ class Event(models.Model):
         max_digits=17, decimal_places=15, help_text=_('Specify it in decimal'))
 
     def is_due(self):
-        if self.pub_date < datetime.now():
+        if self.event_date < datetime.now():
             return True
         else:
             return False
@@ -204,7 +195,9 @@ class Event(models.Model):
         verbose_name_plural = _('Events')
         get_latest_by = 'event_date'
         permissions = (
-            ('view', 'Can view this event'),
+            ('view_event', 'Can view this event'),
+            ('admin_event', 'Can administrate this event'),
+            ('mod_event', 'Can moderate this event'),
         )
 
     def __unicode__(self):

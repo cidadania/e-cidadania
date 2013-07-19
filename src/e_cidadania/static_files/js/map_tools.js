@@ -4,7 +4,6 @@
                            
     License: GPLv3
     Copyright: 2011 Cidadania S. Coop. Galega
-    Author: Vishrut Mehta <vishrut.mehta009@gmail.com>
 */
 
 // Translation scrings
@@ -24,14 +23,16 @@ function toggleMap() {
     /* toggleMap() - Show or hide the map div. */
 
     $('#showmap').click( function() {
-        $('#map').slideToggle(500);
+        $('#map').show(500);
         if ($('#map').data("show")=="no") {
+            $('#map').removeClass('hidden');
             $("#showmap").text(hidemap);
             $('#map').data("show","yes");
         }
         else {
             $("#showmap").text(showmap);
-            $('#map').data("show","no");     
+            $('#map').data("show","no");
+            $('#map').addClass('hidden');
         }
     })
 }

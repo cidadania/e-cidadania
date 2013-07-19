@@ -70,26 +70,17 @@ Requirements
 **Dependencies**
 
 - Python 2.7.x
-- django 1.4.x
+- django 1.5.x
 - PIL *(Python Imaging Library)*
 - python-datetime *(version 1.5)*
+- django-guardian >= 1.1
 - django-tagging
-- django-grappelli
-- feedparser
-- pyyaml
 
 You can install all the required dependencies automatically with this command::
 
     # pip install -r requirements.txt
 
-Most of the requirements are automatically installed this way, but there are
-some packages that need to be installed via the system packages, for example:
-
-* PIL
-
-.. warning:: There are reported errors for people that tried to install PIL from
-             pip instead from the official system package. The problem is due to
-             the lack of some features of PIL needed in e-cidadania.
+.. note:: If you have some problem installing e-cidadania, please refer to :doc:`installfaq`.
 
 Platform
 ````````
@@ -102,6 +93,7 @@ a try follow this steps:
 .. note:: e-cidadania comes preconfigured for a development environment. You
           will have to set the DEBUG flag to **False** in
           *src/e_cidadania/settings/__init__.py*
+
 ::
 
     $ ./manage.py syncdb # This will create all the database objects

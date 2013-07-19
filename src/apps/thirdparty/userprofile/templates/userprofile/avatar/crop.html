@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 
 {% block title %}{% trans "Crop &amp; resize the area you want" %}{% endblock %}
 {% block robots %}noindex,nofollow{% endblock %}
@@ -7,8 +8,8 @@
 {% block extrajs %}
 <!--<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.imgareaselect-0.4.2.min.js"></script>-->
 <!------Adding new image select js and css files ---------->
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/imgareaselect-default.css" />
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.imgareaselect.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/imgareaselect-default.css' %}" />
+<script type="text/javascript" src="{% static 'js/jquery.imgareaselect.pack.js' %}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
       $('#cropimage').imgAreaSelect({

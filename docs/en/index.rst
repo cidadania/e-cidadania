@@ -31,6 +31,7 @@ Installation & Configuration
     :maxdepth: 2
 
     docs/installation
+    docs/installfaq
     docs/configuration
     docs/deployment
 
@@ -79,7 +80,6 @@ Reference
 Getting help
 ------------
 
-- Try looking the `FAQ <http://ecidadania.org/faq>`_.
 - e-cidadania mailing lists
 
   * ecidadania-users@freelists.org
@@ -88,5 +88,3 @@ Getting help
 
 - Bug reporting in the e-cidadania `bug tracker <http://code.ecidadania.org>`_ or
   contact us through e-mail at info@ecidadania.org
-
-:doc:`authors`

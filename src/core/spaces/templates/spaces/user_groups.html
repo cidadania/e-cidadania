@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load wysiwyg %}
 
 {% block title %}
@@ -16,44 +17,54 @@
 {% block content %}
 
 <div class="row">
+    <div class="span12">
         <h3>{% trans "Edit roles for" %} {{ get_place.name }}</h3>
 
-        <form class="form" enctype="" action="" method="post">{% csrf_token %}
-
-            {% if form.non_field_errors %}
-                {% for error in form.non_field_errors %}
-                    <span class="help-inline">{{ error|escape }}</span>
-                {% endfor %}
-            {% endif %}
-
-            {% for field in form %}
-                <div class="span4">
-                    <div class="control-group {% if field.errors %}error{% endif%}">
-                        <label>{{ field.label }}</label>
-                        <div class="controls">
-                            <div class="input-prepend">
-                                {{ field }}
-                                {% if field.help_text %}
-                                    <span class="add-on"><a href="#" rel="tooltip" title="{{ field.help_text }}"><i class="icon-question-sign"></i></a></span>
-                                {% endif %}
-                            </div>
-                            {% if field.errors %}
-                                <p class="help-block">
-                                    {% for error in field.errors %}
-                                        {{ error|escape }}
-                                    {% endfor %}
-                                </p>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-
-            <hr>
-            <a href="{{ get_place.get_absolute_url }}" class="btn btn-danger btn-small">&laquo; {% trans "Cancel" %}</a>
-            <input class="btn btn-small btn-primary" type="submit" value="{% trans 'Save' %}" />
-
-        </form>
+        <h6>{% trans "Add new user to" %} {{ get_place.name }} </h6>
+        <input id="user-search" type="text" class="input-medium search-query" placeholder="{% trans 'Put the exact username here' %}">
+        <a href="#" id="user-search-btn" class="btn">{% trans "Add user" %}</a>
+    </div>
 </div>
 
+<div class="row">
+    <div class="span4">
+        <h6>{% trans "Administrators in" %} {{ get_place.name }}</h6>
+        <ul id="admins" class="connectedSortable unstyled">
+            {% for u in user_admins %}
+                <li id="{{ u.id }}" class="ui-state-default">
+                    {{ u.username }}{% if u.get_profile.name %} ({{ u.get_profile.name }}){% endif %}
+                    <a href="#" class="pull-right delete" title="{% trans 'Delete user' %} {{ u.username }}"><i class="icon-remove"></i></a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="span4"> 
+        <h6>{% trans "Moderators in" %} {{ get_place.name }}</h6>
+        <ul id="mods" class="connectedSortable unstyled">
+            {% for u in user_mods %}
+                <li id="{{ u.id }}" class="ui-state-default">
+                    {{ u.username }}{% if u.get_profile.name %} ({{ u.get_profile.name }}){% endif %}
+                    <a href="#" class="pull-right delete" title="{% trans 'Delete user' %} {{ u.username }}"><i class="icon-remove"></i></a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="span4">
+        <h6>{% trans "Users in" %} {{ get_place.name }}</h6>
+        <ul id="users" class="connectedSortable unstyled">
+            {% for u in user_users %}
+                <li id="{{ u.id }}" class="ui-state-default">
+                    {{ u.username }}{% if u.get_profile.name %} ({{ u.get_profile.name }}){% endif %}
+                    <a href="#" class="pull-right delete" title="{% trans 'Delete user' %} {{ u.username }}"><i class="icon-remove"></i></a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block extrajsbottom %}
+    <script src="{% static 'js/role_edit.js' %}" type="text/javascript"></script>
 {% endblock %}

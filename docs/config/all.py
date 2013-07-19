@@ -45,14 +45,14 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'e-cidadania'
-copyright = u'2010-2012, Cidadania S. Coop. Galega'
+copyright = u'2011-2013, Cidadania S. Coop. Galega'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = '0.1.8 beta'
+version = '0.1.9 beta'
 
 # The full version, including alpha/beta/rc tags.
 #release = 'final'
@@ -126,7 +126,7 @@ html_theme_path = ['../_templates/.']
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['../_static']
+#html_static_path = ['../_static']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -172,6 +172,10 @@ html_show_copyright = False
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'e-cidadaniadoc'
 
+html_theme_options = {
+    'navbar_class': "navbar navbar-inverse",
+    'navbar_fixed_top': "true",
+}
 
 # -- Options for LaTeX output --------------------------------------------------
 

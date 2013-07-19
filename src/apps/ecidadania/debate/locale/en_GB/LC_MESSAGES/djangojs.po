@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,6 +31,7 @@ msgid "Edit"
 msgstr ""
 
 #: static/js/debate_board.js:15 static/js/debate_board.js.c:27
+#: static/js/debate_board_expired.js:14
 msgid "View"
 msgstr ""
 
@@ -46,7 +47,7 @@ msgstr ""
 msgid "Couldn't create note."
 msgstr ""
 
-#: static/js/debate_board.js:19
+#: static/js/debate_board.js:19 static/js/debate_board_expired.js:12
 msgid "Couldn't get note data."
 msgstr ""
 
@@ -74,7 +75,7 @@ msgstr ""
 msgid "Are you sure?"
 msgstr ""
 
-#: static/js/debate_board.js:26
+#: static/js/debate_board.js:26 static/js/debate_board_expired.js:13
 msgid "Comment"
 msgstr ""
 
@@ -82,11 +83,11 @@ msgstr ""
 msgid "Delete note"
 msgstr ""
 
-#: static/js/debate_board.js:30
+#: static/js/debate_board.js:30 static/js/debate_board_expired.js:15
 msgid "Caution"
 msgstr ""
 
-#: static/js/debate_board.js:31
+#: static/js/debate_board.js:31 static/js/debate_board_expired.js:16
 msgid ""
 "You are adding too much columns. We put no limit,     but too many columns "
 "will be a problem in smaller screens."

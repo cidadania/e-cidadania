@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 
 {% block title %}{% trans "Delete news" %}{% endblock %}
 
@@ -7,7 +8,7 @@
     {% if get_place %}
         <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
     {% else %}
-        <a href="/"><img src="{{ STATIC_URL }}/assets/logos/index.png" /></a>
+        <a href="/"><img src="{% static 'assets/logos/index.png' %}" /></a>
     {% endif %}
 {% endblock %}
 
@@ -15,7 +16,7 @@
     {% if get_place %}
         <img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />
     {% else %}
-        <img src="{{ STATIC_URL }}/assets/banners/index.png" />
+        <img src="{% static 'assets/banners/index.png' %}" />
     {% endif %}
 {% endblock %}
 

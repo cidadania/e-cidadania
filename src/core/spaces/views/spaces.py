@@ -1,69 +1,74 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2013 Clione Software
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
-# This file is part of e-cidadania.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-# e-cidadania is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
-# e-cidadania is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-from django.views.generic.base import RedirectView
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-from django.views.generic import FormView
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import permission_required
-from django.shortcuts import render_to_response, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib import messages
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.comments.models import Comment
 from django.db.models import Count
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.core.exceptions import PermissionDenied
+from django.http import HttpResponseRedirect, HttpResponse, \
+    HttpResponseNotFound, HttpResponseBadRequest, HttpResponseServerError
+from django.contrib.auth.models import User
+
+from helpers.cache import get_or_insert_object_in_cache
+from operator import itemgetter
+from guardian.shortcuts import assign_perm, get_users_with_perms, remove_perm, get_perms
+from guardian.core import ObjectPermissionChecker
 
 from core.spaces import url_names as urln
 from core.spaces.models import Space, Entity, Document, Event
 from core.spaces.forms import SpaceForm, EntityFormSet, RoleForm
-from core.permissions import has_space_permission, has_all_permissions
 from apps.ecidadania.news.models import Post
 from apps.ecidadania.proposals.models import Proposal, ProposalSet
 from apps.ecidadania.staticpages.models import StaticPage
 from apps.ecidadania.debate.models import Debate
 from apps.ecidadania.voting.models import Poll, Voting
-from helpers.cache import get_or_insert_object_in_cache
+from e_cidadania.settings import DEBUG
 
-from operator import itemgetter
 
 # Please take in mind that the create_space view can't be replaced by a CBV
 # (class-based view) since it manipulates two forms at the same time. Apparently
 # that creates some trouble in the django API. See this ticket:
 # https://code.djangoproject.com/ticket/16256
-
-
-@permission_required('spaces.add_space')
+@login_required
 def create_space(request):
 
     """
     Returns a SpaceForm form to fill with data to create a new space. There
     is an attached EntityFormset to save the entities related to the space.
-    Only site administrators are allowed to create spaces.
+    Every user in the platform is allowed to create spaces. Once it's created
+    we assign the administration permissions to the user, along with some
+    others for the sake of functionality.
 
-    :attributes: - space_form: empty SpaceForm instance
-                 - entity_forms: empty EntityFormSet
-    :rtype: Space object, multiple entity objects.
-    :context: form, entityformset
+    .. note:: Since everyone can have the ability to create spaces, instead
+              of checking for the add_space permission we just ask for login.
+
+    :attributes:           - space_form: empty SpaceForm instance
+                           - entity_forms: empty EntityFormSet
+    :permissions required: login_required
+    :rtype:                Space object, multiple entity objects.
+    :context:              form, entityformset
     """
     space_form = SpaceForm(request.POST or None, request.FILES or None)
     entity_forms = EntityFormSet(request.POST or None, request.FILES or None,
@@ -86,6 +91,30 @@ def create_space(request):
             # space.admins.add(request.user)
             space_form.save_m2m()
 
+            # Assign permissions to the user so he can chenge everything in the
+            # space
+            assign_perm('view_space', request.user, space)
+            assign_perm('change_space', request.user, space)
+            assign_perm('delete_space', request.user, space)
+            assign_perm('admin_space', request.user, space)
+
+            if DEBUG:
+                # This will tell us if the user got the right permissions for
+                # the object
+                un = request.user.username
+                u = ObjectPermissionChecker(request.user)  # Avoid unnecesary queries for the permission checks
+                print """Space permissions for user '%s':
+                View: %s
+                Change: %s
+                Delete: %s
+                Admin: %s
+                Mod: %s
+                """ % (un, u.has_perm('view_space', space),
+                    u.has_perm('change_space', space),
+                    u.has_perm('delete_space', space),
+                    u.has_perm('admin_space', space),
+                    u.has_perm('mod_space', space))
+
             return HttpResponseRedirect(reverse(urln.SPACE_INDEX,
                 kwargs={'space_url': space.url}))
 
@@ -99,47 +128,56 @@ class ViewSpaceIndex(DetailView):
 
     """
     Returns the index page for a space. The access to spaces is restricted and
-    filtered in the get_object method. This view gathers information from all
-    the configured modules in the space.
+    filtered in the dispatch method. This view gathers information from all
+    the configured modules in the space and also makes some calculations to
+    gather most commented posts, most interesting content, etc.
 
-    :attributes: space_object, place
-    :rtype: Object
-    :context: get_place, entities, documents, proposals, publication
+
+    :attributes:           - space_object/space/place: current space instance
+    :permissions required: space.view_space
+    :rtype:                Object
+    :context: get_place, entities, documents, proposals, proposalsets,
+              publication, mostviewed, mostcommented, mostcommentedproposal,
+              page, messages, debates, events, votings, polls, participants.
     """
     context_object_name = 'get_place'
     template_name = 'spaces/space_index.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        """
+        We get the current space and user, first we check if the space is
+        public, if so, we check if the user is anonymous and leave a message,
+        after that we return the view. If the space is not public we check
+        for the view permission of the object, if the user doesn't have it we
+        return a 403. Since dispatch is run before anything, this checks are
+        made before obtaining the object. If the user doesn't have the
+        permission we return a 403 code, which is handled by
+        django-guardian and returns a template.
+
+        .. note:: Take in mind that the dispatch method takes **request** as a
+                  parameter.
+        """
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if space.public:
+            if request.user.is_anonymous():
+                messages.info(self.request, _("Hello anonymous user. Remember \
+                    that this space is public to view, but you must \
+                    <a href=\"/accounts/register\">register</a> or \
+                    <a href=\"/accounts/login\">login</a> to participate."))
+
+            return super(ViewSpaceIndex, self).dispatch(request, *args, **kwargs)
+
+        if request.user.has_perm('view_space', space):
+            return super(ViewSpaceIndex, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_object(self):
         # Makes sure the space ins't already in the cache before hitting
         # the database
         space_url = self.kwargs['space_url']
-        space_object = get_or_insert_object_in_cache(Space, space_url,
-            url=space_url)
-
-        if space_object.public or has_all_permissions(self.request.user):
-            if self.request.user.is_anonymous():
-                messages.info(self.request, _("Hello anonymous user. Remember \
-                    that this space is public to view, but you must \
-                    <a href=\"/accounts/register\">register</a> or \
-                    <a href=\"/accounts/login\">login</a> to participate."))
-            return space_object
-
-        # Check if the user is in the admitted user groups of the space
-        if has_space_permission(self.request.user, space_object,
-                                allow=['admins', 'mods', 'users']):
-            return space_object
-
-        # If the user does not meet any of the conditions, it's not allowed to
-        # enter the space
-        if self.request.user.is_anonymous():
-            messages.info(self.request, _("You're an anonymous user. You must \
-                <a href=\"/accounts/register\">register</a> or \
-                <a href=\"/accounts/login\">login</a> to access here."))
-        else:
-            messages.warning(self.request, _("You're not registered to this \
-            space."))
-
-        self.template_name = 'not_allowed.html'
+        space_object = get_or_insert_object_in_cache(Space, space_url, url=space_url)
         return space_object
 
     # Get extra context data
@@ -160,17 +198,17 @@ class ViewSpaceIndex(DetailView):
         comment_list = {}
         most_commented = []
         for proposal in Proposal.objects.filter(space=place.id):
-            comment_list[proposal.pk]=Comment.objects.filter(object_pk=proposal.pk).count()
-        for p in dict(sorted(comment_list.items(), key = itemgetter(1))):
+            comment_list[proposal.pk] = Comment.objects.filter(object_pk=proposal.pk).count()
+        for p in dict(sorted(comment_list.items(), key=itemgetter(1))):
             most_commented.append(Proposal.objects.filter(pk=p))
-        
+
         highlighted = {}
         highlight = []
         for i in Proposal.objects.filter(space=place.id):
             highlighted[i.pk] = i.support_votes.count
-        for p in dict(sorted(highlighted.items(), key = itemgetter(1))):
+        for p in dict(sorted(highlighted.items(), key=itemgetter(1))):
             highlight.append(Proposal.objects.filter(pk=p))
-        
+
         context['entities'] = Entity.objects.filter(space=place.id)
         context['documents'] = Document.objects.filter(space=place.id)
         context['proposalsets'] = ProposalSet.objects.filter(space=place.id)
@@ -197,11 +235,7 @@ class ViewSpaceIndex(DetailView):
                                                 .order_by('-event_date')
         context['votings'] = Voting.objects.filter(space=place.id)
         context['polls'] = Poll.objects.filter(space=place.id)
-        # True if the request.user has admin rights on this space
-        context['user_is_admin'] = (self.request.user in place.admins.all()
-            or self.request.user in place.mods.all()
-            or self.request.user.is_staff or self.request.user.is_superuser)
-        context['polls'] = Poll.objects.filter(space=place.id)
+        context['participants'] = get_users_with_perms(place)
         return context
 
 
@@ -209,26 +243,27 @@ class ViewSpaceIndex(DetailView):
 # (class-based view) since it manipulates two forms at the same time. Apparently
 # that creates some trouble in the django API. See this ticket:
 # https://code.djangoproject.com/ticket/16256
-@permission_required('spaces.change_space')
 def edit_space(request, space_url):
 
     """
     Returns a form filled with the current space data to edit. Access to
     this view is restricted only to site and space administrators. The filter
-    for space administrators is given by the change_space permission and their
-    belonging to that space.
+    for space administrators is given by the change_space and admin_space
+    permission and their belonging to that space.
 
-    :attributes: - place: current space intance.
-                 - form: SpaceForm instance.
-                 - form_uncommited: form instance before commiting to the DB,
-                   so we can modify the data.
-    :param space_url: Space URL
-    :rtype: HTML Form
-    :context: form, get_place
+    :attributes:           - place: current space intance.
+                           - form: SpaceForm instance.
+                           - form_uncommited: form instance before commiting to
+                             the DB, so we can modify the data.
+    :permissions required: spaces.change_space, spaces.admin_space
+    :param space_url:      Space URL
+    :rtype:                HTML Form
+    :context:              form, get_place, entityformset
     """
     place = get_object_or_404(Space, url=space_url)
 
-    if has_space_permission(request.user, place, allow=['admins']):
+    if (request.user.has_perm('change_space', place) and
+        request.user.has_perm('admin_space', place)):
         form = SpaceForm(request.POST or None, request.FILES or None,
             instance=place)
         entity_forms = EntityFormSet(request.POST or None, request.FILES
@@ -255,8 +290,8 @@ def edit_space(request, space_url):
                     'get_place': place, 'entityformset': entity_forms},
                     context_instance=RequestContext(request))
 
-    return render_to_response('not_allowed.html',
-        context_instance=RequestContext(request))
+    else:
+        raise PermissionDenied
 
 
 class DeleteSpace(DeleteView):
@@ -264,38 +299,28 @@ class DeleteSpace(DeleteView):
     """
     Returns a confirmation page before deleting the space object completely.
     This does not delete the space related content. Only the site
-    administrators can delete a space.
+    administrators or the space administrators can delete a space.
 
-    :rtype: Confirmation
+    :attributes:           space_url
+    :permissions required: spaces.delete_space, spaces.admin_space
+    :rtype:                Confirmation
     """
     context_object_name = 'get_place'
     success_url = '/'
 
-    @method_decorator(permission_required('spaces.delete_space'))
-    def dispatch(self, *args, **kwargs):
-        return super(DeleteSpace, self).dispatch(*args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        space = get_object_or_404(Space, url=kwargs['space_url'])
+
+        if (request.user.has_perm('delete_space', space) and
+            request.user.has_perm('admin_space', space)):
+            return super(DeleteSpace, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     def get_object(self):
-        space = get_object_or_404(Space, url=self.kwargs['space_url'])
-        if self.request.user in space.admins.all():
-            return space
-        else:
-            self.template_name = 'not_allowed.html'
-            return space
-
-
-# class GoToSpace(RedirectView):
-
-#     """
-#     Sends the user to the selected space. This view only accepts GET petitions.
-#     GoToSpace is a django generic :class:`RedirectView`.
-
-#     :Attributes: **self.place** - Selected space object
-#     :rtype: Redirect
-#     """
-#     def get_redirect_url(self, **kwargs):
-#         self.place = get_object_or_404(Space,name = self.request.GET['spaces'])
-#         return '/spaces/%s' % self.place.url
+        space_url = self.kwargs['space_url']
+        space = get_object_or_404(Space, url=space_url)
+        return space
 
 
 class ListSpaces(ListView):
@@ -305,6 +330,11 @@ class ListSpaces(ListView):
     view. The users associated to a private spaces will see it, but not the
     other private spaces. ListSpaces is a django generic :class:`ListView`.
 
+    .. note:: Permissions on this view are used only to filter the spaces list
+              but the view itself is public.
+
+    :attributes: space_url
+    :permissions required: spaces.view_space
     :rtype: Object list
     :contexts: object_list
     """
@@ -325,12 +355,14 @@ class ListSpaces(ListView):
         # operand.
         current_user = self.request.user
         user_spaces = set()
+        all_spaces = Space.objects.all()
+        public_spaces = Space.objects.filter(public=True)
 
         if not current_user.is_anonymous():
             for space in self.all_spaces:
-                if has_space_permission(current_user, space,
-                                        allow=['users', 'admins', 'mods']):
+                if current_user.has_perm('view_space', space):
                     user_spaces.add(space.pk)
+
             user_spaces = Space.objects.filter(pk__in=user_spaces)
             return self.public_spaces | user_spaces
 
@@ -338,38 +370,107 @@ class ListSpaces(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ListSpaces, self).get_context_data(**kwargs)
-        context['all_spaces'] = self.all_spaces
         context['public_spaces'] = self.public_spaces
         return context
 
 
-class EditRole(UpdateView):
+def edit_roles(request, space_url):
 
     """
-    This view allows the administrator to edit the roles for every user in the
-    platform.
+    The edit_role function works to provide a way for space administrators to
+    modify the users roles inside a space, at the space level.
 
-    .. versionadded: 0.1.5
+    It basically works as an AJAX communication where the frontend sends to key
+    values: userid and perm, containing the user ID and the permission code,
+    which later we compare with the permissions dictionary. If the user has the
+    permission we go to the next one and so on.
+
+    There is a special perm code called "delete" that triggers the deletion of
+    all the permissions for the current user on the current space.
+
+    :ajax keys: userid, perm
+    :returns: reponses
+    :versionadded: 0.1.9
     """
 
-    form_class = RoleForm
-    model = Space
-    template_name = 'spaces/user_groups.html'
+    space = get_object_or_404(Space, url=space_url)
+    perm_dict = {
+        'admins': ['admin_space', 'view_space'],
+        'mods': ['mod_space', 'view_space'],
+        'users': ['view_space', ]
+    }
 
-    def get_success_url(self):
-        space = self.kwargs['space_url']
-        return reverse(urln.SPACE_INDEX, kwargs={'space_url': space})
+    if request.user.has_perm('admin_space', space):
+        if request.method == 'POST' and request.is_ajax():
+            user = get_object_or_404(User, pk=request.POST['userid'])
+            cur_user_perms = get_perms(user, space)
 
-    def get_object(self):
-        cur_space = get_object_or_404(Space, url=self.kwargs['space_url'])
-        return cur_space
+            if request.POST['perm'] == "delete":
+                for p in cur_user_perms:
+                    try:
+                        remove_perm(p, user, space)
+                    except:
+                        return HttpResponseServerError(_("Couldn't delete user permissions."))
+                return HttpResponse(_('Permissions deleted. User removed from space.'))
 
-    def get_context_data(self, **kwargs):
-        context = super(EditRole, self).get_context_data(**kwargs)
-        context['get_place'] = get_object_or_404(Space,
-            url=self.kwargs['space_url'])
-        return context
+            else:
+                try:
+                    perm = perm_dict[request.POST['perm']]
+                    for p in perm:
+                        if p in cur_user_perms:
+                            pass
+                        else:
+                            try:
+                                assign_perm(p, user, space)
+                            except:
+                                return HttpResponseServerError(_("The permissions couldn't be assigned."))
+                    return HttpResponse(_('Permissions assigned.'))
+                except:
+                    return HttpResponseBadRequest(_('Permission code not valid.'))
+        else:
+            space_users = get_users_with_perms(space, with_superusers=False)
+            admins = set()
+            mods = set()
+            users = set()
+            for user in space_users:
+                if user.has_perm('admin_space', space):
+                    admins.add(user)
+                elif user.has_perm('mod_space', space):
+                    mods.add(user)
+                else:
+                    # We omit the check for "view_space" because the space_users
+                    # variable is already filtered to show only the users with permissions
+                    # on that object and users shows all the users in the space.
+                    users.add(user)
 
-    @method_decorator(permission_required('spaces.change_space'))
-    def dispatch(self, *args, **kwargs):
-        return super(EditRole, self).dispatch(*args, **kwargs)
+            return render_to_response('spaces/user_groups.html',
+                {'get_place': space, 'user_admins': admins, 'user_mods': mods,
+                 'user_users': users}, context_instance=RequestContext(request))
+    else:
+        raise PermissionDenied
+
+
+def search_user(request, space_url):
+
+    """
+    Simple search user mechanishm, it makes a query to django with the strict
+    user name, it it doesn't match, it returns an error.
+
+    :ajax keys: uname
+    :returns: user ID
+    .. versionadded:: 0.1.9
+    """
+    space = get_object_or_404(Space, url=space_url)
+
+    if request.user.has_perm('admin_space', space):
+        if request.method == 'POST' and request.is_ajax():
+            try:
+                user = User.objects.get(username=request.POST['uname'])
+                assign_perm('view_space', user, space)
+                return HttpResponse(user.id)
+            except:
+                return HttpResponseNotFound(_('The user does not exist.'))
+        else:
+            return HttpResponseBadRequest(_("Wrong petition."))
+    else:
+        raise PermissionDenied

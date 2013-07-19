@@ -1,0 +1,47 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: static/js/role_edit.js:10
+msgid "An error has ocurred."
+msgstr ""
+
+#: static/js/role_edit.js:11
+msgid "Changes saved"
+msgstr ""
+
+#: static/js/role_edit.js:12
+msgid "The changes have been saved successfully."
+msgstr ""
+
+#: static/js/role_edit.js:13
+msgid "Are you sure?"
+msgstr ""
+
+#: static/js/role_edit.js:14
+msgid "User added to users group"
+msgstr ""
+
+#: static/js/role_edit.js:15
+msgid "The user has been successfully added to the users list."
+msgstr ""
+
+#: static/js/role_edit.js:16
+msgid "Delete user"
+msgstr ""

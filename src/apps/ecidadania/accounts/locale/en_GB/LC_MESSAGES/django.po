@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-13 09:31+0100\n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,62 +26,62 @@ msgstr ""
 msgid "Female"
 msgstr ""
 
-#: models.py:44
+#: models.py:45
 msgid "Interest"
 msgstr ""
 
-#: models.py:56
+#: models.py:57
 msgid "Name"
 msgstr ""
 
-#: models.py:57
+#: models.py:58
 msgid "Surname"
 msgstr ""
 
-#: models.py:58
+#: models.py:59
 msgid "Gender"
 msgstr ""
 
-#: models.py:60
+#: models.py:61
 msgid "Birth date"
 msgstr ""
 
-#: models.py:76
+#: models.py:77
 msgid "District"
 msgstr ""
 
-#: models.py:79
+#: models.py:80
 msgid "Address"
 msgstr ""
 
-#: models.py:80
+#: models.py:81
 msgid "Number"
 msgstr ""
 
-#: models.py:82
+#: models.py:84
 msgid "Floor"
 msgstr ""
 
-#: models.py:83
+#: models.py:87
 msgid "Letter"
 msgstr ""
 
-#: models.py:86
+#: models.py:89
 msgid "Phone 1"
 msgstr ""
 
-#: models.py:91 models.py:97
+#: models.py:94 models.py:100
 msgid "9 digits maximum"
 msgstr ""
 
-#: models.py:92
+#: models.py:95
 msgid "Phone 2"
 msgstr ""
 
-#: models.py:99
+#: models.py:102
 msgid "Identification document"
 msgstr ""
 
-#: models.py:102
+#: models.py:105
 msgid "Website"
 msgstr ""

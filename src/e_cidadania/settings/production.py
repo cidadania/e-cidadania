@@ -1,21 +1,19 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2010-2012 Cidadania S. Coop. Galega
+# Copyright (c) 2013 Clione Software
+# Copyright (c) 2010-2013 Cidadania S. Coop. Galega
 #
-# This file is part of e-cidadania.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-# e-cidadania is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
-# e-cidadania is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with e-cidadania. If not, see <http://www.gnu.org/licenses/>.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 from e_cidadania.settings.defaults import *
 
@@ -24,7 +22,7 @@ from e_cidadania.settings.defaults import *
 # EMAIL_PORT=
 # EMAIL_HOST_USER=""
 # EMAIL_HOST_PASSWORD=""
-# DEFAULT_FROM_EMAIL = ""
+DEFAULT_FROM_EMAIL = ""
 # EMAIL_USE_TLS = True
 
 # Time and zone configuration
@@ -45,6 +43,10 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
+# Change this to your working domain! If this variable is empty, django
+# will return an error 500
+#ALLOWED_HOSTS = ['*'] # This allows any host. INSECURE!
+ALLOWED_HOSTS = []
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '8nwcwmtau*bnu0u=shmdkda^-tpn55ch%qeqc8xn#-77r8c*0a'
@@ -53,7 +55,7 @@ SECRET_KEY = '8nwcwmtau*bnu0u=shmdkda^-tpn55ch%qeqc8xn#-77r8c*0a'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'e_cidadania/db/production.db',
+        'NAME': 'e_cidadania/db/development.db',
         'USER': '',
         'PASSWORD': '',
         'HOST': '',

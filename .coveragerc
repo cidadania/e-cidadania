@@ -15,4 +15,4 @@ omit =
 [report]
 exclude_lines =
     pragma: no cover
-show_missing = True       
+show_missing = True

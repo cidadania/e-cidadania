@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static from staticfiles %}
 {% load wysiwyg %}
 
 {% comment %}
@@ -15,7 +16,7 @@ This is a form to create a new poll. It uses poll_board.js file to add new choic
     {% if get_place %}
         <a href="{{ get_place.get_absolute_url }}"><img src="{{ MEDIA_URL }}/{{ get_place.logo }}" /></a>
     {% else %}
-        <a href="{% url 'site-index' %}"><img src="{{ STATIC_URL }}/assets/logos/index.png" /></a>
+        <a href="{% url 'site-index' %}"><img src="{% static 'assets/logos/index.png' %}" /></a>
     {% endif %}
 {% endblock %}
 
@@ -23,11 +24,23 @@ This is a form to create a new poll. It uses poll_board.js file to add new choic
     {% if get_place %}
         <img src="{{ MEDIA_URL }}/{{ get_place.banner }}" />
     {% else %}
-        <img src="{{ STATIC_URL }}/assets/banners/index.png" />
+        <img src="{% static 'assets/banners/index.png' %}" />
     {% endif %}
 {% endblock %}
 
 {% block extrajs %}
+    {% if form.question.value %}
+    <script src="{% static 'js/jquery.formset.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/poll_choice.js' %}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#ajaxform thead tr').formset();
+            $('#ajaxform tbody tr').formset();
+        })
+        $( "#datepicker-start" ).datepicker( $.datepicker.regional[ "{{ LANGUAGE_CODE }}" ] );
+        $( "#datepicker-end" ).datepicker( $.datepicker.regional[ "{{ LANGUAGE_CODE }}" ] );
+    </script>
+    {% endif %}
 {% endblock %}
 
 {% block space %}
@@ -48,7 +61,7 @@ This is a form to create a new poll. It uses poll_board.js file to add new choic
             <h3>{% trans "Create new poll" %}</h3>
         {% endif %}
 
-        <form class="form-horizontal"  enctype="" action="" method="post">{% csrf_token %}
+        <form class="form-horizontal" {% if form.question.value %}id="ajaxform"{% endif %} enctype="" action="" method="post">{% csrf_token %}
 
             {% if form.non_field_errors %}
                 {% for error in form.non_field_errors %}
@@ -57,7 +70,7 @@ This is a form to create a new poll. It uses poll_board.js file to add new choic
             {% endif %}
 
             <div class="control-group {% if form.question.errors %}error{% endif%}">
-                <label class="control-label" class="control-label">{{ form.question.label }}</label>
+                <label class="control-label">{{ form.question.label }}</label>
                 <div class="controls">
                     <div class="input-append">
                         {{ form.question }}
@@ -136,6 +149,7 @@ This is a form to create a new poll. It uses poll_board.js file to add new choic
             
             {{ choiceform.management_form }}
             {% for choice in choiceform %}
+            {{ choice.id }}
             <div class="control-group {% if choice.choice_text.errors %}error{% endif %}">
                 <label class="control-label">{{ choice.choice_text.label }}</label>
                 <div class="controls">

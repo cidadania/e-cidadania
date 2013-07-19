@@ -1,105 +1,141 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Savita Seetaraman <savita.seetaraman5@gmail.com>, 2013.
 # Vishrut Mehta <vishrut.mehta009@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: e-cidadania\n"
-"Report-Msgid-Bugs-To: http://code.ecidadania.org/\n"
-"POT-Creation-Date: 2013-03-13 09:32+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-20 13:00+0200\n"
 "PO-Revision-Date: 2013-03-14 10:46+0000\n"
 "Last-Translator: savitats <savita.seetaraman5@gmail.com>\n"
-"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/language/hi_IN/)\n"
+"Language-Team: Hindi (India) (http://www.transifex.com/projects/p/ecidadania/"
+"language/hi_IN/)\n"
+"Language: hi_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hi_IN\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: models.py:42 models.py:111
+#: models.py:44 models.py:122
 msgid "Title"
 msgstr "शीर्षक"
 
-#: models.py:43
+#: models.py:45
 msgid "Description"
 msgstr "विवरण"
 
-#: models.py:44
+#: models.py:46
 msgid "Theme"
 msgstr "थीम"
 
-#: models.py:47 models.py:114
+#: models.py:49 models.py:125
 msgid "Date created"
 msgstr "तिथि बनाया"
 
-#: models.py:48
+#: models.py:50
 msgid "Last update"
 msgstr "अंतिम अपडेट"
 
-#: models.py:50
+#: models.py:52
 msgid "Start date"
 msgstr "प्रारंभ दिनांक"
 
-#: models.py:51
+#: models.py:53
 msgid "End date"
 msgstr "समाप्ति तिथि"
 
-#: models.py:80 models.py:93
+#: models.py:54
+msgid "Private"
+msgstr ""
+
+#: models.py:54
+msgid ""
+"Set the debate as private so only the accepted users can participate in it."
+msgstr ""
+
+#: models.py:90 models.py:104
 msgid "Criteria"
 msgstr "मापदंड"
 
-#: models.py:112
+#: models.py:123
 msgid "Message"
 msgstr "संदेश"
 
-#: models.py:117
+#: models.py:128
 msgid "Last modification time"
 msgstr "अंतिम संशोधन का समय"
 
+#: views.py:240
+msgid "The note form didn't validate. This fields gave errors: "
+msgstr ""
+
+#: views.py:244 views.py:345
+msgid "The petition was not POST."
+msgstr ""
+
+#: views.py:308
+msgid "The form is not valid, check field(s): "
+msgstr ""
+
+#: views.py:311
+msgid "Bad request"
+msgstr ""
+
+#: views.py:342
+msgid "There has been an error validating the form."
+msgstr ""
+
 #: templates/debate/debate_add.html:14 templates/debate/debate_add.html:43
+#: templates/debate/debate_view.html:63
 msgid "Edit debate"
 msgstr "बहस संपादित करें"
 
 #: templates/debate/debate_add.html:16 templates/debate/debate_add.html:45
-#: templates/debate/debate_add_simple.html:4
 msgid "Create new debate"
 msgstr "नई बहस बनाएँ"
 
-#: templates/debate/debate_add.html:49
+#: templates/debate/debate_add.html:50
 msgid "How to create a debate"
 msgstr "कैसे बनाने के लिए एक बहस"
 
-#: templates/debate/debate_add.html:52
+#: templates/debate/debate_add.html:53
 msgid ""
-"To create a debate, you must fill the fields with any criteria necessary for it,\n"
-"                    in this docuemntation page we have an example of a debate that you can follow to create yours.\n"
-"                    For the rest of the fields, just follow their respective instructions."
-msgstr "एक बहस बनाने के लिए, आप किसी भी इसके लिए आवश्यक मानदंडों के साथ क्षेत्र को भरने चाहिए, ⏎ इस docuemntation पृष्ठ में हम एक बहस चल रही है कि तुम तुम्हारा बनाने का पालन कर सकते हैं का एक उदाहरण है. क्षेत्रों के बाकी के लिए, सिर्फ उनके संबंधित निर्देशों का पालन करें."
+"To create a debate, you must fill the fields with any criteria necessary for "
+"it,\n"
+"                    in this docuemntation page we have an example of a "
+"debate that you can follow to create yours.\n"
+"                    For the rest of the fields, just follow their respective "
+"instructions."
+msgstr ""
+"एक बहस बनाने के लिए, आप किसी भी इसके लिए आवश्यक मानदंडों के साथ क्षेत्र को भरने चाहिए, "
+"⏎ इस docuemntation पृष्ठ में हम एक बहस चल रही है कि तुम तुम्हारा बनाने का पालन कर सकते "
+"हैं का एक उदाहरण है. क्षेत्रों के बाकी के लिए, सिर्फ उनके संबंधित निर्देशों का पालन करें."
 
-#: templates/debate/debate_add.html:58
+#: templates/debate/debate_add.html:59
 msgid "Close"
 msgstr "बंद करना"
 
-#: templates/debate/debate_add.html:66
+#: templates/debate/debate_add.html:67
 msgid "Remove column"
 msgstr "स्तंभ निकालें"
 
-#: templates/debate/debate_add.html:67
+#: templates/debate/debate_add.html:68
 msgid "Add column"
 msgstr "स्तंभ जोड़ें"
 
-#: templates/debate/debate_add.html:69
+#: templates/debate/debate_add.html:70
 msgid "Remove row"
 msgstr "पंक्ति निकालें"
 
-#: templates/debate/debate_add.html:70
+#: templates/debate/debate_add.html:71
 msgid "Add row"
 msgstr "पंक्ति जोड़ें"
 
-#: templates/debate/debate_add.html:113 templates/debate/debate_view.html:106
+#: templates/debate/debate_add.html:113
 msgid "Add new note"
 msgstr "नया नोट जोड़ें"
 
@@ -108,67 +144,111 @@ msgid "Change color"
 msgstr "रंग बदलें"
 
 #: templates/debate/debate_add.html:118
-#: templates/debate/debate_add_simple.html:60
 msgid "Other debate data"
 msgstr "अन्य बहस डेटा"
 
-#: templates/debate/debate_add.html:223
-#: templates/debate/debate_add_simple.html:121
-#: templates/debate/debate_view.html:140
+#: templates/debate/debate_add.html:242 templates/debate/debate_view.html:160
 msgid "Cancel"
 msgstr "रद्द करें"
 
-#: templates/debate/debate_add.html:224
-#: templates/debate/debate_add_simple.html:120
-#: templates/debate/debate_view.html:141
+#: templates/debate/debate_add.html:243 templates/debate/debate_view.html:161
 msgid "Save"
 msgstr "बचाना"
 
 #: templates/debate/debate_confirm_delete.html:4
 #: templates/debate/debate_confirm_delete.html:21
+#: templates/debate/debate_view.html:65
 msgid "Delete debate"
 msgstr "बहस हटाना"
 
 #: templates/debate/debate_confirm_delete.html:23
 msgid ""
 "Are you sure you want to delete this debate? This action cannot be undone."
-msgstr "क्या आप सुनिश्चित करें कि आप इस बहस को नष्ट करना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा सकता."
+msgstr ""
+"क्या आप सुनिश्चित करें कि आप इस बहस को नष्ट करना चाहते हैं? इस क्रिया को पूर्ववत नहीं "
+"किया जा सकता."
 
 #: templates/debate/debate_confirm_delete.html:26
-#: templates/debate/debate_list.html:34
+#: templates/debate/debate_list.html:31
 msgid "Go back"
 msgstr "वापस जाओ"
 
 #: templates/debate/debate_confirm_delete.html:27
-#: templates/debate/debate_list.html:23
+#: templates/debate/debate_list.html:20
 msgid "Delete"
 msgstr "हटाना"
 
-#: templates/debate/debate_list.html:7
+#: templates/debate/debate_expired_view.html:6
+#: templates/debate/debate_view.html:12
+msgid "View debate"
+msgstr "बहस देखें"
+
+#: templates/debate/debate_expired_view.html:25
+#: templates/debate/debate_view.html:31
+msgid "Description:"
+msgstr "विवरण:"
+
+#: templates/debate/debate_expired_view.html:26
+#: templates/debate/debate_view.html:32
+msgid "Theme:"
+msgstr "थीम:"
+
+#: templates/debate/debate_expired_view.html:31
+#: templates/debate/debate_view.html:37
+msgid "Start date:"
+msgstr "प्रारंभ दिनांक:"
+
+#: templates/debate/debate_expired_view.html:31
+#: templates/debate/debate_expired_view.html:32
+#: templates/debate/debate_view.html:37 templates/debate/debate_view.html:38
+msgid "No date"
+msgstr "बिना तारीख डाली हुई"
+
+#: templates/debate/debate_expired_view.html:32
+#: templates/debate/debate_view.html:38
+msgid "End date:"
+msgstr "समाप्ति तिथि:"
+
+#: templates/debate/debate_expired_view.html:78
+#: templates/debate/debate_view.html:102
+msgid "View"
+msgstr "देखना"
+
+#: templates/debate/debate_expired_view.html:83
+#: templates/debate/debate_view.html:113
+msgid "comments"
+msgstr "टिप्पणी"
+
+#: templates/debate/debate_expired_view.html:105
+#: templates/debate/debate_view.html:172
+msgid "Author:"
+msgstr "लेखक:"
+
+#: templates/debate/debate_list.html:4
 msgid "Debates in "
 msgstr "में वाद - विवाद"
 
-#: templates/debate/debate_list.html:13
+#: templates/debate/debate_list.html:10
 msgid "Debates in"
 msgstr "में वाद - विवाद"
 
-#: templates/debate/debate_list.html:20 templates/debate/debate_view.html:85
+#: templates/debate/debate_list.html:17 templates/debate/debate_view.html:107
 msgid "Edit"
 msgstr "संपादित करें"
 
-#: templates/debate/debate_list.html:30
+#: templates/debate/debate_list.html:27
 msgid "There are no debates."
 msgstr "वहाँ कोई बहस कर रहे हैं."
 
-#: templates/debate/debate_list.html:40
+#: templates/debate/debate_list.html:37
 msgid "previous"
 msgstr "पिछला"
 
-#: templates/debate/debate_list.html:43
+#: templates/debate/debate_list.html:40
 msgid "of"
 msgstr "की"
 
-#: templates/debate/debate_list.html:46
+#: templates/debate/debate_list.html:43
 msgid "next"
 msgstr "अगला"
 
@@ -178,10 +258,13 @@ msgid "Can't view this debate"
 msgstr "इस बहस को देखने के लिए नहीं किया जा सकता"
 
 #: templates/debate/debate_outdated.html:17
+#, fuzzy
 msgid ""
-"It seems that the debate you're trying to access is either <strong>not "
-"started</strong> or it <strong>expired</strong>."
-msgstr "ऐसा लगता है कि बहस आप का उपयोग करने की कोशिश कर रहे हैं या तो शुरू कर दिया </ strong> नहीं <strong> है या यह समाप्त </ strong> <strong>."
+"It seems that the debate you're trying to access has <strong>not started</"
+"strong>."
+msgstr ""
+"ऐसा लगता है कि बहस आप का उपयोग करने की कोशिश कर रहे हैं या तो शुरू कर दिया </ "
+"strong> नहीं <strong> है या यह समाप्त </ strong> <strong>."
 
 #: templates/debate/debate_outdated.html:20
 msgid "Started on:"
@@ -191,62 +274,35 @@ msgstr "को शुरू किया:"
 msgid "Finished on:"
 msgstr "पर समाप्त :"
 
-#: templates/debate/debate_view.html:6
-msgid "View debate"
-msgstr "बहस देखें"
+#: templates/debate/debate_view.html:61
+msgid "Edit user roles"
+msgstr ""
 
-#: templates/debate/debate_view.html:25
-msgid "Description:"
-msgstr "विवरण:"
+#: templates/debate/debate_view.html:67
+#, fuzzy
+msgid "New note"
+msgstr "नया नोट जोड़ें"
 
-#: templates/debate/debate_view.html:26
-msgid "Theme:"
-msgstr "थीम:"
-
-#: templates/debate/debate_view.html:31
-msgid "Start date:"
-msgstr "प्रारंभ दिनांक:"
-
-#: templates/debate/debate_view.html:31 templates/debate/debate_view.html:32
-msgid "No date"
-msgstr "बिना तारीख डाली हुई"
-
-#: templates/debate/debate_view.html:32
-msgid "End date:"
-msgstr "समाप्ति तिथि:"
-
-#: templates/debate/debate_view.html:78
-msgid "View"
-msgstr "देखना"
-
-#: templates/debate/debate_view.html:81
+#: templates/debate/debate_view.html:105
 msgid "Delete note"
 msgstr "नोट हटाना"
 
-#: templates/debate/debate_view.html:91
-msgid "comments"
-msgstr "टिप्पणी"
-
-#: templates/debate/debate_view.html:112
+#: templates/debate/debate_view.html:132
 msgid "Edit note"
 msgstr "नोट संपादित करें"
 
-#: templates/debate/debate_view.html:120
+#: templates/debate/debate_view.html:140
 msgid "100 characters"
 msgstr "100 अक्षरों"
 
-#: templates/debate/debate_view.html:152
-msgid "Author:"
-msgstr "लेखक:"
-
-#: templates/debate/debate_view.html:158
+#: templates/debate/debate_view.html:178
 msgid "Comment"
 msgstr "टिप्पणी"
 
-#: templates/debate/debate_view.html:162
+#: templates/debate/debate_view.html:182
 msgid "Submit"
 msgstr "प्रस्तुत करना"
 
-#: templates/debate/debate_view.html:163
+#: templates/debate/debate_view.html:183
 msgid "Preview"
 msgstr "पूर्वावलोकन"

@@ -1,7 +1,7 @@
 e-cidadania
 ===========
 
-Current version: 0.1.8 beta
+Current version: 0.1.9 alpha
 
 e-cidadania is a project to develop an open source application for citizen
 participation, which can be used for debates, proposals, trusted voting,
@@ -26,10 +26,15 @@ If you don't want to create an isolated development environment:
 
     sudo pip install -r requirements.txt
 
-* Configure *src/e_cidadania/settings/production.py to you desire.
+* Configure *src/e_cidadania/settings/production.py* to you desire.
+* Set *src/e_cidadania/settings/__init__.py* DEBUG to False
 * Generate the database with::
 
     python manage.py syncdb
+
+* Make all the south migrations::
+
+    pytohn manage.py migrate
 
 * Copy all the static files::
 
@@ -47,7 +52,7 @@ There is a demo running in the website http://demo.ecidadania.org.
 Development
 -----------
 
-**We need developers! If you want to join us, send an email to oscar.carballal AT cidadania DOT coop**
+**We need developers! If you want to join us, send an email to info@ecidadania.org**
 
 Development and bugtracking is done through `code.ecidadania.org <http://code.ecidadania.org>`_
 
@@ -69,10 +74,10 @@ Useful information
 Collaborate
 -----------
 
-* **Developing** You can take the last code from the repository and experiment with it. When you're done, you can send us a "Merge request". 
+* **Developing** You can take the last code from the repository and experiment with it. When you're done, you can send us a "Merge request". Please check the `How To Contribute <http://code.ecidadania.org/wiki/HowToContribute>`_ page.
 
 * **Documenting** Right now the documentation is a bit insufficient. If you want to document e-cidadania, feel free to do it. We use Sphinx (1.1.3) to generate the documents.
 
-* **Translating** e-cidadania achieves to be international. If you want to translate it to your language just follow the steps in the documentation an send your catalog to us, we will include it ASAP.
+* **Translating**  You can contribute translating e-cidadania from its page on `Transifex <http://www.transifex.net/projects/p/ecidadania/>`_. If you need a language that is not available, ask for it from Transifex and we will create it ASAP.
 
 * **Bug reporting** You can report the bugs you find in the application in this trac: http://code.ecidadania.org

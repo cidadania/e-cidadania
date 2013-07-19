@@ -161,6 +161,7 @@ THIRDPARTY_APPS = (
     'apps.thirdparty.tagging',
     'guardian',
     'south',
+    'rest_framework',
 )
 
 ECIDADANIA_MODULES = (
@@ -215,3 +216,18 @@ INSTALLED_APPS = DJANGO_APPS + THIRDPARTY_APPS + ECIDADANIA_MODULES
 # compatible till 1.5
 # import django.template
 # django.template.add_to_builtins('django.templatetags.future')
+
+REST_FRAMEWORK = {
+    # Use hyperlinked styles by default.
+    # Only used if the `serializer_class` attribute is not set on a view.
+    'DEFAULT_MODEL_SERIALIZER_CLASS':
+        'rest_framework.serializers.HyperlinkedModelSerializer',
+
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+
+    'PAGINATE_BY': 10
+}

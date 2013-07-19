@@ -48,6 +48,9 @@ urlpatterns += patterns('',
     # User accounts
     url(r'^accounts/', include('apps.thirdparty.userprofile.urls')),
 
+    # REST API
+    url(r'^api/', include('apps.ecidadania.api.urls'),
+
     # Spaces
     url(r'^spaces/', include('core.spaces.urls')),
 

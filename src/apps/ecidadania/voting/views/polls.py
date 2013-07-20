@@ -32,6 +32,7 @@ from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from helpers.cache import get_or_insert_object_in_cache
 from django.core.urlresolvers import reverse
 from django.db.models import Count, Sum
+from django.core.exceptions import PermissionDenied
 
 from core.spaces.models import Space
 from core.spaces import url_names as urln
@@ -94,7 +95,7 @@ class ViewPoll(DetailView):
     context_object_name = 'poll'
     template_name = 'voting/poll_detail.html'
 
-    def dispatch(self, request, *Args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         space = get_object_or_404(Space, url=kwargs['space_url'])
 
         if request.user.has_perm('view_space', space):
@@ -138,7 +139,7 @@ class ViewPollResults(DetailView):
     context_object_name = 'poll'
     template_name = 'voting/poll_results.html'
 
-    def dispatch(self, request, *Args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         space = get_object_or_404(Space, url=kwargs['space_url'])
 
         if request.user.has_perm('view_space', space):
@@ -220,7 +221,7 @@ class DeletePoll(DeleteView):
     """
     context_object_name = "get_place"
 
-    def dispatch(self, request, *Args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         space = get_object_or_404(Space, url=kwargs['space_url'])
 
         if (request.user.has_perm('admin_space', space) or
@@ -252,7 +253,7 @@ class ListPolls(ListView):
     """
     paginate_by = 10
 
-    def dispatch(self, request, *Args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         space = get_object_or_404(Space, url=kwargs['space_url'])
 
         if request.user.has_perm('view_space', space):

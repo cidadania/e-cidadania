@@ -389,8 +389,8 @@ class ViewDebate(DetailView):
         space = get_object_or_404(Space, url=kwargs['space_url'])
 
         if debate.private:
-            if (request.user.has_perm('admin_space', place) or
-                request.user.has_perm('mod_space', place) or
+            if (request.user.has_perm('admin_space', space) or
+                request.user.has_perm('mod_space', space) or
                 request.user.has_perm('view_debate', debate)):
                 return super(ViewDebate, self).dispatch(request, *args, **kwargs)
             else:

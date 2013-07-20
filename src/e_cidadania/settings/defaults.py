@@ -227,7 +227,7 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
 
-    'PAGINATE_BY': 10
+    'PAGINATE_BY': 10,
 }

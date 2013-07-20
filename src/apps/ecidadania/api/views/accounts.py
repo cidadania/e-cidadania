@@ -15,20 +15,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.conf.urls import patterns, url, include
-from rest_framework import routers
-from apps.ecidadania.api.views import accounts
+from django.contrib.auth.models import User, Group
+from rest_framework import viewsets
+from apps.ecidadania.api.serializers.accounts import UserSerializer, GroupSerializer
 
-router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browseable API.
-urlpatterns = patterns('',
-
-    url(r'^', include(router.urls)),
-
-    url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
-
-)
+class GroupViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer

@@ -36,6 +36,7 @@ cwd = os.path.dirname(os.path.realpath(__file__)).strip('settings')
 AUTH_PROFILE_MODULE = "accounts.UserProfile"
 ACCOUNT_ACTIVATION_DAYS = 2
 LOGIN_REDIRECT_URL = '/accounts/'
+LOGIN_URL = '/accounts/'
 ANONYMOUS_USER_ID = -1
 GUARDIAN_RENDER_403 = True
 

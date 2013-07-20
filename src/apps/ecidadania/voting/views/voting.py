@@ -37,6 +37,7 @@ from django.core.urlresolvers import NoReverseMatch, reverse
 from django.template.response import TemplateResponse
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.sites.models import get_current_site
+from django.core.exceptions import PermissionDenied
 
 from e_cidadania import settings
 from core.spaces.models import Space

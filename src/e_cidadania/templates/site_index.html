@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load static from staticfiles %}
-{% load cache %}
 
 {% block title %}{% trans "e-cidadania" %}{% endblock %}
 
@@ -15,10 +14,10 @@
         }
     </style>
 {% endblock %}
+
 {% block content %}
 
     <div class="row centered" style="margin-top: 80px;">
-
         <div class="span7" style="font-size:1em;background:#000000;opacity:0.8;color:#EEEEEE;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;">
             <div style="padding:25px;">
                 <h3>No pierdas el hilo</h3>
@@ -27,7 +26,7 @@
         </div>
 
         <div class="span3 offset1">
-            
+
             {% if not user.is_authenticated %}
             <div class="row">
                 <div class="span3 well">
@@ -37,7 +36,7 @@
                             <input id="id_password" name="password" class="span2" type="password" id="inputPassword" placeholder="Password"><button class="btn btn-success" type="submit">{% trans "Sign in" %}</button>
                         </div>
                         <div style="font-size:0.8em;">
-                            <a href="http://ecidadania.org/accounts/password/reset/">{% trans "Forgot your password?" %}</a> | 
+                            <a href="http://ecidadania.org/accounts/password/reset/">{% trans "Forgot your password?" %}</a> |
                             <a href="{% url 'invite' %}">{% trans "Invite someone!" %}</a>
                         </div>
                     </form>
@@ -57,9 +56,7 @@
                 </div>
             </div>
             {% endif %}
-
         </div>
-
     </div>
 
 {% endblock %}

@@ -34,10 +34,7 @@ def index_view(request):
     because using direct_to_template in urls.py doesn't refresh the content
     (it's loaded only once).
     """
-    space_list = Space.objects.filter(public=True)
-
     extra_context = {
-        'spaces': space_list,
         'version': settings.__version__,
         'status': settings.__status__,
         'debug_mode': settings.DEBUG,

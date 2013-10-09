@@ -48,6 +48,9 @@ urlpatterns += patterns('',
     # User accounts
     url(r'^accounts/', include('apps.thirdparty.userprofile.urls')),
 
+    # REST API
+    url(r'^api/', include('apps.ecidadania.api.urls')),
+
     # Spaces
     url(r'^spaces/', include('core.spaces.urls')),
 
@@ -69,9 +72,6 @@ urlpatterns += patterns('',
     # with the index view
     url(r'^(?P<slug>[\w\-]+)/', include('apps.ecidadania.staticpages.urls')),
 
-    # This url is for comments
-
-    #url(r'^comments/', include('django.contrib.comments.urls')),
 )
 
 if settings.DEBUG:

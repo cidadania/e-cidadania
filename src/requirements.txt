@@ -2,3 +2,10 @@ PIL
 python-dateutil==1.5
 django-guardian==1.1.0.beta
 south
+djangorestframework
+markdown
+django-filter
+pyyaml
+defusedxml
+django-oauth-plus
+django-oauth2-provider

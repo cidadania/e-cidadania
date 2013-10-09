@@ -15,4 +15,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Create your views here.
+from django.conf.urls import patterns, url, include
+from rest_framework import routers
+from apps.ecidadania.api.views.accounts import UserViewSet, GroupViewSet
+
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
+
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browseable API.
+urlpatterns = patterns('',
+
+    url(r'^', include(router.urls)),
+
+    # url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+)

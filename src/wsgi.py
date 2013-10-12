@@ -17,6 +17,11 @@
 
 import sys
 import os
+try:
+    import newrelic.agent
+    newrelic.agent.initialize('/home/cidprod/deploy/newrelic.ini')
+except ImportError:
+    print " [WARNING] The New Relic agent is not installed on this machine."
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'e_cidadania.settings'

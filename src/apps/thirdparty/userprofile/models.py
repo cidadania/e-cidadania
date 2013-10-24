@@ -9,10 +9,10 @@ from django.core.urlresolvers import reverse
 from django.core.mail import send_mail
 from django.conf import settings
 import datetime
-import cPickle as pickle
+import pickle
 import base64
-import Image
-import ImageFilter
+from PIL import Image
+from PIL import ImageFilter
 import os.path
 
 AVATAR_SIZES = (128, 96, 64, 48, 32, 24, 16)

@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import defaults
+from . import defaults
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -24,6 +24,6 @@ __version__ = defaults.__version__
 __status__ = defaults.__status__
 
 if DEBUG:
-    from development import *
+    from .development import *
 else:
-    from production import *
+    from .production import *

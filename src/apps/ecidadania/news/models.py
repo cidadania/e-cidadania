@@ -19,8 +19,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
-from apps.thirdparty.tagging.fields import TagField
-from apps.thirdparty.tagging.models import Tag
+from taggit.managers import TaggableManager
 from core.spaces.models import Space
 
 
@@ -42,7 +41,7 @@ class Post(models.Model):
     space = models.ForeignKey(Space, verbose_name=_('Publish in'),
                                    blank=True, null=True,
             help_text=_('If you want to post to the index leave this blank'))
-    post_tags = TagField(help_text=_('Insert here relevant words related with the post'))
+    post_tags = TaggableManager()
     views = models.IntegerField(_('Views'), blank=True, null=True)
 
     class Meta:

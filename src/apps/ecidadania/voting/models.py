@@ -20,8 +20,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
-from apps.thirdparty.tagging.fields import TagField
-from apps.thirdparty.tagging.models import Tag
+from taggit.managers import TaggableManager
+
 from core.spaces.models import Space
 from apps.ecidadania.proposals.models import *
 
@@ -55,8 +55,7 @@ class Poll(models.Model):
     space = models.ForeignKey(Space, verbose_name=_('Publish in'), blank=True,
         null=True, help_text=_('If you want to post to the index leave this \
         blank'))
-    poll_tags = TagField(help_text=_('Insert here relevant words related with \
-        the poll'))
+    poll_tags = TaggableManager()
     start_date = models.DateField(_('Start date'))
     end_date = models.DateField(_('End date'))
 

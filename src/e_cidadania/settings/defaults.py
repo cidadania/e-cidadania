@@ -159,7 +159,6 @@ THIRDPARTY_APPS = (
     # system-wide dependencies.
     'apps.thirdparty.smart_selects',
     'apps.thirdparty.userprofile',
-    'apps.thirdparty.tagging',
     'taggit',
     'guardian',
     'south',

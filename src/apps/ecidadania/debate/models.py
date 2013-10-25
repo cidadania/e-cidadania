@@ -25,8 +25,8 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
 
-from apps.thirdparty.tagging.fields import TagField
-from apps.thirdparty.tagging.models import Tag
+from taggit.managers import TaggableManager
+
 from core.spaces.models import Space
 
 

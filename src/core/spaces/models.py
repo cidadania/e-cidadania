@@ -24,8 +24,8 @@ from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 
 from core.spaces.file_validation import ContentTypeRestrictedFileField
-from fields import StdImageField
-from allowed_types import ALLOWED_CONTENT_TYPES
+from .fields import StdImageField
+from .allowed_types import ALLOWED_CONTENT_TYPES
 
 
 class Space(models.Model):

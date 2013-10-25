@@ -31,8 +31,8 @@ from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 
-from apps.thirdparty.tagging.fields import TagField
-from apps.thirdparty.tagging.models import Tag
+from taggit.managers import TaggableManager
+
 from core.spaces.models import Space
 from apps.ecidadania.debate.models import Debate
 
@@ -158,8 +158,7 @@ class Proposal(BaseProposalAbstractModel):
     author = models.ForeignKey(User, related_name='proposal_authors',
         blank=True, null=True, help_text=_('Change the user that will \
         figure as the author'))
-    tags = TagField(help_text=_('Insert here relevant words related with \
-        the proposal'))
+    tags = TaggableManager()
     latitude = models.DecimalField(_('Latitude'), blank=True, null=True,
         max_digits=17, decimal_places=15, help_text=_('Specify it in decimal'))
     longitude = models.DecimalField(_('Longitude'), blank=True, null=True,

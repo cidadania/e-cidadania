@@ -160,6 +160,7 @@ THIRDPARTY_APPS = (
     'apps.thirdparty.smart_selects',
     'apps.thirdparty.userprofile',
     'apps.thirdparty.tagging',
+    'taggit',
     'guardian',
     'south',
     'rest_framework',

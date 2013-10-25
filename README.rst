@@ -1,7 +1,7 @@
 e-cidadania
 ===========
 
-Current version: 0.1.9 alpha
+Current version: 0.1.9 beta2
 
 e-cidadania is a project to develop an open source application for citizen
 participation, which can be used for debates, proposals, trusted voting,
@@ -43,6 +43,8 @@ If you don't want to create an isolated development environment:
 * Run the development server
 
     python manage.py runserver
+
+**e-cidadania currently supports python 2.7.X. The work for porting to python 3 is on the "python3" branch.**
 
 Demonstration
 -------------

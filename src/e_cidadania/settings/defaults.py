@@ -26,7 +26,7 @@ import os
 
 # e-cidadania version and current status
 __version__ = "0.1.9"
-__status__ = "beta"
+__status__ = "beta2"
 
 # Get the current working directory so we can fill automatically other variables.
 cwd = os.path.dirname(os.path.realpath(__file__)).strip('settings')

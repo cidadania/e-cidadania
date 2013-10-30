@@ -23,8 +23,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 
-from core.spaces.file_validation import ContentTypeRestrictedFileField
 from .fields import StdImageField
+from .file_validation import ContentTypeRestrictedFileField
 from .allowed_types import ALLOWED_CONTENT_TYPES
 
 
@@ -52,14 +52,16 @@ class Space(models.Model):
         verbose_name=_('Space creator'), help_text=_('Select a user that \
         will be marked as creator of the space'))
     logo = StdImageField(upload_to='spaces/logos', size=(100, 75, False),
-        help_text = _('Valid extensions are jpg, jpeg, png and gif'))
+        help_text = _('Valid extensions are jpg, jpeg, png and gif'),
+        blank=True, null=True)
     banner = StdImageField(upload_to='spaces/banners', size=(500, 75, False),
-        help_text = _('Valid extensions are jpg, jpeg, png and gif'))
+        help_text = _('Valid extensions are jpg, jpeg, png and gif'),
+        blank=True, null=True)
     public = models.BooleanField(_('Public space'), help_text=_("This will \
         make the space visible to everyone, but registration will be \
         necessary to participate."))
 
-# Modules
+    # Modules
     mod_debate = models.BooleanField(_('Debate'))
     mod_proposals = models.BooleanField(_('Proposals'))
     mod_news = models.BooleanField(_('News'))

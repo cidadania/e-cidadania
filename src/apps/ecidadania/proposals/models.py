@@ -20,9 +20,8 @@ Proposal data models are the ones to store the data inside the DB.
 """
 
 import datetime
-from django.core import urlresolvers
 
-from django import forms
+from django.core import urlresolvers
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic

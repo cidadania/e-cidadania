@@ -11,3 +11,4 @@ pyyaml
 defusedxml
 #django-oauth-plus
 #django-oauth2-provider
+#django-stdimage

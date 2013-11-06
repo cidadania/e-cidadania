@@ -19,7 +19,7 @@
 This file contains all the URLs that e_cidadania will inherit when the user
 access to '/spaces/'.
 """
-from django.conf.urls import *
+from django.conf.urls import patterns, url, include
 
 from core.spaces.views.spaces import ViewSpaceIndex, ListSpaces, \
     DeleteSpace

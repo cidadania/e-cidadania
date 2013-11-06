@@ -16,7 +16,7 @@
 # limitations under the License.
 
 from django.db.models.fields.related import ForeignKey
-import form_fields
+from . import form_fields
 try:
     from south.modelsinspector import add_introspection_rules
     has_south = True
@@ -29,7 +29,7 @@ class ChainedForeignKey(ForeignKey):
     chains the choices of a previous combo box with this one
     """
     def __init__(self, to, chained_field=None, chained_model_field=None, show_all=False, auto_choose=False, **kwargs):
-        if isinstance(to, basestring):
+        if isinstance(to, str):
             self.app_name, self.model_name = to.split('.')
         else:
             self.app_name = to._meta.app_label

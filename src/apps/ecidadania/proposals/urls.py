@@ -19,7 +19,7 @@
 Proposal module URLs.
 """
 
-from django.conf.urls import *
+from django.conf.urls import patterns, url
 
 from apps.ecidadania.proposals.views.common import ViewProposal, \
     support_proposal

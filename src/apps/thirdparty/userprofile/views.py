@@ -16,12 +16,11 @@
 # limitations under the License.
 
 import base64
-import cPickle as pickle
-import Image
+import pickle
+import PIL.Image as Image
 import os
 import random
 import urllib
-import urllib2
 from xml.dom import minidom
 
 from django.contrib.auth.decorators import login_required
@@ -69,8 +68,8 @@ if not os.path.isfile(DEFAULT_AVATAR):
     import shutil
     image = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                          "generic.jpg")
-    print image
-    print DEFAULT_AVATAR
+    print(image)
+    print(DEFAULT_AVATAR)
     shutil.copy(image, DEFAULT_AVATAR)
 
 GOOGLE_MAPS_API_KEY = hasattr(settings, "GOOGLE_MAPS_API_KEY") and \

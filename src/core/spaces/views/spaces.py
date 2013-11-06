@@ -103,13 +103,13 @@ def create_space(request):
                 # the object
                 un = request.user.username
                 u = ObjectPermissionChecker(request.user)  # Avoid unnecesary queries for the permission checks
-                print """Space permissions for user '%s':
-                View: %s
-                Change: %s
-                Delete: %s
-                Admin: %s
-                Mod: %s
-                """ % (un, u.has_perm('view_space', space),
+                print("""Space permissions for user {0}:
+                View: {1}
+                Change: {2}
+                Delete: {3}
+                Admin: {4}
+                Mod: {5}
+                """).format(un, u.has_perm('view_space', space),
                     u.has_perm('change_space', space),
                     u.has_perm('delete_space', space),
                     u.has_perm('admin_space', space),

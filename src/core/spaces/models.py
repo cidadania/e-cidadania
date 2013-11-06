@@ -23,7 +23,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 
-from .fields import StdImageField
+#from .fields import StdImageField
 from .file_validation import ContentTypeRestrictedFileField
 from .allowed_types import ALLOWED_CONTENT_TYPES
 
@@ -51,10 +51,16 @@ class Space(models.Model):
     author = models.ForeignKey(User, blank=True, null=True,
         verbose_name=_('Space creator'), help_text=_('Select a user that \
         will be marked as creator of the space'))
-    logo = StdImageField(upload_to='spaces/logos', size=(100, 75, False),
+    # logo = StdImageField(upload_to='spaces/logos', size=(100, 75, False),
+    #     help_text = _('Valid extensions are jpg, jpeg, png and gif'),
+    #     blank=True, null=True)
+    # banner = StdImageField(upload_to='spaces/banners', size=(500, 75, False),
+    #     help_text = _('Valid extensions are jpg, jpeg, png and gif'),
+    #     blank=True, null=True)
+    logo = models.ImageField(upload_to='spaces/logos', max_length=250,
         help_text = _('Valid extensions are jpg, jpeg, png and gif'),
         blank=True, null=True)
-    banner = StdImageField(upload_to='spaces/banners', size=(500, 75, False),
+    banner = models.ImageField(upload_to='spaces/banners', max_length=250,
         help_text = _('Valid extensions are jpg, jpeg, png and gif'),
         blank=True, null=True)
     public = models.BooleanField(_('Public space'), help_text=_("This will \

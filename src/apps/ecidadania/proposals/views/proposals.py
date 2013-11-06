@@ -240,7 +240,7 @@ def merge_proposal(request, space_url, set_id):
                 return reverse(urln_space.SPACE_INDEX,
                     kwargs={'space_url': space_url})
         else:
-            print "id: " + set_id
+            print("id: {0}").format(set_id)
             merged_form = ProposalMergeForm(initial={'set_id': set_id})
 
         return render_to_response("proposals/proposal_merged.html",

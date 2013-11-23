@@ -105,7 +105,7 @@ class StdImageField(ImageField):
         - Allow image deletion
 
     """
-    import ipdb;ipdb.set_trace()
+    #import ipdb;ipdb.set_trace()
     descriptor_class = StdImageFileDescriptor
 
     def __init__(self, *args, **kwargs):

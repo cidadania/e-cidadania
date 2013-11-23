@@ -81,7 +81,7 @@ class ProposalFormInSet(ModelForm):
 class ProposalMergeForm(ModelForm):
 
     """
-    Returns a proposal form to create merged proposal. This form has a merged proposals \
+    Returns a proposal form to create merged proposal. This form has a merged proposals
     field which is initialized with list the proposals of a particular proposal set.
 
     :rtype: HTML Form
@@ -174,4 +174,4 @@ class ProposalSetSelectForm(ModelForm):
 
     class Meta:
         model = ProposalField
-        exclude = ('field_name')
+        exclude = ('field_name',)

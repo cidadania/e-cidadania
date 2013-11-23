@@ -31,7 +31,7 @@ class PollForm(ModelForm):
 # Create a formset for choices. This formset can be attached to any other form
 # but will be usually attached to PollForm
 
-ChoiceFormSet = modelformset_factory(Choice, exclude=('poll'), extra=5)
+ChoiceFormSet = modelformset_factory(Choice, exclude=('poll',), extra=5)
 
 
 class VotingForm(ModelForm):

@@ -40,8 +40,8 @@ class DebateForm(ModelForm):
             'title': TextInput(attrs={'class': 'medium'}),
         }
 
-RowForm = modelformset_factory(Row, exclude=('debate'))
-ColumnForm = modelformset_factory(Column, exclude=('debate'))
+RowForm = modelformset_factory(Row, exclude=('debate',))
+ColumnForm = modelformset_factory(Column, exclude=('debate',))
 
 
 class NoteForm(ModelForm):

@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ImproperlyConfigured
-from django.core.validators import email_re
+from django.core.validators import validate_email as email_re
 from django.db import models
 from django.utils.translation import ugettext as _
 from django.conf import settings

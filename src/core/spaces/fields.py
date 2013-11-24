@@ -44,7 +44,10 @@ class StdImageFormField(ImageField):
 
 
 class DelAdminFileWidget(AdminFileWidget):
-    """An AdminFileWidget that shows a delete checkbox"""
+
+    """
+    An AdminFileWidget that shows a delete checkbox
+    """
     input_type = 'file'
 
     def render(self, name, value, attrs=None):

@@ -42,7 +42,7 @@ class Post(models.Model):
     space = models.ForeignKey(Space, verbose_name=_('Publish in'),
                                    blank=True, null=True,
             help_text=_('If you want to post to the index leave this blank'))
-    post_tags = TaggableManager()
+    post_tags = TaggableManager(blank=False)
     views = models.IntegerField(_('Views'), blank=True, null=True)
 
     class Meta:

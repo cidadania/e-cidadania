@@ -5,7 +5,7 @@ from django.utils.translation import ugettext as _
 from apps.thirdparty.userprofile.models import Avatar, AVATAR_SIZES
 from django.contrib.auth.models import User
 from django.conf import settings
-import Image
+import PIL.Image
 # from PythonMagick import Image
 # from utils.TuxieMagick import Image
 import os

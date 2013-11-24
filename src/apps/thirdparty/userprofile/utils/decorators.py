@@ -3,6 +3,7 @@
 
 from django.template import loader, Context, RequestContext, TemplateSyntaxError
 from django.http import HttpResponse
+from django.utils import six
 
 
 def render_response(template_prefix=None, always_use_requestcontext=True):
@@ -36,7 +37,7 @@ def render_response(template_prefix=None, always_use_requestcontext=True):
 
             if isinstance(response, HttpResponse):
                 return response
-            elif isinstance(response, basestring):
+            elif isinstance(response, six.string_types):
                 template_name = response
                 namespace = {}
                 context_processors = None

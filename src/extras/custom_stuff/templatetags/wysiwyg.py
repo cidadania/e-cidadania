@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from urlparse import urljoin
+from urllib.parse import urljoin
 
 from django import template
 from django.conf import settings

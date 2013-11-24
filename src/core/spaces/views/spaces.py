@@ -109,11 +109,11 @@ def create_space(request):
                 Delete: {3}
                 Admin: {4}
                 Mod: {5}
-                """).format(un, u.has_perm('view_space', space),
+                """.format(un, u.has_perm('view_space', space),
                     u.has_perm('change_space', space),
                     u.has_perm('delete_space', space),
                     u.has_perm('admin_space', space),
-                    u.has_perm('mod_space', space))
+                    u.has_perm('mod_space', space)))
 
             return HttpResponseRedirect(reverse(urln.SPACE_INDEX,
                 kwargs={'space_url': space.url}))

@@ -29,13 +29,13 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.contrib.admin.widgets import AdminFileWidget
 from django.db.models import signals
-from django.db.models.fields.files import ImageField, ImageFileDescriptor
-from django.forms.fields import ImageField
+from django.db.models.fields.files import ImageField as ImageModelField, ImageFileDescriptor
+from django.forms.fields import ImageField as ImageFormField
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 
 
-class StdImageFormField(ImageField):
+class StdImageFormField(ImageFormField):
     def clean(self, data, initial=None):
         if data != '__deleted__':
             return super(StdImageFormField, self).clean(data, initial)
@@ -101,7 +101,7 @@ class StdImageFileDescriptor(ImageFileDescriptor):
         self.field._set_thumbnail(instance)
 
 
-class StdImageField(ImageField):
+class StdImageField(ImageModelField):
     """Django field that behaves as ImageField, with some extra features like:
         - Auto resizing
         - Automatically generate thumbnails

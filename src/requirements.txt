@@ -1,4 +1,4 @@
-django
+django==1.6
 Pillow==2.2.1
 python-dateutil==2.1
 django-guardian==1.1.1
@@ -9,6 +9,7 @@ markdown
 django-filter
 pyyaml
 defusedxml
+django-sampledatahelper
 #django-oauth-plus
 #django-oauth2-provider
 #django-stdimage

@@ -40,6 +40,14 @@ LOGIN_URL = '/accounts/'
 ANONYMOUS_USER_ID = -1
 GUARDIAN_RENDER_403 = True
 
+# Django-sampledatahelper
+SAMPLEDATAHELPER_SEED = 356235723
+
+SAMPLEDATAHELPER_MODELS = [
+    # Generate 5 instances of spaces
+    { 'model': 'spaces.Space', 'number': 5, },
+]
+
 # Languages for the platform.
 LANGUAGES = (
     ('es_ES', 'Español'),
@@ -163,6 +171,7 @@ THIRDPARTY_APPS = (
     'guardian',
     'south',
     'rest_framework',
+    'sampledatahelper',
 )
 
 ECIDADANIA_MODULES = (

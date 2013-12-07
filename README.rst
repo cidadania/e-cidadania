@@ -1,7 +1,8 @@
 e-cidadania
 ===========
 
-Current version: 0.1.9 beta2
+.. image:: https://badge.fury.io/gh/cidadania%2Fe-cidadania.png
+    :target: http://badge.fury.io/gh/cidadania%2Fe-cidadania
 
 e-cidadania is a project to develop an open source application for citizen
 participation, which can be used for debates, proposals, trusted voting,
